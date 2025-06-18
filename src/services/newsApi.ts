@@ -1,5 +1,5 @@
 // News API Configuration and Service Layer
-const NEWS_API_KEY = import.meta.env.VITE_NEWSAPI_KEY;
+const NEWS_API_KEY = 'ece39a89bbd9420ca1892b6d56fef007';
 const NEWS_BASE_URL = 'https://newsapi.org/v2';
 
 export interface NewsArticle {
