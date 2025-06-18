@@ -1,0 +1,7 @@
+/* Hide MainMenu on small screens */
+@media (max-width: 768px) {
+  .main-menu,
+  .main-menu-wrapper {
+    display: none !important;
+  }
+}
