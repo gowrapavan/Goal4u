@@ -58,7 +58,7 @@ const HeroSection = () => {
               key={index}
               className="item-slider"
               style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${slide.image})`,
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(${slide.image})`,
               }}
             >
               <div className="container">
