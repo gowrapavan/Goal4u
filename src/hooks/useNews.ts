@@ -16,6 +16,9 @@ interface NewsResult {
   totalResults: number;
 }
 
+const PREFERRED_TAGS = ['Real Madrid', 'Ronaldo', 'Champions League', 'Haaland', 'FIFA', 'Barcelona' , 'FIFA CLUB WORLD CUP' , 'ESPN'];
+
+
 export function useNews(page: number = 1, pageSize: number = 8) {
   const [data, setData] = useState<NewsResult>({ articles: [], totalResults: 0 });
   const [loading, setLoading] = useState(true);

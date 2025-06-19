@@ -8,7 +8,7 @@ export interface Team {
   [key: string]: any;
 }
 
-const API_KEY = '6752534e8f314d6c958ab0627105d00b';
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json/Teams';
 
 let allTeams: Team[] | null = null;

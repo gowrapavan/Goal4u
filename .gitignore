@@ -1,1 +1,5 @@
 node_modules
+netlify
+src/vite-env.d.ts
+src/hooks/useNews.ts 
+.env

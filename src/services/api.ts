@@ -1,4 +1,4 @@
-const API_KEY = '19b13653b11e4999aad7d31c721088af';
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
 const BASE_URL = '/api';
 
 export interface ApiResponse<T> {

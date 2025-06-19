@@ -1,8 +1,8 @@
 // services/live.ts
 import { Match, ApiMatch } from '../types/match';
 
-const API_KEY = '6752534e8f314d6c958ab0627105d00b';
-const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
+const BASE_URL = 'api/scores/json/ScoresBasic';
 
 // Add or remove supported competitions here
 const COMPETITIONS = [

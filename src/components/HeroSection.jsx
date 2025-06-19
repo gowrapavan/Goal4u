@@ -3,12 +3,10 @@ import { useNews } from '../hooks/useNews';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const { data: newsResponse, loading, error } = useNews(1, 20); // Fetch up to 20
+  const { data: newsResponse } = useNews(1, 20);
 
   const hardcodedSlide = {
     title: 'Premier League Action',
-    description:
-      'Follow the latest matches, standings, and player performances from the world\'s most exciting football league.',
     image: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg',
     url: '#',
   };
@@ -17,19 +15,14 @@ const HeroSection = () => {
 
   useEffect(() => {
     if (newsResponse?.articles && newsResponse.articles.length > 0) {
-      const dynamicSlides = newsResponse.articles
-        .slice(0, 10)
-        .map((article) => ({
-          title: article.title,
-          description:
-            article.description?.substring(0, 150) +
-            (article.description?.length > 150 ? '...' : ''),
-          image:
-            article.urlToImage && !article.urlToImage.includes('removed')
-              ? article.urlToImage
-              : hardcodedSlide.image,
-          url: article.url,
-        }));
+      const dynamicSlides = newsResponse.articles.slice(0, 50).map((article) => ({
+        title: article.title,
+        image:
+          article.urlToImage && !article.urlToImage.includes('removed')
+            ? article.urlToImage
+            : hardcodedSlide.image,
+        url: article.url,
+      }));
 
       setSlides([hardcodedSlide, ...dynamicSlides]);
     }
@@ -62,11 +55,11 @@ const HeroSection = () => {
               }}
             >
               <div className="container">
+                <br></br><br></br><br></br>
                 <div className="row align-items-center">
                   <div className="col-lg-8">
                     <div className="info-slider">
                       <h1>{slide.title}</h1>
-                      <p>{slide.description}</p>
                       <button
                         onClick={() => handleReadMore(slide.url)}
                         className="btn-iw outline"
@@ -81,7 +74,7 @@ const HeroSection = () => {
           ))}
         </div>
 
-        {/* Indicators */}
+        {/* Indicators - hidden on mobile */}
         <div className="hero-indicators">
           {slides.map((_, index) => (
             <button
@@ -109,24 +102,25 @@ const HeroSection = () => {
         </button>
       </div>
 
-      {/* Styling */}
       <style jsx>{`
         .hero-header {
           position: relative;
-          height: 700px; /* Increased height */
+          height: 600px;
           overflow: hidden;
+          background-color: lightgreen;
         }
 
         .hero-slider {
           height: 100%;
           overflow: hidden;
           position: relative;
+          border-radius: 5px;
         }
 
         .slider-track {
           display: flex;
           height: 100%;
-          transition: transform 0.9s ease-in-out;
+          transition: transform 0.8s ease-in-out;
         }
 
         .item-slider {
@@ -138,18 +132,15 @@ const HeroSection = () => {
           align-items: center;
         }
 
-        .info-slider h1 {
-          font-size: 3rem;
-          font-weight: bold;
-          color: white;
-          margin-bottom: 1rem;
-          text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+        .info-slider {
+          padding: 0 20px;
         }
 
-        .info-slider p {
-          font-size: 1.2rem;
+        .info-slider h1 {
+          font-size: 1.1rem;
           color: white;
-          margin-bottom: 2rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
           text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
@@ -157,35 +148,38 @@ const HeroSection = () => {
           background: transparent;
           border: 2px solid white;
           color: white;
-          padding: 12px 30px;
-          font-weight: 600;
+          padding: 8px 18px;
+          font-size: 0.85rem;
+          font-weight: 500;
+          border-radius: 4px;
         }
 
         .btn-iw.outline:hover {
           background: white;
-          color: #333;
+          color: black;
         }
 
         .hero-indicators {
           position: absolute;
-          bottom: 25px;
+          bottom: 15px;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
-          gap: 10px;
+          gap: 5px;
         }
 
         .indicator {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          border: 2px solid white;
-          background: transparent;
+          width: 20px;
+          height: 5px;
+          border-radius: 4px;
+          background-color: rgba(255, 255, 255, 0.4);
+          border: none;
           cursor: pointer;
         }
 
         .indicator.active {
-          background: black;
+          width: 28px;
+          background-color: #06a33f;
         }
 
         .hero-nav {
@@ -194,53 +188,46 @@ const HeroSection = () => {
           transform: translateY(-50%);
           background: rgba(0, 0, 0, 0.4);
           border: none;
-          color: white;
-          width: 42px;
-          height: 42px;
+          color: lightgreen;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
           cursor: pointer;
         }
 
         .hero-nav.prev {
-          left: 20px;
+          left: 15px;
         }
 
         .hero-nav.next {
-          right: 20px;
+          right: 15px;
         }
 
         @media (max-width: 768px) {
-        .hero-header {
-          height: 550px;
-        }
+  .hero-header {
+    height: 420px;
+  }
 
-        .info-slider {
-          margin-top: 60px; /* Moves text down */
-          text-align: left; /* Optional: center align for better mobile look */
-          padding: 0 15px; /* Optional: horizontal padding for small screens */
-        }
+  .info-slider h1 {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
 
-        .info-slider h1 {
-          font-size: 0.3 rem; /* Reduced font size */
-          line-height: 1.3;
-        }
+  .btn-iw.outline {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
 
-        .info-slider p {
-          font-size: 0.7 rem;
-          line-height: 1.4;
-        }
+  .hero-indicators {
+    display: none;
+  }
 
-        .btn-iw.outline {
-          padding: 8px 20px; /* Smaller button */
-          font-size: 0.7rem;
-        }
-
-        .hero-nav {
-          width: 36px;
-          height: 36px;
-        }
-      }
-
+  .hero-nav {
+    width: 30px;
+    height: 30px;
+  }
+}
+ }
       `}</style>
     </div>
   );
