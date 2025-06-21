@@ -5,10 +5,16 @@ import Hls from 'hls.js';
 const LiveMatchContent = ({ activeTab, setActiveTab }) => {
   const [currentServer, setCurrentServer] = React.useState(6);
   const videoRef = useRef(null);
+    const streamRef = useRef(null); // 👈 Add this ref
+
   const hlsRef = useRef(null);
   const servers = [1, 2, 3, 4, 5, 6];
 
   useEffect(() => {
+     if (activeTab === 'stream' && streamRef.current) {
+      // 👇 Scroll into view when the tab changes to 'stream'
+      streamRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
     if (activeTab === 'stream' && videoRef.current) {
       const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${currentServer}.m3u8`;
 
@@ -131,7 +137,7 @@ const LiveMatchContent = ({ activeTab, setActiveTab }) => {
                   </div>
                 </div>
 
-                <div className={`tab-pane ${activeTab === 'stream' ? 'active' : ''}`} id="stream">
+                <div className={`tab-pane ${activeTab === 'stream' ? 'active' : ''}`} id="stream" ref={streamRef}>
                   <div className="panel-box">
                     <div className="titles"><h4>Live Match Stream</h4></div>
 
