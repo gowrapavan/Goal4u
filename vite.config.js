@@ -17,9 +17,4 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    rollupOptions: {
-      external: ['react-router-dom'], // 👈 prevent Netlify build issue
-    },
-  },
 });
