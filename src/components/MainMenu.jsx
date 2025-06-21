@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import React from 'react'
+import LiveMatch from './live/livematch';
 
 const MainMenu = () => {
   return (
@@ -7,14 +9,6 @@ const MainMenu = () => {
         <ul className="sf-menu" id="menu">
           <li className="current">
             <a href="index.html">Home</a>
-            <ul className="sub-current">
-              <li><a href="index.html">Home 1</a></li>
-              <li><a href="index-2.html">Home 2</a></li>
-              <li><a href="index-3.html">Home 3</a></li>
-              <li><a href="index-4.html">Home 4</a></li>
-              <li><a href="index-5.html">Home 5</a></li>
-              <li><a href="index-6.html">Home 6</a></li>
-            </ul>
           </li>
 
           <li>
@@ -24,7 +18,7 @@ const MainMenu = () => {
                 <div className="col-md-3">
                   <h5><i className="fa fa-trophy" aria-hidden="true"></i>World Cup</h5>
                   <ul>
-                    <li><a href="table-point.html">Point Table</a></li>
+                    {/* Point Table removed */}
                     <li><a href="fixtures.html">Fixtures</a></li>
                     <li><a href="groups.html">Groups</a></li>
                     <li><a href="news-left-sidebar.html">News</a></li>
@@ -97,8 +91,11 @@ const MainMenu = () => {
             </ul>
           </li>
 
-          <li><a href="table-point.html">Point Table</a></li>
+          {/* Removed: <li><a href="table-point.html">Point Table</a></li> */}
           <li><a href="groups.html">Groups</a></li>
+
+          {/* ✅ New Live menu item */}
+          <li><a ><Link to="/live">Live</Link></a></li>
 
           <li>
             <a href="#">Features</a>
