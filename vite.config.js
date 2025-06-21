@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'], // optional, if needed in your project
+    exclude: ['lucide-react'], // optional
   },
   server: {
     proxy: {
@@ -13,8 +13,13 @@ export default defineConfig({
         target: 'https://api.sportsdata.io/v4/soccer/scores/json',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: true, // ✅ keep for HTTPS targets
+        secure: true,
       },
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: ['react-router-dom'], // 👈 prevent Netlify build issue
     },
   },
 });
