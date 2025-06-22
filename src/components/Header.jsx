@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react'
 
 const Header = () => {
@@ -9,14 +10,14 @@ const Header = () => {
             {/* Logo */}
             <div className="col">
               <div className="logo">
-                <a href="index.html" title="Return Home">
-                  <img
-                    src="/assets/img/favicon.png"
-                    alt="Logo"
-                    className="logo_img"
-                  />
-                </a>
-              </div>
+  <Link to="/" title="Return Home">
+    <img
+      src="/assets/img/favicon.png"
+      alt="Logo"
+      className="logo_img"
+    />
+  </Link>
+</div>
             </div>
 
             {/* Adds Header */}
