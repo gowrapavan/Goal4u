@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchBoxScoreById } from '../../services/boxscore';
-import LiveScoreSection from './LiveScoreSection';
+import LiveScoreSection from './livescoresection';
 import LiveMatchContent from './LiveMatchContent'; // ✅ import
 import LoadingSpinner from '../common/LoadingSpinner';
 import ErrorMessage from '../common/ErrorMessage';
