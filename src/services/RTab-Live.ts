@@ -1,0 +1,122 @@
+import { Match, ApiMatch } from '../types/match';
+
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
+const BASE_URL = 'api/ScoresBasic'; // ✅ Fixed base path
+
+export const COMPETITIONS = [
+  { code: 'EPL', name: 'Premier League' },
+  { code: 'ESP', name: 'La Liga' },
+  { code: 'GER', name: 'Bundesliga' },
+  { code: 'ITA', name: 'Serie A' },
+  { code: 'FRA', name: 'Ligue 1' },
+  { code: 'UCL', name: 'UEFA Champions League' },
+  { code: 'CWC', name: 'FIFA Club World Cup' },
+];
+
+function formatDate(date: Date): string {
+  return date.toISOString().split('T')[0]; // "YYYY-MM-DD"
+}
+
+function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
+  return {
+    GameId: apiMatch.GameId,
+    HomeTeamName: apiMatch.HomeTeamName,
+    AwayTeamName: apiMatch.AwayTeamName,
+    HomeTeamScore: apiMatch.HomeTeamScore,
+    AwayTeamScore: apiMatch.AwayTeamScore,
+    DateTime: apiMatch.DateTime,
+    Status: apiMatch.Status,
+    IsClosed: apiMatch.IsClosed,
+    Competition: competition,
+    AwayTeamCountryCode: apiMatch.AwayTeamCountryCode,
+    HomeTeamCountryCode: apiMatch.HomeTeamCountryCode,
+    Group: apiMatch.Group || undefined,
+    Season: apiMatch.Season,
+    Winner: apiMatch.Winner,
+    HomeTeamKey: apiMatch.HomeTeamKey,
+    AwayTeamKey: apiMatch.AwayTeamKey,
+    Updated: apiMatch.Updated,
+  };
+}
+
+/**
+ * Fetches today's live matches (InProgress, Break, Halftime) from top competitions.
+ */
+export async function getLiveMatches(): Promise<Match[]> {
+  const today = formatDate(new Date());
+
+  const fetchMatchesByCompetition = async (competition: string) => {
+    const url = `${BASE_URL}/${competition}/${today}?key=${API_KEY}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch matches for ${competition}`);
+    const matches: ApiMatch[] = await response.json();
+
+    return matches
+      .filter(
+        (match) =>
+          match.Status === 'InProgress' ||
+          match.Status === 'Break' ||
+          match.Status === 'Halftime'
+      )
+      .map((match) => transformApiMatch(match, competition));
+  };
+
+  const results = await Promise.allSettled(
+    COMPETITIONS.map((c) => fetchMatchesByCompetition(c.code))
+  );
+
+  const liveMatches: Match[] = results
+    .filter((r): r is PromiseFulfilledResult<Match[]> => r.status === 'fulfilled')
+    .flatMap((r) => r.value);
+
+  return liveMatches.sort(
+    (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
+  );
+}
+
+/**
+ * Fetches upcoming (scheduled) matches from today onward.
+ */
+export async function getUpcomingMatches(): Promise<Match[]> {
+  const today = formatDate(new Date());
+
+  const fetchMatchesByCompetition = async (competition: string) => {
+    const url = `${BASE_URL}/${competition}/${today}?key=${API_KEY}`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch matches for ${competition}`);
+    const matches: ApiMatch[] = await response.json();
+
+    return matches
+      .filter((match) => match.Status === 'Scheduled')
+      .map((match) => transformApiMatch(match, competition));
+  };
+
+  const results = await Promise.allSettled(
+    COMPETITIONS.map((c) => fetchMatchesByCompetition(c.code))
+  );
+
+  const upcomingMatches: Match[] = results
+    .filter((r): r is PromiseFulfilledResult<Match[]> => r.status === 'fulfilled')
+    .flatMap((r) => r.value);
+
+  return upcomingMatches.sort(
+    (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
+  );
+}
+
+/**
+ * Fetch upcoming matches for preferred clubs sorted by time.
+ */
+export async function getPreferredClubMatches(preferredClubs: string[]): Promise<Match[]> {
+  const allUpcoming = await getUpcomingMatches();
+
+  const filtered = allUpcoming.filter(
+    (match) =>
+      preferredClubs.includes(match.HomeTeamName) ||
+      preferredClubs.includes(match.AwayTeamName)
+  );
+
+  return filtered.sort(
+    (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
+  );
+}

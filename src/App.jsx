@@ -1,4 +1,3 @@
-// App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -7,7 +6,8 @@ import HeroSection from './components/HeroSection';
 import ContentInfo from './components/ContentInfo';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
-import LiveMatch from './components/live/livematch'; // <-- Import your live match component
+import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details page
+import Live from './components/live/Live'; // ✅ Live match list page
 import './App.css';
 
 function App() {
@@ -30,8 +30,14 @@ function App() {
               </>
             }
           />
-          <Route path="/live" element={<LiveMatch />} />
-        </Routes>
+          {/* ✅ Live match listing */}
+          <Route path="/live" element={<Live />} />
+
+          {/* ✅ Live match detail via query params */}
+          <Route path="/livematch" element={<LiveMatch />} />
+
+          {/* Optional: if you later use param-based URLs like /live/CWC/89714 */}
+          </Routes>
 
         <Footer />
         <div className="footer-down">

@@ -11,7 +11,7 @@ const Header = () => {
               <div className="logo">
                 <a href="index.html" title="Return Home">
                   <img
-                    src="https://html.iwthemes.com/sportscup/run/img/logo.png"
+                    src="/assets/img/favicon.png"
                     alt="Logo"
                     className="logo_img"
                   />
@@ -21,19 +21,7 @@ const Header = () => {
 
             {/* Adds Header */}
             <div className="col">
-              <div className="adds">
-                <a
-                  href="http://themeforest.net/user/iwthemes/portfolio?ref=iwthemes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="https://html.iwthemes.com/sportscup/run/img/adds/banner.jpg"
-                    alt=""
-                    className="img-responsive"
-                  />
-                </a>
-              </div>
+             
 
               {/* Call Nav Menu */}
               <a className="mobile-nav" href="#mobile-nav">

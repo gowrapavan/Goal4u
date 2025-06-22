@@ -1,6 +1,6 @@
 // components/RecentMatches.jsx
 import React, { useEffect, useState } from 'react';
-import LoadingSpinner from './common/LoadingSpinner';
+import Loading from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import { MatchService } from '../services/matchService';
 import { getTeamLogoByKey } from '../services/teamlogo';
@@ -49,6 +49,8 @@ const RecentMatches = () => {
       setLoading(true);
       setError(null);
       const matches = await MatchService.fetchRecentMatches(5);
+      await new Promise((res) => setTimeout(res, 100)); // <-- delay for fade-in
+
       setRecentMatches(matches);
       await loadTeamLogos(matches);
     } catch (err) {
@@ -74,9 +76,9 @@ const RecentMatches = () => {
         </h5>
         <div className="info-results">
           {loading ? (
-            <div className="text-center p-3">
-              <LoadingSpinner size="small" message="Loading recent matches..." />
-            </div>
+             <div className="text-center py-4">
+    <Loading />
+  </div>
           ) : error ? (
             <div className="p-3">
               <ErrorMessage message={error} onRetry={fetchMatches} />

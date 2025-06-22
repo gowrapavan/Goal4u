@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNews } from '../hooks/useNews'; // Or your working hook
-import LoadingSpinner from './common/LoadingSpinner';
+import Loading from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import EmptyState from './common/EmptyState';
 
@@ -50,7 +50,7 @@ const News = () => {
       </div>
 
       {loading && currentPage === 1 && (
-        <LoadingSpinner message="Loading latest sports news..." />
+        <Loading message="Loading latest sports news..." />
       )}
 
       {error && (

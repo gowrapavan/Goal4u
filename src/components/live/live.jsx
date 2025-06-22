@@ -1,16 +1,9 @@
+// components/live/live.jsx
 import React from 'react';
-import LiveSection from './LiveSection';
-import LiveWatch from './LiveWatch';
-import LiveStats from './LiveStats';
+import LiveMatchList from './LiveMatchList';
 
-function LivePage() {
-  return (
-    <>
-      <LiveSection />
-      <LiveWatch />
-      <LiveStats />
-    </>
-  );
-}
+const Live = () => {
+  return <LiveMatchList />;
+};
 
-export default LivePage;
+export default Live;
