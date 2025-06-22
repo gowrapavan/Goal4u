@@ -7,7 +7,7 @@ import ContentInfo from './components/ContentInfo';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details page
-import Live from './components/live/Live'; // ✅ Live match list page
+import Live from './components/live/live'; // ✅ Live match list page
 import './App.css';
 
 function App() {
