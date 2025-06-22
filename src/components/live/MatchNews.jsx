@@ -1,6 +1,4 @@
-// components/MatchNews.jsx
 import React, { useEffect, useState } from 'react';
-import { newsAPI } from '../../services/newsApi';
 
 const MatchNews = ({ matchTitle }) => {
   const [articles, setArticles] = useState([]);
@@ -10,11 +8,16 @@ const MatchNews = ({ matchTitle }) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const keywords = newsAPI.extractKeywords(matchTitle);
-        const news = await newsAPI.getRelatedNews(keywords, matchTitle, 4);
-        setArticles(newsAPI.filterArticles(news));
+        const res = await fetch(
+          `/.netlify/functions/getNews?matchTitle=${encodeURIComponent(matchTitle)}&pageSize=4`
+        );
+        const data = await res.json();
+
+        if (data.error) throw new Error(data.error);
+
+        setArticles(data.articles || []);
       } catch (err) {
-        setError(err.message || 'Failed to fetch related news');
+        setError(err.message || 'Failed to fetch match news');
       } finally {
         setLoading(false);
       }
@@ -50,7 +53,7 @@ const MatchNews = ({ matchTitle }) => {
                   width: '100%',
                   height: '160px',
                   objectFit: 'cover',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
                 }}
               />
             </a>

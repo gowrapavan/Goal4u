@@ -23,8 +23,15 @@ const handler: Handler = async (event) => {
     };
   }
 
-  const { page = '1', pageSize = '8', preferred = 'false' } = event.queryStringParameters || {};
-  const query = preferred === 'true' ? PREFERRED_TAGS.join(' OR ') : '';
+  const { matchTitle = '', page = '1', pageSize = '8', preferred = 'false' } = event.queryStringParameters || {};
+
+  // Build query
+  let query = '';
+  if (preferred === 'true') {
+    query = PREFERRED_TAGS.join(' OR ');
+  } else if (matchTitle) {
+    query = matchTitle;
+  }
 
   const endpoint = query ? '/everything' : '/top-headlines';
 
