@@ -12,7 +12,7 @@ const Header = () => {
               <div className="logo">
   <Link to="/" title="Return Home">
     <img
-      src="/assets/img/favicon.png"
+      src="assets/img/favicon.png"
       alt="Logo"
       className="logo_img"
     />

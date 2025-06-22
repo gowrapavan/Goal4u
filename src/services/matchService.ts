@@ -1,7 +1,6 @@
 // services/matchService.ts
 
 import { ApiMatch, Match, Competition } from '../types/match';
-
 const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
 const BASE_URL = '/api/ScoresBasic';
 
