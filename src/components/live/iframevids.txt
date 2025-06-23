@@ -1,0 +1,16 @@
+ <iframe
+      src="//letscast.pro/badir2.php?stream=HDGQZ2"
+      width="100%"
+      height="525px"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen="true"
+      sandbox="allow-same-origin allow-scripts">
+    </iframe>
+
+
+
+    
+    const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${serverId}.m3u8`;
+
+

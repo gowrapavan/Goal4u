@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Youtube from './Hightlight'; // assumes you updated this component to accept `query` prop
-import Hls from 'hls.js';
+import React, { useEffect, useState } from 'react';
+import Youtube from './Hightlight';
 import { useSearchParams } from 'react-router-dom';
 import { fetchBoxScoreById } from '../../services/boxscore';
 import { getTeamLogoByKey } from '../../services/teamlogo';
-import MatchNews from './MatchNews'; // adjust path if needed
-
+import MatchNews from './MatchNews';
+import Stream from './Stream'; // ✅ imported new modular Stream
 
 const LiveMatchContent = ({ activeTab, setActiveTab }) => {
   const [searchParams] = useSearchParams();
@@ -16,12 +15,6 @@ const LiveMatchContent = ({ activeTab, setActiveTab }) => {
   const [logos, setLogos] = useState({});
   const [currentServer, setCurrentServer] = useState(6);
   const [manualSelection, setManualSelection] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-
-  const videoRef = useRef(null);
-  const streamRef = useRef(null);
-  const hlsRef = useRef(null);
-  const servers = [1, 2, 3, 4, 5, 6];
 
   useEffect(() => {
     const fetchMatchStats = async () => {
@@ -45,79 +38,8 @@ const LiveMatchContent = ({ activeTab, setActiveTab }) => {
     fetchMatchStats();
   }, [matchId, competition]);
 
-  const showInlineAlert = (message) => {
-    setAlertMessage(message);
-    setTimeout(() => setAlertMessage(''), 3000);
-  };
-
-  const loadStream = (serverId, fallback = false, index = 0) => {
-    const video = videoRef.current;
-    const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${serverId}.m3u8`;
-
-    if (!video) return;
-
-    if (Hls.isSupported()) {
-      if (hlsRef.current) hlsRef.current.destroy();
-      const hls = new Hls();
-      hlsRef.current = hls;
-
-      hls.loadSource(url);
-      hls.attachMedia(video);
-
-      const onLoaded = () => {
-        const duration = video.duration;
-        video.removeEventListener('loadedmetadata', onLoaded);
-
-        if (duration && duration <= 11) {
-          if (fallback) {
-            showInlineAlert(`Server ${serverId} is offline. Trying next...`);
-            const nextIndex = (index + 1) % servers.length;
-            setTimeout(() => loadStream(servers[nextIndex], true, nextIndex), 2000);
-          }
-        } else {
-          setCurrentServer(serverId);
-        }
-      };
-
-      video.addEventListener('loadedmetadata', onLoaded);
-
-      hls.on(Hls.Events.ERROR, (_, data) => {
-        if (data.fatal && fallback) {
-          showInlineAlert(`HLS error on Server ${serverId}. Trying next...`);
-          hls.destroy();
-          const nextIndex = (index + 1) % servers.length;
-          setTimeout(() => loadStream(servers[nextIndex], true, nextIndex), 2000);
-        }
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = url;
-    }
-  };
-
-  useEffect(() => {
-    if (activeTab !== 'stream' || !videoRef.current) return;
-    streamRef.current?.scrollIntoView({ behavior: 'smooth' });
-
-    if (!manualSelection) {
-      const index = servers.indexOf(currentServer);
-      loadStream(currentServer, true, index);
-    }
-
-    return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
-    };
-  }, [activeTab]);
-
-  const handleServerClick = (serverId, index) => {
-    setManualSelection(true);
-    loadStream(serverId, true, index);
-  };
-
   const renderStats = () => {
-    if (!matchStats || !matchStats.TeamGames || matchStats.TeamGames.length < 2) {
+    if (!matchStats?.TeamGames || matchStats.TeamGames.length < 2) {
       return <p>Loading stats...</p>;
     }
 
@@ -169,7 +91,7 @@ const LiveMatchContent = ({ activeTab, setActiveTab }) => {
             <div className="col-lg-12">
               <div className="tab-content">
 
-                {/* Match Stats */}
+                {/* Stats Tab */}
                 <div className={`tab-pane ${activeTab === 'stats' ? 'active' : ''}`} id="stats">
                   <div className="row match-stats">
                     <div className="col-lg-5">
@@ -199,64 +121,25 @@ const LiveMatchContent = ({ activeTab, setActiveTab }) => {
                   </div>
                 </div>
 
-                {/* Stream */}
-                <div className={`tab-pane ${activeTab === 'stream' ? 'active' : ''}`} id="stream" ref={streamRef}>
-                  <div className="panel-box">
-                    <div className="titles">
-                      <h4>Live Match Stream</h4>
-                      {alertMessage && (
-                        <div style={{ backgroundColor: '#ffe9e9', color: '#c0392b', padding: '10px', borderRadius: '5px' }}>
-                          {alertMessage}
-                        </div>
-                      )}
-                    </div>
+                {/* Stream Tab (modularized) */}
+                <Stream
+                  active={activeTab === 'stream'}
+                  currentServer={currentServer}
+                  setCurrentServer={setCurrentServer}
+                  manualSelection={manualSelection}
+                  setManualSelection={setManualSelection}
+                />
 
-                    <div className="text-center mb-3">
-                      {servers.map((num, i) => (
-                        <button
-                          key={num}
-                          onClick={() => handleServerClick(num, i)}
-                          style={{
-                            margin: '4px',
-                            padding: '6px 14px',
-                            background: currentServer === num ? '#33FFC9' : '#eee',
-                            border: '1px solid #ccc',
-                            borderRadius: '5px',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          Server {num}
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="row">
-                      <div className="col-lg-12">
-                        <video
-                          ref={videoRef}
-                          controls
-                          autoPlay
-                          muted
-                          style={{ width: '100%', maxHeight: '500px', backgroundColor: '#000', borderRadius: '10px' }}
-                        />
-                      </div>
-                    </div>
+                {/* Summary Tab */}
+                <div className={`tab-pane ${activeTab === 'summary' ? 'active' : ''}`} id="summary">
+                  <div className="panel-box padding-b">
+                    <div className="titles"><h4>Match Summary & Highlights</h4></div>
+                    <p>Automatically fetched highlights from YouTube.</p>
                   </div>
+
+                  {highlightQuery && <Youtube query={highlightQuery} />}
+                  {highlightQuery && <MatchNews matchTitle={highlightQuery} />}
                 </div>
-
-                {/* Summary */}
-<div className={`tab-pane ${activeTab === 'summary' ? 'active' : ''}`} id="summary">
-  <div className="panel-box padding-b">
-    <div className="titles"><h4>Match Summary & Highlights</h4></div>
-    <p>Automatically fetched highlights from YouTube.</p>
-  </div>
-
-  {highlightQuery && <Youtube query={highlightQuery} />}
-
-  {/* 🔥 Add dynamic news here */}
-  {highlightQuery && <MatchNews matchTitle={highlightQuery} />}
-</div>
-
 
               </div>
             </div>
