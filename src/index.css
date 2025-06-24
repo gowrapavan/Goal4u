@@ -15461,7 +15461,7 @@ header .mobile-nav:hover {
 
 /* line 417, ../sass/main.scss */
 .headerbox {
-  padding: 20px 0;
+  padding: 7px 0;
 }
 @media (max-width: 1199px) {
   /* line 417, ../sass/main.scss */
@@ -15625,7 +15625,7 @@ header .mobile-nav:hover {
 }
 /* line 540, ../sass/main.scss */
 .header-4 .mainmenu .sf-menu > li a {
-  color: #fff;
+  color: #222;
 }
 /* line 543, ../sass/main.scss */
 .header-4 .mainmenu .sf-menu > li ul {
@@ -16062,6 +16062,8 @@ iframe.big-video {
   /* line 888, ../sass/main.scss */
   .section-title.single-result .team {
     padding-left: 100px;
+    font-size: 0.2rem;
+
   }
 }
 @media (max-width: 991px) {
@@ -17202,18 +17204,18 @@ footer .links-footer ul.columns {
   right: 10px;
   overflow: hidden;
   width: 51px;
-  height: 51px;
+  height: 71px;
   border: none;
   text-indent: 100%;
   z-index: 9999;
-  background: url("https://html.iwthemes.com/sportscup/run/img/img-theme/ui.totop.png") no-repeat left top;
+  background: url("/public/assets/img/gotop.png") no-repeat left top;
 }
 
 /* line 1880, ../sass/main.scss */
 #toTopHover {
-  background: url("https://html.iwthemes.com/sportscup/run/img/img-theme/ui.totop.png") no-repeat left -51px;
+  background: url("/public/assets/img/gotop.png") no-repeat left -51px;
   width: 51px;
-  height: 51px;
+  height: 71px;
   display: block;
   overflow: hidden;
   float: left;
@@ -17224,6 +17226,18 @@ footer .links-footer ul.columns {
 /* line 1890, ../sass/main.scss */
 #toTop:active, #toTop:focus {
   outline: none;
+}
+@media (max-width: 767px) {
+  #toTop {
+    height: 120px; /* slightly more */
+    width: 41px;
+    opacity: 0.4;
+  }
+
+  #toTopHover {
+    height: 85px;
+    opacity: 0.2;
+  }
 }
 
 /*	ACCORDION ---------------------------------------------------------*/

@@ -6,6 +6,7 @@ import HeroSection from './components/HeroSection';
 import ContentInfo from './components/ContentInfo';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
+import MobileFooter from './components/MobileFooter'; // ✅ Mobile-only footer
 import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details page
 import Live from './components/live/live'; // ✅ Live match list page
 import './App.css';
@@ -15,9 +16,7 @@ function App() {
     <Router>
       <div id="layout">
         <Header />
-        <div className="main-menu-wrapper">
-          <MainMenu />
-        </div>
+        
 
         <Routes>
           <Route
@@ -35,10 +34,12 @@ function App() {
 
           {/* ✅ Live match detail via query params */}
           <Route path="/livematch" element={<LiveMatch />} />
+        </Routes>
 
-          {/* Optional: if you later use param-based URLs like /live/CWC/89714 */}
-          </Routes>
+        {/* ✅ Mobile-only footer navigation */}
+        <MobileFooter />
 
+        {/* ✅ Main desktop footer */}
         <Footer />
         <div className="footer-down">
           <div className="container">

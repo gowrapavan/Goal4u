@@ -8,7 +8,8 @@ const Footer = () => {
         {/* Logo Footer */}
         <div className="col-lg-12">
           <div className="logo-footer">
-            <h2>Sports Cup</h2>
+            <h2>EUFORIA</h2>
+            <a>THE HOME OF FOOTBALL</a>
           </div>
         </div>
 

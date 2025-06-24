@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchBoxScoreById } from '../../services/boxscore';
 import { getTeamLogoByKey } from '../../services/teamlogo';
 import MatchNews from './MatchNews';
-import Stream from './Stream'; // ✅ imported new modular Stream
+import Stream from './stream'; // ✅ imported new modular Stream
 
 const LiveMatchContent = ({ activeTab, setActiveTab }) => {
   const [searchParams] = useSearchParams();
