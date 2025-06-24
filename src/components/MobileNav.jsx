@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 const MobileNav = () => {
-   useEffect(() => {
-    if (window.$ && $('#mobile-nav').length) {
-      $('#mobile-nav').mmenu(); // ✅ init after mount
-    }
-  }, []);
   return (
 
     
