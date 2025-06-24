@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // ✅ Must include useEffect
 import { Link } from 'react-router-dom';
 
+
+
 const MobileNav = () => {
+   useEffect(() => {
+    if (window.$ && $('#mobile-nav').length) {
+      $('#mobile-nav').mmenu(); // ✅ init after mount
+    }
+  }, []);
   return (
 
     
