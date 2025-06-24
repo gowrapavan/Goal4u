@@ -1,6 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const MainMenu = () => {
+
+    useEffect(() => {
+    const loadScript = (src) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.body.appendChild(script);
+      });
+    };
+
+    const loadAllScripts = async () => {
+      try {
+        await loadScript('/assets/js/jquery.js'); // local jQuery
+        await loadScript('https://code.jquery.com/jquery-3.6.4.min.js');
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/8.5.24/mmenu.min.js');
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js');
+        await loadScript('https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js');
+        await loadScript('/assets/js/theme-main.js'); // your theme script
+
+        // Optionally, initialize any menu logic here if needed
+        if (window.$) {
+          $('.mainmenu').sticky({ topSpacing: 0 });
+          $('ul.sf-menu').superfish();
+        }
+      } catch (error) {
+        console.error('Failed to load one or more scripts:', error);
+      }
+    };
+
+    loadAllScripts();
+  }, []);
   return (
     <>
       {/* Desktop Mainmenu */}

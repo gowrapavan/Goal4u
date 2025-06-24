@@ -1,13 +1,27 @@
-import React, { useEffect } from 'react'; // ✅ Must include useEffect
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-
-
 const MobileNav = () => {
-  return (
+  useEffect(() => {
+    // Load mmenu dynamically after the component mounts
+    if (window.$ && $('#mobile-nav').length) {
+      $('#mobile-nav').mmenu({
+        extensions: ['position-left', 'pagedim-black'],
+        offCanvas: {
+          position: 'right',
+          page: {
+            selector: '#root', // This must match your layout root div
+          },
+        },
+        navbar: {
+          title: 'Menu',
+        },
+      });
+    }
+  }, []);
 
-    
-    <div id="mobile-nav" className="mobile-nav-wrapper">
+  return (
+    <nav id="mobile-nav">
       <ul className="mm-listview">
         <li>
           <Link to="/">Home</Link>
@@ -57,12 +71,7 @@ const MobileNav = () => {
         </li>
 
         <li><Link to="/fixtures">Fixtures</Link></li>
-
-        <li>
-          <Link to="/live">Live</Link>
-          
-        </li>
-
+        <li><Link to="/live">Live</Link></li>
         <li><Link to="/table-point">Point Table</Link></li>
         <li><Link to="/groups">Groups</Link></li>
 
@@ -119,7 +128,7 @@ const MobileNav = () => {
 
         <li><Link to="/contact">Contact</Link></li>
       </ul>
-    </div>
+    </nav>
   );
 };
 
