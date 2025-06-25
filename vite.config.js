@@ -3,17 +3,13 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/', // ✅ You are deploying to root domain (not a subfolder)
-
   plugins: [react()],
-
   optimizeDeps: {
-    exclude: ['lucide-react'], // Optional exclusion
+    exclude: ['lucide-react'],
   },
-
   server: {
     proxy: {
-      // ✅ Proxy used only for local development
+      // ✅ Local proxy only used for development
       '/api': {
         target: 'https://api.sportsdata.io/v4/soccer/scores/json',
         changeOrigin: true,
@@ -22,8 +18,8 @@ export default defineConfig({
       },
     },
   },
-
   build: {
-    chunkSizeWarningLimit: 600, // Optional: avoid Netlify build warning
+    // Optional: Split large chunks to avoid Netlify warnings
+    chunkSizeWarningLimit: 600,
   },
 });

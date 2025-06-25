@@ -1,16 +1,67 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import MainMenu from './MainMenu';
 import MobileNav from './MobileNav';
-import About from './About';
-
-// ❌ Remove import: import MobileNav from './MobileNav';
 
 const Header = () => {
   const headerHeight = '110px';
+  const [checked, setChecked] = useState(false);
+  const location = useLocation(); // ✅ get current path
+
+  const toggleMenu = () => setChecked((prev) => !prev);
+  const closeMenu = () => setChecked(false);
 
   return (
     <>
+      <style>{`
+        .my-toggle-wrapper {
+          position: relative;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition-duration: 0.5s;
+        }
+
+        .my-bar {
+          width: 100%;
+          height: 4px;
+          background-color: rgb(65, 186, 0);
+          border-radius: 4px;
+          transition: all 0.5s ease;
+        }
+
+        .my-bar1, .my-bar3 {
+          width: 70%;
+        }
+
+        .my-check {
+          display: none;
+        }
+
+        .my-check:checked + .my-toggle-wrapper .my-bar2 {
+          transform: scaleX(0);
+        }
+
+        .my-check:checked + .my-toggle-wrapper .my-bar1 {
+          width: 100%;
+          transform: rotate(45deg);
+        }
+
+        .my-check:checked + .my-toggle-wrapper .my-bar3 {
+          width: 100%;
+          transform: rotate(-45deg);
+        }
+
+        .my-check:checked + .my-toggle-wrapper {
+          transform: rotate(180deg);
+        }
+      `}</style>
+
       <header
         className="header-3"
         style={{
@@ -45,19 +96,34 @@ const Header = () => {
               </div>
 
               {/* Mobile Hamburger Icon */}
-              <div className="col-6 text-right d-lg-none">
-                <a href="#mobile-nav" className="mobile-nav">
-                  <i className="fa fa-bars" aria-hidden="true"></i>
-                </a>
+              <div className="col-6 text-end d-lg-none">
+                <div className="d-flex justify-content-end align-items-center">
+                  <input
+                    type="checkbox"
+                    id="my-check"
+                    className="my-check"
+                    checked={checked}
+                    onChange={toggleMenu}
+                  />
+                  <label htmlFor="my-check" className="my-toggle-wrapper">
+                    <div className="my-bar my-bar1"></div>
+                    <div className="my-bar my-bar2"></div>
+                    <div className="my-bar my-bar3"></div>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* ✅ Removed: <MobileNav /> */}
+      {/* Mobile Nav */}
+      <MobileNav isOpen={checked} onClose={closeMenu} />
 
-      <div style={{ height: headerHeight }}></div>
+      {/* Only render spacer if NOT home page */}
+      {location.pathname !== '/' && (
+        <div style={{ height: headerHeight }}></div>
+      )}
     </>
   );
 };

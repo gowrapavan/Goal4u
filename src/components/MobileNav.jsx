@@ -1,132 +1,162 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const MobileNav = () => {
-useEffect(() => {
-  const initMmenu = () => {
-    if (window.$ && $('#mobile-nav').length && $.fn.mmenu) {
-      $('#mobile-nav').mmenu({
-        extensions: ['position-left', 'pagedim-black'],
-        navbar: {
-          title: 'Menu'
-        },
-        offCanvas: {
-          page: {
-            selector: '#layout' // ✅ this must match the actual wrapper of your app
-          }
-        }
-      });
+const MobileNav = ({ isOpen, onClose }) => {
+  const [shouldRender, setShouldRender] = useState(false);
+  const [animateOpen, setAnimateOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      const timeout = setTimeout(() => setAnimateOpen(true), 10); // smooth open
+      return () => clearTimeout(timeout);
     } else {
-      setTimeout(initMmenu, 100);
+      setAnimateOpen(false); // start closing animation
+      const timeout = setTimeout(() => {
+      setShouldRender(false);
+      setKeepAnimating(false); // <--- delayed
+    }, 400); // after animation
+      return () => clearTimeout(timeout);
     }
-  };
+  }, [isOpen]);
 
-  initMmenu();
-}, []);
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'World Cup', path: '/worldcup' },
+    { label: 'Teams', path: '/teams' },
+    { label: 'Players', path: '/players' },
+    { label: 'Fixtures', path: '/fixtures' },
+    { label: 'Live', path: '/live' },
+    { label: 'Table', path: '/table-point' },
+    { label: 'Groups', path: '/groups' },
+    { label: 'Features', path: '/features' },
+    { label: 'About', path: '/about' },
+  ];
 
-
+  if (!shouldRender) return null;
 
   return (
-    <nav id="mobile-nav">
-      <ul className="mm-listview">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+    <>
+      <style>{`
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 60%;
+          max-width: 300px;
+          height: 100vh;
+          background: #fff;
+          box-shadow: -2px 0 10px rgba(8, 232, 79, 0.2);
+          z-index: 1000;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          transition: transform 0.4s ease, opacity 0.4s ease;
+          transform: translateX(100%);
+          opacity: 0;
+          pointer-events: none;
+        }
 
-        <li>
-          <Link to="#">World Cup</Link>
-          <ul>
-            <li>
-              <Link to="#">World Cup</Link>
-              <ul>
-                <li><Link to="/table-point">Point Table</Link></li>
-                <li><Link to="/fixtures">Fixtures</Link></li>
-                <li><Link to="/groups">Groups</Link></li>
-                <li><Link to="/news-left-sidebar">News</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
-              </ul>
+        .mobile-menu.open {
+          transform: translateX(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .toggle {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: 0.5s;
+        }
+
+        .bars {
+          width: 100%;
+          height: 4px;
+          background-color: rgb(65, 186, 0);
+          border-radius: 4px;
+          transition: 0.5s;
+        }
+
+        .bars#bar1, .bars#bar3 {
+          width: 70%;
+        }
+
+        .toggle.animate .bars {
+          position: absolute;
+        }
+
+        .toggle.animate #bar1 {
+          width: 100%;
+          transform: rotate(45deg);
+        }
+
+        .toggle.animate #bar2 {
+          transform: scaleX(0);
+        }
+
+        .toggle.animate #bar3 {
+          width: 100%;
+          transform: rotate(-45deg);
+        }
+
+        .toggle.animate {
+          transform: rotate(180deg);
+        }
+      `}</style>
+
+      <div className={`mobile-menu ${animateOpen ? 'open' : ''}`}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '10px',
+          }}
+        >
+          <h4 style={{ fontWeight: 600, margin: 0 }}>MENU</h4>
+
+          <div onClick={onClose}>
+            <label className={`toggle ${animateOpen ? 'animate' : ''}`}>
+              <div className="bars" id="bar1" />
+              <div className="bars" id="bar2" />
+              <div className="bars" id="bar3" />
+            </label>
+          </div>
+        </div>
+
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          {navLinks.map(({ label, path }) => (
+            <li key={path}>
+              <Link
+                to={path}
+                onClick={onClose}
+                style={{
+                  display: 'block',
+                  padding: '10px 0',
+                  fontSize: '15px',
+                  fontWeight: 500,
+                  color: '#858983',
+                  textDecoration: 'none',
+                  borderBottom: '1px solid #eee',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseOver={(e) => (e.target.style.color = '#0cae4a')}
+                onMouseOut={(e) => (e.target.style.color = '#0645AD')}
+              >
+                {label}
+              </Link>
             </li>
-            <li><Link to="/teams">Teams List</Link></li>
-            <li><Link to="/players">Players List</Link></li>
-            <li><Link to="/results">Results List</Link></li>
-          </ul>
-        </li>
-
-        <li>
-          <Link to="/teams">Teams</Link>
-          <ul>
-            <li><Link to="/teams">Teams List</Link></li>
-            <li><Link to="/single-team">Single Team</Link></li>
-          </ul>
-        </li>
-
-        <li>
-          <Link to="/players">Players</Link>
-          <ul>
-            <li><Link to="/players">Players List</Link></li>
-            <li><Link to="/single-player">Single Player</Link></li>
-          </ul>
-        </li>
-
-        <li><Link to="/fixtures">Fixtures</Link></li>
-        <li><Link to="/live">Live</Link></li>
-        <li><Link to="/table-point">Point Table</Link></li>
-        <li><Link to="/groups">Groups</Link></li>
-
-        <li>
-          <Link to="#">Features</Link>
-          <ul>
-            <li>
-              <Link to="#">Features</Link>
-              <ul>
-                <li><Link to="/page-full-width">Full Width</Link></li>
-                <li><Link to="/page-left-sidebar">Left Sidebar</Link></li>
-                <li><Link to="/page-right-sidebar">Right Sidebar</Link></li>
-                <li><Link to="/page-404">404 Page</Link></li>
-                <li><Link to="/page-faq">FAQ</Link></li>
-                <li><Link to="/sitemap">Sitemap</Link></li>
-                <li><Link to="/page-pricing">Pricing</Link></li>
-                <li><Link to="/page-register">Register Form</Link></li>
-              </ul>
-            </li>
-
-            <li>
-              <Link to="#">Headers & Footers</Link>
-              <ul>
-                <li><Link to="/feature-header-footer-1">Header Version 1</Link></li>
-                <li><Link to="/feature-header-footer-2">Header Version 2</Link></li>
-                <li><Link to="/feature-header-footer-3">Header Version 3</Link></li>
-                <li><Link to="/index-5">Header Version 4</Link></li>
-              </ul>
-            </li>
-
-            <li>
-              <Link to="#">Pages</Link>
-              <ul>
-                <li><Link to="/page-about">About Us</Link></li>
-                <li><Link to="/single-player">About Me</Link></li>
-                <li><Link to="/services">Services</Link></li>
-                <li><Link to="/single-team">Club Info</Link></li>
-                <li><Link to="/single-result">Match Result</Link></li>
-                <li><Link to="/table-point">Positions</Link></li>
-              </ul>
-            </li>
-
-            <li>
-              <Link to="#">News</Link>
-              <ul>
-                <li><Link to="/news-left-sidebar">News Left Sidebar</Link></li>
-                <li><Link to="/news-right-sidebar">News Right Sidebar</Link></li>
-                <li><Link to="/news-no-sidebar">News No Sidebar</Link></li>
-                <li><Link to="/single-news">Single News</Link></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-
-        <li><Link to="/About">About</Link></li>
-      </ul>
-    </nav>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

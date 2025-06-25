@@ -12,6 +12,8 @@ import Live from './components/live/live'; // ✅ Live match list page
 import About from './components/About';
 import NotFound404 from "./components/NotFound404"; // your 404 component
 import MobileNav from './components/MobileNav'; // ✅ Add this
+import ScrollToTop from './components/common/ScrollToTop';
+
 
 
 import './App.css';
@@ -21,6 +23,8 @@ function App() {
     <Router>
       {/* ✅ Mmenu nav must be OUTSIDE the #layout */}
       <MobileNav />  {/* ← Move it from Header.jsx to here */}
+      <ScrollToTop />
+
 
       <div id="layout">
         <Header /> {/* ← No longer contains <MobileNav /> */}
