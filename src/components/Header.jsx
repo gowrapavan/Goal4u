@@ -4,23 +4,10 @@ import MainMenu from './MainMenu';
 import MobileNav from './MobileNav';
 import About from './About';
 
+// ❌ Remove import: import MobileNav from './MobileNav';
 
 const Header = () => {
   const headerHeight = '110px';
-
-  useEffect(() => {
-    // Initialize mmenu when mobile nav is present
-    if (window.$ && window.$.fn.mmenu) {
-      try {
-        window.$('#mobile-nav').mmenu({
-          extensions: ['pagedim-black', 'position-right'],
-          offCanvas: { position: 'right' },
-        });
-      } catch (err) {
-        console.error('mmenu init failed:', err);
-      }
-    }
-  }, []);
 
   return (
     <>
@@ -68,10 +55,8 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Nav Drawer */}
-      <MobileNav />
+      {/* ✅ Removed: <MobileNav /> */}
 
-      {/* Push content below header */}
       <div style={{ height: headerHeight }}></div>
     </>
   );

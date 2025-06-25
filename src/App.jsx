@@ -11,16 +11,19 @@ import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details pa
 import Live from './components/live/live'; // ✅ Live match list page
 import About from './components/About';
 import NotFound404 from "./components/NotFound404"; // your 404 component
+import MobileNav from './components/MobileNav'; // ✅ Add this
+
 
 import './App.css';
 
 function App() {
   return (
     <Router>
+      {/* ✅ Mmenu nav must be OUTSIDE the #layout */}
+      <MobileNav />  {/* ← Move it from Header.jsx to here */}
+
       <div id="layout">
-        <Header />
-
-
+        <Header /> {/* ← No longer contains <MobileNav /> */}
         <Routes>
           <Route
             path="/"
@@ -33,21 +36,12 @@ function App() {
             }
           />
           <Route path="/about" element={<About />} />
-          
-        {/* 🔥 Catch-all 404 route - this must come last */}
-        <Route path="*" element={<NotFound404 />} />
-
-          {/* ✅ Live match listing */}
           <Route path="/live" element={<Live />} />
-
-          {/* ✅ Live match detail via query params */}
           <Route path="/livematch" element={<LiveMatch />} />
+          <Route path="*" element={<NotFound404 />} />
         </Routes>
 
-        {/* ✅ Mobile-only footer navigation */}
         <MobileFooter />
-
-        {/* ✅ Main desktop footer */}
         <Footer />
         <div className="footer-down">
           <div className="container">
@@ -62,5 +56,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

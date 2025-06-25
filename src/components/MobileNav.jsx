@@ -2,26 +2,28 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileNav = () => {
- useEffect(() => {
-  if (window.$ && window.$.fn.mmenu) {
-    const $menu = window.$('#mobile-nav').mmenu({
-      extensions: ['position-left', 'pagedim-black'],
-      offCanvas: {
-        position: 'right',
-        page: {
-          selector: '#root',
+useEffect(() => {
+  const initMmenu = () => {
+    if (window.$ && $('#mobile-nav').length && $.fn.mmenu) {
+      $('#mobile-nav').mmenu({
+        extensions: ['position-left', 'pagedim-black'],
+        navbar: {
+          title: 'Menu'
         },
-      },
-      navbar: {
-        title: 'Menu',
-      },
-    });
+        offCanvas: {
+          page: {
+            selector: '#layout' // ✅ this must match the actual wrapper of your app
+          }
+        }
+      });
+    } else {
+      setTimeout(initMmenu, 100);
+    }
+  };
 
-    // Optional: Open menu manually for testing
-    // const API = $menu.data("mmenu");
-    // API.open();
-  }
+  initMmenu();
 }, []);
+
 
 
   return (
