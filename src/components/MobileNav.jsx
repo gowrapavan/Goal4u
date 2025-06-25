@@ -2,37 +2,33 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const MobileNav = () => {
-  useEffect(() => {
-    // Load mmenu dynamically after the component mounts
-    if (window.$ && $('#mobile-nav').length) {
-      $('#mobile-nav').mmenu({
-        extensions: ['position-left', 'pagedim-black'],
-        offCanvas: {
-          position: 'right',
-          page: {
-            selector: '#root', // This must match your layout root div
-          },
+ useEffect(() => {
+  if (window.$ && window.$.fn.mmenu) {
+    const $menu = window.$('#mobile-nav').mmenu({
+      extensions: ['position-left', 'pagedim-black'],
+      offCanvas: {
+        position: 'right',
+        page: {
+          selector: '#root',
         },
-        navbar: {
-          title: 'Menu',
-        },
-      });
-    }
-  }, []);
+      },
+      navbar: {
+        title: 'Menu',
+      },
+    });
+
+    // Optional: Open menu manually for testing
+    // const API = $menu.data("mmenu");
+    // API.open();
+  }
+}, []);
+
 
   return (
     <nav id="mobile-nav">
       <ul className="mm-listview">
         <li>
           <Link to="/">Home</Link>
-          <ul>
-            <li><Link to="/index-1">Home 1</Link></li>
-            <li><Link to="/index-2">Home 2</Link></li>
-            <li><Link to="/index-3">Home 3</Link></li>
-            <li><Link to="/index-4">Home 4</Link></li>
-            <li><Link to="/index-5">Home 5</Link></li>
-            <li><Link to="/index-6">Home 6</Link></li>
-          </ul>
         </li>
 
         <li>
@@ -126,7 +122,7 @@ const MobileNav = () => {
           </ul>
         </li>
 
-        <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/About">About</Link></li>
       </ul>
     </nav>
   );

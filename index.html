@@ -1,26 +1,17 @@
-
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/assets/img/fav1.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EUFORIA - THE HOME OF FOOTBALL</title>
+
+    <!-- SEO -->
     <meta name="keywords" content="EUFORIA" />
     <meta name="description" content="EUFORIA - THE HOME OF FOOTBALL" />
     <meta name="author" content="euforia.netlify.app" />
-    <script src="/assets/js/theme-main.js"></script>
-    
-
-
-    <!-- Your main theme logic (this must come last) -->
-    <script src="/assets/js/theme-main.js"></script>
-
-
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="/public/assets/img/fav1.png" />
     <link rel="apple-touch-icon" href="https://html.iwthemes.com/sportscup/run/img/icons/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="https://html.iwthemes.com/sportscup/run/img/icons/apple-touch-icon-72x72.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="https://html.iwthemes.com/sportscup/run/img/icons/apple-touch-icon-114x114.png" />
@@ -29,52 +20,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
 
     <!-- Theme CSS -->
-    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
 
   <body>
     <div id="root"></div>
 
-    <!-- Your Vite React App -->
+    <!-- Your React App -->
     <script type="module" src="/src/main.jsx"></script>
 
-    <!-- jQuery -->
+    <!-- ✅ Load jQuery First -->
     <script src="/assets/js/jQuery.js"></script>
-    <!-- Popper (optional, for Bootstrap tooltips/popovers) -->
-    <script src="/public/assets/js/popper.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/public/assets/js/bootstrap.min.js"></script>
-    <!-- Mmenu Plugin -->
-    <script src="/public/assets/js/jquery.mmenu.min.all.js"></script>
-    <!-- Theme Scripts -->
-    <script src="/public/assets/js/theme-scripts.js"></script>
+
+    <!-- ✅ Load Plugin Scripts -->
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js"></script>
+    <script src="/assets/js/jquery.mmenu.min.all.js"></script>
+    <script src="/assets/js/theme-scripts.js"></script>
+
+    <!-- ✅ Load Theme Script (last) -->
     <script src="/assets/js/theme-main.js"></script>
-        <script src="/public/assets/js/rocket-loader.min.js" data-cf-settings="06a546334b038021e23a783e-|49" defer></script>
 
-
-    <!-- Optional redirect to root -->
+    <!-- Optional: Redirect index.html to root -->
     <script>
-      if (window.location.pathname === '/index.html') {
-        window.location.replace('/');
+      if (window.location.pathname === "/index.html") {
+        window.location.replace("/");
       }
     </script>
-    <!-- jQuery first -->
-    <script src="/assets/js/jquery.js"></script>
-    <!-- jQuery (first) -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Mmenu -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/8.5.24/mmenu.min.js"></script>
-
-    <!-- Sticky -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
-
-    <!-- Superfish -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js"></script>
-    <!-- Your theme JS -->
-    <script src="/assets/js/theme-main.js"></script>
   </body>
 </html>

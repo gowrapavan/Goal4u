@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 const MainMenu = () => {
@@ -43,14 +44,6 @@ const MainMenu = () => {
           <ul className="sf-menu" id="menu">
             <li className="current">
               <a href="index.html">Home</a>
-              <ul className="sub-current">
-                <li><a href="index.html">Home 1</a></li>
-                <li><a href="index-2.html">Home 2</a></li>
-                <li><a href="index-3.html">Home 3</a></li>
-                <li><a href="index-4.html">Home 4</a></li>
-                <li><a href="index-5.html">Home 5</a></li>
-                <li><a href="index-6.html">Home 6</a></li>
-              </ul>
             </li>
 
             <li>
@@ -175,7 +168,8 @@ const MainMenu = () => {
               </div>
             </li>
 
-            <li><a href="contact.html">Contact</a></li>
+            <li><Link to="/about">About</Link></li>
+
           </ul>
         </div>
       </nav>

@@ -9,6 +9,9 @@ import Footer from './components/Footer';
 import MobileFooter from './components/MobileFooter'; // ✅ Mobile-only footer
 import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details page
 import Live from './components/live/live'; // ✅ Live match list page
+import About from './components/About';
+import NotFound404 from "./components/NotFound404"; // your 404 component
+
 import './App.css';
 
 function App() {
@@ -16,7 +19,7 @@ function App() {
     <Router>
       <div id="layout">
         <Header />
-        
+
 
         <Routes>
           <Route
@@ -29,6 +32,11 @@ function App() {
               </>
             }
           />
+          <Route path="/about" element={<About />} />
+          
+        {/* 🔥 Catch-all 404 route - this must come last */}
+        <Route path="*" element={<NotFound404 />} />
+
           {/* ✅ Live match listing */}
           <Route path="/live" element={<Live />} />
 

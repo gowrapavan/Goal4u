@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MainMenu from './MainMenu';
 import MobileNav from './MobileNav';
+import About from './About';
+
 
 const Header = () => {
   const headerHeight = '110px';

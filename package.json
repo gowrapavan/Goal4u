@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.6.2",
     "date-fns": "^3.0.6",
+    "framer-motion": "^12.19.1",
     "hls.js": "^1.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

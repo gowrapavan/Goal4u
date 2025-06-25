@@ -4314,7 +4314,7 @@ tbody.collapse.show {
 /* line 77, ../sass/bootstrap/_card.scss */
 .card-footer {
   padding: 0.75rem 1.25rem;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(255, 228, 228, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 /* line 82, ../sass/bootstrap/_card.scss */

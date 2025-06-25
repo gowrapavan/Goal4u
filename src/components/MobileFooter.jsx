@@ -51,6 +51,9 @@ const MobileFooter = () => {
       <Link to="/profile" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-user" style={iconStyle}></i> Profile
       </Link>
+      <Link to="/about" style={itemStyle} onClick={scrollToTop}>
+        <i className="fa fa-about" style={iconStyle}></i> About
+      </Link>
     </footer>
   );
 };
