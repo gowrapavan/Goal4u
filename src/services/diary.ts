@@ -67,55 +67,27 @@ async function fetchMatches(dates: string[]): Promise<Match[]> {
             .filter((match) => match.Status === 'Scheduled')
             .map((match) => transformApiMatch(match, comp.code))
         )
-        .catch(() => []); // handle failure gracefully
+        .catch(() => []);
 
       matchPromises.push(fetchPromise);
     }
   }
 
   const results = await Promise.all(matchPromises);
-  return results
-    .flat()
-    .sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
-}
-
-/**
- * Fetch live matches for today from all competitions.
- */
-export async function getLiveMatches(): Promise<Match[]> {
-  const today = formatDate(new Date());
-  const promises = COMPETITIONS.map(async (comp) => {
-    try {
-      const url = `${BASE_URL}/${comp.code}/${today}?key=${API_KEY}`;
-      const res = await fetch(url);
-      if (!res.ok) return [];
-      const data: ApiMatch[] = await res.json();
-      return data
-        .filter(
-          (m) =>
-            m.Status === 'InProgress' || m.Status === 'Break' || m.Status === 'Halftime'
-        )
-        .map((match) => transformApiMatch(match, comp.code));
-    } catch {
-      return [];
-    }
-  });
-
-  const results = await Promise.all(promises);
   return results.flat().sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
 }
 
 /**
- * Fetches the next upcoming match for any preferred club:
- * - Tries 0–7 days → then 7–14 days → then 14–30 days
- * - Returns the earliest match found or null if nothing in 30 days
+ * Fetches up to `limit` upcoming matches for any preferred club within the next 30 days
  */
-export async function getNextPreferredClubMatch(preferredClubs: string[]): Promise<Match | null> {
+export async function getNextPreferredClubMatches(preferredClubs: string[], limit: number): Promise<Match[]> {
   const searchRanges = [
     { start: 0, days: 7 },
     { start: 7, days: 7 },
-    { start: 14, days: 16 }, // completes 30 days
+    { start: 14, days: 16 },
   ];
+
+  let allFiltered: Match[] = [];
 
   for (const range of searchRanges) {
     const dates = getNextNDates(range.start, range.days);
@@ -127,8 +99,10 @@ export async function getNextPreferredClubMatch(preferredClubs: string[]): Promi
         preferredClubs.includes(match.AwayTeamName)
     );
 
-    if (filtered.length > 0) return filtered[0];
+    allFiltered.push(...filtered);
+
+    if (allFiltered.length >= limit) break;
   }
 
-  return null;
+  return allFiltered.slice(0, limit);
 }

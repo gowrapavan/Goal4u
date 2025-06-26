@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
+import ChatBox from './ChatBox'; // ✅ Make sure the path is correct
 
-// HLS Servers using <video>
 const hlsServers = [
   { label: 'Server 3', streamId: 6 },
   { label: 'Server 2', streamId: 2 },
   { label: 'Server 1', streamId: 1 },
 ];
 
-// iframe servers using <iframe>
 const iframeServers = [
   { label: 'iServer 1', url: 'https://letscast.pro/badir2.php?stream=HDGQZ2' },
   { label: 'iServer 2', url: 'https://nativesurge.top/ai/ch2.php' },
@@ -30,7 +29,7 @@ const Stream = ({ active, currentServer, setCurrentServer, manualSelection, setM
   };
 
   const loadHlsStream = (serverId, fallback = false, index = 0) => {
-    setIframeURL(''); // Clear iframe if HLS stream selected
+    setIframeURL('');
     const video = videoRef.current;
     const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${serverId}.m3u8`;
 
@@ -106,94 +105,124 @@ const Stream = ({ active, currentServer, setCurrentServer, manualSelection, setM
   }, [active]);
 
   return (
-    <div className={`tab-pane ${active ? 'active' : ''}`} id="stream">
-      <div className="panel-box">
-        <div className="titles">
-          <h4>Live Match Stream</h4>
-          {alertMessage && (
-            <div style={{ backgroundColor: '#ffe9e9', color: '#c0392b', padding: '10px', borderRadius: '5px' }}>
-              {alertMessage}
-            </div>
-          )}
-        </div>
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .stream-layout {
+            flex-direction: column;
+          }
+        }
+      `}</style>
 
-        <div className="text-center mb-3">
-          {hlsServers.map((server, i) => (
-            <button
-              key={server.label}
-              onClick={() => handleHlsClick(server.streamId, i)}
-              style={{
-                margin: '4px',
-                padding: '6px 14px',
-                background: currentServer === server.streamId && !iframeURL ? '#33FFC9' : '#eee',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}
-            >
-              {server.label}
-            </button>
-          ))}
-
-          {iframeServers.map((server) => (
-            <button
-              key={server.label}
-              onClick={() => handleIframeClick(server.url)}
-              style={{
-                margin: '4px',
-                padding: '6px 14px',
-                background: iframeURL === server.url ? '#33FFC9' : '#eee',
-                border: '1px solid #ccc',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}
-            >
-              {server.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="row">
-          <div className="col-lg-12">
-            {iframeURL ? (
-              <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '10px' }}>
-                <iframe
-                  id="streamFrame"
-                  src={iframeURL}
-                  allowFullScreen
-                  scrolling="no"
-                  sandbox="allow-scripts allow-same-origin"
-                  referrerPolicy="no-referrer"
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '80%',
-                    border: 'none',
-                    backgroundColor: '#000'
-                  }}
-                  title="Live Stream"
-                />
+      <div className={`tab-pane ${active ? 'active' : ''}`} id="stream">
+        <div className="panel-box">
+          <div className="titles">
+            <h4>Live Match Stream</h4>
+            {alertMessage && (
+              <div style={{ backgroundColor: '#ffe9e9', color: '#c0392b', padding: '10px', borderRadius: '5px' }}>
+                {alertMessage}
               </div>
-            ) : (
-              <video
-                ref={videoRef}
-                controls
-                autoPlay
-                muted
-                style={{
-                  width: '100%',
-                  maxHeight: '500px',
-                  backgroundColor: '#000',
-                  borderRadius: '10px'
-                }}
-              />
             )}
+          </div>
+
+          <div className="text-center mb-3">
+            {hlsServers.map((server, i) => (
+              <button
+                key={server.label}
+                onClick={() => handleHlsClick(server.streamId, i)}
+                style={{
+                  margin: '4px',
+                  padding: '6px 14px',
+                  background: currentServer === server.streamId && !iframeURL ? '#33FFC9' : '#eee',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'pointer'
+                }}
+              >
+                {server.label}
+              </button>
+            ))}
+
+            {iframeServers.map((server) => (
+              <button
+                key={server.label}
+                onClick={() => handleIframeClick(server.url)}
+                style={{
+                  margin: '4px',
+                  padding: '6px 14px',
+                  background: iframeURL === server.url ? '#33FFC9' : '#eee',
+                  border: '1px solid #ccc',
+                  borderRadius: '5px',
+                  cursor: 'pointer'
+                }}
+              >
+                {server.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="row justify-content-center">
+            <div className="col-lg-12 d-flex stream-layout" style={{ gap: '16px', flexWrap: 'wrap' }}>
+              {/* 🎥 Stream Section */}
+              <div style={{ flex: 2, width: '100%' }}>
+                {iframeURL ? (
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '16 / 9',
+                    overflow: 'hidden',
+                    borderRadius: '10px',
+                    backgroundColor: '#000'
+                  }}>
+                    <iframe
+                      id="streamFrame"
+                      src={iframeURL}
+                      allowFullScreen
+                      scrolling="no"
+                      sandbox="allow-scripts allow-same-origin"
+                      referrerPolicy="no-referrer"
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 'none'
+                      }}
+                      title="Live Stream"
+                    />
+                  </div>
+                ) : (
+                  <div style={{ width: '100%' }}>
+                    <video
+                      ref={videoRef}
+                      controls
+                      autoPlay
+                      muted
+                      style={{
+                        width: '100%',
+                        aspectRatio: '16 / 9',
+                        backgroundColor: '#000',
+                        borderRadius: '10px'
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* 💬 Chat Section */}
+              <div style={{
+                flex: 1,
+                width: '100%',
+                maxWidth: '800px'
+              }}>
+                <ChatBox />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

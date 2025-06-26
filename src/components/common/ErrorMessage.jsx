@@ -1,45 +1,65 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import errorGif from '../../../public/assets/img/running-player.gif'; // optional gif reuse
 
 const ErrorMessage = ({ message, onRetry, showConfigHelp = false }) => {
   return (
-    <div className="bg-red-50 border border-red-200 rounded-lg p-4 m-4">
-      <div className="flex items-start">
-        <div className="flex-shrink-0">
-          <i className="fa fa-exclamation-triangle text-red-400"></i>
-        </div>
-        <div className="ml-3 flex-1">
-          <h3 className="text-sm font-medium text-red-800">
-            Something went wrong
-          </h3>
-          <div className="mt-2 text-sm text-red-700">
-            <p>{message}</p>
+    <section className="py-5 bg-white text-dark">
+      <div className="container">
+        <div className="row align-items-center justify-content-center">
+
+          {/* GIF Column */}
+          <div className="col-md-4 text-center mb-4 mb-md-0">
+            <img
+              src={errorGif}
+              alt="Error Illustration"
+              className="img-fluid"
+              style={{
+                maxWidth: "150px",
+                height: "auto",
+                objectFit: "contain",
+              }}
+            />
           </div>
-          
-          {showConfigHelp && (
-            <div className="mt-3 text-sm text-red-700">
-              <p className="font-medium">Setup Instructions:</p>
-              <ol className="mt-1 list-decimal list-inside space-y-1">
-                <li>Copy <code>.env.example</code> to <code>.env</code></li>
-                <li>Get your API keys from the respective services</li>
-                <li>Add your API keys to the <code>.env</code> file</li>
-                <li>Restart the development server</li>
-              </ol>
+
+          {/* Text Column */}
+          <div className="col-md-6 text-center text-md-left">
+            <h1 className="display-4 font-weight-bold text-danger">Oops!</h1>
+            <h4 className="font-weight-bold mb-3">Something went wrong</h4>
+            <p className="text-muted mb-3" style={{ maxWidth: "500px" }}>
+              {message || "We couldn’t load the content. Please check your connection or try again."}
+            </p>
+
+            {showConfigHelp && (
+              <div className="alert alert-warning text-left mt-3">
+                <h6 className="font-weight-bold mb-2">Setup Instructions:</h6>
+                <ol className="pl-3 mb-2">
+                  <li>Copy <code>.env.example</code> to <code>.env</code></li>
+                  <li>Get your API keys from the respective services</li>
+                  <li>Add your API keys to the <code>.env</code> file</li>
+                  <li>Restart the development server</li>
+                </ol>
+              </div>
+            )}
+
+            <div className="d-flex gap-2 flex-wrap justify-content-center justify-content-md-start mt-4">
+              {onRetry && (
+                <button
+                  onClick={onRetry}
+                  className="btn btn-outline-danger px-4 py-2"
+                >
+                  Try Again
+                </button>
+              )}
+              <Link to="/" className="btn btn-success px-4 py-2">
+                Back to Home
+              </Link>
             </div>
-          )}
-          
-          {onRetry && (
-            <div className="mt-4">
-              <button
-                onClick={onRetry}
-                className="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded text-sm font-medium transition-colors"
-              >
-                Try Again
-              </button>
-            </div>
-          )}
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

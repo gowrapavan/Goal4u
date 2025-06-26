@@ -7,27 +7,24 @@ import ContentInfo from './components/ContentInfo';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import MobileFooter from './components/MobileFooter'; // ✅ Mobile-only footer
-import LiveMatch from './components/live/livematch'; // ✅ LiveMatch details page
-import Live from './components/live/live'; // ✅ Live match list page
+import LiveMatch from './components/live/livematch';  // ✅ LiveMatch details page
+import Live from './components/live/live';            // ✅ Live match list page
+import FixturesPage from './components/Fixture'; // ✅ NEW fixtures page
 import About from './components/About';
-import NotFound404 from "./components/NotFound404"; // your 404 component
-import MobileNav from './components/MobileNav'; // ✅ Add this
+import NotFound404 from "./components/NotFound404";   // 404 page
+import MobileNav from './components/MobileNav';
 import ScrollToTop from './components/common/ScrollToTop';
-
-
 
 import './App.css';
 
 function App() {
   return (
     <Router>
-      {/* ✅ Mmenu nav must be OUTSIDE the #layout */}
-      <MobileNav />  {/* ← Move it from Header.jsx to here */}
+      <MobileNav />
       <ScrollToTop />
 
-
       <div id="layout">
-        <Header /> {/* ← No longer contains <MobileNav /> */}
+        <Header />
         <Routes>
           <Route
             path="/"
@@ -42,6 +39,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
           <Route path="/livematch" element={<LiveMatch />} />
+          <Route path="/fixtures" element={<FixturesPage />} /> {/* ✅ NEW ROUTE */}
           <Route path="*" element={<NotFound404 />} />
         </Routes>
 
@@ -60,6 +58,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;

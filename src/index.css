@@ -791,6 +791,14 @@ pre code {
   max-width: 100%;
 }
 
+/* Optional: in your global CSS or wrapper */
+@media (max-width: 768px) {
+  .chatbox-container {
+    height: 60vh;
+  }
+}
+
+
 /* line 37, ../sass/bootstrap/mixins/_grid-framework.scss */
 .col-auto {
   flex: 0 0 auto;
@@ -1038,7 +1046,7 @@ pre code {
   /* line 44, ../sass/bootstrap/mixins/_grid-framework.scss */
   .col-sm-6, footer .links-footer ul.columns li, .content-instagram .insta-items {
     flex: 0 0 50%;
-    max-width: 50%;
+    max-width: 60%;
   }
 
   /* line 44, ../sass/bootstrap/mixins/_grid-framework.scss */
@@ -16958,7 +16966,6 @@ iframe.big-video {
 }
 /* line 1659, ../sass/main.scss */
 .content-counter .list-groups img {
-  border: 1px solid #dedede;
 }
 
 /* Footer ----------------------------------------------------------------*/
@@ -18198,7 +18205,6 @@ footer .links-footer ul.columns {
   width: 90%;
   max-width: 38px;
   height: auto;
-  border: 1px solid #c7c6c6;
   display: block;
   margin: 0 auto;
 }

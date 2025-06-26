@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // ← import this
 import { fetchBoxScoreById } from '../../services/boxscore';
 import { getTeamLogoByKey } from '../../services/teamlogo';
 
@@ -39,7 +40,7 @@ function LiveScoreSection({ setActiveTab, matchData, competition }) {
   if (error) return <div className="error-box">{error}</div>;
   if (!data) return null;
 
-  const { Game, Goals = [], Bookings = [] } = data;
+  const { Game, Goals = [] } = data;
 
   const homeTeamId = Game.HomeTeamId;
   const awayTeamId = Game.AwayTeamId;
@@ -70,154 +71,110 @@ function LiveScoreSection({ setActiveTab, matchData, competition }) {
     marginBottom: '5px'
   };
 
-  const timelineLogoStyle = {
-    width: '65px',
-    height: '65px',
-    objectFit: 'contain',
-    backgroundColor: 'transparent',
-    borderRadius: '4px',
-    padding: '2px',
-    marginBottom: '5px'
-  };
-
   return (
-    <div className="section-title single-result" style={{ background: 'url(https://html.iwthemes.com/sportscup/run/img/locations/3.jpg)' }}>
-      <div className="container">
+    <>
+      {/* 🔧 Responsive CSS */}
+      <style>{`
+        .back-link {
+          position: absolute;
+          top: 10px;
+          left: 15px;
+          color: white;
+          font-size: 16px;
+          font-weight: 500;
+          z-index: 10;
+          
+        }
 
-        {/* Match Info */}
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="result-location">
-              <ul>
-                <li>{new Date(Game.DateTime).toDateString()}</li>
-                <li><i className="fa fa-map-marker" /> Venue ID: {Game.VenueId}</li>
-                <li>Att: {Game.Attendance?.toLocaleString() || 'N/A'}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        @media (min-width: 768px) {
+          .back-link {
+            top: 20px;
+            left: 30px;
+            font-size: 18px;
+            paddingbottom: 20px;
+          }
+        }
 
-        {/* Score Panel */}
-        <div className="row">
-          <div className="col-md-5 col-lg-5">
-            <div className="team">
-              <img src={logos[Game.HomeTeamKey]} alt="home-logo" style={logoStyle} />
-              <a href="#">{Game.HomeTeamName}</a>
-              <ul>
-                {homeGoals.map((g, i) => (
-                  <li key={i}>
-                    {g.Name} {g.GameMinute}'{g.Type === 'OwnGoal' && <span> (Own Goal)</span>}
-                    <i className="fa fa-futbol-o" style={{ marginLeft: 5 }} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        @media (max-width: 768px) {
+          .team a.team-name {
+            font-size: 16px !important;
+            font-weight: 600;
+          }
+          .result-match {
+            font-size: 20px !important;
+          }
+        }
+      `}</style>
 
-          <div className="col-md-2 col-lg-2">
-            <div className="result-match">{homeScore} : {awayScore}</div>
-            <div className="live-on">
-              <a href="#stream" onClick={(e) => { e.preventDefault(); setActiveTab('stream'); }}>
-                Live on
-                <img src="https://html.iwthemes.com/sportscup/run/img/img-theme/espn.gif" alt="espn-logo" />
-              </a>
-            </div>
-          </div>
+      <div className="section-title single-result" style={{ position: 'relative', background: 'url(https://html.iwthemes.com/sportscup/run/img/locations/3.jpg)' }}>
+        <div className="container">
 
-          <div className="col-md-5 col-lg-5">
-            <div className="team right">
-              <a href="#">{Game.AwayTeamName}</a>
-              <img src={logos[Game.AwayTeamKey]} alt="away-logo" style={logoStyle} />
-              <ul>
-                {awayGoals.map((g, i) => (
-                  <li key={i}>
-                    <i className="fa fa-futbol-o" style={{ marginRight: 5 }} />
-                    {g.Name} {g.GameMinute}'{g.Type === 'OwnGoal' && <span> (Own Goal)</span>}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+          {/* ← Back to Live */}
+          <Link to="/live" className="back-link">← Back to Live</Link>
 
-        {/* Timeline */}
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="timeline-result">
-
-              {/* Home Team Timeline */}
-              <div className="team-timeline">
-                <img src={logos[Game.HomeTeamKey]} alt="club-logo" style={timelineLogoStyle} />
-                <a href="single-team.html">{Game.HomeTeamKey}</a>
+          {/* Match Info */}
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="result-location">
+                <ul>
+                  <li>{new Date(Game.DateTime).toDateString()}</li>
+                  <li><i className="fa fa-map-marker" /> Venue ID: {Game.VenueId}</li>
+                  <li>Att: {Game.Attendance?.toLocaleString() || 'N/A'}</li>
+                </ul>
               </div>
+            </div>
+          </div>
 
-              {/* Timeline Events */}
-              <ul className="timeline">
-                {[...Goals, ...Bookings]
-                  .sort((a, b) => {
-                    const minA = a.GameMinute + (a.GameMinuteExtra || 0);
-                    const minB = b.GameMinute + (b.GameMinuteExtra || 0);
-                    return minA - minB;
-                  })
-                  .map((event, i) => {
-                    const minute = event.GameMinute + (event.GameMinuteExtra || 0);
-                    const left = `${Math.min((minute / 120) * 100, 100)}%`;
-                    const isHome = event.TeamId === Game.HomeTeamId;
-                    const positionClass = isHome ? 'bottom' : 'top';
-
-                    let typeClass = '', title = '';
-                    if (event.Type === 'Goal' || event.Type === 'OwnGoal') {
-                      typeClass = 'goal';
-                      title = 'Goal';
-                    } else if (event.Type === 'Yellow Card') {
-                      typeClass = 'yellow';
-                      title = 'Yellow card';
-                    } else if (event.Type === 'Red Card') {
-                      typeClass = 'red';
-                      title = 'Red card';
-                    } else if (event.Type === 'Substitution' || event.Type === 'Substitute') {
-                      typeClass = 'change';
-                      title = 'Player Change';
-                    } else {
-                      typeClass = 'change';
-                      title = event.Type;
-                    }
-
-                    const jersey = event.Jersey ? `${event.Jersey}. ` : '';
-                    const name = event.Name || '';
-                    const subJersey = event.PlayerOutJersey ? `${event.PlayerOutJersey}. ` : '';
-                    const subName = event.PlayerOutName || '';
-
-                    const dataContent = (event.Type === 'Substitution' || event.Type === 'Substitute') && subName
-                      ? `${jersey}${name} for ${subJersey}${subName}`
-                      : `${jersey}${name}`;
-
-                    return (
-                      <li
-                        key={i}
-                        className={`card-result ${positionClass} ${typeClass}`}
-                        style={{ left }}
-                        title={title}
-                        data-content={dataContent}
-                      >
-                        {minute}'
-                      </li>
-                    );
-                  })}
-              </ul>
-
-              {/* Away Team Timeline */}
-              <div className="team-timeline">
-                <img src={logos[Game.AwayTeamKey]} alt="club-logo" style={timelineLogoStyle} />
-                <a href="single-team.html">{Game.AwayTeamKey}</a>
+          {/* Score Panel */}
+          <div className="row">
+            <div className="col-md-5 col-lg-5">
+              <div className="team">
+                <img src={logos[Game.HomeTeamKey]} alt="home-logo" style={logoStyle} />
+                <a href="#" className="team-name">
+                  <span className="d-none d-md-inline">{Game.HomeTeamName}</span>
+                  <span className="d-inline d-md-none">{Game.HomeTeamShortName || Game.HomeTeamName.slice(0, 3)}</span>
+                </a>
+                <ul>
+                  {homeGoals.map((g, i) => (
+                    <li key={i}>
+                      {g.Name} {g.GameMinute}'{g.Type === 'OwnGoal' && <span> (Own Goal)</span>}
+                      <i className="fa fa-futbol-o" style={{ marginLeft: 5 }} />
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </div>
 
+            <div className="col-md-2 col-lg-2">
+              <div className="result-match">{homeScore} : {awayScore}</div>
+              <div className="live-on">
+                <a href="#stream" onClick={(e) => { e.preventDefault(); setActiveTab('stream'); }}>
+                  Live on <img src="/assets/img/17x17.png" alt="espn-logo" />
+                </a>
+              </div>
+            </div>
+
+            <div className="col-md-5 col-lg-5">
+              <div className="team right">
+                <a href="#" className="team-name">
+                  <span className="d-none d-md-inline">{Game.AwayTeamName}</span>
+                  <span className="d-inline d-md-none">{Game.AwayTeamShortName || Game.AwayTeamName.slice(0, 3)}</span>
+                </a>
+                <img src={logos[Game.AwayTeamKey]} alt="away-logo" style={logoStyle} />
+                <ul>
+                  {awayGoals.map((g, i) => (
+                    <li key={i}>
+                      <i className="fa fa-futbol-o" style={{ marginRight: 5 }} />
+                      {g.Name} {g.GameMinute}'{g.Type === 'OwnGoal' && <span> (Own Goal)</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
+    </>
   );
 }
 

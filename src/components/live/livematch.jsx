@@ -7,6 +7,7 @@ import LiveMatchContent from './LiveMatchContent'; // ✅ import
 import LoadingSpinner from '../common/LoadingSpinner';
 import ErrorMessage from '../common/ErrorMessage';
 
+
 const LiveMatch = () => {
   const [searchParams] = useSearchParams();
   const matchId = searchParams.get('matchId');
@@ -15,7 +16,8 @@ const LiveMatch = () => {
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('score');
+  const [activeTab, setActiveTab] = useState('summary');
+
 
   useEffect(() => {
     if (!matchId || !competition) {
@@ -55,6 +57,7 @@ const LiveMatch = () => {
         matchData={matchData} // ✅ pass this for dynamic stats
         competition={competition}
       />
+      
     </>
   );
 };

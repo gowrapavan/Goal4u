@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import LoadingSpinner from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import EmptyState from './common/EmptyState';
-import { getLiveMatches, getPreferredClubMatches } from '../services/RTab-Live';
+import { getLiveMatches, getNextPreferredClubMatch } from '../services/RTab-Live'; // ⬅️ updated import
 import { getTeamLogoByKey } from '../services/teamlogo';
 
-const PREFERRED_CLUBS = ['Real Madrid CF', 'FC Barcelona', 'FC Bayern München','Arsenal FC', 'Manchester United FC', 'Liverpool FC', 'Chelsea FC', 'Paris Saint-Germain FC', 'Juventus FC', 'AC Milan  ', 'FC Internazionale Milano', 'Manchester City FC', 'Tottenham Hotspur FC'];
+const PREFERRED_CLUBS = [
+  'Real Madrid CF', 'FC Barcelona', 'FC Bayern München', 'Arsenal FC',
+  'Manchester United FC', 'Liverpool FC', 'Chelsea FC', 'Paris Saint-Germain FC',
+  'AC Milan  ', 'FC Internazionale Milano', 'Tottenham Hotspur FC'
+];
 
 const COMPETITION_CODE_MAP = {
   'Premier League': 'EPL',
@@ -47,10 +51,10 @@ const RightTab = () => {
           setMatch(live[0]);
           await loadTeamLogos(live[0]);
         } else {
-          const preferred = await getPreferredClubMatches(PREFERRED_CLUBS);
-          if (preferred.length > 0) {
-            setMatch(preferred[0]);
-            await loadTeamLogos(preferred[0]);
+          const upcoming = await getNextPreferredClubMatch(PREFERRED_CLUBS); // ⬅️ changed logic
+          if (upcoming) {
+            setMatch(upcoming);
+            await loadTeamLogos(upcoming);
           } else {
             setMatch(null);
           }
@@ -71,7 +75,7 @@ const RightTab = () => {
 
     const timer = setInterval(() => {
       const now = Date.now();
-      const start = Date.parse(match.DateTime + 'Z'); // Force UTC interpretation
+      const start = Date.parse(match.DateTime + 'Z');
       const diff = start - now;
 
       if (diff > 0) {
@@ -226,12 +230,11 @@ const RightTab = () => {
         </div>
 
         <a
-  className="btn btn-primary"
-  href={`/livematch?matchId=${match.GameId}&competition=${match.Competition}`}
->
-  VIEW DETAILS <i className="fa fa-trophy"></i>
-</a>
-
+          className="btn btn-primary"
+          href={`/livematch?matchId=${match.GameId}&competition=${match.Competition}`}
+        >
+          VIEW DETAILS <i className="fa fa-trophy"></i>
+        </a>
       </div>
     </div>
   );
