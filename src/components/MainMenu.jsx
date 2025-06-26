@@ -101,7 +101,7 @@ const MainMenu = () => {
               </ul>
             </li>
 
-            <li><a href="fixtures.html">Fixtures</a></li>
+            <li><a href="/fixtures">Fixtures</a></li>
 
             <li className="current">
               <a href="/live">Live</a>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // ← import this
+import { Link } from 'react-router-dom';
 import { fetchBoxScoreById } from '../../services/boxscore';
 import { getTeamLogoByKey } from '../../services/teamlogo';
 
@@ -73,40 +73,46 @@ function LiveScoreSection({ setActiveTab, matchData, competition }) {
 
   return (
     <>
-      {/* 🔧 Responsive CSS */}
+      {/* 🔧 CSS Styles */}
       <style>{`
         .back-link {
           position: absolute;
-          top: 10px;
+          top: 8px;
           left: 15px;
           color: white;
           font-size: 16px;
           font-weight: 500;
           z-index: 10;
-          
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+        .back-link:hover {
+          color: #00ff00; /* green hover */
         }
 
         @media (min-width: 768px) {
           .back-link {
-            top: 20px;
-            left: 30px;
+            top: 15px;
+            left: 25px;
             font-size: 18px;
-            paddingbottom: 20px;
           }
         }
 
-        @media (max-width: 768px) {
-          .team a.team-name {
-            font-size: 16px !important;
-            font-weight: 600;
-          }
-          .result-match {
-            font-size: 20px !important;
-          }
+        .team a.team-name {
+          font-size: 16px;
+          font-weight: 600;
         }
       `}</style>
 
-      <div className="section-title single-result" style={{ position: 'relative', background: 'url(https://html.iwthemes.com/sportscup/run/img/locations/3.jpg)' }}>
+      <div
+        className="section-title single-result"
+        style={{
+          position: 'relative',
+          background: 'url(/assets/img/stadium.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <div className="container">
 
           {/* ← Back to Live */}
@@ -130,10 +136,7 @@ function LiveScoreSection({ setActiveTab, matchData, competition }) {
             <div className="col-md-5 col-lg-5">
               <div className="team">
                 <img src={logos[Game.HomeTeamKey]} alt="home-logo" style={logoStyle} />
-                <a href="#" className="team-name">
-                  <span className="d-none d-md-inline">{Game.HomeTeamName}</span>
-                  <span className="d-inline d-md-none">{Game.HomeTeamShortName || Game.HomeTeamName.slice(0, 3)}</span>
-                </a>
+                <a href="#" className="team-name">{Game.HomeTeamName}</a>
                 <ul>
                   {homeGoals.map((g, i) => (
                     <li key={i}>
@@ -156,10 +159,7 @@ function LiveScoreSection({ setActiveTab, matchData, competition }) {
 
             <div className="col-md-5 col-lg-5">
               <div className="team right">
-                <a href="#" className="team-name">
-                  <span className="d-none d-md-inline">{Game.AwayTeamName}</span>
-                  <span className="d-inline d-md-none">{Game.AwayTeamShortName || Game.AwayTeamName.slice(0, 3)}</span>
-                </a>
+                <a href="#" className="team-name">{Game.AwayTeamName}</a>
                 <img src={logos[Game.AwayTeamKey]} alt="away-logo" style={logoStyle} />
                 <ul>
                   {awayGoals.map((g, i) => (
