@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'aa895963895f481f8805a4f7f2f70c49';
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json';
 
 const PREFERRED_COMPETITIONS = ['EPL', 'ESP', 'ITSA', 'DEB', 'FRL1', 'CWC', 'UCL'];

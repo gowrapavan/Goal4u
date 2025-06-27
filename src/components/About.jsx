@@ -11,13 +11,13 @@ const About = () => {
         {/* Hero Title */}
         <div className="text-center mb-5">
           <h2 className="display-4 font-weight-bold">
-            Welcome to <span style={{ color: "#00d084" }}>EUFORIA</span>
+            Welcome to <span style={{ color: "#00d084" }}>GOAL4U</span>
           </h2>
           <p className="h6 text-success font-weight-bold">
-            European Union Football Organization for Real-time Information & Analytics
+            Global Online Access League for Unlimited Football Updates
           </p>
           <p className="text-muted mx-auto mt-3" style={{ maxWidth: "700px" }}>
-            Your all-in-one platform for European football — bringing fans, teams, and data together in real time.
+            Your all-in-one platform for global football — bringing fans, teams, and data together in real time.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ const About = () => {
                 <div className="card-body">
                   <h5 className="card-title text-success">UEFA Champions League 2024–2025</h5>
                   <p className="card-text text-muted">
-                    The road to Berlin begins here. Follow every twist and turn of Europe’s elite tournament with EUFORIA — complete with real-time updates, group breakdowns, top scorers, and knockout drama as it unfolds.
+                    The road to Berlin begins here. Follow every twist and turn of Europe’s elite tournament with GOAL4U — complete with real-time updates, group breakdowns, top scorers, and knockout drama as it unfolds.
                   </p>
                 </div>
               </div>
@@ -71,7 +71,7 @@ const About = () => {
                 <div className="card-body">
                   <h5 className="card-title text-success">24/7 League Coverage</h5>
                   <p className="card-text text-muted">
-                    From La Liga's flair to Premier League intensity — EUFORIA runs a dedicated multi-server infrastructure ensuring uninterrupted coverage and data flow from all major and minor European leagues. Always on. Always live.
+                    From La Liga's flair to Premier League intensity — GOAL4U runs a dedicated multi-server infrastructure ensuring uninterrupted coverage and data flow from all major and minor European leagues. Always on. Always live.
                   </p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const About = () => {
                 <div className="card-body">
                   <h5 className="card-title text-success">Legends of the Game</h5>
                   <p className="card-text text-muted">
-                    Two names, one legacy — Messi and Ronaldo. EUFORIA celebrates their legendary careers with stat comparisons, record charts, and unforgettable highlights that define football’s golden generation.
+                    Two names, one legacy — Messi and Ronaldo. GOAL4U celebrates their legendary careers with stat comparisons, record charts, and unforgettable highlights that define football’s golden generation.
                   </p>
                 </div>
               </div>
@@ -118,15 +118,15 @@ const About = () => {
         <div className="text-center mb-5">
           <h3 className="font-weight-bold mb-3">Our Mission</h3>
           <p className="text-muted mx-auto" style={{ maxWidth: "800px", lineHeight: "1.8" }}>
-            EUFORIA exists to unify football fans across Europe. We aim to deliver reliable data, authentic stories, and rich multimedia experiences — all accessible in one place. Whether you're in Lisbon, Berlin, or Helsinki, the beautiful game belongs to you.
+            GOAL4U exists to unify football fans across the world. We aim to deliver reliable data, authentic stories, and rich multimedia experiences — all accessible in one place. Whether you're in Lisbon, Berlin, or Hyderabad, the beautiful game belongs to you.
           </p>
         </div>
 
         {/* Call to Action */}
         <div className="text-center bg-light p-5 rounded shadow-sm">
-          <h4 className="font-weight-bold mb-3">Join the EUFORIA Movement</h4>
+          <h4 className="font-weight-bold mb-3">Join the GOAL4U Community</h4>
           <p className="text-muted mb-4">
-            Explore matchday insights, follow your icons, and relive history. Stay in the game — stay in EUFORIA.
+            Explore matchday insights, follow your icons, and relive history. Stay in the game — stay with GOAL4U.
           </p>
           <a href="/signup" className="btn btn-success px-4 py-2">Get Started</a>
         </div>
