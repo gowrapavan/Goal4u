@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNews } from '../hooks/useNews-test';
+import { useNews } from '../hooks/useNews';
 import Loading from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import EmptyState from './common/EmptyState';
