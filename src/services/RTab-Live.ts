@@ -1,7 +1,11 @@
 import { Match, ApiMatch } from '../types/match';
 
 const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
-const BASE_URL = 'api/ScoresBasic';
+const isDev = import.meta.env.DEV;
+
+const BASE_URL = isDev
+  ? '/api/ScoresBasic' // ✅ Dev uses Vite proxy
+  : 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic'; // ✅ Live uses full path
 
 export const COMPETITIONS = [
   { code: 'EPL', name: 'Premier League', country: 'England' },
@@ -61,13 +65,13 @@ async function fetchMatches(dates: string[]): Promise<Match[]> {
       const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
 
       const fetchPromise = fetch(url)
-        .then((res) => res.ok ? res.json() : [])
+        .then((res) => (res.ok ? res.json() : []))
         .then((data: ApiMatch[]) =>
           data
             .filter((match) => match.Status === 'Scheduled')
             .map((match) => transformApiMatch(match, comp.code))
         )
-        .catch(() => []); // handle failure gracefully
+        .catch(() => []); // fallback on failure
 
       matchPromises.push(fetchPromise);
     }
@@ -84,6 +88,7 @@ async function fetchMatches(dates: string[]): Promise<Match[]> {
  */
 export async function getLiveMatches(): Promise<Match[]> {
   const today = formatDate(new Date());
+
   const promises = COMPETITIONS.map(async (comp) => {
     try {
       const url = `${BASE_URL}/${comp.code}/${today}?key=${API_KEY}`;
@@ -91,9 +96,8 @@ export async function getLiveMatches(): Promise<Match[]> {
       if (!res.ok) return [];
       const data: ApiMatch[] = await res.json();
       return data
-        .filter(
-          (m) =>
-            m.Status === 'InProgress' || m.Status === 'Break' || m.Status === 'Halftime'
+        .filter((m) =>
+          ['InProgress', 'Break', 'Halftime'].includes(m.Status)
         )
         .map((match) => transformApiMatch(match, comp.code));
     } catch {
@@ -106,15 +110,13 @@ export async function getLiveMatches(): Promise<Match[]> {
 }
 
 /**
- * Fetches the next upcoming match for any preferred club:
- * - Tries 0–7 days → then 7–14 days → then 14–30 days
- * - Returns the earliest match found or null if nothing in 30 days
+ * Fetches the next upcoming match for any preferred club.
  */
 export async function getNextPreferredClubMatch(preferredClubs: string[]): Promise<Match | null> {
   const searchRanges = [
     { start: 0, days: 7 },
     { start: 7, days: 7 },
-    { start: 14, days: 16 }, // completes 30 days
+    { start: 14, days: 16 }, // = 30 days total
   ];
 
   for (const range of searchRanges) {

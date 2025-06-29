@@ -1,8 +1,12 @@
-// services/matchService.ts
-
 import { ApiMatch, Match, Competition } from '../types/match';
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
-const BASE_URL = '/api/ScoresBasic';
+
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
+const isDev = import.meta.env.DEV;
+
+// ✅ Use proxy in development, real API URL in production
+const BASE_URL = isDev
+  ? '/api/ScoresBasic'
+  : 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
 
 export const COMPETITIONS: Competition[] = [
   { code: 'EPL', name: 'Premier League', country: 'England' },
