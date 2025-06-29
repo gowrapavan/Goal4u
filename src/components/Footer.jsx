@@ -1,126 +1,99 @@
-import React from 'react'
+import React from 'react';
+import logo from '../../public/assets/img/white-logo.png';
 
 const Footer = () => {
   return (
-    <footer id="footer">
-      {/* Footer Top */}
+    <footer id="footer" className="footer-2">
+      {/* Top Footer */}
       <div className="top-footer">
-        {/* Logo Footer */}
-        <div className="col-lg-12">
-          <div className="logo-footer">
-            <h2>GOAL4U </h2>
-            <a>THE HOME OF FOOTBALL</a>
-          </div>
+        <div className="logo-footer col-lg-12 text-center">
+          <img
+            src={logo}
+            alt="GOAL4U Logo"
+            style={{ height: '90px', objectFit: 'contain', marginBottom: '10px' }}
+          />
         </div>
 
-        {/* Social Icons */}
         <ul className="social">
-          <li>
-            <div>
-              <a href="#" className="facebook">
-                <i className="fa fa-facebook"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div>
-              <a href="#" className="twitter-icon">
-                <i className="fa fa-twitter"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div>
-              <a href="#" className="vimeo">
-                <i className="fa fa-vimeo-square"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div>
-              <a href="#" className="google-plus">
-                <i className="fa fa-google-plus"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div>
-              <a href="#" className="youtube">
-                <i className="fa fa-youtube"></i>
-              </a>
-            </div>
-          </li>
+          <li><div><a href="#" className="facebook"><i className="fa fa-facebook"></i></a></div></li>
+          <li><div><a href="#" className="twitter-icon"><i className="fa fa-twitter"></i></a></div></li>
+          <li><div><a href="#" className="youtube"><i className="fa fa-youtube"></i></a></div></li>
+          <li><div><a href="#" className="instagram"><i className="fa fa-instagram"></i></a></div></li>
         </ul>
       </div>
 
       {/* Links Footer */}
       <div className="links-footer">
         <div className="container">
-          <div className="row">
-            {/* Column Links */}
-            <div className="col-lg-2 col-md-5 col-sm-5">
-              <div className="info-links">
-                <h5>Organisation</h5>
-                <ul>
-                  <li><a href="#">Volunteers</a></li>
-                  <li><a href="#">Committees</a></li>
-                  <li><a href="#">Official Documents</a></li>
-                  <li><a href="#">Terms of Service</a></li>
-                </ul>
-              </div>
+          {/* Desktop View: 3 Columns with Titles */}
+          <div className="row d-none d-md-flex text-left">
+            <div className="col-md-4 info-links">
+              <h5>Explore</h5>
+              <ul>
+                <li><a href="#">Teams</a></li>
+                <li><a href="#">Players</a></li>
+                <li><a href="#">Stats</a></li>
+              </ul>
             </div>
-
-            {/* Column Links */}
-            <div className="col-lg-4 col-md-7 col-sm-7">
-              <div className="info-links">
-                <h5>Groups</h5>
-                <ul className="columns">
-                  <li><a href="#">GROUP A</a></li>
-                  <li><a href="#">GROUP B</a></li>
-                  <li><a href="#">GROUP C</a></li>
-                  <li><a href="#">GROUP D</a></li>
-                  <li><a href="#">GROUP E</a></li>
-                  <li><a href="#">GROUP F</a></li>
-                  <li><a href="#">GROUP G</a></li>
-                  <li><a href="#">GROUP H</a></li>
-                </ul>
-              </div>
+            <div className="col-md-4 info-links">
+              <h5>Live</h5>
+              <ul>
+                <li><a href="#">Live</a></li>
+                <li><a href="#">LiveTV</a></li>
+                <li><a href="#">Fixtures</a></li>
+              </ul>
             </div>
-
-            {/* Column Links */}
-            <div className="col-lg-2 col-md-5 col-sm-5">
-              <div className="info-links">
-                <h5>Interest Links</h5>
-                <ul>
-                  <li><a href="#">Statistics</a></li>
-                  <li><a href="#">Teams</a></li>
-                  <li><a href="#">Qualifiers</a></li>
-                  <li><a href="#">Ticketing</a></li>
-                </ul>
-              </div>
+            <div className="col-md-4 info-links">
+              <h5>Leagues</h5>
+              <ul>
+                <li><a href="#">Premier League</a></li>
+                <li><a href="#">La Liga</a></li>
+                <li><a href="#">Bundesliga</a></li>
+              </ul>
             </div>
+          </div>
 
-            {/* Column Links */}
-            <div className="col-lg-4 col-md-7 col-sm-7">
-              <div className="info-links">
-                <h5>Organisation</h5>
-                <ul className="columns">
-                  <li><a href="#">NIZHNY NOVGOROD</a></li>
-                  <li><a href="#">SAINT PETERSBURG</a></li>
-                  <li><a href="#">EKATERINBURG</a></li>
-                  <li><a href="#">MOSCOW</a></li>
-                  <li><a href="#">KAZAN</a></li>
-                  <li><a href="#">KALININGRAD</a></li>
-                  <li><a href="#">VOLGOGRAD</a></li>
-                  <li><a href="#">ROSTOV-ON-DON</a></li>
-                </ul>
+          {/* Mobile View: One title and 3-column grid */}
+          <div className="row d-md-none text-center">
+            <div className="col-12 info-links">
+              <h5>Explore</h5>
+              <div className="row">
+                <div className="col-4">
+                  <ul>
+                    <li><a href="#">Teams</a></li>
+                    <li><a href="#">Players</a></li>
+                    <li><a href="#">Stats</a></li>
+                  </ul>
+                </div>
+                <div className="col-4">
+                  <ul>
+                    <li><a href="#">Live</a></li>
+                    <li><a href="#">LiveTV</a></li>
+                    <li><a href="#">Fixtures</a></li>
+                  </ul>
+                </div>
+                <div className="col-4">
+                  <ul>
+                    <li><a href="#">Premier League</a></li>
+                    <li><a href="#">La Liga</a></li>
+                    <li><a href="#">Bundesliga</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
+        </div>
+      </div>
+
+      {/* Footer Bottom */}
+      <div className="footer-down">
+        <div className="col-md-12 text-center py-3">
+          <p>© {new Date().getFullYear()} GOAL4U. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

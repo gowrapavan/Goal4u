@@ -1,17 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
-import LiveNews from "./LiveNews"; // ✅ Make sure path is correct (adjust if needed)
-
-const hlsServer = { label: "Server 3", streamId: 6 };
 
 const iframeServers = [
+  { label: "HD 4", url: "https://sportzonline.si/channels/hd/hd4.php" }, // ✅ Default
   { label: "iServer 1", url: "https://letscast.pro/badir2.php?stream=HDGQZ2" },
   { label: "iServer 2", url: "https://nativesurge.top/ai/ch2.php" },
   { label: "iServer 3", url: "https://vivosoccer.xyz/vivoall/1.php" },
-  { label: "HD 4", url: "https://sportzonline.si/channels/hd/hd4.php" },
   { label: "HD 2", url: "https://sportzonline.si/channels/hd/hd2.php" },
   { label: "HD 5", url: "https://sportzonline.si/channels/hd/hd5.php" },
 ];
+
+const hlsServer = { label: "Server 3", streamId: 6 };
 
 const channelLogos = {
   "Server 3": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/500px-ESPN_wordmark.svg.png",
@@ -23,10 +22,10 @@ const channelLogos = {
   "HD 5": "/assets/img/6.png",
 };
 
-const LiveTV = () => {
+const HomeTV = () => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-  const [iframeURL, setIframeURL] = useState("");
+  const [iframeURL, setIframeURL] = useState("https://sportzonline.si/channels/hd/hd4.php"); // ✅ Default is HD 4
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const allChannels = [hlsServer, ...iframeServers];
@@ -69,7 +68,6 @@ const LiveTV = () => {
   };
 
   useEffect(() => {
-    loadHlsStream(hlsServer.streamId);
     return () => {
       if (hlsRef.current) {
         hlsRef.current.destroy();
@@ -123,129 +121,99 @@ const LiveTV = () => {
   };
 
   return (
-    <>
+    <div style={{ padding: "1rem 1rem 2rem" }}>
       <div
         style={{
-          padding: "1.2rem",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          flexDirection: isMobile ? "column" : "row",
+          gap: "20px",
+          alignItems: "flex-start",
+          justifyContent: "center",
+          width: "100%",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            gap: "20px",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            width: "100%",
+            flexDirection: "column",
+            alignItems: "center",
+            maxWidth: "1000px",
+            width: "90vw",
           }}
         >
-          {/* TV and Stand */}
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              maxWidth: "1000px",
-              width: "90vw",
+              width: "100%",
+              aspectRatio: "16 / 9",
+              backgroundColor: "#000",
+              border: isMobile ? "8px solid #111" : "12px solid #111",
+              borderRadius: isMobile ? "4px" : "14px",
+              boxShadow: "0 8px 30px rgba(0,255,30,0.4)",
+              overflow: "hidden",
+              position: "relative",
             }}
           >
-            <div
-              style={{
-                width: "100%",
-                aspectRatio: "16 / 9",
-                backgroundColor: "#000",
-                border: isMobile ? "9px solid #111" : "12px solid #111",
-                borderRadius: isMobile ? "4px" : "18px",
-                boxShadow: isMobile
-                  ? "0 7px 32px rgba(21, 116, 29, 0.7)"
-                  : "0 10px 40px rgba(21, 116, 29, 0.7)",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div style={{ width: "100%", height: "100%", position: "relative" }}>
-                {iframeURL ? (
-                  <iframe
-                    src={iframeURL}
-                    title="Live Stream"
-                    allow="autoplay"
-                    allowFullScreen
-                    scrolling="no"
-                    sandbox="allow-scripts allow-same-origin"
-                    referrerPolicy="no-referrer"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                  />
-                ) : (
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    muted
-                    controls
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      border: "none",
-                      background: "#000",
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-            <div
-              style={{
-                width: isMobile ? "110px" : "160px",
-                height: isMobile ? "9px" : "12px",
-                background: "#2b2b2b",
-                borderRadius: "4px",
-                marginTop: "10px",
-                boxShadow:
-                  "inset 0 5px 6px rgba(0,0,0,0.6), 0 7px 10px rgba(0,0,0,0.5)",
-              }}
-            />
+            {iframeURL ? (
+              <iframe
+                src={iframeURL}
+                title="Live Stream"
+                allow="autoplay"
+                allowFullScreen
+                scrolling="no"
+                sandbox="allow-scripts allow-same-origin"
+                referrerPolicy="no-referrer"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                controls
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  background: "#000",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
+              />
+            )}
           </div>
 
-          {/* Right panel (desktop only) */}
-          {!isMobile && (
-            <div
-              style={{
-                width: "200px",
-                maxHeight: "500px",
-                overflowY: "auto",
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "12px",
-              }}
-            >
-              {allChannels.map(renderChannelCard)}
-            </div>
-          )}
-        </div>
-
-        {/* Horizontal Scroll (Mobile only) */}
-        {isMobile && (
+          {/* ✅ TV Stand */}
           <div
             style={{
-              marginTop: "20px",
-              overflowX: "auto",
-              padding: "10px 0",
+              width: isMobile ? "110px" : "160px",
+              height: isMobile ? "9px" : "12px",
+              background: "#2b2b2b",
+              borderRadius: "4px",
+              marginTop: "10px",
+              boxShadow:
+                "inset 0 5px 6px rgba(0,0,0,0.6), 0 7px 10px rgba(0,0,0,0.5)",
+            }}
+          />
+        </div>
+
+        {/* Channel Grid for Desktop */}
+        {!isMobile && (
+          <div
+            style={{
+              width: "200px",
+              maxHeight: "500px",
+              overflowY: "auto",
               display: "grid",
-              gridAutoFlow: "column",
-              gridTemplateRows: "repeat(2, 1fr)",
+              gridTemplateColumns: "1fr 1fr",
               gap: "12px",
-              width: "100%",
             }}
           >
             {allChannels.map(renderChannelCard)}
@@ -253,13 +221,25 @@ const LiveTV = () => {
         )}
       </div>
 
-      {/* ✅ News Section with left & right padding */}
-      <div style={{ padding:isMobile ? "0 1rem": "0 3rem" }}>
-        <LiveNews  />
-      </div>
-    </>
+      {/* Channel Row for Mobile */}
+      {isMobile && (
+        <div
+          style={{
+            marginTop: "20px",
+            overflowX: "auto",
+            padding: "10px 0",
+            display: "grid",
+            gridAutoFlow: "column",
+            gridTemplateRows: "repeat(2, 1fr)",
+            gap: "12px",
+            width: "100%",
+          }}
+        >
+          {allChannels.map(renderChannelCard)}
+        </div>
+      )}
+    </div>
   );
 };
 
-
-export default LiveTV;
+export default HomeTV;

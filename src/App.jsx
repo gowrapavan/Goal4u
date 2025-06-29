@@ -16,6 +16,8 @@ import NotFound404 from "./components/NotFound404";
 import MobileNav from './components/MobileNav';
 import LiveTV from './components/LiveTv'; // adjust the path if in a different folder
 import ScrollToTop from './components/common/ScrollToTop';
+import HomeTV from './components/HomeTV';
+
 
 import './App.css';
 
@@ -51,13 +53,8 @@ function App() {
         <MobileFooter />
         <Footer />
         <div className="footer-down">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <p>&copy; 2018 SportsCup . All Rights Reserved</p>
-              </div>
-            </div>
-          </div>
+          
+          
         </div>
       </div>
     </Router>

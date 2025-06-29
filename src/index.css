@@ -16979,7 +16979,7 @@ footer {
 }
 /* line 1673, ../sass/main.scss */
 footer.footer-2 {
-  background: url("https://html.iwthemes.com/sportscup/run/img/slide/3.jpg");
+  background: url("/assets/img/stadium.jpg") no-repeat;
   background-size: cover;
   background-position: top center;
   position: relative;
@@ -16997,11 +16997,11 @@ footer.footer-2 .top-footer .social {
 }
 /* line 1686, ../sass/main.scss */
 footer.footer-2 .top-footer .social li div {
-  background: #fff;
+  background: #008000;
 }
 /* line 1688, ../sass/main.scss */
 footer.footer-2 .top-footer .social li div a {
-  color: #000;
+  color: #fff;
 }
 /* line 1695, ../sass/main.scss */
 footer.footer-2 .links-footer ul li a {
@@ -17149,9 +17149,15 @@ footer .top-footer .social li i {
 @media (max-width: 575px) {
   /* line 1811, ../sass/main.scss */
   footer .links-footer .info-links {
-    text-align: center;
+    text-align: center !important;
   }
 }
+@media (max-width: 767px) {
+  .info-links {
+    text-align: center !important;
+  }
+}
+
 /* line 1819, ../sass/main.scss */
 footer .links-footer h5 {
   color: #fff;
@@ -17199,6 +17205,12 @@ footer .links-footer ul.columns {
   color: #828282;
   margin: 0;
   font-size: 0.75rem;
+}
+/* App.css or global styles */
+@media (max-width: 768px) {
+  #layout {
+    padding-bottom: 36px; /* to prevent content behind MobileFooter */
+  }
 }
 
 /* Top ------------------------------------------------------------*/

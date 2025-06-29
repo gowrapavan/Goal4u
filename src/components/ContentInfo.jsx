@@ -1,14 +1,17 @@
-import React from 'react'
-import LeftTab from './LeftTab'
-import RightTab from './RightTab'
-import News from './News'
-import Players from './Players'
-import Stadiums from './Stadiums'
-import Diary from './Diary'
+import React from 'react';
+import LeftTab from './LeftTab';
+import RightTab from './RightTab';
+import News from './News';
+import Players from './Players';
+import Stadiums from './Stadiums';
+import Diary from './Diary';
+import HomeTV from './HomeTV'; // ✅ Import HomeTV
 
 const ContentInfo = () => {
   return (
     <section className="content-info">
+      
+
       {/* Dark Home */}
       <div className="dark-home">
         <div className="container">
@@ -25,6 +28,8 @@ const ContentInfo = () => {
           </div>
         </div>
       </div>
+      {/* ✅ Add Live TV Section */}
+      <HomeTV />
 
       {/* Content Central */}
       <div className="container padding-top">
@@ -105,7 +110,7 @@ const ContentInfo = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ContentInfo
+export default ContentInfo;
