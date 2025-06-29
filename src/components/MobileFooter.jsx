@@ -42,7 +42,7 @@ const MobileFooter = () => {
       <Link to="/" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-home" style={iconStyle}></i> Home
       </Link>
-      <Link to="/live" style={itemStyle} onClick={scrollToTop}>
+      <Link to="/livetv" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-tv" style={iconStyle}></i> Live
       </Link>
       <Link to="/teams" style={itemStyle} onClick={scrollToTop}>

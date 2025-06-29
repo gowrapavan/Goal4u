@@ -15469,12 +15469,12 @@ header .mobile-nav:hover {
 
 /* line 417, ../sass/main.scss */
 .headerbox {
-  padding: 7px 0;
+  padding: 1px 0;
 }
 @media (max-width: 1199px) {
   /* line 417, ../sass/main.scss */
   .headerbox {
-    padding: 15px 0;
+    padding: 2px 0;
   }
 }
 

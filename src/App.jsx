@@ -6,13 +6,15 @@ import HeroSection from './components/HeroSection';
 import ContentInfo from './components/ContentInfo';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
-import MobileFooter from './components/MobileFooter'; // ✅ Mobile-only footer
-import LiveMatch from './components/live/livematch';  // ✅ LiveMatch details page
-import Live from './components/live/live';            // ✅ Live match list page
-import FixturesPage from './components/Fixture'; // ✅ NEW fixtures page
+import MobileFooter from './components/MobileFooter';
+import LiveMatch from './components/live/livematch';
+import Live from './components/live/live';
+import FixturesPage from './components/Fixture';
 import About from './components/About';
-import NotFound404 from "./components/NotFound404";   // 404 page
+import Bracket from './components/Bracket'; // ✅ NEW
+import NotFound404 from "./components/NotFound404";
 import MobileNav from './components/MobileNav';
+import LiveTV from './components/LiveTv'; // adjust the path if in a different folder
 import ScrollToTop from './components/common/ScrollToTop';
 
 import './App.css';
@@ -36,10 +38,13 @@ function App() {
               </>
             }
           />
+          <Route path="/livetv" element={<LiveTV />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
           <Route path="/livematch" element={<LiveMatch />} />
-          <Route path="/fixtures" element={<FixturesPage />} /> {/* ✅ NEW ROUTE */}
+          <Route path="/fixtures" element={<FixturesPage />} />
+          <Route path="/bracket" element={<Bracket />} /> {/* ✅ Bracket route */}
           <Route path="*" element={<NotFound404 />} />
         </Routes>
 

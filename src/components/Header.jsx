@@ -4,7 +4,9 @@ import MainMenu from './MainMenu';
 import MobileNav from './MobileNav';
 
 const Header = () => {
-  const headerHeight = '110px';
+  const isMobile = window.innerWidth <= 768;
+
+  const headerHeight = isMobile ? "60px": "110px";
   const [checked, setChecked] = useState(false);
   const location = useLocation(); // ✅ get current path
 
