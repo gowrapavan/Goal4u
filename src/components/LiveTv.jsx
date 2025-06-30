@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
-import LiveNews from "./LiveNews"; // ✅ Adjust if needed
+import LiveNews from "./LiveNews"; // ✅ Adjust path if needed
 
 const hlsServer = { label: "Server 3", streamId: 6 };
 
@@ -35,8 +35,6 @@ const LiveTV = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
-
-      // Adjust top spacing if screen height is very large (e.g., Galaxy A14)
       if (window.innerHeight > 800 && window.innerWidth < 768) {
         setTopSpacing("0.5rem");
       } else {
@@ -150,7 +148,6 @@ const LiveTV = () => {
             width: "100%",
           }}
         >
-          {/* TV and Stand */}
           <div
             style={{
               display: "flex",
@@ -165,7 +162,7 @@ const LiveTV = () => {
                 width: "100%",
                 aspectRatio: "16 / 9",
                 backgroundColor: "#000",
-                border: isMobile ? "9px solid #111" : "12px solid #111",
+                border: isMobile ? "6px solid #111" : "12px solid #111",
                 borderRadius: isMobile ? "4px" : "18px",
                 boxShadow: isMobile
                   ? "0 7px 32px rgba(21, 116, 29, 0.7)"
@@ -245,6 +242,7 @@ const LiveTV = () => {
           <div
             style={{
               marginTop: "20px",
+              marginBottom: "10px",
               overflowX: "auto",
               padding: "10px 0",
               display: "grid",
