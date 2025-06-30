@@ -28,15 +28,11 @@ const LiveTV = () => {
   const hlsRef = useRef(null);
   const [iframeURL, setIframeURL] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   const allChannels = [hlsServer, ...iframeServers];
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      setScreenHeight(window.innerHeight);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -134,8 +130,6 @@ const LiveTV = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: screenHeight > 760 ? "-20px" : "0px", // 👈 Adjusts based on screen height
-          transition: "margin-top 0.3s ease-in-out",
         }}
       >
         <div
@@ -223,6 +217,7 @@ const LiveTV = () => {
             />
           </div>
 
+          {/* Right panel (desktop only) */}
           {!isMobile && (
             <div
               style={{
@@ -239,6 +234,7 @@ const LiveTV = () => {
           )}
         </div>
 
+        {/* Horizontal Scroll (Mobile only) */}
         {isMobile && (
           <div
             style={{
@@ -257,11 +253,13 @@ const LiveTV = () => {
         )}
       </div>
 
-      <div style={{ padding: isMobile ? "0 1rem" : "0 3rem" }}>
-        <LiveNews />
+      {/* ✅ News Section with left & right padding */}
+      <div style={{ padding:isMobile ? "0 1rem": "0 3rem" }}>
+        <LiveNews  />
       </div>
     </>
   );
 };
+
 
 export default LiveTV;
