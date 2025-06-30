@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
-import LiveNews from "./LiveNews"; // ✅ Adjust path if needed
+import LiveNews from "./LiveNews"; // ✅ Make sure path is correct (adjust if needed)
 
 const hlsServer = { label: "Server 3", streamId: 6 };
 
@@ -28,21 +28,11 @@ const LiveTV = () => {
   const hlsRef = useRef(null);
   const [iframeURL, setIframeURL] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [topSpacing, setTopSpacing] = useState("1.2rem");
 
   const allChannels = [hlsServer, ...iframeServers];
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-      if (window.innerHeight > 800 && window.innerWidth < 768) {
-        setTopSpacing("0.5rem");
-      } else {
-        setTopSpacing("1.2rem");
-      }
-    };
-
-    handleResize();
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -89,12 +79,16 @@ const LiveTV = () => {
   }, []);
 
   const renderChannelCard = (server) => {
-    const isActive = (!iframeURL && server.label === "Server 3") || iframeURL === server.url;
+    const isActive =
+      (!iframeURL && server.label === "Server 3") || iframeURL === server.url;
+
     return (
       <div
         key={server.label}
         onClick={() =>
-          server.label === "Server 3" ? handleHlsClick() : handleIframeClick(server.url)
+          server.label === "Server 3"
+            ? handleHlsClick()
+            : handleIframeClick(server.url)
         }
         style={{
           width: "80px",
@@ -132,7 +126,7 @@ const LiveTV = () => {
     <>
       <div
         style={{
-          padding: topSpacing,
+          padding: "1.2rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -148,6 +142,7 @@ const LiveTV = () => {
             width: "100%",
           }}
         >
+          {/* TV and Stand */}
           <div
             style={{
               display: "flex",
@@ -162,7 +157,7 @@ const LiveTV = () => {
                 width: "100%",
                 aspectRatio: "16 / 9",
                 backgroundColor: "#000",
-                border: isMobile ? "6px solid #111" : "12px solid #111",
+                border: isMobile ? "9px solid #111" : "12px solid #111",
                 borderRadius: isMobile ? "4px" : "18px",
                 boxShadow: isMobile
                   ? "0 7px 32px rgba(21, 116, 29, 0.7)"
@@ -222,6 +217,7 @@ const LiveTV = () => {
             />
           </div>
 
+          {/* Right panel (desktop only) */}
           {!isMobile && (
             <div
               style={{
@@ -238,11 +234,11 @@ const LiveTV = () => {
           )}
         </div>
 
+        {/* Horizontal Scroll (Mobile only) */}
         {isMobile && (
           <div
             style={{
               marginTop: "20px",
-              marginBottom: "10px",
               overflowX: "auto",
               padding: "10px 0",
               display: "grid",
@@ -257,11 +253,13 @@ const LiveTV = () => {
         )}
       </div>
 
-      <div style={{ padding: isMobile ? "0 1rem" : "0 3rem" }}>
-        <LiveNews />
+      {/* ✅ News Section with left & right padding */}
+      <div style={{ padding:isMobile ? "0 1rem": "0 3rem" }}>
+        <LiveNews  />
       </div>
     </>
   );
 };
+
 
 export default LiveTV;
