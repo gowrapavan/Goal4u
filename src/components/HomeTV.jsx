@@ -1,32 +1,45 @@
 import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
 
-const iframeServers = [
-  { label: "HD 4", url: "https://sportzonline.si/channels/hd/hd4.php" }, // ✅ Default
-  { label: "iServer 1", url: "https://letscast.pro/badir2.php?stream=HDGQZ2" },
-  { label: "iServer 2", url: "https://nativesurge.top/ai/ch2.php" },
-  { label: "iServer 3", url: "https://vivosoccer.xyz/vivoall/1.php" },
-  { label: "HD 2", url: "https://sportzonline.si/channels/hd/hd2.php" },
-  { label: "HD 5", url: "https://sportzonline.si/channels/hd/hd5.php" },
-];
-
 const hlsServer = { label: "Server 3", streamId: 6 };
+
+const iframeServers = [
+  { label: "HD 4", url: "https://sportzonline.si/channels/hd/hd4.php" },
+  { label: "iServer 1", url: "https://letscast.pro/badir2.php?stream=HDGQZ2" },
+  { label: "iServer 3", url: "https://vivosoccer.xyz/vivoall/1.php" },
+  { label: "Vivo 5", url: "https://vivosoccer.xyz/vivoall/5.php" },
+  { label: "HD 1", url: "https://sportzonline.si/channels/hd/hd1.php" },
+  { label: "HD 2", url: "https://sportzonline.si/channels/hd/hd2.php" },
+  { label: "HD 3", url: "https://sportzonline.si/channels/hd/hd3.php" },
+  { label: "HD 5", url: "https://sportzonline.si/channels/hd/hd5.php" },
+  { label: "Vivo 2", url: "https://vivosoccer.xyz/vivoall/2.php" },
+  { label: "Vivo 3", url: "https://vivosoccer.xyz/vivoall/3.php" },
+  { label: "Vivo 4", url: "https://vivosoccer.xyz/vivoall/4.php" },
+  { label: "Vivo 6", url: "https://vivosoccer.xyz/vivoall/6.php" },
+];
 
 const channelLogos = {
   "Server 3": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/500px-ESPN_wordmark.svg.png",
   "iServer 1": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DAZN_Logo_Master.svg/330px-DAZN_Logo_Master.svg.png",
   "iServer 3": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/TNT_%28TV_Channel%29.svg/330px-TNT_%28TV_Channel%29.svg.png",
-  "HD 4": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/FIFA_Club_World_Cup_logo.svg/300px-FIFA_Club_World_Cup_logo.svg.png",
-  "iServer 2": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/FIFA_logo_without_slogan.svg/500px-FIFA_logo_without_slogan.svg.png",
   "HD 2": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/UEFA_logo.svg/330px-UEFA_logo.svg.png",
+  "HD 4": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/FIFA_Club_World_Cup_logo.svg/300px-FIFA_Club_World_Cup_logo.svg.png",
+  "HD 1": "/assets/img/6.png",
+  "HD 3": "/assets/img/6.png",
   "HD 5": "/assets/img/6.png",
+  "Vivo 2": "/assets/img/6.png",
+  "Vivo 3": "/assets/img/6.png",
+  "Vivo 4": "/assets/img/6.png",
+  "Vivo 5": "/assets/img/6.png",
+  "Vivo 6": "/assets/img/6.png",
 };
 
 const HomeTV = () => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-  const [iframeURL, setIframeURL] = useState("https://sportzonline.si/channels/hd/hd4.php"); // ✅ Default is HD 4
+  const [iframeURL, setIframeURL] = useState("https://sportzonline.si/channels/hd/hd4.php");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [showAdAlert, setShowAdAlert] = useState(false);
 
   const allChannels = [hlsServer, ...iframeServers];
 
@@ -35,6 +48,19 @@ const HomeTV = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const checkFullscreen = () => {
+      const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+      setShowAdAlert(!isFullscreen && !!iframeURL);
+    };
+    document.addEventListener("fullscreenchange", checkFullscreen);
+    document.addEventListener("webkitfullscreenchange", checkFullscreen);
+    return () => {
+      document.removeEventListener("fullscreenchange", checkFullscreen);
+      document.removeEventListener("webkitfullscreenchange", checkFullscreen);
+    };
+  }, [iframeURL]);
 
   const loadHlsStream = (serverId) => {
     setIframeURL("");
@@ -79,7 +105,6 @@ const HomeTV = () => {
   const renderChannelCard = (server) => {
     const isActive =
       (!iframeURL && server.label === "Server 3") || iframeURL === server.url;
-
     return (
       <div
         key={server.label}
@@ -153,6 +178,34 @@ const HomeTV = () => {
               position: "relative",
             }}
           >
+            {showAdAlert && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: isMobile ? "6px" : "12px",
+                  left: isMobile ? "6px" : "12px",
+                  backgroundColor: "#e6fff3",
+                  color: "#105e2e",
+                  padding: isMobile ? "4px 8px" : "6px 12px",
+                  borderRadius: "8px",
+                  border: "1px solid #33ff88",
+                  fontSize: isMobile ? "10px" : "13px",
+                  zIndex: 10,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                }}
+              >
+                📺 Use <strong style={{ fontWeight: 600 }}>Fullscreen</strong> to avoid ads.
+                <span
+                  style={{ marginLeft: "6px", cursor: "pointer", fontWeight: "bold" }}
+                  onClick={() => setShowAdAlert(false)}
+                >
+                  ×
+                </span>
+              </div>
+            )}
+
             {iframeURL ? (
               <iframe
                 src={iframeURL}
@@ -190,7 +243,6 @@ const HomeTV = () => {
             )}
           </div>
 
-          {/* ✅ TV Stand */}
           <div
             style={{
               width: isMobile ? "110px" : "160px",
@@ -198,15 +250,14 @@ const HomeTV = () => {
               background: "#2b2b2b",
               borderRadius: "4px",
               marginTop: "10px",
-              boxShadow:
-                "inset 0 5px 6px rgba(0,0,0,0.6), 0 7px 10px rgba(0,0,0,0.5)",
+              boxShadow: "inset 0 5px 6px rgba(0,0,0,0.6), 0 7px 10px rgba(0,0,0,0.5)",
             }}
           />
         </div>
 
-        {/* Channel Grid for Desktop */}
         {!isMobile && (
           <div
+            className="custom-scroll"
             style={{
               width: "200px",
               maxHeight: "500px",
@@ -221,9 +272,9 @@ const HomeTV = () => {
         )}
       </div>
 
-      {/* Channel Row for Mobile */}
       {isMobile && (
         <div
+          className="custom-scroll"
           style={{
             marginTop: "20px",
             overflowX: "auto",

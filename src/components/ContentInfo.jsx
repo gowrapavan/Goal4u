@@ -29,7 +29,9 @@ const ContentInfo = () => {
         </div>
       </div>
       {/* ✅ Add Live TV Section */}
-      <HomeTV />
+      <div data-hometv>
+        <HomeTV />
+      </div>
 
       {/* Content Central */}
       <div className="container padding-top">

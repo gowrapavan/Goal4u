@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoadingSpinner from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import EmptyState from './common/EmptyState';
-import { getLiveMatches, getNextPreferredClubMatch } from '../services/RTab-Live'; // ⬅️ updated import
+import { getLiveMatches, getNextPreferredClubMatch } from '../services/RTab-Live';
 import { getTeamLogoByKey } from '../services/teamlogo';
 
 const PREFERRED_CLUBS = [
@@ -47,11 +47,13 @@ const RightTab = () => {
     const loadMatch = async () => {
       try {
         const live = await getLiveMatches();
-        if (live.length > 0) {
+        if (live.length > 0 && live[0].Status === 'InProgress') {
+          sessionStorage.setItem("liveMatchAvailable", "true"); // ✅ ONLY when live
           setMatch(live[0]);
           await loadTeamLogos(live[0]);
         } else {
-          const upcoming = await getNextPreferredClubMatch(PREFERRED_CLUBS); // ⬅️ changed logic
+          sessionStorage.removeItem("liveMatchAvailable"); // ✅ clear if no live
+          const upcoming = await getNextPreferredClubMatch(PREFERRED_CLUBS);
           if (upcoming) {
             setMatch(upcoming);
             await loadTeamLogos(upcoming);

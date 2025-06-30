@@ -5,10 +5,21 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { data: newsResponse } = useNews(1, 20);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // ✅ Update on resize
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // ✅ Separate desktop and mobile images
   const hardcodedSlide = {
-    title: 'Premier League Action',
-    image: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg',
-    url: '#',
+    title: 'Welcome to GOAL4U',
+    desktopImage: '/assets/img/yt-banner.png',
+    mobileImage: '/assets/img/yt-banner-mb.png',
+    url: '/about',
   };
 
   const [slides, setSlides] = useState([hardcodedSlide]);
@@ -20,7 +31,7 @@ const HeroSection = () => {
         image:
           article.urlToImage && !article.urlToImage.includes('removed')
             ? article.urlToImage
-            : hardcodedSlide.image,
+            : hardcodedSlide.desktopImage,
         url: article.url,
       }));
 
@@ -35,8 +46,15 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, [slides]);
 
-  const handleReadMore = (url) => {
-    if (url && url !== '#') window.open(url, '_blank');
+  const handleReadMore = (url, index) => {
+    if (!url) return;
+    if (index === 0) {
+      // hardcoded slide: open in same tab
+      window.location.href = url;
+    } else {
+      // dynamic slides: open in new tab
+      window.open(url, '_blank');
+    }
   };
 
   return (
@@ -46,32 +64,41 @@ const HeroSection = () => {
           className="slider-track"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="item-slider"
-              style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(${slide.image})`,
-              }}
-            >
-              <div className="container">
-                <br></br><br></br><br></br>
-                <div className="row align-items-center">
-                  <div className="col-lg-8">
-                    <div className="info-slider">
-                      <h1>{slide.title}</h1>
-                      <button
-                        onClick={() => handleReadMore(slide.url)}
-                        className="btn-iw outline"
-                      >
-                        Read More <i className="fa fa-long-arrow-right"></i>
-                      </button>
+          {slides.map((slide, index) => {
+            const image = index === 0
+              ? isMobile ? slide.mobileImage : slide.desktopImage
+              : slide.image;
+
+            return (
+              <div
+                key={index}
+                className="item-slider"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(${image})`,
+                }}
+              >
+                <div className="container">
+                  <br />
+                  <br />
+                  <br />
+                  <div className="row align-items-center">
+                    <div className="col-lg-8">
+                      <div className="info-slider">
+                        <h1>{slide.title}</h1>
+                        <button
+                          onClick={() => handleReadMore(slide.url, index)}
+                          className="btn-iw outline"
+                        >
+                          {index === 0 ? 'Explore' : 'Read More'}{' '}
+                          <i className="fa fa-long-arrow-right"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Indicators - hidden on mobile */}
@@ -204,30 +231,29 @@ const HeroSection = () => {
         }
 
         @media (max-width: 768px) {
-  .hero-header {
-    height: 420px;
-  }
+          .hero-header {
+            height: 420px;
+          }
 
-  .info-slider h1 {
-    font-size: 0.9rem;
-    line-height: 1.3;
-  }
+          .info-slider h1 {
+            font-size: 0.9rem;
+            line-height: 1.3;
+          }
 
-  .btn-iw.outline {
-    font-size: 0.7rem;
-    padding: 6px 12px;
-  }
+          .btn-iw.outline {
+            font-size: 0.7rem;
+            padding: 6px 12px;
+          }
 
-  .hero-indicators {
-    display: none;
-  }
+          .hero-indicators {
+            display: none;
+          }
 
-  .hero-nav {
-    width: 30px;
-    height: 30px;
-  }
-}
- }
+          .hero-nav {
+            width: 30px;
+            height: 30px;
+          }
+        }
       `}</style>
     </div>
   );
