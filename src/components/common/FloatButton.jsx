@@ -7,7 +7,7 @@ const FloatButton = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const isLive = "true"; // 🔥 Force enable for testing
+    const isLive = sessionStorage.getItem("liveMatchAvailable");
     if (isLive === "true") setShowButton(true);
 
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
