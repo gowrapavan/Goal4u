@@ -4,16 +4,17 @@ import { Match, ApiMatch } from '../types/match';
 const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
 const BASE_URL = 'api/scores/json/ScoresBasic';
 
-// Add or remove supported competitions here
+// ✅ Updated with correct short codes
 const COMPETITIONS = [
   { code: 'EPL', name: 'Premier League' },
   { code: 'ESP', name: 'La Liga' },
-  { code: 'GER', name: 'Bundesliga' },
-  { code: 'ITA', name: 'Serie A' },
-  { code: 'FRA', name: 'Ligue 1' },
+  { code: 'DEB', name: 'Bundesliga' },        // was 'GER'
+  { code: 'ITSA', name: 'Serie A' },          // was 'ITA'
+  { code: 'FRL1', name: 'Ligue 1' },          // was 'FRA'
   { code: 'UCL', name: 'UEFA Champions League' },
   { code: 'CWC', name: 'FIFA Club World Cup' },
 ];
+
 
 function formatDate(date: Date): string {
   return date.toISOString().split('T')[0]; // "YYYY-MM-DD"

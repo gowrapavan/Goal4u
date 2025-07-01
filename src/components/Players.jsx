@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   getTopScorersFromMultipleCompetitions,
-  COMPETITIONS
+  COMPETITIONS,
 } from "../services/playerstats";
 import LoadingSpinner from "./common/LoadingSpinner";
 import ErrorMessage from "./common/ErrorMessage";
@@ -31,6 +31,7 @@ const TopScorers = () => {
   }, [selectedCompetitions]);
 
   const getPlayerImage = (player) =>
+    player.PhotoUrl ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(
       player.Name
     )}&background=007bff&color=fff&size=150`;
@@ -41,7 +42,7 @@ const TopScorers = () => {
       EPL: "🇬🇧",
       ITA: "🇮🇹",
       GER: "🇩🇪",
-      FRA: "🇫🇷"
+      FRA: "🇫🇷",
     };
     return flags[competition] || "⚽";
   };
@@ -99,36 +100,38 @@ const TopScorers = () => {
             key={player.PlayerId || index}
             className="col-xs-6 col-sm-4 col-md-4 col-lg-4 mb-4"
           >
-            <div className="box-info shadow-sm border rounded p-3 position-relative bg-white">
-              <div className="ranking-badge badge badge-primary">#{index + 1}</div>
-              <div className="competition-badge small text-muted mb-2 position-absolute end-0 top-0 m-2">
+            <div className="ts-box shadow-sm border rounded p-3 position-relative bg-white">
+              <div className="ts-rank badge bg-primary text-white">
+                #{index + 1}
+              </div>
+              <div className="ts-flag small text-muted position-absolute end-0 top-0 m-2">
                 {getCompetitionFlag(player.Competition)}
               </div>
 
-              <div className="player-image-container position-relative mb-2">
+              <div className="ts-image-wrapper position-relative mb-2">
                 <img
                   src={getPlayerImage(player)}
                   alt={player.Name}
-                  className="img-fluid rounded-circle player-image"
+                  className="img-fluid ts-image"
                 />
-                <div className="player-overlay">
-                  <div className="player-stats d-flex justify-content-between text-white px-2">
-                    <span className="position">{player.Position}</span>
-                    <span className="jersey">⚽ {player.Goals}</span>
+                <div className="ts-overlay">
+                  <div className="ts-stats d-flex justify-content-between text-white px-2">
+                    <span>{player.Position}</span>
+                    <span>⚽ {player.Goals}</span>
                   </div>
                 </div>
               </div>
 
-              <h6 className="entry-title text-center font-weight-bold mb-1">
-                <span className="player-name">{player.Name}</span>
+              <h6 className="ts-name text-center fw-bold mb-1">
+                {player.Name}
               </h6>
 
-              <div className="player-team text-center text-muted small d-flex justify-content-center align-items-center gap-1">
+              <div className="ts-team text-center text-muted small d-flex justify-content-center align-items-center gap-1">
                 {player.TeamLogo && (
                   <img
                     src={player.TeamLogo}
                     alt={player.Team}
-                    className="team-logo me-1"
+                    className="ts-team-logo me-1"
                   />
                 )}
                 <span>{player.Team}</span>
@@ -143,35 +146,16 @@ const TopScorers = () => {
       </div>
 
       <style>{`
-        .panel-box {
-          padding: 20px;
-          background-color: #f8f9fa;
-          border-radius: 8px;
-        }
-
-        .titles h4 {
-          font-size: 20px;
-          margin-bottom: 4px;
-          font-weight: 600;
-        }
-
-        .team-info {
-          font-size: 14px;
-          color: #6c757d;
-          margin-bottom: 15px;
-          text-align: center;
-
-        }
-
-        .box-info {
+        .ts-box {
           transition: transform 0.2s ease;
+          text-align: center;
         }
 
-        .box-info:hover {
+        .ts-box:hover {
           transform: scale(1.03);
         }
 
-        .ranking-badge {
+        .ts-rank {
           position: absolute;
           top: 10px;
           left: 10px;
@@ -179,29 +163,29 @@ const TopScorers = () => {
           padding: 4px 8px;
         }
 
-        .competition-badge {
+        .ts-flag {
           font-size: 14px;
         }
 
-        .player-image-container {
+        .ts-image-wrapper {
           position: relative;
-          text-align: center;
+          display: flex;
+          justify-content: center;
         }
 
-        .player-image {
-          width: 80px;
-          height: 80px;
+        .ts-image {
+          width: 65px;
+          height: 90px;
           object-fit: cover;
           border: 2px solid #dee2e6;
         }
 
-        .player-overlay {
+        .ts-overlay {
           position: absolute;
           bottom: 0;
           width: 100%;
-          background: rgba(0,0,0,0.4);
-          border-radius: 50%;
           height: 100%;
+          background: rgba(0,0,0,0.4);
           display: flex;
           align-items: flex-end;
           justify-content: center;
@@ -209,28 +193,27 @@ const TopScorers = () => {
           transition: 0.3s ease;
         }
 
-        .player-image-container:hover .player-overlay {
+        .ts-image-wrapper:hover .ts-overlay {
           opacity: 1;
         }
 
-        .player-stats {
+        .ts-stats {
           font-size: 12px;
-          background-color: rgba(0, 0, 0, 0.5);
-          border-radius: 0 0 50% 50%;
+          background-color: rgba(0, 0, 0, 0.6);
           padding: 4px 8px;
           width: 100%;
           justify-content: space-between;
         }
 
-        .entry-title {
+        .ts-name {
           font-size: 14px;
         }
 
-        .player-team {
+        .ts-team {
           font-size: 13px;
         }
 
-        .team-logo {
+        .ts-team-logo {
           width: 18px;
           height: 18px;
           object-fit: contain;

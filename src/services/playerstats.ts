@@ -1,5 +1,7 @@
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY; // ✅ Actual environment value
+const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
 const BASE_URL = "https://api.sportsdata.io/v4/soccer";
+
+import { getPlayerHeadshotMapByCompetition } from "./playerheadshot";
 
 export interface Player {
   PlayerId: number;
@@ -9,18 +11,21 @@ export interface Player {
   Goals: number;
   Competition: string;
   CompetitionName: string;
-  TeamLogo?: string; // ✅ added
+  TeamLogo?: string;
+  PhotoUrl?: string;
 }
 
 const COMPETITIONS = [
   { code: "ESP", name: "La Liga" },
   { code: "EPL", name: "Premier League" },
-  { code: "ITA", name: "Serie A" },
-  { code: "GER", name: "Bundesliga" },
-  { code: "FRA", name: "Ligue 1" },
+  { code: "ITSA", name: "Serie A" },
+  { code: "DEB", name: "Bundesliga" },
+  { code: "FRL1", name: "Ligue 1" },
 ];
 
-export async function getTeamsByCompetition(competitionCode: string): Promise<Record<string, string>> {
+export async function getTeamsByCompetition(
+  competitionCode: string
+): Promise<Record<string, string>> {
   const url = `${BASE_URL}/scores/json/Teams/${competitionCode}?key=${API_KEY}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch teams for ${competitionCode}`);
@@ -34,13 +39,17 @@ export async function getTeamsByCompetition(competitionCode: string): Promise<Re
   return teamLogoMap;
 }
 
-export async function getTopScorersFromCompetition(competition: string, season = "2025"): Promise<Player[]> {
+export async function getTopScorersFromCompetition(
+  competition: string,
+  season = "2025"
+): Promise<Player[]> {
   const url = `${BASE_URL}/stats/json/PlayerSeasonStats/${competition}/${season}?key=${API_KEY}`;
 
   try {
-    const [statsRes, logoMap] = await Promise.all([
+    const [statsRes, logoMap, photoMap] = await Promise.all([
       fetch(url),
-      getTeamsByCompetition(competition)
+      getTeamsByCompetition(competition),
+      getPlayerHeadshotMapByCompetition(competition),
     ]);
 
     if (!statsRes.ok) {
@@ -49,22 +58,22 @@ export async function getTopScorersFromCompetition(competition: string, season =
     }
 
     const data = await statsRes.json();
-
     if (!Array.isArray(data) || !data[0]?.PlayerSeasons) {
       console.warn(`Invalid API response structure for ${competition}`);
       return [];
     }
 
-    const competitionName = COMPETITIONS.find(c => c.code === competition)?.name || competition;
+    const competitionName =
+      COMPETITIONS.find((c) => c.code === competition)?.name || competition;
 
-    // Flatten and attach logo
     return data[0].PlayerSeasons
       .filter((player: any) => player.Goals > 0)
       .map((player: any) => ({
         ...player,
         Competition: competition,
         CompetitionName: competitionName,
-        TeamLogo: logoMap[player.Team] || "", // ✅ attach logo
+        TeamLogo: logoMap[player.Team] || "",
+        PhotoUrl: photoMap[player.PlayerId] || "",
       }));
   } catch (error) {
     console.error(`Error fetching data for ${competition}:`, error);
@@ -77,7 +86,9 @@ export async function getTopScorersFromMultipleCompetitions(
   season = "2025"
 ): Promise<Player[]> {
   try {
-    const promises = competitions.map((comp) => getTopScorersFromCompetition(comp, season));
+    const promises = competitions.map((comp) =>
+      getTopScorersFromCompetition(comp, season)
+    );
     const results = await Promise.all(promises);
     const allPlayers = results.flat();
 

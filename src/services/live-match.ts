@@ -1,5 +1,5 @@
 import { ApiMatch, Match, Competition } from '../types/match';
-
+import { fetchBoxScoreById } from './boxscore'; // ⬅️ import full box score
 const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
 
@@ -39,8 +39,71 @@ function formatDate(date: Date): string {
   return date.toISOString().split('T')[0];
 }
 
-// ✅ Fetch matches for a fixed number of days in the past (e.g., recent 7 days)
+// ✅ Helper to calculate score from Goals array
+async function getScoreFromBoxScore(comp: string, gameId: number): Promise<{ home: number; away: number } | null> {
+  try {
+    const boxScore = await fetchBoxScoreById(comp, gameId);
+    const homeId = boxScore.Game.HomeTeamId;
+    const awayId = boxScore.Game.AwayTeamId;
+
+    const goals = boxScore.Goals || [];
+
+    const homeGoals = goals.filter(
+      g => (g.Type === 'Goal' && g.TeamId === homeId) || (g.Type === 'OwnGoal' && g.TeamId === awayId)
+    );
+
+    const awayGoals = goals.filter(
+      g => (g.Type === 'Goal' && g.TeamId === awayId) || (g.Type === 'OwnGoal' && g.TeamId === homeId)
+    );
+
+    return {
+      home: homeGoals.length,
+      away: awayGoals.length
+    };
+  } catch (e) {
+    console.warn(`[BoxScore] Failed to fetch for ${comp}/${gameId}`);
+    return null;
+  }
+}
+
 export class LiveMatch {
+  static async fetchMatchesByDate(date: string): Promise<Match[]> {
+    const results: Match[] = [];
+
+    for (const comp of COMPETITIONS) {
+      const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) continue;
+
+        const json: ApiMatch[] = await response.json();
+
+        const transformed = await Promise.all(
+          json.map(async (matchData) => {
+            let match = transformApiMatch(matchData, comp.code);
+
+            if (match.Status === 'Final') {
+              const corrected = await getScoreFromBoxScore(comp.code, match.GameId);
+              match.HomeTeamScore = corrected?.home ?? null;
+              match.AwayTeamScore = corrected?.away ?? null;
+            }
+
+            return match;
+          })
+        );
+
+        results.push(...transformed);
+      } catch {
+        continue;
+      }
+    }
+
+    return results.sort(
+      (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
+    );
+  }
+
   static async fetchRecentMatches(days: number = 7): Promise<Match[]> {
     const today = new Date();
     const dates = Array.from({ length: days }, (_, i) => {
@@ -55,9 +118,19 @@ export class LiveMatch {
       for (const date of dates) {
         const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
         const promise = fetch(url)
-          .then(res => res.ok ? res.json() : [])
+          .then((res) => (res.ok ? res.json() : []))
           .then((json: ApiMatch[]) =>
-            json.map((match) => transformApiMatch(match, comp.code))
+            Promise.all(
+              json.map(async (matchData) => {
+                let match = transformApiMatch(matchData, comp.code);
+                if (match.Status === 'Final') {
+                  const corrected = await getScoreFromBoxScore(comp.code, match.GameId);
+                  match.HomeTeamScore = corrected?.home ?? null;
+                  match.AwayTeamScore = corrected?.away ?? null;
+                }
+                return match;
+              })
+            )
           )
           .catch(() => []);
         promises.push(promise);
@@ -82,31 +155,6 @@ export class LiveMatch {
     );
   }
 
-  // ✅ Fetch matches by a specific date (for calendar use — future or past)
-  static async fetchMatchesByDate(date: string): Promise<Match[]> {
-    const results: Match[] = [];
-
-    for (const comp of COMPETITIONS) {
-      const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
-
-      try {
-        const response = await fetch(url);
-        if (!response.ok) continue;
-
-        const json: ApiMatch[] = await response.json();
-        const transformed = json.map((match) => transformApiMatch(match, comp.code));
-        results.push(...transformed);
-      } catch {
-        continue;
-      }
-    }
-
-    return results.sort(
-      (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
-    );
-  }
-
-  // ✅ Get only today's live/scheduled matches
   static async fetchLiveMatches(): Promise<Match[]> {
     const today = formatDate(new Date());
     const todayMatches = await this.fetchMatchesByDate(today);

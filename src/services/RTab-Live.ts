@@ -1,11 +1,12 @@
 import { Match, ApiMatch } from '../types/match';
+import { fetchBoxScoreById } from './boxscore'; // ✅ BoxScore import
 
 const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
 const isDev = import.meta.env.DEV;
 
 const BASE_URL = isDev
-  ? '/api/ScoresBasic' // ✅ Dev uses Vite proxy
-  : 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic'; // ✅ Live uses full path
+  ? '/api/ScoresBasic'
+  : 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
 
 export const COMPETITIONS = [
   { code: 'EPL', name: 'Premier League', country: 'England' },
@@ -43,6 +44,27 @@ function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
   };
 }
 
+// ✅ Accurate score logic using BoxScore + OwnGoals
+async function getScoreFromBoxScore(comp: string, gameId: number): Promise<{ home: number; away: number } | null> {
+  try {
+    const boxScore = await fetchBoxScoreById(comp, gameId);
+    const homeId = boxScore.Game.HomeTeamId;
+    const awayId = boxScore.Game.AwayTeamId;
+    const goals = boxScore.Goals || [];
+
+    const homeGoals = goals.filter(
+      g => (g.Type === 'Goal' && g.TeamId === homeId) || (g.Type === 'OwnGoal' && g.TeamId === awayId)
+    );
+    const awayGoals = goals.filter(
+      g => (g.Type === 'Goal' && g.TeamId === awayId) || (g.Type === 'OwnGoal' && g.TeamId === homeId)
+    );
+
+    return { home: homeGoals.length, away: awayGoals.length };
+  } catch {
+    return null;
+  }
+}
+
 function getNextNDates(startOffset: number, numDays: number): string[] {
   const dates: string[] = [];
   const base = new Date();
@@ -57,22 +79,20 @@ function getNextNDates(startOffset: number, numDays: number): string[] {
   return dates;
 }
 
+// 🔁 Used for preferred club match fetch
 async function fetchMatches(dates: string[]): Promise<Match[]> {
   const matchPromises: Promise<Match[]>[] = [];
 
   for (const comp of COMPETITIONS) {
     for (const date of dates) {
       const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
-
       const fetchPromise = fetch(url)
         .then((res) => (res.ok ? res.json() : []))
-        .then((data: ApiMatch[]) =>
-          data
-            .filter((match) => match.Status === 'Scheduled')
-            .map((match) => transformApiMatch(match, comp.code))
-        )
-        .catch(() => []); // fallback on failure
-
+        .then(async (data: ApiMatch[]) => {
+          const filtered = data.filter((match) => match.Status === 'Scheduled');
+          return filtered.map((match) => transformApiMatch(match, comp.code));
+        })
+        .catch(() => []);
       matchPromises.push(fetchPromise);
     }
   }
@@ -84,7 +104,7 @@ async function fetchMatches(dates: string[]): Promise<Match[]> {
 }
 
 /**
- * Fetch live matches for today from all competitions.
+ * ✅ Fetch live matches for today from all competitions with BoxScore-based scores
  */
 export async function getLiveMatches(): Promise<Match[]> {
   const today = formatDate(new Date());
@@ -94,23 +114,39 @@ export async function getLiveMatches(): Promise<Match[]> {
       const url = `${BASE_URL}/${comp.code}/${today}?key=${API_KEY}`;
       const res = await fetch(url);
       if (!res.ok) return [];
+
       const data: ApiMatch[] = await res.json();
-      return data
-        .filter((m) =>
-          ['InProgress', 'Break', 'Halftime'].includes(m.Status)
-        )
-        .map((match) => transformApiMatch(match, comp.code));
+
+      const matches = data
+        .filter((m) => ['InProgress', 'Break', 'Halftime'].includes(m.Status))
+        .map((m) => transformApiMatch(m, comp.code));
+
+      // 🔁 Apply corrected scores via BoxScore
+      const corrected = await Promise.all(
+        matches.map(async (match) => {
+          const score = await getScoreFromBoxScore(comp.code, match.GameId);
+          if (score) {
+            match.HomeTeamScore = score.home;
+            match.AwayTeamScore = score.away;
+          }
+          return match;
+        })
+      );
+
+      return corrected;
     } catch {
       return [];
     }
   });
 
   const results = await Promise.all(promises);
-  return results.flat().sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
+  return results
+    .flat()
+    .sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
 }
 
 /**
- * Fetches the next upcoming match for any preferred club.
+ * ✅ Get next match for a preferred club (from next 30 days)
  */
 export async function getNextPreferredClubMatch(preferredClubs: string[]): Promise<Match | null> {
   const searchRanges = [
