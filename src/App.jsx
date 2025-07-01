@@ -16,6 +16,8 @@ import MobileNav from './components/MobileNav';
 import LiveTV from './components/live/LiveTv';
 import ScrollToTop from './components/common/ScrollToTop';
 import FloatButton from './components/common/FloatButton'; // ✅ NEW
+import Player from './components/Player';
+
 
 import './App.css';
 
@@ -38,6 +40,7 @@ function App() {
               </>
             }
           />
+          <Route path="/players" element={<Player />} />
           <Route path="/livetv" element={<LiveTV />} />
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
