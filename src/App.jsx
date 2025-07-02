@@ -15,9 +15,11 @@ import NotFound404 from './components/NotFound404';
 import MobileNav from './components/MobileNav';
 import LiveTV from './components/live/LiveTv';
 import ScrollToTop from './components/common/ScrollToTop';
-import FloatButton from './components/common/FloatButton'; // ✅ NEW
+import FloatButton from './components/common/FloatButton';
 import Player from './components/Player';
 
+import Team from './components/team/Team';
+import TeamProfile from './components/team/TeamProfile';
 
 import './App.css';
 
@@ -44,6 +46,8 @@ function App() {
           <Route path="/livetv" element={<LiveTV />} />
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
+          <Route path="/clubs" element={<Team />} />
+          <Route path="/club" element={<TeamProfile />} /> {/* ✅ Updated route */}
           <Route path="/livematch" element={<LiveMatch />} />
           <Route path="/fixtures" element={<FixturesPage />} />
           <Route path="/bracket" element={<Bracket />} />
@@ -52,7 +56,7 @@ function App() {
 
         <MobileFooter />
         <Footer />
-        <FloatButton /> {/* ✅ Floating live button */}
+        <FloatButton />
       </div>
     </Router>
   );

@@ -45,7 +45,7 @@ const MobileFooter = () => {
       <Link to="/livetv" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-tv" style={iconStyle}></i> Live
       </Link>
-      <Link to="/players" style={itemStyle} onClick={scrollToTop}>
+      <Link to="/clubs" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-users" style={iconStyle}></i> Teams
       </Link>
       <Link to="/profile" style={itemStyle} onClick={scrollToTop}>

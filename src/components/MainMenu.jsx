@@ -86,7 +86,7 @@ const MainMenu = () => {
             </li>
 
             <li className="current">
-              <a href="teams.html">Teams</a>
+              <a href="/clubs">Teams</a>
               <ul className="sub-current">
                 <li><a href="teams.html">Teams List</a></li>
                 <li><a href="single-team.html">Single Team</a></li>
@@ -94,11 +94,8 @@ const MainMenu = () => {
             </li>
 
             <li className="current">
-              <a href="players.html">Players</a>
-              <ul className="sub-current">
-                <li><a href="players.html">Players List</a></li>
-                <li><a href="single-player.html">Single Player</a></li>
-              </ul>
+              <a href="/players">Players</a>
+              
             </li>
 
             <li><a href="/fixtures">Fixtures</a></li>

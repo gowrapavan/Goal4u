@@ -1,0 +1,34 @@
+export interface TeamStats {
+  TeamId: number;
+  Name: string;
+  Season: number;
+  Games: number;
+  Goals: number;
+  Assists: number;
+  Shots: number;
+  ShotsOnGoal: number;
+  Passes: number;
+  PassesCompleted: number;
+  Crosses: number;
+  Tackles: number;
+  TacklesWon: number;
+  Interceptions: number;
+  BlockedShots: number;
+  GoalkeeperSaves: number;
+  GoalkeeperCleanSheets: number;
+  GoalkeeperGoalsAgainst: number;
+  DefenderCleanSheets: number;
+  YellowCards: number;
+  RedCards: number;
+  Fouls: number;
+  OwnGoals: number;
+  Offsides: number;
+  PenaltiesWon: number;
+  PenaltiesConceded: number;
+  PenaltyKickGoals: number;
+  PenaltyKickMisses: number;
+  CornersWon: number;
+  Score: number;
+  OpponentScore: number;
+  Possession: number;
+}
