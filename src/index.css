@@ -2334,6 +2334,17 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   border-radius: .2rem;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /* line 28, ../sass/bootstrap/mixins/_forms.scss */
 .was-validated .form-control:valid, .form-control.is-valid, .was-validated
 .custom-select:valid,
@@ -18647,6 +18658,15 @@ address strong {
 }
 /* line 2976, ../sass/main.scss */
 .item-player .head-player {
+  background-image: url('/assets/img/yt-banner-mb.png'); /* <- use your path */
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+  border-radius: 8px;
   overflow: hidden;
   max-height: 165px;
   position: relative;

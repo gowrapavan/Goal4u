@@ -168,16 +168,23 @@ const TopScorers = () => {
         }
 
         .ts-image-wrapper {
-          position: relative;
-          display: flex;
-          justify-content: center;
-        }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/img/demonews.png'); /* example */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+}
+
 
         .ts-image {
-          width: 65px;
-          height: 90px;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
-          border: 2px solid #dee2e6;
         }
 
         .ts-overlay {
