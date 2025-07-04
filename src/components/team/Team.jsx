@@ -89,7 +89,7 @@ const Team = () => {
                   <div className="item-team">
                     <div className="head-team">
                       <img
-                        src={"/assets/img/yt-banner.png"}
+                        src={"/assets/img/yt-banner-mb.png"}
                         alt={team.Name}
                         style={{ backgroundColor: team.ClubColor3 || "#fff" }}
                       />
