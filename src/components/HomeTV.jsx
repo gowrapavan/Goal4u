@@ -107,6 +107,7 @@ const HomeTV = () => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
   const [iframeURL, setIframeURL] = useState("https://sportzonline.si/channels/hd/hd4.php");
+  const [iframeKey, setIframeKey] = useState(Date.now()); // key to force iframe reload
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showAdAlert, setShowAdAlert] = useState(false);
 
@@ -156,6 +157,7 @@ const HomeTV = () => {
 
   const handleIframeClick = (url) => {
     setIframeURL(url);
+    setIframeKey(Date.now()); // refresh key to force reload
     if (hlsRef.current) {
       hlsRef.current.destroy();
       hlsRef.current = null;
@@ -170,6 +172,10 @@ const HomeTV = () => {
       }
     };
   }, []);
+
+  const handleIframeRefresh = () => {
+    setIframeKey(Date.now());
+  };
 
   const renderChannelCard = (server) => {
     const isActive =
@@ -247,12 +253,44 @@ const HomeTV = () => {
               position: "relative",
             }}
           >
+  {/* Refresh button */}
+{iframeURL && (
+  <button
+    className="button green-refresh"
+    onClick={handleIframeRefresh}
+    style={{
+      position: "absolute",
+      top: isMobile ? "6px" : "10px",
+      right: isMobile ? "6px" : "10px",
+      zIndex: 20,
+    }}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      className="bi bi-arrow-repeat"
+      viewBox="0 0 16 16"
+    >
+      <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+      <path
+        fillRule="evenodd"
+        d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+      />
+    </svg>
+    
+  </button>
+)}
+
+
+
             {showAdAlert && (
               <div
                 style={{
                   position: "absolute",
                   top: isMobile ? "6px" : "12px",
-                  left: isMobile ? "6px" : "12px",
+                  left: isMobile ? "50px" : "50px",
                   backgroundColor: "#e6fff3",
                   color: "#105e2e",
                   padding: isMobile ? "4px 8px" : "6px 12px",
@@ -277,6 +315,7 @@ const HomeTV = () => {
 
             {iframeURL ? (
               <iframe
+                key={iframeKey}
                 src={iframeURL}
                 title="Live Stream"
                 allow="autoplay"
@@ -358,6 +397,47 @@ const HomeTV = () => {
           {allChannels.map(renderChannelCard)}
         </div>
       )}
+
+      <style>{`
+      .button.green-refresh {
+        color: #fff;
+        background-color:rgb(18, 199, 115);
+        font-weight: 600;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        line-height: 2rem;
+        padding: 0.6rem 1.2rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        border: none;
+        box-shadow: 0 2px 6px rgba(46, 210, 100, 0.9);
+        transition: background 0.5s ease-in-out;
+      }
+
+      .button.green-refresh:hover {
+        background-color:rgb(2, 160, 185);
+      }
+
+      .button.green-refresh svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        color: white;
+      }
+
+      .button.green-refresh:focus svg {
+        animation: spin_357 0.5s linear;
+      }
+
+      @keyframes spin_357 {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    `}</style>
     </div>
   );
 };
