@@ -88,7 +88,7 @@ const MainMenu = () => {
             <li className="current">
               <a href="/clubs">Teams</a>
               <ul className="sub-current">
-                <li><a href="teams.html">Teams List</a></li>
+                <li><a href="/league/laliga">LaLiga</a></li>
                 <li><a href="single-team.html">Single Team</a></li>
               </ul>
             </li>
@@ -101,7 +101,7 @@ const MainMenu = () => {
             <li><a href="/fixtures">Fixtures</a></li>
 
             <li className="current">
-              <a href="/live">Live</a>
+              <a href="/livetv">Live</a>
             </li>
 
             <li><a href="table-point.html">Point Table</a></li>

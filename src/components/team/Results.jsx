@@ -81,7 +81,7 @@ const Results = ({ teamData, comp, teamId }) => {
                 </span>
                 <div className="goals-result">
                   <a href="#">
-                    <img src={logos[match.HomeTeamKey]} alt={match.HomeTeamKey} />
+                    <img src={logos[match.HomeTeamKey]} alt={match.HomeTeamKey} style={{  border: "none",outline: "none" }}/>
                     {match.HomeTeamKey}
                   </a>
                   <span className="goals">
@@ -89,7 +89,7 @@ const Results = ({ teamData, comp, teamId }) => {
                     <a href="#" className="btn theme">View More</a>
                   </span>
                   <a href="#">
-                    <img src={logos[match.AwayTeamKey]} alt={match.AwayTeamKey} />
+                    <img src={logos[match.AwayTeamKey]} alt={match.AwayTeamKey} style={{  border: "none",outline: "none" }} />
                     {match.AwayTeamKey}
                   </a>
                 </div>

@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 
 const COMPETITIONS = [
   { code: 'ALL', name: 'All Competitions', country: 'All' },
-  { code: 'CWC', name: 'FIFA Club World Cup', country: 'International' },
   { code: 'EPL', name: 'Premier League', country: 'England' },
+  { code: 'UCL', name: 'Champion League', country: 'Europe' },
+  { code: 'CWC', name: 'FiFA Club World Cup', country: 'World' },
+  { code: 'FIFA', name: 'FiFA World Cup', country: 'World' },
   { code: 'ESP', name: 'La Liga', country: 'Spain' },
   { code: 'ITSA', name: 'Serie A', country: 'Italy' },
   { code: 'DEB', name: 'Bundesliga', country: 'Germany' },
@@ -18,25 +20,41 @@ const COMPETITIONS = [
 
 const Team = () => {
   const [teams, setTeams] = useState([]);
-  const [selectedCompetition, setSelectedCompetition] = useState("CWC");
+  const [selectedCompetition, setSelectedCompetition] = useState("ALL");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const fetchTeams = async (competitionCode) => {
     setLoading(true);
     setError("");
+
     try {
       if (competitionCode === "ALL") {
-        const responses = await Promise.all(
-          COMPETITIONS.filter(c => c.code !== "ALL").map(c =>
-            getTeamsByCompetition(c.code)
-          )
+        const results = await Promise.allSettled(
+          COMPETITIONS.filter(c => c.code !== "ALL").map(async (c) => {
+            const data = await getTeamsByCompetition(c.code);
+            return data.map(team => ({
+              ...team,
+              __compCode: c.code, // attach actual comp code
+            }));
+          })
         );
-        const allTeams = responses.flat();
+
+        const allTeams = results
+          .filter(r => r.status === "fulfilled")
+          .flatMap(r => r.value);
+
+        if (allTeams.length === 0) {
+          throw new Error("No teams loaded from any competition.");
+        }
+
         setTeams(allTeams);
       } else {
         const data = await getTeamsByCompetition(competitionCode);
-        setTeams(data);
+        setTeams(data.map(team => ({
+          ...team,
+          __compCode: competitionCode, // also attach it in single-comp fetch
+        })));
       }
     } catch (err) {
       setError(err.message || "Failed to load teams.");
@@ -83,7 +101,9 @@ const Team = () => {
         ) : (
           <div className="row portfolioContainer">
             {teams.map((team) => {
-              const encodedQuery = btoa(`${selectedCompetition}_${team.TeamId}`);
+              const compCode = team.__compCode || selectedCompetition;
+              const encodedQuery = btoa(`${compCode}_${team.TeamId}`);
+
               return (
                 <div key={team.TeamId} className="col-md-6 col-lg-4 col-xl-3">
                   <div className="item-team">
@@ -94,7 +114,13 @@ const Team = () => {
                         style={{ backgroundColor: team.ClubColor3 || "#fff" }}
                       />
                       <div className="overlay">
-                        <a href={team.Website || "#"} target="_blank" rel="noopener noreferrer">+</a>
+                        <a
+                          href={team.Website || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          +
+                        </a>
                       </div>
                     </div>
                     <div className="info-team">
@@ -114,11 +140,9 @@ const Team = () => {
                         {team.AreaName || "Unknown Country"}
                       </span>
                     </div>
-                    <Link
-                      to={`/club?q=${encodedQuery}`}
-                      className="btn"
-                    >
-                      Team Profile <i className="fa fa-angle-right" aria-hidden="true"></i>
+                    <Link to={`/club?q=${encodedQuery}`} className="btn">
+                      Team Profile{" "}
+                      <i className="fa fa-angle-right" aria-hidden="true"></i>
                     </Link>
                   </div>
                 </div>

@@ -48,15 +48,18 @@ export const fetchTeamLastMatches = async (
           const homeId = box.Game.HomeTeamId;
           const awayId = box.Game.AwayTeamId;
 
+          const isScoredGoal = (g: any) =>
+            g.Type === "Goal" || g.Type === "PenaltyGoal";
+
           score = {
             home: box.Goals.filter(
               (g) =>
-                (g.Type === "Goal" && g.TeamId === homeId) ||
+                (isScoredGoal(g) && g.TeamId === homeId) ||
                 (g.Type === "OwnGoal" && g.TeamId === awayId)
             ).length,
             away: box.Goals.filter(
               (g) =>
-                (g.Type === "Goal" && g.TeamId === awayId) ||
+                (isScoredGoal(g) && g.TeamId === awayId) ||
                 (g.Type === "OwnGoal" && g.TeamId === homeId)
             ).length,
           };

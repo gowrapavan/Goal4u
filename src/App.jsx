@@ -20,6 +20,9 @@ import Player from './components/Player';
 
 import Team from './components/team/Team';
 import TeamProfile from './components/team/TeamProfile';
+import LaLiga from "./pages/leagues/LaLiga";
+import Standings from "./pages/leagues/Standings";
+
 
 import './App.css';
 
@@ -52,6 +55,9 @@ function App() {
           <Route path="/fixtures" element={<FixturesPage />} />
           <Route path="/bracket" element={<Bracket />} />
           <Route path="*" element={<NotFound404 />} />
+          <Route path="/league/laliga" element={<LaLiga />} />
+          <Route path="/league/standings" element={<Standings />} />
+
         </Routes>
 
         <MobileFooter />
