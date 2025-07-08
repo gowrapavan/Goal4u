@@ -15,6 +15,10 @@ export const COMPETITIONS: Competition[] = [
 const LOCAL_BASE = '/data/2026/';
 const FALLBACK_DAYS = [7, 10, 30];
 
+// 👇 Time offset in hours to match your local time
+const TIME_OFFSET_HOURS = 5.5;
+const MATCH_DISPLAY_DELAY_MINUTES = 120; // Show match 2 hours after kickoff
+
 function transformMatch(a: ApiMatch, comp: string): Match {
   return {
     GameId: a.GameId,
@@ -37,7 +41,35 @@ function transformMatch(a: ApiMatch, comp: string): Match {
   };
 }
 
-// 🔄 Only if scores are missing
+// ✅ Shift time and format for display
+export function formatMatchTime(rawDateTime: string): string {
+  const original = new Date(rawDateTime);
+  const shifted = new Date(original.getTime() + TIME_OFFSET_HOURS * 60 * 60 * 1000);
+
+  const now = new Date();
+  const isToday =
+    shifted.getDate() === now.getDate() &&
+    shifted.getMonth() === now.getMonth() &&
+    shifted.getFullYear() === now.getFullYear();
+
+  const timeStr = shifted.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+  const label = isToday
+    ? 'Today'
+    : shifted.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      });
+
+  return `${label}, ${timeStr}`;
+}
+
+// 🔄 Fallback scoring from API
 export async function getScoreFromBoxScore(match: Match): Promise<{ homeScore: number | null, awayScore: number | null }> {
   try {
     const box = await fetchBoxScoreById(match.Competition, match.GameId);
@@ -46,14 +78,14 @@ export async function getScoreFromBoxScore(match: Match): Promise<{ homeScore: n
     return { homeScore: home, awayScore: away };
   } catch (err) {
     console.warn('[BoxScore Error]', err);
-    return { homeScore: null, awayScore: null };
+    return { homeScore: 0, awayScore: 0 }; // ✅ fallback default score
   }
 }
 
+// ✅ MAIN MATCH SERVICE
 export class MatchService {
   static async fetchRecentMatches(limit = 4): Promise<Match[]> {
     const now = Date.now();
-
     let allMatches: Match[] = [];
 
     for (const days of FALLBACK_DAYS) {
@@ -68,8 +100,12 @@ export class MatchService {
           const json: ApiMatch[] = await res.json();
 
           const filtered = json
-            .filter(m => new Date(m.DateTime).getTime() < now && new Date(m.DateTime).getTime() >= cutoff)
-            .map(m => transformMatch(m, comp.code));
+            .map(m => transformMatch(m, comp.code))
+            .filter(m => {
+              const matchTime = new Date(m.DateTime).getTime() + TIME_OFFSET_HOURS * 60 * 60 * 1000;
+              const showTime = matchTime + MATCH_DISPLAY_DELAY_MINUTES * 60 * 1000;
+              return showTime < now && matchTime >= cutoff;
+            });
 
           found.push(...filtered);
         } catch (err) {
@@ -83,10 +119,7 @@ export class MatchService {
       }
     }
 
-    // ⏫ Sort by newest first
-    allMatches.sort((a, b) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime());
-
-    // 🧼 Remove duplicates
+    // Deduplicate
     const uniqueMap = new Map<number, Match>();
     for (const m of allMatches) {
       if (!uniqueMap.has(m.GameId)) {
@@ -94,9 +127,10 @@ export class MatchService {
       }
     }
 
-    const finalMatches = Array.from(uniqueMap.values()).slice(0, limit);
+    const finalMatches = Array.from(uniqueMap.values())
+      .sort((a, b) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime())
+      .slice(0, limit);
 
-    // 🧠 Fetch score only if missing
     await Promise.all(
       finalMatches.map(async (match) => {
         if (match.HomeTeamScore === null || match.AwayTeamScore === null) {

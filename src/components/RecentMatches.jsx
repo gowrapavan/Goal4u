@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
-import { MatchService, getScoreFromBoxScore } from '../services/matchService';
+import { MatchService, getScoreFromBoxScore, formatMatchTime } from '../services/matchService';
 import { getTeamLogoByKey } from '../services/teamlogo';
 
 const RecentMatches = () => {
@@ -11,15 +11,9 @@ const RecentMatches = () => {
   const [error, setError] = useState(null);
   const [dynamicScores, setDynamicScores] = useState({}); // Map GameId -> { home: score, away: score }
 
-  const formatMatchDate = (dateStr) => {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString('en-US', {
-      day: 'numeric',
-      month: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-  };
+
+
+
 
   const loadTeamLogos = async (matches) => {
     const logos = {};
@@ -116,10 +110,11 @@ const RecentMatches = () => {
 
                   return (
                     <li key={match.GameId || index}>
-                      <span className="head">
-                        {match.HomeTeamKey} vs {match.AwayTeamKey}
-                        <span className="date">{formatMatchDate(match.DateTime)}</span>
-                      </span>
+                   <span className="head">
+  {match.Competition} - {match.HomeTeamKey} vs {match.AwayTeamKey}
+<span className="date">{formatMatchTime(match.DateTime)}</span>
+</span>
+
                       <div className="goals-result">
                         <a href="single-team.html">
                           <img

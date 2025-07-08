@@ -312,10 +312,9 @@ case "SWE":
     right: 10px;
     width: 34px;
     height: 34px;
-    background: #fff;
     padding: 4px;
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 0.1px  #0CF652;
     object-fit: contain;
     z-index: 2;
   }

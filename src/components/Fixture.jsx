@@ -46,8 +46,13 @@ const Fixture = () => {
         const allData = await FixtureService.fetchMatches();
 
         const upcoming = allData
-          .filter((match) => new Date(match.DateTime) > new Date())
-          .sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime));
+  .filter((match) => {
+    const matchTime = new Date(match.DateTime ?? '');
+    const now = new Date();
+    return matchTime.getTime() > now.getTime() - 2 * 60 * 60 * 1000;
+  })
+  .sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime));
+
 
         let filtered;
 

@@ -3,9 +3,9 @@ import json
 import os
 import time
 
-API_KEY = "2373ef4249704a7d836b0d02e1bb0bc9"
-COMPETITIONS = [   "cwc"]
-YEAR = "2025"
+API_KEY = "efff7f103f5d4846a2f5b2814bc77dd3"
+COMPETITIONS = [   "ESP"]
+YEAR = "2026"
 SAVE_DIR = f"./{YEAR}"
 
 os.makedirs(SAVE_DIR, exist_ok=True)

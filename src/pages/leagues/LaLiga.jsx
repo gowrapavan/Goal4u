@@ -1,13 +1,13 @@
-// pages/leagues/LaLiga.jsx
 import React, { useEffect, useState } from "react";
 import { getTeamsByCompetition } from "../../services/teamService";
 import Loading from "../../components/common/LoadingSpinner";
 import ErrorMessage from "../../components/common/ErrorMessage";
 import EmptyState from "../../components/common/EmptyState";
 import { Link } from "react-router-dom";
+import LaLigaMatchdaysWithSidebar from "./LaLigaMatches";
 
 const LaLiga = () => {
-  const COMPETITION_CODE = "ESP"; // La Liga
+  const COMPETITION_CODE = "ESP";
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -23,14 +23,17 @@ const LaLiga = () => {
         setLoading(false);
       }
     };
-
     fetchTeams();
   }, []);
 
   return (
     <section className="content-info">
       <div className="container padding-top">
-        <h2>La Liga Teams</h2>
+        <h2>La Liga Matches</h2>
+       <LaLigaMatchdaysWithSidebar />
+
+
+        <h2 className="mt-5">La Liga Teams</h2>
         {loading ? (
           <Loading />
         ) : error ? (
@@ -71,10 +74,7 @@ const LaLiga = () => {
                         {team.AreaName || "Unknown Country"}
                       </span>
                     </div>
-                    <Link
-                      to={`/club?q=${encodedQuery}`}
-                      className="btn"
-                    >
+                    <Link to={`/club?q=${encodedQuery}`} className="btn">
                       Team Profile <i className="fa fa-angle-right" aria-hidden="true"></i>
                     </Link>
                   </div>
