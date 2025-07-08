@@ -1,8 +1,7 @@
-// components/RecentMatches.jsx
 import React, { useEffect, useState } from 'react';
 import Loading from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
-import { MatchService } from '../services/matchService';
+import { MatchService, getScoreFromBoxScore } from '../services/matchService';
 import { getTeamLogoByKey } from '../services/teamlogo';
 
 const RecentMatches = () => {
@@ -10,6 +9,7 @@ const RecentMatches = () => {
   const [teamLogos, setTeamLogos] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [dynamicScores, setDynamicScores] = useState({}); // Map GameId -> { home: score, away: score }
 
   const formatMatchDate = (dateStr) => {
     const d = new Date(dateStr);
@@ -21,7 +21,6 @@ const RecentMatches = () => {
     });
   };
 
-  // Load team logos once matches are fetched
   const loadTeamLogos = async (matches) => {
     const logos = {};
     for (const match of matches) {
@@ -49,11 +48,33 @@ const RecentMatches = () => {
       setLoading(true);
       setError(null);
       const matches = await MatchService.fetchRecentMatches(5);
-      await new Promise((res) => setTimeout(res, 100)); // <-- delay for fade-in
 
-      setRecentMatches(matches);
-      await loadTeamLogos(matches);
+      // Filter matches only in the past
+      const pastMatches = matches.filter(
+        (match) => new Date(match.DateTime).getTime() < Date.now()
+      );
+
+      // Only keep top 4
+      const sliced = pastMatches.slice(0, 4);
+
+      // Get fallback scores for matches with null score
+      const scoreResults = {};
+      for (const match of sliced) {
+        if (match.HomeTeamScore == null || match.AwayTeamScore == null) {
+          try {
+            const { homeScore, awayScore } = await getScoreFromBoxScore(match);
+            scoreResults[match.GameId] = { homeScore, awayScore };
+          } catch {
+            // Do nothing, fallback will be vs display
+          }
+        }
+      }
+
+      setRecentMatches(sliced);
+      setDynamicScores(scoreResults);
+      await loadTeamLogos(sliced);
     } catch (err) {
+      console.error(err);
       setError('Failed to load recent matches.');
     } finally {
       setLoading(false);
@@ -64,10 +85,6 @@ const RecentMatches = () => {
     fetchMatches();
   }, []);
 
-  const filteredMatches = recentMatches?.filter(
-    (match) => match.Status === 'Final' || match.IsClosed
-  );
-
   return (
     <div className="col-lg-4">
       <div className="recent-results">
@@ -76,48 +93,71 @@ const RecentMatches = () => {
         </h5>
         <div className="info-results">
           {loading ? (
-             <div className="text-center py-4">
-    <Loading />
-  </div>
+            <div className="text-center py-4">
+              <Loading />
+            </div>
           ) : error ? (
             <div className="p-3">
               <ErrorMessage message={error} onRetry={fetchMatches} />
             </div>
           ) : (
             <ul>
-              {filteredMatches && filteredMatches.length > 0 ? (
-                filteredMatches.slice(0, 4).map((match, index) => (
-                  <li key={match.GameId || index}>
-                    <span className="head">
-                      {match.HomeTeamKey} vs {match.AwayTeamKey}
-                      <span className="date">{formatMatchDate(match.DateTime)}</span>
-                    </span>
-                    <div className="goals-result">
-                      <a href="single-team.html">
-                        <img
-                          src={teamLogos[match.HomeTeamKey]}
-                          alt={match.HomeTeamKey}
-                        />
-                        {match.HomeTeamKey}
-                      </a>
-                      <span className="goals">
-                        <b>{match.HomeTeamScore ?? '-'}</b> - <b>{match.AwayTeamScore ?? '-'}</b>
+              {recentMatches && recentMatches.length > 0 ? (
+                recentMatches.map((match, index) => {
+                  const score = dynamicScores[match.GameId];
+                  const homeScore =
+                    match.HomeTeamScore != null
+                      ? match.HomeTeamScore
+                      : score?.homeScore ?? null;
+                  const awayScore =
+                    match.AwayTeamScore != null
+                      ? match.AwayTeamScore
+                      : score?.awayScore ?? null;
+
+                  return (
+                    <li key={match.GameId || index}>
+                      <span className="head">
+                        {match.HomeTeamKey} vs {match.AwayTeamKey}
+                        <span className="date">{formatMatchDate(match.DateTime)}</span>
                       </span>
-                      <a href="single-team.html">
-                        <img
-                          src={teamLogos[match.AwayTeamKey]}
-                          alt={match.AwayTeamKey}
-                        />
-                        {match.AwayTeamKey}
-                      </a>
-                    </div>
-                  </li>
-                ))
+                      <div className="goals-result">
+                        <a href="single-team.html">
+                          <img
+                            src={teamLogos[match.HomeTeamKey]}
+                            alt={match.HomeTeamKey}
+                          />
+                          {match.HomeTeamKey}
+                        </a>
+                        <span className="goals">
+                          {homeScore != null && awayScore != null ? (
+                            <>
+                              <b>{homeScore}</b> - <b>{awayScore}</b>
+                            </>
+                          ) : (
+                            <>
+                              <b>{match.HomeTeamKey}</b> - <b>{match.AwayTeamKey}</b>
+                            </>
+                          )}
+                        </span>
+                        <a href="single-team.html">
+                          <img
+                            src={teamLogos[match.AwayTeamKey]}
+                            alt={match.AwayTeamKey}
+                          />
+                          {match.AwayTeamKey}
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })
               ) : (
                 <li>
                   <div className="text-center text-muted p-3">
                     <p>No recent matches from top 50 clubs available</p>
-                    <button onClick={fetchMatches} className="btn btn-sm btn-outline-primary">
+                    <button
+                      onClick={fetchMatches}
+                      className="btn btn-sm btn-outline-primary"
+                    >
                       Try Again
                     </button>
                   </div>
@@ -128,36 +168,35 @@ const RecentMatches = () => {
         </div>
       </div>
       <style jsx>{`
-  .goals-result img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    border-radius: 4px;
-    margin-right: 6px;
-    background-color:rgb(36, 32, 31);
-  }
+        .goals-result img {
+          width: 30px;
+          height: 30px;
+          object-fit: contain;
+          border-radius: 4px;
+          margin-right: 6px;
+          background-color: rgb(36, 32, 31);
+        }
 
-  @media (max-width: 768px) {
-    .goals-result img {
-      width: 26px;
-      height: 26px;
-    }
-  }
+        @media (max-width: 768px) {
+          .goals-result img {
+            width: 26px;
+            height: 26px;
+          }
+        }
 
-  .goals-result a {
-    font-size: 0.875rem;
-    display: flex;
-    align-items: center;
-  }
+        .goals-result a {
+          font-size: 0.875rem;
+          display: flex;
+          align-items: center;
+        }
 
-  .goals-result .goals {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin: 0 8px;
-    white-space: nowrap;
-  }
-`}</style>
-
+        .goals-result .goals {
+          font-size: 0.9rem;
+          font-weight: 600;
+          margin: 0 8px;
+          white-space: nowrap;
+        }
+      `}</style>
     </div>
   );
 };

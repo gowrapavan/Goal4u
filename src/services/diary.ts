@@ -1,22 +1,61 @@
 import { Match, ApiMatch } from '../types/match';
 
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
-const BASE_URL = 'api/ScoresBasic';
-
+// ✅ List of competitions
 export const COMPETITIONS = [
   { code: 'EPL', name: 'Premier League', country: 'England' },
-  { code: 'ESP', name: 'La Liga', country: 'Spain' },
-  { code: 'ITSA', name: 'Serie A', country: 'Italy' },
   { code: 'DEB', name: 'Bundesliga', country: 'Germany' },
+  { code: 'ITSA', name: 'Serie A', country: 'Italy' },
   { code: 'FRL1', name: 'Ligue 1', country: 'France' },
+  { code: 'NLC', name: 'Eredivisie', country: 'Netherlands' },
+  { code: 'PTC', name: 'Primeira Liga', country: 'Portugal' },
+  { code: 'MLS', name: 'Major League Soccer', country: 'USA' },
+  { code: 'SPL', name: 'Scottish Premiership', country: 'Scotland' },
+  { code: 'SKC', name: 'K League 1', country: 'South Korea' },
   { code: 'CWC', name: 'FIFA Club World Cup', country: 'International' },
   { code: 'UCL', name: 'UEFA Champions League', country: 'Europe' },
+  { code: 'ELC', name: 'EFL Championship', country: 'England' },
+  { code: 'UEL', name: 'UEFA Europa League', country: 'Europe' },
+  { code: 'UNL', name: 'UEFA Nations League', country: 'Europe' },
+  { code: 'UEQ', name: 'Euro Qualifiers', country: 'Europe' },
+  { code: 'EFAC', name: 'FA Cup', country: 'England' },
+  { code: 'SAWQ', name: 'South America World Cup Qualifiers', country: 'South America' },
+  { code: 'ASWQ', name: 'Asia World Cup Qualifiers', country: 'Asia' },
+  { code: 'AFWQ', name: 'Africa World Cup Qualifiers', country: 'Africa' },
+  { code: 'NAWQ', name: 'North America World Cup Qualifiers', country: 'North America' },
+  { code: 'OWQ', name: 'Oceania World Cup Qualifiers', country: 'Oceania' }
 ];
 
-function formatDate(date: Date): string {
-  return date.toISOString().split('T')[0];
-}
+// ✅ Local file mapping
+const LOCAL_JSON_FILES: Record<string, string> = {
+  EPL: 'EPL.json',
+  DEB: 'DEB.json',
+  ITSA: 'ITSA.json',
+  FRL1: 'FRL1.json',
+  NLC: 'NLC.json',
+  PTC: 'PTC.json',
+  MLS: 'MLS.json',
+  SPL: 'SPL.json',
+  SKC: 'SKC.json',
+  CWC: 'CWC.json',
+  UCL: 'UCL.json',
+  ELC: 'ELC.json',
+  UEL: 'UEL.json',
+  UNL: 'UNL.json',
+  UEQ: 'UEQ.json',
+  EFAC: 'EFAC.json',
+  SAWQ: 'SAWQ.json',
+  ASWQ: 'ASWQ.json',
+  AFWQ: 'AFWQ.json',
+  NAWQ: 'NAWQ.json',
+  OWQ: 'OWQ.json',
+};
 
+// ✅ Local season folder (public/data/2026)
+const SEASON = '2026';
+
+/**
+ * Transform raw API match to internal Match format
+ */
 function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
   return {
     GameId: apiMatch.GameId,
@@ -39,70 +78,64 @@ function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
   };
 }
 
-function getNextNDates(startOffset: number, numDays: number): string[] {
-  const dates: string[] = [];
-  const base = new Date();
-  base.setDate(base.getDate() + startOffset);
+/**
+ * Checks if a match is today or in the future
+ */
+function isTodayOrFuture(dateStr: string): boolean {
+  const now = new Date();
+  const matchDate = new Date(dateStr);
 
-  for (let i = 0; i < numDays; i++) {
-    const date = new Date(base);
-    date.setDate(base.getDate() + i);
-    dates.push(formatDate(date));
-  }
-
-  return dates;
-}
-
-async function fetchMatches(dates: string[]): Promise<Match[]> {
-  const matchPromises: Promise<Match[]>[] = [];
-
-  for (const comp of COMPETITIONS) {
-    for (const date of dates) {
-      const url = `${BASE_URL}/${comp.code}/${date}?key=${API_KEY}`;
-
-      const fetchPromise = fetch(url)
-        .then((res) => res.ok ? res.json() : [])
-        .then((data: ApiMatch[]) =>
-          data
-            .filter((match) => match.Status === 'Scheduled')
-            .map((match) => transformApiMatch(match, comp.code))
-        )
-        .catch(() => []);
-
-      matchPromises.push(fetchPromise);
-    }
-  }
-
-  const results = await Promise.all(matchPromises);
-  return results.flat().sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
+  return (
+    matchDate.getFullYear() > now.getFullYear() ||
+    (matchDate.getFullYear() === now.getFullYear() &&
+      matchDate.getMonth() > now.getMonth()) ||
+    (matchDate.getFullYear() === now.getFullYear() &&
+      matchDate.getMonth() === now.getMonth() &&
+      matchDate.getDate() >= now.getDate())
+  );
 }
 
 /**
- * Fetches up to `limit` upcoming matches for any preferred club within the next 30 days
+ * Fetch matches from all local competition files
  */
-export async function getNextPreferredClubMatches(preferredClubs: string[], limit: number): Promise<Match[]> {
-  const searchRanges = [
-    { start: 0, days: 7 },
-    { start: 7, days: 7 },
-    { start: 14, days: 16 },
-  ];
+async function fetchLocalMatches(): Promise<Match[]> {
+  const matchPromises: Promise<Match[]>[] = [];
 
-  let allFiltered: Match[] = [];
+  for (const comp of COMPETITIONS) {
+    const fileName = LOCAL_JSON_FILES[comp.code];
+    if (!fileName) continue;
 
-  for (const range of searchRanges) {
-    const dates = getNextNDates(range.start, range.days);
-    const allMatches = await fetchMatches(dates);
+    const url = `/data/${SEASON}/${fileName}`;
 
-    const filtered = allMatches.filter(
-      (match) =>
-        preferredClubs.includes(match.HomeTeamName) ||
-        preferredClubs.includes(match.AwayTeamName)
-    );
+    const promise = fetch(url)
+      .then(res => res.ok ? res.json() : [])
+      .then((data: ApiMatch[]) =>
+        data
+          .filter(match => match.Status === 'Scheduled' && isTodayOrFuture(match.DateTime))
+          .map(match => transformApiMatch(match, comp.code))
+      )
+      .catch(() => []);
 
-    allFiltered.push(...filtered);
-
-    if (allFiltered.length >= limit) break;
+    matchPromises.push(promise);
   }
 
-  return allFiltered.slice(0, limit);
+  const results = await Promise.all(matchPromises);
+  return results.flat().sort(
+    (a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime()
+  );
+}
+
+/**
+ * Return upcoming matches for selected clubs
+ */
+export async function getNextPreferredClubMatches(preferredClubs: string[], limit: number): Promise<Match[]> {
+  const allMatches = await fetchLocalMatches();
+
+  const filtered = allMatches.filter(
+    match =>
+      preferredClubs.includes(match.HomeTeamName || '') ||
+      preferredClubs.includes(match.AwayTeamName || '')
+  );
+
+  return filtered.slice(0, limit);
 }

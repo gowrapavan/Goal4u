@@ -7,13 +7,28 @@ import ErrorMessage from './common/ErrorMessage';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
-  ESP: 'La Liga',
-  ITSA: 'Serie A',
   DEB: 'Bundesliga',
+  ITSA: 'Serie A',
   FRL1: 'Ligue 1',
+  NLC: 'Eredivisie',
+  PTC: 'Primeira Liga',
+  MLS: 'Major League Soccer',
+  SPL: 'Scottish Premiership',
+  SKC: 'K League 1',
   CWC: 'FIFA Club World Cup',
   UCL: 'UEFA Champions League',
+  ELC: 'EFL Championship',
+  UEL: 'UEFA Europa League',
+  UNL: 'UEFA Nations League',
+  UEQ: 'Euro Qualifiers',
+  EFAC: 'FA Cup',
+  SAWQ: 'South America WC Qualifiers',
+  ASWQ: 'Asia WC Qualifiers',
+  AFWQ: 'Africa WC Qualifiers',
+  NAWQ: 'North America WC Qualifiers',
+  OWQ: 'Oceania WC Qualifiers'
 };
+
 
 
 const Fixture = () => {

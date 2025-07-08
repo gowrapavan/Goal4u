@@ -8,43 +8,42 @@ import EmptyState from './common/EmptyState';
 
 const PREFERRED_CLUBS = [
   // La Liga
-  'Real Madrid CF',
-  'FC Barcelona',
-  'Atlético de Madrid',
-  'Sevilla FC',
-  'Real Sociedad',
+  'Real Madrid CF', 'FC Barcelona', 'Atlético de Madrid', 'Sevilla FC', 'Real Sociedad',
+  'Real Betis', 'Villarreal CF', 'Athletic Club',
 
   // Premier League
-  'Manchester City FC',
-  'Arsenal FC',
-  'Liverpool FC',
-  'Manchester United FC',
-  'Chelsea FC',
-  'Tottenham Hotspur FC',
-  'Newcastle United FC',
+  'Manchester City FC', 'Arsenal FC', 'Liverpool FC', 'Manchester United FC', 'Chelsea FC',
+  'Tottenham Hotspur FC', 'Newcastle United FC', 'West Ham United FC', 'Aston Villa FC',
 
   // Serie A
-  'AC Milan',
-  'FC Internazionale Milano',
-  'Juventus FC',
-  'AS Roma',
-  'SSC Napoli',
-  'Atalanta BC',
+  'AC Milan', 'FC Internazionale Milano', 'Juventus FC', 'AS Roma', 'SSC Napoli',
+  'Atalanta BC', 'Fiorentina', 'Lazio',
 
   // Bundesliga
-  'FC Bayern München',
-  'Borussia Dortmund',
-  'RB Leipzig',
-  'Bayer 04 Leverkusen',
-  'Eintracht Frankfurt',
+  'FC Bayern München', 'Borussia Dortmund', 'RB Leipzig', 'Bayer 04 Leverkusen',
+  'Eintracht Frankfurt', 'SC Freiburg', 'VfL Wolfsburg',
 
   // Ligue 1
-  'Paris Saint-Germain FC',
-  'Olympique de Marseille',
-  'AS Monaco FC',
-  'Olympique Lyonnais',
-  'LOSC Lille',
+  'Paris Saint-Germain FC', 'Olympique de Marseille', 'AS Monaco FC', 'Olympique Lyonnais',
+  'LOSC Lille', 'RC Lens', 'Stade Rennais FC',
+
+  // Dutch Eredivisie
+  'AFC Ajax', 'PSV Eindhoven', 'Feyenoord Rotterdam',
+
+  // Portuguese Liga
+  'FC Porto', 'SL Benfica', 'Sporting CP',
+
+  // Scottish Premiership
+  'Celtic FC', 'Rangers FC',
+
+  // Others (CWC + UCL regulars)
+  'Al Hilal', 'Al Ahly', 'Palmeiras', 'Club León', 'Seattle Sounders FC',
+  'Shabab Al Ahli', 'Flamengo', 'Club América', 'Galatasaray', 'Besiktas', 'Dinamo Zagreb', 'Shakhtar Donetsk',
+  'Red Bull Salzburg', 'Copenhagen', 'Young Boys', 'Anderlecht', 'Club Brugge', 'Sparta Prague',
+
+  // Add more...
 ];
+
 
 const COMPETITION_CODE_MAP = {
   'Premier League': 'EPL',

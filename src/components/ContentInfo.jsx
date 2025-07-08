@@ -7,6 +7,7 @@ import Stadiums from './Stadiums';
 import Diary from './Diary';
 import HomeTV from './HomeTV'; // ✅ Import HomeTV
 
+
 const ContentInfo = () => {
   return (
     <section className="content-info">
@@ -32,6 +33,7 @@ const ContentInfo = () => {
       <div data-hometv>
         <HomeTV />
       </div>
+     
 
       {/* Content Central */}
       <div className="container padding-top">
@@ -97,7 +99,7 @@ const ContentInfo = () => {
                 <h4><i className="fa fa-link"></i>Cta</h4>
               </div>
               <a
-                href="http://themeforest.net/user/iwthemes/portfolio?ref=iwthemes"
+                href="https://gowra-stream.netlify.app/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

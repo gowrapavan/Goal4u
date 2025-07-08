@@ -18,7 +18,6 @@ export async function fetchTeamsByCompetition(competition: string): Promise<Team
   const comp = competition.toLowerCase();
   const path = `/data/teams/${comp}.json`;
 
-  console.log(`[teamlogo.ts] 🔄 Fetching teams from: ${path}`);
 
   if (teamCache[comp]) return teamCache[comp];
 

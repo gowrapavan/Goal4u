@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import LoadingSpinner from './common/LoadingSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import EmptyState from './common/EmptyState';
-import { getLiveMatches, getNextPreferredClubMatch } from '../services/RTab-Live';
+import { getNextPreferredClubMatch } from '../services/RTab-Live';
 import { getTeamLogoByKey } from '../services/teamlogo';
 
 const PREFERRED_CLUBS = [
   'Real Madrid CF', 'FC Barcelona', 'FC Bayern München', 'Arsenal FC',
   'Manchester United FC', 'Liverpool FC', 'Chelsea FC', 'Paris Saint-Germain FC',
-  'AC Milan  ', 'FC Internazionale Milano', 'Tottenham Hotspur FC'
+  'AC Milan', 'FC Internazionale Milano', 'Tottenham Hotspur FC'
 ];
 
 const COMPETITION_CODE_MAP = {
@@ -24,48 +23,31 @@ const COMPETITION_CODE_MAP = {
 const RightTab = () => {
   const [match, setMatch] = useState(null);
   const [timeLeft, setTimeLeft] = useState({});
+  const [matchIsLive, setMatchIsLive] = useState(false);
   const [teamLogos, setTeamLogos] = useState({});
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const loadTeamLogos = async (match) => {
-    const compCode = COMPETITION_CODE_MAP[match.Competition] || match.Competition;
-    const logos = {};
-    for (const key of [match.HomeTeamKey, match.AwayTeamKey]) {
-      if (!logos[key]) {
-        logos[key] =
-          (await getTeamLogoByKey(compCode, key)) ||
-          `https://ui-avatars.com/api/?name=${encodeURIComponent(
-            key
-          )}&background=007bff&color=fff&size=50`;
-      }
-    }
-    setTeamLogos(logos);
-  };
 
   useEffect(() => {
     const loadMatch = async () => {
       try {
-        const live = await getLiveMatches();
-        if (live.length > 0 && live[0].Status === 'InProgress') {
-          sessionStorage.setItem("liveMatchAvailable", "true"); // ✅ ONLY when live
-          setMatch(live[0]);
-          await loadTeamLogos(live[0]);
-        } else {
-          sessionStorage.removeItem("liveMatchAvailable"); // ✅ clear if no live
-          const upcoming = await getNextPreferredClubMatch(PREFERRED_CLUBS);
-          if (upcoming) {
-            setMatch(upcoming);
-            await loadTeamLogos(upcoming);
-          } else {
-            setMatch(null);
-          }
+        const upcoming = await getNextPreferredClubMatch(PREFERRED_CLUBS);
+        if (upcoming) {
+          setMatch(upcoming);
+
+          const compCode = COMPETITION_CODE_MAP[upcoming.Competition] || upcoming.Competition;
+          const [homeLogo, awayLogo] = await Promise.all([
+            getTeamLogoByKey(compCode, upcoming.HomeTeamKey),
+            getTeamLogoByKey(compCode, upcoming.AwayTeamKey)
+          ]);
+
+          setTeamLogos({
+            [upcoming.HomeTeamKey]: homeLogo || `https://ui-avatars.com/api/?name=${encodeURIComponent(upcoming.HomeTeamKey)}&background=007bff&color=fff&size=50`,
+            [upcoming.AwayTeamKey]: awayLogo || `https://ui-avatars.com/api/?name=${encodeURIComponent(upcoming.AwayTeamKey)}&background=007bff&color=fff&size=50`,
+          });
         }
       } catch (err) {
         console.error(err);
         setError('Could not load match data.');
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -73,12 +55,12 @@ const RightTab = () => {
   }, []);
 
   useEffect(() => {
-    if (!match || match.Status === 'InProgress') return;
+    if (!match) return;
 
     const timer = setInterval(() => {
       const now = Date.now();
-      const start = Date.parse(match.DateTime + 'Z');
-      const diff = start - now;
+      const matchTime = Date.parse(match.DateTime + 'Z');
+      const diff = matchTime - now;
 
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -86,28 +68,20 @@ const RightTab = () => {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         setTimeLeft({ days, hours, minutes, seconds });
+        setMatchIsLive(false);
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setMatchIsLive(true);
       }
     }, 1000);
 
     return () => clearInterval(timer);
   }, [match]);
 
-  if (loading) {
-    return (
-      <div className="counter-home-wraper">
-        <LoadingSpinner message="Loading..." />
-      </div>
-    );
-  }
+  // === UI Starts Here ===
 
   if (error) {
-    return (
-      <div className="counter-home-wraper">
-        <ErrorMessage message={error} />
-      </div>
-    );
+    return <ErrorMessage message={error} />;
   }
 
   if (!match) {
@@ -115,8 +89,8 @@ const RightTab = () => {
       <div className="counter-home-wraper">
         <EmptyState
           icon="fa-calendar"
-          title="No Upcoming Matches"
-          description="There are no live or upcoming matches for your preferred clubs."
+          title="Searching Matches..."
+          description="Please wait while we fetch upcoming matches for your clubs."
         />
       </div>
     );
@@ -131,47 +105,20 @@ const RightTab = () => {
       <div className="content-counter content-counter-home">
         <p className="text-center">
           <i className="fa fa-clock-o"></i>{' '}
-          {match.Status === 'InProgress' ? 'Live Score' : 'Countdown Till Start'}
+          {matchIsLive ? 'Match is Live' : 'Countdown Till Start'}
         </p>
 
         <div id="event-one" className="counter">
-          {match.Status === 'InProgress' ? (
+          {matchIsLive ? (
             <div className="text-center">
               <h5 className="text-danger">LIVE 🔴</h5>
-              <p style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>
-                {match.HomeTeamScore ?? '-'} - {match.AwayTeamScore ?? '-'}
-              </p>
             </div>
           ) : (
             <div className="countdown-display text-center">
-              {timeLeft.days > 0 && (
-                <span className="time-unit">
-                  <strong>{timeLeft.days}D </strong>
-                </span>
-              )}
-              {timeLeft.hours > 0 && (
-                <span className="time-unit">
-                  <strong>{timeLeft.hours}H </strong>
-                </span>
-              )}
-              {timeLeft.minutes !== undefined && (
-                <span className="time-unit">
-                  <strong>
-                    {timeLeft.days === 0 && timeLeft.hours === 0
-                      ? `${timeLeft.minutes} Minutes`
-                      : `${timeLeft.minutes}M`}{' '}
-                  </strong>
-                </span>
-              )}
-              {timeLeft.seconds !== undefined && (
-                <span className="time-unit">
-                  <strong>
-                    {timeLeft.days === 0 && timeLeft.hours === 0
-                      ? `${timeLeft.seconds} Seconds`
-                      : `${timeLeft.seconds}S`}
-                  </strong>
-                </span>
-              )}
+              {timeLeft.days > 0 && <span className="time-unit"><strong>{timeLeft.days}D </strong></span>}
+              {timeLeft.hours > 0 && <span className="time-unit"><strong>{timeLeft.hours}H </strong></span>}
+              <span className="time-unit"><strong>{timeLeft.minutes}M </strong></span>
+              <span className="time-unit"><strong>{timeLeft.seconds}S</strong></span>
             </div>
           )}
         </div>
@@ -185,7 +132,7 @@ const RightTab = () => {
           </li>
           <li>
             <i className="fa fa-clock-o"></i>{' '}
-            {match.Status === 'InProgress' ? 'Started at' : 'Starts at'}{' '}
+            Starts at{' '}
             {new Date(match.DateTime + 'Z').toLocaleTimeString('en-IN', {
               timeZone: 'Asia/Kolkata',
               hour: '2-digit',
@@ -198,9 +145,7 @@ const RightTab = () => {
         <div className="list-groups">
           <div className="row align-items-center">
             <div className="col-md-12">
-              <p>
-                {match.Competition}, {match.VenueType || 'Stadium'}
-              </p>
+              <p>{match.Competition}, {match.VenueType || 'Stadium'}</p>
             </div>
 
             <div className="col-md-5">
@@ -209,9 +154,7 @@ const RightTab = () => {
                 alt={match.HomeTeamName}
                 style={{ width: '50px', height: '50px', objectFit: 'contain' }}
               />
-              <span>
-                {match.HomeTeamName} ({match.HomeTeamScore ?? '-'})
-              </span>
+              <span>{match.HomeTeamName}</span>
             </div>
 
             <div className="col-md-2 text-center">
@@ -224,18 +167,24 @@ const RightTab = () => {
                 alt={match.AwayTeamName}
                 style={{ width: '50px', height: '50px', objectFit: 'contain' }}
               />
-              <span>
-                {match.AwayTeamName} ({match.AwayTeamScore ?? '-'})
-              </span>
+              <span>{match.AwayTeamName}</span>
             </div>
           </div>
         </div>
 
         <a
           className="btn btn-primary"
-          href={`/livematch?matchId=${match.GameId}&competition=${match.Competition}`}
+          href={
+            matchIsLive
+              ? `/livematch?matchId=${match.GameId}&competition=${match.Competition}`
+              : '#'
+          }
+          style={{
+            pointerEvents: matchIsLive ? 'auto' : 'none',
+            opacity: matchIsLive ? 1 : 0.5,
+          }}
         >
-          VIEW DETAILS <i className="fa fa-trophy"></i>
+          {matchIsLive ? 'VIEW LIVE 🔴' : 'WAITING...'} <i className="fa fa-trophy"></i>
         </a>
       </div>
     </div>
