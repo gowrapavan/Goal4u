@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
+import { ChevronRight } from "lucide-react"; // or the appropriate package
 import playersData from "../../public/data/players/players.json";
 
 const PlayersByClub = () => {
+   const scrollRefs = useRef({});
+
+  const scrollToNext = (teamIndex) => {
+    const container = scrollRefs.current[teamIndex];
+    if (container) {
+      const cardWidth = 146; // card width + margin
+      const scrollAmount = cardWidth * 2;
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
   const getCompetitionFlag = (comp) => {
     const flags = {
       BRA: "🇧🇷", ARG: "🇦🇷", GER: "🇩🇪", FRA: "🇫🇷",
@@ -73,8 +87,14 @@ const PlayersByClub = () => {
                 </div>
               ))}
             </div>
-            <span className="scroll-indicator">{">"}</span>
-          </div>
+            <button 
+              className="scroll-indicator"
+              onClick={() => scrollToNext(index)}
+              aria-label="Scroll to next players"
+            >
+              <ChevronRight size={24} />
+            </button>          
+            </div>
         </div>
       ))}
 
@@ -349,14 +369,64 @@ const PlayersByClub = () => {
 }
 
     .scroll-indicator {
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #999;
-      display: block;
-      user-select: none;
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.15));
+        border-radius: 50%;
+        border: 2px solid rgba(34, 197, 94, 0.3);
+        backdrop-filter: blur(15px);
+        color: rgba(34, 197, 94, 0.9);
+        user-select: none;
+        cursor: pointer;
+        animation: pulseGreen 2.5s infinite;
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.2), 
+                    0 0 0 0 rgba(34, 197, 94, 0.4);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        z-index: 10;
+      }
+
+      .scroll-indicator:hover {
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(16, 185, 129, 0.25));
+        border-color: rgba(34, 197, 94, 0.5);
+        color: rgba(34, 197, 94, 1);
+        transform: translateY(-50%) scale(1.15);
+        box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3), 
+                    0 0 0 8px rgba(34, 197, 94, 0.1);
+        animation: none;
+      }
+
+      .scroll-indicator:active {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+      }
+
+      .scroll-indicator:focus {
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.2), 
+                    0 0 0 4px rgba(34, 197, 94, 0.3);
+      }
+
+      @keyframes pulseGreen {
+        0%, 100% { 
+          opacity: 0.8;
+          transform: translateY(-50%) scale(1);
+          box-shadow: 0 6px 20px rgba(34, 197, 94, 0.2), 
+                      0 0 0 0 rgba(34, 197, 94, 0.4);
+        }
+        50% { 
+          opacity: 1;
+          transform: translateY(-50%) scale(1.08);
+          box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3), 
+                      0 0 0 6px rgba(34, 197, 94, 0.2);
+        }
+      }
     }
   }
 `}</style>

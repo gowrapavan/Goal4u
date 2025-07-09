@@ -17,6 +17,7 @@
     "firebase": "^11.9.1",
     "framer-motion": "^12.19.1",
     "hls.js": "^1.6.5",
+    "lucide-react": "^0.525.0",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
