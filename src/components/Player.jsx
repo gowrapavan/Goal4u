@@ -37,6 +37,7 @@ const PlayersByClub = () => {
     <div className="players-wrapper">
       {playersData.map((group, index) => (
         <div key={index} className="team-block">
+          
           <h2 className="team-title">{group.teamGroup}</h2>
 
           <div className="players-scroll-container">
@@ -57,17 +58,17 @@ const PlayersByClub = () => {
                   </div>
 
                   <div className="card-content">
-  <h3 className="player-name">{player.Name}</h3>
-  <div className="main-line">
-    {getCompetitionFlag(player.Competition)} ⚽ {player.Goals} • {player.Position}
-  </div>
-  <div className="career-span">{player.CareerSpan}</div>
-  <div className="physical-stats">
-    <span>{player.Height}</span>
-    <span>{player.Weight}</span>
-    <span>{new Date().getFullYear() - new Date(player.DOB).getFullYear()}y</span>
-  </div>
-</div>
+                  <h3 className="player-name">{player.Name}</h3>
+                  <div className="main-line">
+                    {getCompetitionFlag(player.Competition)} ⚽ {player.Goals} • {player.Position}
+                  </div>
+                  <div className="career-span">{player.CareerSpan}</div>
+                  <div className="physical-stats">
+                    <span>{player.Height}</span>
+                    <span>{player.Weight}</span>
+                    <span>{new Date().getFullYear() - new Date(player.DOB).getFullYear()}y</span>
+                  </div>
+                </div>
 
                 </div>
               ))}
@@ -101,11 +102,11 @@ const PlayersByClub = () => {
   .players-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+    gap: 15px;
   }
 
   .card {
-    border-radius: 16px;
+    border-radius: 7px;
     overflow: hidden;
     box-shadow: 0  10px 10px rgba(23, 203, 17, 0.15);
     display: flex;
@@ -159,14 +160,14 @@ const PlayersByClub = () => {
   }
 
   .card-content {
-    padding: 16px 14px;
+    padding: 12px 5px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 5px;
     flex: 1;
     min-height: 140px;
     backdrop-filter: blur(10px);
@@ -245,14 +246,55 @@ const PlayersByClub = () => {
   .scroll-indicator {
     display: none;
   }
+     
+  /* Small Desktops */
+@media (min-width: 1200px) {
+  .players-row {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+/* Small Desktops */
+@media (min-width: 1400px) {
+  .players-row {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
 
-  @media (max-width: 968px) {
+/* Large Desktops or Zoomed-Out Views */
+@media (min-width: 1600px) {
+  .players-row {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+  
+
+
+/* Large Desktops or Zoomed-Out Views */
+@media (min-width: 2000px) {
+  .players-row {
+    grid-template-columns: repeat(11, 1fr);
+  }
+}
+  /* Large Desktops or Zoomed-Out Views */
+@media (min-width: 2200px) {
+  .players-row {
+    grid-template-columns: repeat(13, 1fr);
+  }
+}
+  /* Large Desktops or Zoomed-Out Views */
+@media (min-width: 2400px) {
+  .players-row {
+    grid-template-columns: repeat(16, 1fr);
+  }
+}
+
+  @media (max-width: 1068px) {
     .players-row {
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
       padding-bottom: 10px;
-      gap: 6px;
+      gap: 2px;
     }
 
     .card {
@@ -264,7 +306,7 @@ const PlayersByClub = () => {
 
     .card-content {
       padding: 8px 6px;
-      gap: 4px;
+      gap: 3px;
       min-height: auto;
     }
 
