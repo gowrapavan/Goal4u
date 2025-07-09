@@ -1,7 +1,7 @@
 // ✅ src/services/playerService.ts
 import axios from 'axios';
 
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
+const API_KEY = import.meta.env.playerServicekey;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json';
 
 export const getPlayersByTeam = async (competitionKey: string, teamId: number) => {

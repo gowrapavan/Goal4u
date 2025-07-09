@@ -1,6 +1,6 @@
 import { ApiMatch, Match, Competition } from '../types/match';
 import { fetchBoxScoreById } from './boxscore'; // ⬅️ import full box score
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
+const API_KEY = import.meta.env.VITE_SPORTSLIVE_API_KEY;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
 
 export const COMPETITIONS: Competition[] = [

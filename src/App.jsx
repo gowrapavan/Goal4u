@@ -16,7 +16,7 @@ import MobileNav from './components/MobileNav';
 import LiveTV from './components/live/LiveTv';
 import ScrollToTop from './components/common/ScrollToTop';
 import FloatButton from './components/common/FloatButton';
-import Player from './components/Player';
+import PlayersByClub from './components/Player';
 
 import Team from './components/team/Team';
 import TeamProfile from './components/team/TeamProfile';
@@ -45,7 +45,7 @@ function App() {
               </>
             }
           />
-          <Route path="/players" element={<Player />} />
+          <Route path="/players" element={<PlayersByClub />} />
           <Route path="/livetv" element={<LiveTV />} />
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
