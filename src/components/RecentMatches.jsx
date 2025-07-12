@@ -111,9 +111,9 @@ const RecentMatches = () => {
                   return (
                     <li key={match.GameId || index}>
                    <span className="head">
-  {match.Competition} - {match.HomeTeamKey} vs {match.AwayTeamKey}
-<span className="date">{formatMatchTime(match.DateTime)}</span>
-</span>
+                      {match.Competition} - {match.HomeTeamKey} vs {match.AwayTeamKey}
+                    <span className="date">{formatMatchTime(match.DateTime)}</span>
+                    </span>
 
                       <div className="goals-result">
                         <a href="single-team.html">

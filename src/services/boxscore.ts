@@ -1,6 +1,6 @@
 // services/boxscore.ts
 
-const API_KEY = import.meta.env.VITE_SPORTS_API_KEY;
+const API_KEY = import.meta.env.VITE_SPORTSBOX_API_KEY;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/stats/json';
 
 // ---------- Types ---------- //
