@@ -5,7 +5,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T18:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 1464,
@@ -14,11 +14,29 @@
     "AwayTeamKey": "DIF",
     "HomeTeamName": "FC Drita",
     "AwayTeamName": "FC Déifferdeng 03",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 1464,
+    "Points": {
+      "1464": 3,
+      "737": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229003,
+        "GameId": 90597,
+        "TeamId": 1464,
+        "PlayerId": 90085082,
+        "Name": "Arb Manaj",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90123872,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 98,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90598,
@@ -26,7 +44,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T18:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 853,
@@ -35,11 +53,85 @@
     "AwayTeamKey": "LIN",
     "HomeTeamName": "Víkingur",
     "AwayTeamName": "Lincoln Red Imps FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 3,
+    "Result": 592,
+    "Points": {
+      "853": 0,
+      "592": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 228992,
+        "GameId": 90598,
+        "TeamId": 592,
+        "PlayerId": 90043061,
+        "Name": "Bernardo Lopes",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90061539,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228994,
+        "GameId": 90598,
+        "TeamId": 853,
+        "PlayerId": 90096638,
+        "Name": "Jákup Johansen",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90076052,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 43,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228995,
+        "GameId": 90598,
+        "TeamId": 592,
+        "PlayerId": 90043061,
+        "Name": "Bernardo Lopes",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 47,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228996,
+        "GameId": 90598,
+        "TeamId": 592,
+        "PlayerId": 90061539,
+        "Name": "Tjay De Barr",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 58,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228999,
+        "GameId": 90598,
+        "TeamId": 853,
+        "PlayerId": 90036873,
+        "Name": "Sølvi Vatnhamar",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 69,
+        "GameMinuteExtra": 9
+      }
+    ]
   },
   {
     "GameId": 90599,
@@ -47,7 +139,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 2782,
@@ -56,11 +148,29 @@
     "AwayTeamKey": "BRE",
     "HomeTeamName": "KF Egnatia Rrogozhinë",
     "AwayTeamName": "UMF Breiðablik",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2782,
+    "Points": {
+      "2782": 3,
+      "1001": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229008,
+        "GameId": 90599,
+        "TeamId": 2782,
+        "PlayerId": 90089537,
+        "Name": "Ildi Gruda",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90129326,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 94,
+        "GameMinuteExtra": 2
+      }
+    ]
   },
   {
     "GameId": 90600,
@@ -68,7 +178,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-09T00:00:00",
     "DateTime": "2025-07-09T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 4126,
@@ -77,11 +187,29 @@
     "AwayTeamKey": "LIN",
     "HomeTeamName": "Shelbourne FC",
     "AwayTeamName": "Linfield FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 4126,
+    "Points": {
+      "4126": 3,
+      "811": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229020,
+        "GameId": 90600,
+        "TeamId": 4126,
+        "PlayerId": 90092257,
+        "Name": "Mipo Odubeko",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 96,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90601,
@@ -89,7 +217,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-09T00:00:00",
     "DateTime": "2025-07-09T17:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 569,
@@ -98,11 +226,71 @@
     "AwayTeamKey": "INT",
     "HomeTeamName": "FCSB",
     "AwayTeamName": "Inter Club d'Escaldes",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 1,
+    "Result": 569,
+    "Points": {
+      "569": 3,
+      "2372": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229011,
+        "GameId": 90601,
+        "TeamId": 569,
+        "PlayerId": 90113245,
+        "Name": "David Miculescu",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90063079,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 34,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229012,
+        "GameId": 90601,
+        "TeamId": 569,
+        "PlayerId": 90085495,
+        "Name": "Darius Olaru",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 41,
+        "GameMinuteExtra": 3
+      },
+      {
+        "GoalId": 229013,
+        "GameId": 90601,
+        "TeamId": 569,
+        "PlayerId": 90103811,
+        "Name": "Marius Ştefănescu",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90063079,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 48,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229014,
+        "GameId": 90601,
+        "TeamId": 2372,
+        "PlayerId": 90123067,
+        "Name": "Rafael Baldres Hermann",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90134609,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 59,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90602,
@@ -110,7 +298,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 2766,
@@ -119,11 +307,43 @@
     "AwayTeamKey": "ZRI",
     "HomeTeamName": "AC Virtus",
     "AwayTeamName": "HŠK Zrinjski Mostar",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 797,
+    "Points": {
+      "2766": 0,
+      "797": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 229004,
+        "GameId": 90602,
+        "TeamId": 797,
+        "PlayerId": 90035208,
+        "Name": "Nemanja Bilbija",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 36,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229007,
+        "GameId": 90602,
+        "TeamId": 797,
+        "PlayerId": 90035208,
+        "Name": "Nemanja Bilbija",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90111103,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 62,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90603,
@@ -131,7 +351,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-09T00:00:00",
     "DateTime": "2025-07-09T16:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 571,
@@ -140,11 +360,43 @@
     "AwayTeamKey": "ĦAM",
     "HomeTeamName": "FK Žalgiris Vilnius",
     "AwayTeamName": "Ħamrun Spartans FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 571,
+    "Points": {
+      "571": 3,
+      "2524": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229009,
+        "GameId": 90603,
+        "TeamId": 571,
+        "PlayerId": 90041596,
+        "Name": "Liviu Antal",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90028263,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 33,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229010,
+        "GameId": 90603,
+        "TeamId": 571,
+        "PlayerId": 90115639,
+        "Name": "Kassim Hadji",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90032702,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 48,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90604,
@@ -152,7 +404,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T17:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 986,
@@ -161,11 +413,43 @@
     "AwayTeamKey": "KAI",
     "HomeTeamName": "NK Olimpija Ljubljana",
     "AwayTeamName": "Qairat FK",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "986": 1,
+      "768": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 228991,
+        "GameId": 90604,
+        "TeamId": 768,
+        "PlayerId": 90131317,
+        "Name": "Dastan Satpayev",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90116172,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 96,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228993,
+        "GameId": 90604,
+        "TeamId": 986,
+        "PlayerId": 90085225,
+        "Name": "Diogo Pinto",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90134570,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 107,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90605,
@@ -173,7 +457,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T15:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 1487,
@@ -182,11 +466,29 @@
     "AwayTeamKey": "MIL",
     "HomeTeamName": "Kuopion PS",
     "AwayTeamName": "FC Milsami Orhei",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 1487,
+    "Points": {
+      "1487": 3,
+      "564": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 228981,
+        "GameId": 90605,
+        "TeamId": 1487,
+        "PlayerId": 90120312,
+        "Name": "Otto Ruoppi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 90,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90606,
@@ -194,7 +496,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T16:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 2385,
@@ -203,11 +505,29 @@
     "AwayTeamKey": "BUD",
     "HomeTeamName": "Noah FA",
     "AwayTeamName": "FK Budućnost Podgorica",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2385,
+    "Points": {
+      "2385": 3,
+      "761": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 228984,
+        "GameId": 90606,
+        "TeamId": 2385,
+        "PlayerId": 90058518,
+        "Name": "Imran Oulad Omar",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051543,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 92,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90607,
@@ -215,7 +535,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T18:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 612,
@@ -224,10 +544,13 @@
     "AwayTeamKey": "SHK",
     "HomeTeamName": "The New Saints FC",
     "AwayTeamName": "KF Shkëndija 79",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
-    "Points": {},
+    "Points": {
+      "612": 1,
+      "807": 1
+    },
     "Goals": []
   },
   {
@@ -236,7 +559,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-09T00:00:00",
     "DateTime": "2025-07-09T17:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 602,
@@ -245,11 +568,29 @@
     "AwayTeamKey": "DIN",
     "HomeTeamName": "PFK Ludogorets 1945 Razgrad",
     "AwayTeamName": "FK Dynama-Minsk",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 602,
+    "Points": {
+      "602": 3,
+      "764": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229018,
+        "GameId": 90608,
+        "TeamId": 602,
+        "PlayerId": 90122417,
+        "Name": "Filip Kaloč",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90050520,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 46,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90609,
@@ -257,7 +598,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T16:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 1544,
@@ -266,11 +607,71 @@
     "AwayTeamKey": "MAL",
     "HomeTeamName": "SK Iberia 1999",
     "AwayTeamName": "Malmö FF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 3,
+    "Result": 594,
+    "Points": {
+      "1544": 0,
+      "594": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 228979,
+        "GameId": 90609,
+        "TeamId": 594,
+        "PlayerId": 90046802,
+        "Name": "Busanello",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228985,
+        "GameId": 90609,
+        "TeamId": 594,
+        "PlayerId": 90117609,
+        "Name": "Taha Abdi Ali",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102474,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 37,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 228988,
+        "GameId": 90609,
+        "TeamId": 1544,
+        "PlayerId": 90047799,
+        "Name": "Anes Rušević",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90088210,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 46,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229000,
+        "GameId": 90609,
+        "TeamId": 594,
+        "PlayerId": 90099240,
+        "Name": "Hugo Bolin",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90117602,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90610,
@@ -278,7 +679,7 @@
     "RoundName": "1st Qualifying Round",
     "Date": "2025-07-08T00:00:00",
     "DateTime": "2025-07-08T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 562,
@@ -287,11 +688,29 @@
     "AwayTeamKey": "RFS",
     "HomeTeamName": "FCI Levadia",
     "AwayTeamName": "FK Rīgas Futbola Skola",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 1550,
+    "Points": {
+      "562": 0,
+      "1550": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 228987,
+        "GameId": 90610,
+        "TeamId": 1550,
+        "PlayerId": 90066454,
+        "Name": "Stefan Panić",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 48,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90611,
@@ -1198,6 +1617,132 @@
   },
   {
     "GameId": 91682,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-29T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96250,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-22T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96251,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-22T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96252,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-22T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96253,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-29T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96254,
+    "RoundId": 1709,
+    "RoundName": "2nd Qualifying Round",
+    "Date": "2025-07-29T00:00:00",
+    "DateTime": null,
+    "Status": "Scheduled",
+    "Week": null,
+    "VenueType": null,
+    "HomeTeamId": null,
+    "AwayTeamId": null,
+    "HomeTeamKey": null,
+    "AwayTeamKey": null,
+    "HomeTeamName": null,
+    "AwayTeamName": null,
+    "HomeTeamScore": null,
+    "AwayTeamScore": null,
+    "Result": null,
+    "Points": {},
+    "Goals": []
+  },
+  {
+    "GameId": 96255,
     "RoundId": 1709,
     "RoundName": "2nd Qualifying Round",
     "Date": "2025-07-29T00:00:00",
