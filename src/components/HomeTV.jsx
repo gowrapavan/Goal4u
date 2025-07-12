@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
 
-const hlsServer = { label: "Server 3", streamId: 6 };
+const hlsServer = { label: "Server 3", streamId: 5 };
 
 const iframeServers = [
+  { label: "Server 1", url: "https://dcb-fl-live.dtcdn.dazn.com/1u9ivr9koaj5718itvgfsa16da/mob25f/stream.m3u8?channel=2653&outlet=dazn-mena&plang=ar" },
+{ label: "Server 2", url: "https://shd-gcp-live.edgenextcdn.net/live/bitmovin-mbc-masr-2/754931856515075b0aabf0e583495c68/index.m3u8" },
+{ label: "Server 3 DAZN", url: "https://dcb-fl-live.dtcdn.dazn.com/zldbrzp8obsi1lolgbdmhnk0a/mob25f/stream.m3u8?channel=2650&outlet=dazn-mena&plang=ar" },
+
   // HD Channels
   { label: "HD1 Eng", url: "https://sportzonline.si/channels/hd/hd1.php" },
   { label: "HD2 Eng", url: "https://sportzonline.si/channels/hd/hd2.php" },
@@ -100,6 +104,28 @@ const channelLogos = {
   "Vivo 4": "/assets/img/6.png",
   "Vivo 5": "/assets/img/6.png",
   "Vivo 6": "/assets/img/6.png",
+  "Server 1": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DAZN_Logo_Master.svg/330px-DAZN_Logo_Master.svg.png",
+"Server 2": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/BeIN-Sports-Logo.svg/640px-BeIN-Sports-Logo.svg.png",
+"Server 3 DAZN": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DAZN_Logo_Master.svg/330px-DAZN_Logo_Master.svg.png",
+
+};
+const loadHlsFromUrl = (url) => {
+  setIframeURL("");
+  const video = videoRef.current;
+  if (!video) return;
+
+  if (Hls.isSupported()) {
+    if (hlsRef.current) hlsRef.current.destroy();
+    const hls = new Hls();
+    hlsRef.current = hls;
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+    hls.on(Hls.Events.ERROR, (_, data) => data.fatal && hls.destroy());
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = url;
+    video.play();
+  }
 };
 
 
@@ -107,18 +133,19 @@ const HomeTV = () => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
   const [iframeURL, setIframeURL] = useState("https://sportzonline.si/channels/hd/hd4.php");
-  const [iframeKey, setIframeKey] = useState(Date.now()); // key to force iframe reload
+  const [iframeKey, setIframeKey] = useState(Date.now());
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showAdAlert, setShowAdAlert] = useState(false);
-
   const allChannels = [hlsServer, ...iframeServers];
 
+  // Update isMobile on resize
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Show "use fullscreen to avoid ads" hint
   useEffect(() => {
     const checkFullscreen = () => {
       const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
@@ -132,11 +159,10 @@ const HomeTV = () => {
     };
   }, [iframeURL]);
 
-  const loadHlsStream = (serverId) => {
+  // Load HLS from external URL
+  const loadHlsFromUrl = (url) => {
     setIframeURL("");
     const video = videoRef.current;
-    const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${serverId}.m3u8`;
-
     if (!video) return;
 
     if (Hls.isSupported()) {
@@ -153,17 +179,26 @@ const HomeTV = () => {
     }
   };
 
+  // Load HLS from internal ID
+  const loadHlsStream = (serverId) => {
+    const url = `https://nflarcadia.xyz:443/bRtT37sn3w/Sx5q6YTgCs/${serverId}.m3u8`;
+    loadHlsFromUrl(url);
+  };
+
+  // HLS button handler
   const handleHlsClick = () => loadHlsStream(hlsServer.streamId);
 
+  // iframe button handler
   const handleIframeClick = (url) => {
     setIframeURL(url);
-    setIframeKey(Date.now()); // refresh key to force reload
+    setIframeKey(Date.now());
     if (hlsRef.current) {
       hlsRef.current.destroy();
       hlsRef.current = null;
     }
   };
 
+  // Clean up on unmount
   useEffect(() => {
     return () => {
       if (hlsRef.current) {
@@ -173,21 +208,26 @@ const HomeTV = () => {
     };
   }, []);
 
-  const handleIframeRefresh = () => {
-    setIframeKey(Date.now());
-  };
+  // Force iframe reload
+  const handleIframeRefresh = () => setIframeKey(Date.now());
 
+  // Render each server tile
   const renderChannelCard = (server) => {
     const isActive =
       (!iframeURL && server.label === "Server 3") || iframeURL === server.url;
+
     return (
       <div
         key={server.label}
-        onClick={() =>
-          server.label === "Server 3"
-            ? handleHlsClick()
-            : handleIframeClick(server.url)
-        }
+        onClick={() => {
+          if (server.url?.endsWith(".m3u8")) {
+            loadHlsFromUrl(server.url);
+          } else if (server.label === "Server 3") {
+            handleHlsClick();
+          } else {
+            handleIframeClick(server.url);
+          }
+        }}
         style={{
           width: "80px",
           height: "100px",
@@ -229,18 +269,10 @@ const HomeTV = () => {
           gap: "20px",
           alignItems: "flex-start",
           justifyContent: "center",
-          width: "100%",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            maxWidth: "1000px",
-            width: "90vw",
-          }}
-        >
+        {/* Video container */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", maxWidth: "1000px", width: "90vw" }}>
           <div
             style={{
               width: "100%",
@@ -253,66 +285,52 @@ const HomeTV = () => {
               position: "relative",
             }}
           >
-  {/* Refresh button */}
-{iframeURL && (
-  <button
-    className="button green-refresh"
-    onClick={handleIframeRefresh}
-    style={{
-      position: "absolute",
-      top: isMobile ? "6px" : "10px",
-      right: isMobile ? "6px" : "10px",
-      zIndex: 20,
-    }}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      className="bi bi-arrow-repeat"
-      viewBox="0 0 16 16"
-    >
-      <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
-      <path
-        fillRule="evenodd"
-        d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
-      />
-    </svg>
-    
-  </button>
-)}
+            {/* Refresh button */}
+            {iframeURL && (
+              <button
+                className="button green-refresh"
+                onClick={handleIframeRefresh}
+                style={{
+                  position: "absolute",
+                  top: isMobile ? "6px" : "10px",
+                  right: isMobile ? "6px" : "10px",
+                  zIndex: 20,
+                }}
+              >
+                🔄
+              </button>
+            )}
 
-
-
+            {/* Ad alert */}
             {showAdAlert && (
               <div
                 style={{
                   position: "absolute",
-                  top: isMobile ? "6px" : "12px",
-                  left: isMobile ? "50px" : "50px",
+                  top: "10px",
+                  left: "50px",
                   backgroundColor: "#e6fff3",
                   color: "#105e2e",
-                  padding: isMobile ? "4px 8px" : "6px 12px",
+                  padding: "6px 12px",
                   borderRadius: "8px",
                   border: "1px solid #33ff88",
-                  fontSize: isMobile ? "10px" : "13px",
+                  fontSize: "13px",
                   zIndex: 10,
                   display: "flex",
                   alignItems: "center",
                   gap: "6px",
                 }}
               >
-                📺 Use <strong style={{ fontWeight: 600 }}>Fullscreen</strong> to avoid ads.
+                📺 Use <strong>Fullscreen</strong> to avoid ads.
                 <span
-                  style={{ marginLeft: "6px", cursor: "pointer", fontWeight: "bold" }}
                   onClick={() => setShowAdAlert(false)}
+                  style={{ cursor: "pointer", marginLeft: "6px", fontWeight: "bold" }}
                 >
                   ×
                 </span>
               </div>
             )}
 
+            {/* Video or Iframe */}
             {iframeURL ? (
               <iframe
                 key={iframeKey}
@@ -351,6 +369,7 @@ const HomeTV = () => {
             )}
           </div>
 
+          {/* Bottom shadow bar */}
           <div
             style={{
               width: isMobile ? "110px" : "160px",
@@ -363,6 +382,7 @@ const HomeTV = () => {
           />
         </div>
 
+        {/* Server list */}
         {!isMobile && (
           <div
             className="custom-scroll"
@@ -380,6 +400,7 @@ const HomeTV = () => {
         )}
       </div>
 
+      {/* Mobile channel scroll */}
       {isMobile && (
         <div
           className="custom-scroll"
@@ -391,53 +412,29 @@ const HomeTV = () => {
             gridAutoFlow: "column",
             gridTemplateRows: "repeat(2, 1fr)",
             gap: "12px",
-            width: "100%",
           }}
         >
           {allChannels.map(renderChannelCard)}
         </div>
       )}
 
+      {/* Refresh Button Styles */}
       <style>{`
-      .button.green-refresh {
-        color: #fff;
-        background-color:rgb(18, 199, 115);
-        font-weight: 600;
-        border-radius: 0.5rem;
-        font-size: 0.95rem;
-        line-height: 2rem;
-        padding: 0.6rem 1.2rem;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        border: none;
-        box-shadow: 0 2px 6px rgba(46, 210, 100, 0.9);
-        transition: background 0.5s ease-in-out;
-      }
-
-      .button.green-refresh:hover {
-        background-color:rgb(2, 160, 185);
-      }
-
-      .button.green-refresh svg {
-        width: 1.3rem;
-        height: 1.3rem;
-        color: white;
-      }
-
-      .button.green-refresh:focus svg {
-        animation: spin_357 0.5s linear;
-      }
-
-      @keyframes spin_357 {
-        from {
-          transform: rotate(0deg);
+        .button.green-refresh {
+          color: #fff;
+          background-color: rgb(18, 199, 115);
+          font-weight: 600;
+          border-radius: 0.5rem;
+          font-size: 0.95rem;
+          padding: 0.4rem 0.6rem;
+          cursor: pointer;
+          border: none;
+          box-shadow: 0 2px 6px rgba(46, 210, 100, 0.9);
         }
-        to {
-          transform: rotate(360deg);
+        .button.green-refresh:hover {
+          background-color: rgb(2, 160, 185);
         }
-      }
-    `}</style>
+      `}</style>
     </div>
   );
 };
