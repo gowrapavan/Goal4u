@@ -4,6 +4,7 @@ import { FixtureService } from '../services/fixture';
 import { getTeamLogoByKey } from '../services/teamlogo';
 import ModernSpinner from './common/ModernSpinner';
 import ErrorMessage from './common/ErrorMessage';
+import ReactGA from 'react-ga4';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
@@ -182,9 +183,15 @@ const Fixture = () => {
                           key={match.GameId}
                           className="mb-3 p-2 border rounded text-center"
                           style={{ cursor: 'pointer' }}
-                          onClick={() =>
-                            navigate(`/livematch?matchId=${match.GameId}&competition=${match.Competition}`)
-                          }
+                          onClick={() => {
+                              ReactGA.event({
+                                category: 'Fixture',
+                                action: 'Match Clicked',
+                                label: `${match.HomeTeamKey} vs ${match.AwayTeamKey} - ${match.Competition}`,
+                                value: match.GameId
+                              });
+                              navigate(`/livematch?matchId=${match.GameId}&competition=${match.Competition}`);
+                            }}
                         >
                           <div className="match-header d-flex justify-content-between align-items-center mb-2">
                             <span className="text-muted small fw-medium text-start">
