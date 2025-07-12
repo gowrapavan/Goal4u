@@ -3,12 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GOAL4U - THE HOME OF FOOTBALL</title>
+    <title>GOAL4U - The Home of Football</title>
 
     <!-- SEO -->
-    <meta name="keywords" content="GOAL4U" />
-    <meta name="description" content="GOAL4U - THE HOME OF FOOTBALL" />
-    <meta name="author" content="goal4u.netlify.app" />
+    <meta name="keywords" content="football, live scores, match fixtures, streaming, premier league, goal4u, laliga, ucl, champions league" />
+    <meta name="description" content="Watch live football scores, fixtures, and streams on Goal4U. Premier League, UCL, La Liga and more — all in one place!" />
+    <meta name="author" content="Goal4U" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://goal4u.netlify.app/" />
+    <link rel="manifest" href="/manifest.json" />
+
+
+    <!-- Open Graph (OG) for Social Sharing -->
+    <meta property="og:title" content="GOAL4U - The Home of Football" />
+    <meta property="og:description" content="Live football matches, scores, and fixtures — Premier League, La Liga, and more!" />
+    <meta property="og:url" content="https://goal4u.netlify.app/" />
+    <meta property="og:image" content="https://goal4u.netlify.app/assets/img/6.svg" />
+    <meta property="og:type" content="website" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/img/6.svg" />
@@ -42,13 +53,24 @@
 
     <!-- Your Theme CSS -->
     <link href="/assets/css/main.css" rel="stylesheet" />
+
+    <!-- ✅ Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6LPS94W2G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-R6LPS94W2G');
+    </script>
   </head>
 
   <body>
-    <!-- Vite React Mount Point -->
+    <!-- React Mount Point -->
     <div id="root"></div>
 
-    <!-- Your Vite React App Entry -->
+    <!-- React App -->
     <script type="module" src="/src/main.jsx"></script>
 
     <!-- jQuery FIRST -->
@@ -78,7 +100,7 @@
       };
     </script>
 
-    <!-- Optional Redirect from /index.html to / -->
+    <!-- Redirect /index.html to root -->
     <script>
       if (window.location.pathname === "/index.html") {
         window.location.replace("/");

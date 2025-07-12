@@ -1,0 +1,15 @@
+{
+  "name": "GOAL4U - The Home of Football",
+  "short_name": "GOAL4U",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6efd",
+  "icons": [
+    {
+      "src": "/assets/img/6.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ]
+}

@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import {
-  initGA,
-  trackPageView
-} from './services/gmanger-tag/GA_Measurement'; // ✅ Import from config
+import { initGA, trackPageView } from './services/gmanger-tag/GA_Measurement';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Components
 import Header from './components/Header';
@@ -25,9 +23,9 @@ import FloatButton from './components/common/FloatButton';
 import PlayersByClub from './components/Player';
 import Team from './components/team/Team';
 import TeamProfile from './components/team/TeamProfile';
-import LaLiga from "./pages/leagues/LaLiga";
-import Standings from "./pages/leagues/Standings";
-import MultipleTV from "./pages/TV/MultipleTV";
+import LaLiga from './pages/leagues/LaLiga';
+import Standings from './pages/leagues/Standings';
+import MultipleTV from './pages/TV/MultipleTV';
 import Koora from './components/koora';
 
 import './App.css';
@@ -85,13 +83,15 @@ function AppWrapper() {
 
 function App() {
   useEffect(() => {
-    initGA(); // ✅ Initialize GA on first load
+    initGA();
   }, []);
 
   return (
-    <Router>
-      <AppWrapper />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <AppWrapper />
+      </Router>
+    </HelmetProvider>
   );
 }
 
