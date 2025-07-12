@@ -60,7 +60,7 @@ function AppWrapper() {
               </>
             }
           />
-          <Route path="/reels" element={<InstaFeeds />} />
+          <Route path="/reels" element={<InstaFeeds keywords={["Portugal vs France", "Messi", "EURO 2024", "Mbappe", "Spain highlights"]} />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />

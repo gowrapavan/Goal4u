@@ -1,36 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { fetchYouTubeShorts } from './youtube.service'; // Update path if needed
 
-const InstaFeeds = () => {
+const InstaFeeds = ({ keywords = [] }) => {
+  const [reelsData, setReelsData] = useState([]);
   const [currentReel, setCurrentReel] = useState(0);
+  const [nextPageToken, setNextPageToken] = useState(undefined);
   const containerRef = useRef(null);
   const playerRefs = useRef({});
+  const keywordIndex = useRef(0);
 
-  const reelsData = [
-    {
-      id: 1,
+  const getQuery = () => {
+    if (keywords.length > 0 && keywordIndex.current < keywords.length) {
+      return `${keywords[keywordIndex.current++]} match highlights`;
+    }
+    return 'recent football match highlights'; // default fallback
+  };
+
+  const loadMoreReels = async (pageToken) => {
+    const query = getQuery();
+    const response = await fetchYouTubeShorts(query, pageToken);
+    const newVideos = response.items.map((item, index) => ({
+      id: `${item.id.videoId}-${Date.now()}-${index}`,
       type: 'youtube',
-      src: 'https://www.youtube.com/embed/tgbNymZ7vqY?enablejsapi=1&controls=1&modestbranding=1&autoplay=0',
-    },
-    {
-      id: 2,
-      type: 'instagram',
-      src: 'https://www.instagram.com/reel/DILP9NlRHfZ/embed',
-    },
-    {
-      id: 3,
-      type: 'youtube',
-      src: 'https://www.youtube.com/embed/aqz-KE-bpKQ?enablejsapi=1&controls=1&modestbranding=1&autoplay=0',
-    },
-    {
-      id: 4,
-      type: 'instagram',
-      src: 'https://www.instagram.com/reel/C6sEbupIhW7/embed',
-    },
-  ];
+      src: `https://www.youtube.com/embed/${item.id.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
+    }));
+
+    setReelsData((prev) => [...prev, ...newVideos]);
+    setNextPageToken(response.nextPageToken);
+  };
 
   useEffect(() => {
-    document.body.classList.add('reels-page');
-    return () => document.body.classList.remove('reels-page');
+    loadMoreReels(); // Initial load
   }, []);
 
   useEffect(() => {
@@ -42,18 +42,22 @@ const InstaFeeds = () => {
       const reelHeight = window.innerHeight;
       const newIndex = Math.round(scrollTop / reelHeight);
       setCurrentReel(newIndex);
+
+      if (newIndex >= reelsData.length - 5 && nextPageToken) {
+        loadMoreReels(nextPageToken); // Preload next 5
+      }
     };
 
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [reelsData, nextPageToken]);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     let isScrolling = false;
-    let scrollTimeout = null;
+    let scrollTimeout;
 
     const handleWheel = (e) => {
       e.preventDefault();
@@ -84,22 +88,38 @@ const InstaFeeds = () => {
   }, [currentReel, reelsData.length]);
 
   useEffect(() => {
-    reelsData.forEach((reel, i) => {
-      if (reel.type === 'youtube') {
-        const iframe = playerRefs.current[reel.id];
-        if (iframe && iframe.contentWindow) {
-          const command = i === currentReel ? 'playVideo' : 'pauseVideo';
-          iframe.contentWindow.postMessage(
-            JSON.stringify({
-              event: 'command',
-              func: command,
-              args: [],
-            }),
-            '*'
-          );
-        }
+    // Pause and mute all
+    reelsData.forEach((reel) => {
+      const iframe = playerRefs.current[reel.id];
+      if (reel.type === 'youtube' && iframe?.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'pauseVideo',
+          args: [],
+        }), '*');
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: 'mute',
+          args: [],
+        }), '*');
       }
     });
+
+    // Play and unmute only current
+    const current = reelsData[currentReel];
+    const currentIframe = current && playerRefs.current[current.id];
+    if (current?.type === 'youtube' && currentIframe?.contentWindow) {
+      currentIframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'playVideo',
+        args: [],
+      }), '*');
+      currentIframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'unMute',
+        args: [],
+      }), '*');
+    }
   }, [currentReel]);
 
   return (
@@ -140,7 +160,6 @@ const InstaFeeds = () => {
           height: 100%;
           border: none;
         }
-
         @media (max-width: 768px) {
           .reel-content {
             width: 100vw;
@@ -153,30 +172,21 @@ const InstaFeeds = () => {
         }
       `}</style>
 
-      <div className="reel-feed-wrapper" ref={containerRef}>
+      <div className="reel-feed-wrapper reels-page" ref={containerRef}>
         {reelsData.map((reel, i) => (
           <div key={reel.id} className="reel-slide">
             <div className="reel-content">
-              {reel.type === 'youtube' ? (
-                <iframe
-                  ref={(el) => {
-                    if (reel.type === 'youtube') {
-                      playerRefs.current[reel.id] = el;
-                    }
-                  }}
-                  src={reel.src}
-                  allow="autoplay; encrypted-media; fullscreen"
-                  allowFullScreen
-                  title={`reel-${reel.id}`}
-                ></iframe>
-              ) : currentReel === i ? (
-                <iframe
-                  src={reel.src}
-                  allow="autoplay; encrypted-media; fullscreen"
-                  allowFullScreen
-                  title={`reel-${reel.id}`}
-                ></iframe>
-              ) : null}
+              <iframe
+                ref={(el) => {
+                  if (reel.type === 'youtube') {
+                    playerRefs.current[reel.id] = el;
+                  }
+                }}
+                src={reel.src}
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                title={`reel-${reel.id}`}
+              ></iframe>
             </div>
           </div>
         ))}
