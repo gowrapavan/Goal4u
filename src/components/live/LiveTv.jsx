@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import Hls from "hls.js";
 import LiveNews from "./LiveNews";
 import LiveMatchList from './LiveMatchList';
+import { Helmet } from "react-helmet-async";
+
 
 
 const hlsServer = { label: "Server 3", streamId: 6 };
@@ -181,6 +183,24 @@ const LiveTV = () => {
   const renderChannelCard = (server) => {
     const isActive = (!iframeURL && server.label === "Server 3") || iframeURL === server.url;
     return (
+       <>
+      <Helmet>
+        <title>Live Football Streaming | Goal4U</title>
+        <meta
+          name="description"
+          content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
+        />
+        <meta property="og:title" content="Live Football Streaming | Goal4U" />
+        <meta
+          property="og:description"
+          content="Stream live football matches from HD, Brazil, Portugal, and more. All live, all in one place."
+        />
+        <meta property="og:type" content="video.other" />
+        <meta property="og:url" content="https://goal4u.live/livetv" />
+        <meta property="og:image" content="https://goal4u.live/assets/og-thumbnail.jpg" />
+        <link rel="canonical" href="https://goal4u.live/livetv" />
+      </Helmet>
+
       <div
         key={server.label}
         onClick={() =>
@@ -215,6 +235,7 @@ const LiveTV = () => {
         />
         <span>{server.label}</span>
       </div>
+      </>
     );
   };
 

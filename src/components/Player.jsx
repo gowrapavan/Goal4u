@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { ChevronRight } from "lucide-react"; // or the appropriate package
 import playersData from "../../public/data/players/players.json";
+import { Helmet } from "react-helmet-async";
+
 
 const PlayersByClub = () => {
    const scrollRefs = useRef({});
@@ -48,6 +50,22 @@ const PlayersByClub = () => {
   };
 
   return (
+        <>
+        <Helmet>
+          <title>Football Stars by Club & Country | Goal4U</title>
+          <meta            name="description"            content="Explore top football players grouped by clubs and national competitions—view stats, photos, and career insights on Goal4U."
+          />
+          <meta property="og:title" content="Top Football Players by Club — Goal4U" />
+          <meta
+            property="og:description"
+            content="Get to know players by club, league, and nationality. Detailed profiles including goals, career span, and physical stats."
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://goal4u.netlify.app/players" />
+          <meta property="og:image" content="https://goal4u.netlify.app/assets/img/og-players.jpg" />
+          <link rel="canonical" href="https://goal4u.netlify.app/players" />
+        </Helmet>
+
     <div className="players-wrapper">
       {playersData.map((group, index) => (
         <div key={index} className="team-block">
@@ -433,6 +451,7 @@ const PlayersByClub = () => {
 
 
     </div>
+        </>
   );
 };
 

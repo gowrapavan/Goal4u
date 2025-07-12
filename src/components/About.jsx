@@ -1,12 +1,28 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import uclImg from "../../public/assets/img/ucl.jpg";
 import leagueImg from "../../public/assets/img/league.jpg";
 import playerImg from "../../public/assets/img/player.jpg";
 
 const About = () => {
   return (
-    <section className="py-5 bg-white text-dark">
-      <div className="container">
+    <>
+      <Helmet>
+        <title>About Goal4U | Football Stats, Matches & News</title>
+        <meta
+          name="description"
+          content="Learn about Goal4U – your all-in-one platform for global football updates, live scores, stats, news, and legendary moments from top leagues."
+        />
+        <meta property="og:title" content="About Goal4U - Football Livescore Platform" />
+        <meta property="og:description" content="Explore Goal4U's mission to bring football fans real-time updates, stats, and memories from the world's biggest leagues." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://goal4u.netlify.app/about" />
+        <link rel="canonical" href="https://goal4u.netlify.app/about" />
+      </Helmet>
+
+      <section className="py-5 bg-white text-dark">
+        <div className="container">
+
 
         {/* Hero Title */}
         <div className="text-center mb-5">
@@ -131,8 +147,9 @@ const About = () => {
           <a href="/signup" className="btn btn-success px-4 py-2">Get Started</a>
         </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 

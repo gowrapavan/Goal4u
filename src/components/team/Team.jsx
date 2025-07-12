@@ -4,6 +4,8 @@ import Loading from "../common/LoadingSpinner";
 import ErrorMessage from "../common/ErrorMessage";
 import EmptyState from "../common/EmptyState";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+
 
 const COMPETITIONS = [
   { code: 'ALL', name: 'All Competitions', country: 'All' },
@@ -68,6 +70,24 @@ const Team = () => {
   }, [selectedCompetition]);
 
   return (
+    <>
+    <Helmet>
+        <title>Football Teams by Competition | Goal4U</title>
+        <meta
+          name="description"
+          content="Discover football clubs from various global competitions like Premier League, UEFA Champions League, FIFA World Cup, and more. Powered by Goal4U."
+        />
+        <meta property="og:title" content="Explore Football Teams by League - Goal4U" />
+        <meta
+          property="og:description"
+          content="Search and filter clubs across leagues like La Liga, Serie A, Bundesliga, and more. Detailed team profiles, locations, and info."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://goal4u.netlify.app/teams" />
+        <meta property="og:image" content="https://goal4u.netlify.app/assets/img/og-teams.jpg" />
+        <link rel="canonical" href="https://goal4u.netlify.app/teams" />
+      </Helmet>
+
     <section className="content-info">
       {/* Filter Navigation */}
       <div className="portfolioFilter">
@@ -152,6 +172,8 @@ const Team = () => {
         )}
       </div>
     </section>
+  </>
+
   );
 };
 
