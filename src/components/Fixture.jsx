@@ -5,6 +5,8 @@ import { getTeamLogoByKey } from '../services/teamlogo';
 import ModernSpinner from './common/ModernSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import ReactGA from 'react-ga4';
+import { Helmet } from 'react-helmet-async';
+
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
@@ -148,7 +150,20 @@ const Fixture = () => {
 
   const groupedMatches = groupMatches(matches);
 
-  return (
+
+return (
+  <>
+    <Helmet>
+      <title>Football Fixtures Today | Goal4U</title>
+      <meta name="description" content="Live football fixtures from top leagues including Premier League, La Liga, and more. Updated daily." />
+      <meta property="og:title" content="Today's Football Fixtures - Goal4U" />
+      <meta property="og:description" content="Live football match fixtures. View match times, teams, and more at Goal4U." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://goal4u.netlify.app/fixtures" />
+      <link rel="canonical" href="https://goal4u.netlify.app/fixtures" />
+
+    </Helmet>
+
     <div className="live-match-list container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3>Fixtures</h3>
@@ -341,7 +356,7 @@ const Fixture = () => {
           }
         }
       `}</style>
-    </div>
+    </div></>
   );
 };
 
