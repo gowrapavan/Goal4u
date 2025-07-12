@@ -1,0 +1,83 @@
+/* 🔁 Scroll container */
+.reel-feed-wrapper {
+  position: relative;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  background: #ffffff;
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE 10+ */
+}
+
+.reel-feed-wrapper::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari */
+}
+
+/* 🔁 Individual Reel Slide */
+.reel-slide {
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0;
+}
+
+/* 📱 Reel Content Sizing (Instagram-style on desktop) */
+.reel-slide > iframe,
+.reel-slide > video,
+.instagram-wrapper {
+  width: 360px;
+  height: 640px;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Instagram-specific container */
+.instagram-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+
+/* 🤳 Mobile Styling */
+@media (max-width: 768px) {
+  .reel-feed-wrapper {
+    height: 100vh;
+    margin-top: 0;
+  }
+
+  .reel-slide {
+    height: 100vh;
+  }
+
+  .reel-slide > iframe,
+  .reel-slide > video,
+  .instagram-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* 💻 Desktop Styling (accounting for header height) */
+@media (min-width: 769px) {
+  .reel-feed-wrapper {
+    height: calc(100vh - 110px);   /* Header is fixed */
+    margin-top: 110px;
+  }
+
+  .reel-slide {
+    height: calc(100vh - 110px);
+  }
+}
+
+/* ✅ Optional: for Instagram embeds */
+.instagram-media {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+}

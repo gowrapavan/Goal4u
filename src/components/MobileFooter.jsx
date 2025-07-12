@@ -14,7 +14,7 @@ const MobileFooter = () => {
     backgroundColor: '#ffffff',
     borderTop: '1px solid #ddd',
     zIndex: 1000,
-    height: '36px', // Very compact
+    height: '36px',
     fontSize: '13px',
     display: 'flex',
     justifyContent: 'space-around',
@@ -45,14 +45,14 @@ const MobileFooter = () => {
       <Link to="/livetv" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-tv" style={iconStyle}></i> Live
       </Link>
+      <Link to="/reels" style={itemStyle} onClick={scrollToTop}>
+        <i className="fa fa-play-circle" style={iconStyle}></i> Reels
+      </Link>
       <Link to="/clubs" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-users" style={iconStyle}></i> Teams
       </Link>
       <Link to="/profile" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-user" style={iconStyle}></i> Profile
-      </Link>
-      <Link to="/about" style={itemStyle} onClick={scrollToTop}>
-        <i className="fa fa-about" style={iconStyle}></i> About
       </Link>
     </footer>
   );

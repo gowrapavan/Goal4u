@@ -122,10 +122,8 @@ const Header = () => {
       {/* Mobile Nav */}
       <MobileNav isOpen={checked} onClose={closeMenu} />
 
-      {/* Only render spacer if NOT home page */}
-      {location.pathname !== '/' &&  (
-        <div style={{ height: headerHeight }}></div>
-      )}
+      
+     
     </>
   );
 };

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { initGA, trackPageView } from './services/gmanger-tag/GA_Measurement';
 import { HelmetProvider } from 'react-helmet-async';
+import InstaFeeds from "./pages/reels/ReelFeed";
+
 
 // Components
 import Header from './components/Header';
@@ -58,6 +60,7 @@ function AppWrapper() {
               </>
             }
           />
+          <Route path="/reels" element={<InstaFeeds />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
