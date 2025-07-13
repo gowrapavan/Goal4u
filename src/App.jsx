@@ -42,6 +42,9 @@ function usePageTracking() {
 
 function AppWrapper() {
   usePageTracking();
+  const location = useLocation();
+  const isReelsPage = location.pathname === '/reels';
+
 
   return (
     <>
@@ -60,7 +63,7 @@ function AppWrapper() {
               </>
             }
           />
-          <Route path="/reels" element={<InstaFeeds keywords={["Portugal vs France", "Messi", "EURO 2024", "Mbappe", "Spain highlights"]} />} />
+          <Route path="/reels" element={<InstaFeeds />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
@@ -77,7 +80,7 @@ function AppWrapper() {
           <Route path="/league/standings" element={<Standings />} />
         </Routes>
         <MobileFooter />
-        <Footer />
+        {!isReelsPage && <Footer />}
         <FloatButton />
       </div>
     </>

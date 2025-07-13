@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const PREFERRED_COMPETITIONS = [
   'EPL', 'DEB', 'ITSA', 'FRL1', 'NLC', 'PTC', 'MLS', 'SPL', 'SKC',
-  'CWC', 'UCL', 'ELC', 'UEL',
-  'UNL', 'UEQ', 'EFAC', 'SAWQ', 'ASWQ', 'AFWQ', 'NAWQ', 'OWQ'
+  'CWC', 'UCL'
 ];
 
 const INTERNATIONAL_COMPS = ['CWC', 'WC'];
