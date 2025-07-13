@@ -44,6 +44,7 @@ export function useNews(page: number = 1, pageSize: number = 8) {
         'Ronaldo',
         'Haaland',
         'Mbappe',
+        'football transfers',
         'Manchester City',
         'ESPN',
         'Sky Sports',
