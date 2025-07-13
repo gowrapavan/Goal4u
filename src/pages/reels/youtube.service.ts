@@ -1,35 +1,14 @@
-// src/services/youtube.service.ts
 import axios from 'axios';
 
-const YOUTUBE_API_KEY = 'AIzaSyDtAPRzpdP8McGTtquC6NXjnmhE4Uhx9Eo';
+const YOUTUBE_API_KEY = 'AIzaSyCNqe4uWVgti_ZHBSI8_kKero_I6xf7qYk';
 const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
-
-export interface YouTubeShort {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    publishedAt: string;
-    thumbnails: {
-      medium: {
-        url: string;
-      };
-    };
-  };
-}
-
-// 🔥 Return ISO string of N days ago
-const getRecentDate = (daysAgo = 14): string => {
-  const date = new Date();
-  date.setDate(date.getDate() - daysAgo);
-  return date.toISOString();
-};
 
 export const fetchYouTubeShorts = async (
   query = 'football match highlights',
-  pageToken?: string
-): Promise<{ items: YouTubeShort[]; nextPageToken?: string }> => {
+  pageToken?: string,
+  channelId?: string,
+  extraParams: Record<string, string> = {} // ✅ supports additional params like order/viewCount etc.
+): Promise<{ items: any[]; nextPageToken?: string }> => {
   try {
     const response = await axios.get(YOUTUBE_API_URL, {
       params: {
@@ -41,8 +20,9 @@ export const fetchYouTubeShorts = async (
         videoDuration: 'short',
         order: 'date',
         pageToken,
-        publishedAfter: getRecentDate(14), // ✅ Only show videos published in last 14 days
-        safeSearch: 'none',
+        publishedAfter: getRecentDate(14),
+        ...(channelId ? { channelId } : {}),
+        ...extraParams, // ✅ spread any custom overrides like 'order': 'viewCount'
       },
     });
 
@@ -54,4 +34,10 @@ export const fetchYouTubeShorts = async (
     console.error('YouTube Shorts Fetch Error:', err.message || err);
     return { items: [], nextPageToken: undefined };
   }
+};
+
+const getRecentDate = (daysAgo = 14): string => {
+  const date = new Date();
+  date.setDate(date.getDate() - daysAgo);
+  return date.toISOString();
 };
