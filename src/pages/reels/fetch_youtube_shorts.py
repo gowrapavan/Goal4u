@@ -18,6 +18,12 @@ CHANNEL_IDS = [
   'UCLzKhsxrExAC6yAdtZ-BOWw', #Juventus
   'UCKcx1uK38H4AOkmfv4ywlrg', #AC Milan
   'UCvXzEblUa0cfny4HAJ_ZOWw', #Inter Milan
+  'UCSZ21xyG8w_33KriMM69IxQ',
+  'UCooTLkxcpnTNx6vfOovfBFA',
+  'UCd09ztChTkJ9dlY6RLawSog',
+  'UC2bW_AY9BlbYLGJSXAbjS4Q',
+  'UCWsDFcIhY2DBi3GB5uykGXA',
+  'UCQBxzdEPXjy05MtpfbdtMxQ',
 
  #Popular Leagues & Competitions
   'UCTv-XvfzLX3i4IGWAm4sbmA', #LaLiga
