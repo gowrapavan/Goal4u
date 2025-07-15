@@ -4,10 +4,10 @@ import Loading from "../../components/common/LoadingSpinner";
 import ErrorMessage from "../../components/common/ErrorMessage";
 import EmptyState from "../../components/common/EmptyState";
 import { Link } from "react-router-dom";
-import LaLigaMatchdaysWithSidebar from "./LaLigaMatches";
+import Ligue1MatchdaysWithSidebar from "./Ligue1Matches";
 
-const LaLiga = () => {
-  const COMPETITION_CODE = "ESP";
+const Ligue1 = () => {
+  const COMPETITION_CODE = "FRL1";
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -30,70 +30,70 @@ const LaLiga = () => {
     <section className="content-info">
       <div className="container">
         {/* Header Section */}
-        <div className="laliga-header d-flex align-items-center justify-content-between flex-wrap mb-4">
+        <div className="ligue1-header d-flex align-items-center justify-content-between flex-wrap mb-4">
           {/* Logo & Divider */}
           <div className="d-flex align-items-center gap-3">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/LaLiga_2023_Horizontal_Logo.svg/640px-LaLiga_2023_Horizontal_Logo.svg.png"
-              alt="La Liga Logo"
-              className="laliga-logo"
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Ligue1_Uber_Eats_logo.svg/640px-Ligue1_Uber_Eats_logo.svg.png"
+              alt="Ligue 1 Logo"
+              className="ligue1-logo"
             />
-            <div className="laliga-divider d-none d-md-block"></div>
+            <div className="ligue1-divider d-none d-md-block"></div>
           </div>
 
           {/* Title + Subtitle */}
           <div className="flex-grow-1 ms-3">
-            <h2 className="fw-bold mb-1">La Liga Matches & Standings</h2>
+            <h2 className="fw-bold mb-1">Ligue 1 Matches & Standings</h2>
             <p className="text-muted mb-0" style={{ fontSize: "0.95rem" }}>
               Stay updated with real-time fixtures, scores and team rankings.
             </p>
 
             {/* Mobile League Switch */}
             <div className="d-md-none mt-3 d-flex gap-3">
-              <Link to="/league/bundesliga" className="styled-arrow-btn w-50 text-center">
-                ◀ Bundesliga
+              <Link to="/epl" className="styled-arrow-btn w-50 text-center">
+                ◀ Premier League
               </Link>
-              <Link to="/league/EPL" className="styled-arrow-btn w-50 text-center">
-                Premier League ▶
+              <Link to="/league/bundesliga" className="styled-arrow-btn w-50 text-center">
+                Bundesliga ▶
               </Link>
             </div>
           </div>
 
           {/* Desktop League Switch */}
           <div className="league-switch-buttons d-none d-md-flex gap-3">
-            <Link to="/league/bundesliga" className="styled-arrow-btn">
-              ◀ Bundesliga
+            <Link to="/epl" className="styled-arrow-btn">
+              ◀ Premier League
             </Link>
-            <Link to="/league/EPL" className="styled-arrow-btn">
-              Premier League ▶
+            <Link to="/league/bundesliga" className="styled-arrow-btn">
+              Bundesliga ▶
             </Link>
           </div>
 
           {/* Styles */}
           <style jsx>{`
-            .laliga-header {
+            .ligue1-header {
               padding-left: 35px;
               padding-top: 35px;
             }
 
-            .laliga-logo {
+            .ligue1-logo {
               width: 210px;
               height: auto;
               object-fit: contain;
               flex-shrink: 0;
             }
 
-            .laliga-divider {
+            .ligue1-divider {
               width: 5px;
               height: 80px;
-              background-color: #e30613;
+              background-color: #003da5;
               border-radius: 15px;
             }
 
             .styled-arrow-btn {
               background-color: #fff;
-              color: #e30613;
-              border: 2px solid #e30613;
+              color: #003da5;
+              border: 2px solid #003da5;
               padding: 6px 16px;
               font-weight: 600;
               font-size: 0.95rem;
@@ -103,41 +103,29 @@ const LaLiga = () => {
             }
 
             .styled-arrow-btn:hover {
-              background-color: #e30613;
+              background-color: #003da5;
               color: #fff;
               transform: translateY(-1px);
               box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
             }
 
             @media (max-width: 576px) {
-              .laliga-header {
+              .ligue1-header {
                 padding-left: 12px;
                 padding-top: 25px;
               }
 
-              .laliga-logo {
-                width: 80%;
+              .ligue1-logo {
+                width: 70%;
                 height: auto;
-                padding-bottom: 15px;
-                padding-left: 15px;
+                padding-bottom: 10px;
               }
 
-              .laliga-header h2 {
+              .ligue1-header h2 {
                 font-size: 1.25rem;
               }
-                 .styled-arrow-btn {
-              background-color: #fff;
-              color: #e30613;
-              border: 2px solid #e30613;
-              padding: 6px 16px;
-              font-weight: 600;
-              font-size: 0.85rem;
-              border-radius: 8px;
-              transition: all 0.25s ease;
-              text-decoration: none;
-            }
 
-              .laliga-header p {
+              .ligue1-header p {
                 font-size: 0.85rem;
               }
             }
@@ -145,10 +133,10 @@ const LaLiga = () => {
         </div>
 
         {/* Matchdays & Standings */}
-        <LaLigaMatchdaysWithSidebar />
+        <Ligue1MatchdaysWithSidebar />
 
         {/* Teams Section */}
-        <h2 className="mt-5">La Liga Teams</h2>
+        <h2 className="mt-5">Ligue 1 Teams</h2>
         {loading ? (
           <Loading />
         ) : error ? (
@@ -209,4 +197,4 @@ const LaLiga = () => {
   );
 };
 
-export default LaLiga;
+export default Ligue1;

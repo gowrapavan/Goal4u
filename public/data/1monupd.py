@@ -5,15 +5,13 @@ import time
 from datetime import datetime, timedelta
 
 API_KEY = "9578f3077e264f6f8ef67fb61998f6d8"
-COMPETITIONS = ["ucl"]
+COMPETITIONS = ["esp"]
 YEAR = "2026"
 SAVE_DIR = f"./2026"
 
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 today = datetime.utcnow()
-one_month_ago = today - timedelta(days=30)
-one_month_later = today + timedelta(days=30)
 
 for comp in COMPETITIONS:
     print(f"\n📦 Fetching schedule for {comp.upper()}...")
@@ -53,6 +51,9 @@ for comp in COMPETITIONS:
 
             for game in season["Games"]:
                 game_id = game.get("GameId")
+                HomeKey = game.get("HomeTeamKey")
+                AwayKey = game.get("AwayTeamKey")
+
                 if not game_id:
                     continue
 
@@ -62,22 +63,19 @@ for comp in COMPETITIONS:
                 except:
                     continue  # skip if date is bad
 
+                # ⛔️ Skip future matches
+                if match_date > today:
+                    continue
+
                 status = game.get("Status")
                 existing = game_map.get(game_id)
-
-                # ✅ Decide if this match needs updating
-                is_recent_past = one_month_ago <= match_date <= today
-                is_near_future = today <= match_date <= one_month_later
-                is_final = status == "Final"
                 already_final = existing and existing.get("Status") == "Final"
 
-                if not (is_recent_past or is_near_future or (not is_final)):
-                    continue  # Skip older past matches not in recent/future
+                # ⛔️ Skip matches already marked as final in existing JSON
+                if already_final:
+                    continue
 
-                if is_final and already_final and not is_recent_past:
-                    continue  # Avoid re-fetching finalized old games
-
-                print(f"🔄 Updating match: {game_id} (Status: {status})")
+                print(f"🔄 Updating match: {game_id} - {HomeKey} vs {AwayKey} (Status: {status})")
 
                 home_id = game.get("HomeTeamId")
                 away_id = game.get("AwayTeamId")
@@ -104,7 +102,7 @@ for comp in COMPETITIONS:
                     "Goals": []
                 }
 
-                if is_final:
+                if status == "Final":
                     print(f"⚽ Fetching BoxScore for Game ID: {game_id}")
                     box_url = f"https://api.sportsdata.io/v4/soccer/stats/json/BoxScoreFinal/{comp}/{game_id}?key={API_KEY}"
                     box_res = requests.get(box_url)

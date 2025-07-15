@@ -4237,7 +4237,7 @@
     "RoundName": "Final",
     "Date": "2025-07-13T00:00:00",
     "DateTime": "2025-07-13T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Neutral",
     "HomeTeamId": 511,
@@ -4246,11 +4246,57 @@
     "AwayTeamKey": "PSG",
     "HomeTeamName": "Chelsea FC",
     "AwayTeamName": "Paris Saint-Germain FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 0,
+    "Result": 511,
+    "Points": {
+      "511": 3,
+      "600": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 229226,
+        "GameId": 89749,
+        "TeamId": 511,
+        "PlayerId": 90086737,
+        "Name": "Cole Palmer",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90090397,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229228,
+        "GameId": 89749,
+        "TeamId": 511,
+        "PlayerId": 90086737,
+        "Name": "Cole Palmer",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90097121,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 37,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 229229,
+        "GameId": 89749,
+        "TeamId": 511,
+        "PlayerId": 90071915,
+        "Name": "João Pedro",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90086737,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 53,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 89829,

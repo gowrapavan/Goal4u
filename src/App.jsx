@@ -26,6 +26,9 @@ import PlayersByClub from './components/Player';
 import Team from './components/team/Team';
 import TeamProfile from './components/team/TeamProfile';
 import LaLiga from './pages/leagues/LaLiga';
+import EPL from './pages/leagues/EPL';
+import Bundesliga from './pages/leagues/DEB';
+
 import Standings from './pages/leagues/Standings';
 import MultipleTV from './pages/TV/MultipleTV';
 import Koora from './components/koora';
@@ -77,6 +80,8 @@ function AppWrapper() {
           <Route path="/bracket" element={<Bracket />} />
           <Route path="*" element={<NotFound404 />} />
           <Route path="/league/laliga" element={<LaLiga />} />
+          <Route path="/league/EPL" element={<EPL />} />
+          <Route path="/league/bundesliga" element={<Bundesliga />} />
           <Route path="/league/standings" element={<Standings />} />
         </Routes>
         <MobileFooter />

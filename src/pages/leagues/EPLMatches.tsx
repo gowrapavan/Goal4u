@@ -1,14 +1,14 @@
 import { useEffect, useState ,useRef  } from "react";
-import { fetchLaLigaMatchesByWeek } from "../../services/Leagues/laLigaService";
+import { fetchEPLMatchesByWeek } from "../../services/Leagues/eplServices";
 import { getTeamLogoByKey } from "../../services/teamlogo";
 import { fetchFinalScoresIfMissing } from "./fetchFinalScoresIfMissing";
-import matchData from "../../../public/data/2026/esp.json";
-import teamData from "../../../public/data/teams/esp.json";
+import matchData from "../../../public/data/2026/epl.json";
+import teamData from "../../../public/data/teams/epl.json";
 import { useNavigate } from "react-router-dom";
 
 
 
-const LaLigaMatchdaysWithSidebar = () => {
+const EPLMatchdaysWithSidebar = () => {
   const navigate = useNavigate();
   const tabRefs = useRef<Record<number, HTMLButtonElement | null>>({});
   const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -132,7 +132,7 @@ const LaLigaMatchdaysWithSidebar = () => {
     };
 
    const load = async () => {
-      const grouped = await fetchLaLigaMatchesByWeek();
+      const grouped = await fetchEPLMatchesByWeek();
 
       // ✅ Patch scores using BoxScore API
       for (const [week, matches] of Object.entries(grouped)) {
@@ -182,7 +182,7 @@ const LaLigaMatchdaysWithSidebar = () => {
 
       const logoEntries = await Promise.all(
         Array.from(keys).map(async (key) => {
-          const logo = await getTeamLogoByKey("esp", key);
+          const logo = await getTeamLogoByKey("EPL", key);
           return [key, logo] as const;
         })
       );
@@ -219,7 +219,7 @@ const LaLigaMatchdaysWithSidebar = () => {
   });
 
   return (
-    <div className="LaLiga-layout container-fluid">
+    <div className="EPL-layout container-fluid">
   <div className="content-wrapper d-flex flex-column flex-lg-row gap-4">
     {/* Left: Matchdays */}
     <div className="matchdays-section flex-grow-1">
@@ -290,11 +290,11 @@ const LaLigaMatchdaysWithSidebar = () => {
                   style={{ cursor: "pointer" }}
                   onClick={() =>
                     navigate(
-                      `/livematch?matchId=${match.GameId}&competition=ESP`
+                      `/livematch?matchId=${match.GameId}&competition=EPL`
                     )
                   }
                 >
-                  <div className="match-header d-flex justify-content-between align-items-center mb-3">
+                  <div className="match-header d-flex justify-content-between align-items-center mb-2">
                     <small className="text-muted">
                       {displayDate} | {displayTime}
                     </small>
@@ -342,7 +342,7 @@ const LaLigaMatchdaysWithSidebar = () => {
     {/* Right: Standings */}
     <div className="standings-section d-flex flex-column">
       <div className="table-sidebar flex-grow-1 d-flex flex-column">
-        <h5 className="fw-bold mb-3">LaLiga Standings</h5>
+        <h5 className="fw-bold mb-3">EPL Standings</h5>
         <div className="standings-scroll flex-grow-1 overflow-auto">
           <table className="standings-table">
             <thead>
@@ -382,7 +382,7 @@ const LaLigaMatchdaysWithSidebar = () => {
 
   {/* Styles */}
   <style jsx>{`
-    .LaLiga-layout {
+    .EPL-layout {
       padding-top: 20px;
     }
 
@@ -415,7 +415,7 @@ const LaLigaMatchdaysWithSidebar = () => {
       background: #f8f9fa;
       border-radius: 6px;
       padding: 16px;
-      box-shadow: 0 1px 4px rgba(217, 63, 25, 0.71);
+      box-shadow: 0 1px 4px rgba(114, 96, 96, 0.29);
       height: 100%;
     }
       .scroll-wrapper {
@@ -500,7 +500,7 @@ const LaLigaMatchdaysWithSidebar = () => {
     }
 
     .tab-button.active {
-      background: rgba(255, 0, 0, 0.73);
+      background: rgba(62, 2, 98, 1);
       color: white;
     }
 
@@ -535,7 +535,7 @@ const LaLigaMatchdaysWithSidebar = () => {
       background: #f8f9fa;
       border-radius: 6px;
       padding: 12px;
-      box-shadow: 0 1px 2px rgba(204, 60, 16, 0.88);
+      box-shadow: 0 1px 2px rgba(78, 1, 130, 0.88);
     }
 
     .match-header {
@@ -569,7 +569,7 @@ const LaLigaMatchdaysWithSidebar = () => {
 }
 
 .match-box:hover {
-  box-shadow: 0 2px 8px rgba(218, 86, 41, 0.5);
+  box-shadow: 0 2px 8px rgba(116, 2, 182, 0.5);
 }
 
 
@@ -587,7 +587,7 @@ const LaLigaMatchdaysWithSidebar = () => {
         background: #f8f9fa;
         border-radius: 6px;
         padding: 12px;
-      box-shadow: 0 1px 2px rgba(194, 37, 28, 0.88);
+      box-shadow: 0 1px 2px rgba(78, 1, 130, 0.88);
       }
 
       .match-header {
@@ -616,4 +616,4 @@ const LaLigaMatchdaysWithSidebar = () => {
   );
 };
 
-export default LaLigaMatchdaysWithSidebar;
+export default EPLMatchdaysWithSidebar;
