@@ -2,8 +2,6 @@ import { useEffect, useState ,useRef  } from "react";
 import { fetchdebMatchesByWeek } from "../../services/Leagues/DEBServices";
 import { getTeamLogoByKey } from "../../services/teamlogo";
 import { fetchFinalScoresIfMissing } from "./fetchFinalScoresIfMissing";
-import matchData from "../../../public/data/2026/deb.json";
-import teamData from "../../../public/data/teams/deb.json";
 import { useNavigate } from "react-router-dom";
 
 
@@ -63,137 +61,140 @@ const BundesligaMatchdaysWithSidebar = () => {
 
 
   useEffect(() => {
-    const generateStandings = () => {
-      const teamIdsSet = new Set<number>();
-      matchData.forEach((match: any) => {
-        teamIdsSet.add(match.HomeTeamId);
-        teamIdsSet.add(match.AwayTeamId);
-      });
-
-      const participatingTeams = teamData.filter((team: any) =>
-        teamIdsSet.has(team.TeamId)
-      );
-
-      const standingsMap: Record<number, any> = {};
-
-      // Initialize all participating teams with 0 stats
-      participatingTeams.forEach((team) => {
-        standingsMap[team.TeamId] = {
-          teamId: team.TeamId,
-          MP: 0,
-          W: 0,
-          D: 0,
-          L: 0,
-          PT: 0,
+       const load = async () => {
+          // ✅ Fetch static JSON files from public folder
+          const [matchRes, teamRes] = await Promise.all([
+            fetch("/data/2026/deb.json"),
+            fetch("/data/teams/deb.json"),
+          ]);
+    
+          const matchData = await matchRes.json();
+          const teamData = await teamRes.json();
+    
+          // ✅ Move your generateStandings function inside this block
+          const generateStandings = () => {
+            const teamIdsSet = new Set<number>();
+            matchData.forEach((match: any) => {
+              teamIdsSet.add(match.HomeTeamId);
+              teamIdsSet.add(match.AwayTeamId);
+            });
+    
+            const participatingTeams = teamData.filter((team: any) =>
+              teamIdsSet.has(team.TeamId)
+            );
+    
+            const standingsMap: Record<number, any> = {};
+            participatingTeams.forEach((team) => {
+              standingsMap[team.TeamId] = {
+                teamId: team.TeamId,
+                MP: 0,
+                W: 0,
+                D: 0,
+                L: 0,
+                PT: 0,
+              };
+            });
+    
+            matchData.forEach((match: any) => {
+              if (match.Status !== "Final") return;
+              const { HomeTeamId, AwayTeamId, Points } = match;
+    
+              standingsMap[HomeTeamId].MP += 1;
+              standingsMap[AwayTeamId].MP += 1;
+    
+              const homePts = Points?.[HomeTeamId.toString()] || 0;
+              const awayPts = Points?.[AwayTeamId.toString()] || 0;
+    
+              standingsMap[HomeTeamId].PT += homePts;
+              standingsMap[AwayTeamId].PT += awayPts;
+    
+              if (homePts === 3) {
+                standingsMap[HomeTeamId].W += 1;
+                standingsMap[AwayTeamId].L += 1;
+              } else if (awayPts === 3) {
+                standingsMap[AwayTeamId].W += 1;
+                standingsMap[HomeTeamId].L += 1;
+              } else if (homePts === 1 && awayPts === 1) {
+                standingsMap[HomeTeamId].D += 1;
+                standingsMap[AwayTeamId].D += 1;
+              }
+            });
+    
+            const sorted = Object.values(standingsMap).sort((a: any, b: any) => {
+              if (b.PT !== a.PT) return b.PT - a.PT;
+              if (b.W !== a.W) return b.W - a.W;
+              return a.teamId - b.teamId;
+            });
+    
+            return sorted.map((team: any) => ({
+              ...team,
+              logo:
+                teamData.find((t: any) => t.TeamId === team.teamId)?.WikipediaLogoUrl ||
+                "/placeholder-logo.png",
+              name:
+                teamData.find((t: any) => t.TeamId === team.teamId)?.Key || "Unknown",
+            }));
+          };
+    
+          const grouped = await fetchLaLigaMatchesByWeek();
+    
+          for (const [week, matches] of Object.entries(grouped)) {
+            const patched = await fetchFinalScoresIfMissing(matches);
+            grouped[week] = patched;
+          }
+    
+          setMatchdays(grouped);
+          setStandings(generateStandings());
+    
+          const today = new Date();
+          let closestWeek = 1;
+          let smallestDiff = Infinity;
+    
+          for (const [weekStr, matches] of Object.entries(grouped)) {
+            const week = Number(weekStr);
+            for (const match of matches) {
+              const matchDate = new Date((match.DateTime || match.Date) + "Z");
+              const matchDay = new Date(matchDate.toDateString());
+              const todayDay = new Date(today.toDateString());
+    
+              if (matchDay.getTime() === todayDay.getTime()) {
+                closestWeek = week;
+                smallestDiff = 0;
+                break;
+              }
+    
+              const diff = Math.abs(matchDay.getTime() - todayDay.getTime());
+              if (diff < smallestDiff) {
+                smallestDiff = diff;
+                closestWeek = week;
+              }
+            }
+    
+            if (smallestDiff === 0) break;
+          }
+    
+          setActiveWeek(closestWeek);
+    
+          const allMatches = Object.values(grouped).flat();
+          const keys = new Set<string>();
+          allMatches.forEach((match: any) => {
+            keys.add(match.HomeTeamKey);
+            keys.add(match.AwayTeamKey);
+          });
+    
+          const logoEntries = await Promise.all(
+            Array.from(keys).map(async (key) => {
+              const logo = await getTeamLogoByKey("deb", key);
+              return [key, logo] as const;
+            })
+          );
+    
+          setLogos(Object.fromEntries(logoEntries));
         };
-      });
-
-      // Update stats from match data
-      matchData.forEach((match: any) => {
-        if (match.Status !== "Final") return;
-
-        const { HomeTeamId, AwayTeamId, Points } = match;
-
-        standingsMap[HomeTeamId].MP += 1;
-        standingsMap[AwayTeamId].MP += 1;
-
-        const homePts = Points?.[HomeTeamId.toString()] || 0;
-        const awayPts = Points?.[AwayTeamId.toString()] || 0;
-
-        standingsMap[HomeTeamId].PT += homePts;
-        standingsMap[AwayTeamId].PT += awayPts;
-
-        if (homePts === 3) {
-          standingsMap[HomeTeamId].W += 1;
-          standingsMap[AwayTeamId].L += 1;
-        } else if (awayPts === 3) {
-          standingsMap[AwayTeamId].W += 1;
-          standingsMap[HomeTeamId].L += 1;
-        } else if (homePts === 1 && awayPts === 1) {
-          standingsMap[HomeTeamId].D += 1;
-          standingsMap[AwayTeamId].D += 1;
-        }
-      });
-
-      const sorted = Object.values(standingsMap).sort((a: any, b: any) => {
-        if (b.PT !== a.PT) return b.PT - a.PT;
-        if (b.W !== a.W) return b.W - a.W;
-        return a.teamId - b.teamId;
-      });
-
-      return sorted.map((team: any) => ({
-        ...team,
-        logo:
-          teamData.find((t: any) => t.TeamId === team.teamId)?.WikipediaLogoUrl ||
-          "/placeholder-logo.png",
-        name:
-          teamData.find((t: any) => t.TeamId === team.teamId)?.Key || "Unknown",
-      }));
-    };
-
-   const load = async () => {
-      const grouped = await fetchdebMatchesByWeek();
-
-      // ✅ Patch scores using BoxScore API
-      for (const [week, matches] of Object.entries(grouped)) {
-        const patched = await fetchFinalScoresIfMissing(matches);
-        grouped[week] = patched;
-      }
-
-      setMatchdays(grouped);
-
-      const today = new Date(); // ⬅️ still keeping as-is
-      let closestWeek = 1;
-      let smallestDiff = Infinity;
-
-      for (const [weekStr, matches] of Object.entries(grouped)) {
-        const week = Number(weekStr);
-
-        for (const match of matches) {
-          const matchDate = new Date((match.DateTime || match.Date) + "Z");
-
-          const matchDay = new Date(matchDate.toDateString());
-          const todayDay = new Date(today.toDateString());
-
-          if (matchDay.getTime() === todayDay.getTime()) {
-            closestWeek = week;
-            smallestDiff = 0;
-            break;
-          }
-
-          const diff = Math.abs(matchDay.getTime() - todayDay.getTime());
-          if (diff < smallestDiff) {
-            smallestDiff = diff;
-            closestWeek = week;
-          }
-        }
-
-        if (smallestDiff === 0) break;
-      }
-
-      setActiveWeek(closestWeek);
-
-      const allMatches = Object.values(grouped).flat();
-      const keys = new Set<string>();
-      allMatches.forEach((match: any) => {
-        keys.add(match.HomeTeamKey);
-        keys.add(match.AwayTeamKey);
-      });
-
-      const logoEntries = await Promise.all(
-        Array.from(keys).map(async (key) => {
-          const logo = await getTeamLogoByKey("deb", key);
-          return [key, logo] as const;
-        })
-      );
-
-      setLogos(Object.fromEntries(logoEntries));
-    };
-
-
-    load();
-    setStandings(generateStandings());
-  }, []);
+    
+        load();
+      }, []);
+    
 
   const weeks = Object.keys(matchdays).map(Number).sort((a, b) => a - b);
   // ✅ 1. Place the function BEFORE usage
