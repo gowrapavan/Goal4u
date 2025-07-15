@@ -74,9 +74,9 @@ const Footer = () => {
                 </div>
                 <div className="col-4">
                   <ul>
-                    <li><a href="#">Premier League</a></li>
-                    <li><a href="#">La Liga</a></li>
-                    <li><a href="#">Bundesliga</a></li>
+                <li><a href="/league/EPL">Premier League</a></li>
+                <li><a href="/league/laliga">La Liga</a></li>
+                <li><a href="/league/bundesliga">Bundesliga</a></li>
                   </ul>
                 </div>
               </div>
