@@ -1,7 +1,18 @@
 [build]
-  functions = "netlify/functions"
-  command = "npm run build"
   publish = "dist"
+  command = "npm run build"
+  functions = "netlify/functions"
+
+# Exclude sitemap.xml and robots.txt from redirect
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
 
 [[redirects]]
   from = "/*"
@@ -12,30 +23,14 @@
   for = "/sitemap.xml"
   [headers.values]
     Content-Type = "application/xml"
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=86400"
+    X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer-when-downgrade"
     Permissions-Policy = "geolocation=(), microphone=()"
-    X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
 [[headers]]
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain"
-    Cache-Control = "public, max-age=86400"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "no-referrer-when-downgrade"
-    Permissions-Policy = "geolocation=(), microphone=()"
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "no-referrer-when-downgrade"
-    Permissions-Policy = "geolocation=(), microphone=()"
-    X-XSS-Protection = "1; mode=block"
