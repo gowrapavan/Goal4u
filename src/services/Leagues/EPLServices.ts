@@ -11,6 +11,7 @@ export interface Match {
   Status: string;
 }
 
+
 export const fetchEPLMatchesByWeek = async (): Promise<Record<number, Match[]>> => {
   try {
     const response = await axios.get("/data/2026/EPL.json");
