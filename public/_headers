@@ -1,2 +1,10 @@
 /sitemap.xml
   Content-Type: application/xml
+
+/*
+  Cache-Control: public, max-age=86400
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+  Permissions-Policy: geolocation=(), microphone=()
+  X-XSS-Protection: 1; mode=block
