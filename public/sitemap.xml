@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->
   <url><loc>https://goal4u.netlify.app/</loc></url>
   <url><loc>https://goal4u.netlify.app/about</loc></url>
   <url><loc>https://goal4u.netlify.app/fixtures</loc></url>
@@ -8,19 +7,11 @@
   <url><loc>https://goal4u.netlify.app/livetv</loc></url>
   <url><loc>https://goal4u.netlify.app/livematch</loc></url>
   <url><loc>https://goal4u.netlify.app/bracket</loc></url>
-
-  <!-- Teams / Players -->
   <url><loc>https://goal4u.netlify.app/clubs</loc></url>
   <url><loc>https://goal4u.netlify.app/players</loc></url>
-  <url><loc>https://goal4u.netlify.app/club</loc></url> <!-- Consider adding dynamic variations manually -->
-
-  <!-- League Pages -->
+  <url><loc>https://goal4u.netlify.app/club</loc></url>
   <url><loc>https://goal4u.netlify.app/league/laliga</loc></url>
   <url><loc>https://goal4u.netlify.app/league/standings</loc></url>
-
-  <!-- Special Pages -->
   <url><loc>https://goal4u.netlify.app/MultipleTV</loc></url>
   <url><loc>https://goal4u.netlify.app/koora</loc></url>
-
-  <!-- 404 not included since it's not useful for search indexing -->
 </urlset>

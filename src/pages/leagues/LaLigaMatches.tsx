@@ -64,7 +64,7 @@ const LaLigaMatchdaysWithSidebar = () => {
     const load = async () => {
       // ✅ Fetch static JSON files from public folder
       const [matchRes, teamRes] = await Promise.all([
-        fetch("/data/2026/esp.json"),
+        fetch("/public/data/2026/esp.json"),
         fetch("/data/teams/esp.json"),
       ]);
 
@@ -557,6 +557,16 @@ const LaLigaMatchdaysWithSidebar = () => {
     border: none;
     box-shadow: none;
     background: none;
+  }
+     @media (max-width: 268px) {
+     strong {
+      font-size: 0.65rem; /* or 0.75rem or whatever you prefer */
+      font-weight: 600; /* optional: reduce boldness */
+    }
+      .match-header {
+        font-size: 0.3rem;
+      }
+
   }
       @media (max-width: 858px) {
       .match-header {

@@ -136,7 +136,7 @@ const EPLMatchdaysWithSidebar = () => {
           }));
         };
   
-        const grouped = await fetchLaLigaMatchesByWeek();
+        const grouped = await fetchEPLMatchesByWeek();
   
         for (const [week, matches] of Object.entries(grouped)) {
           const patched = await fetchFinalScoresIfMissing(matches);

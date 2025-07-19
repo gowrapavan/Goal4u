@@ -136,7 +136,7 @@ const BundesligaMatchdaysWithSidebar = () => {
             }));
           };
     
-          const grouped = await fetchLaLigaMatchesByWeek();
+          const grouped = await fetchdebMatchesByWeek();
     
           for (const [week, matches] of Object.entries(grouped)) {
             const patched = await fetchFinalScoresIfMissing(matches);
@@ -573,6 +573,16 @@ const BundesligaMatchdaysWithSidebar = () => {
   box-shadow: 0 2px 8px rgba(182, 2, 2, 0.5);
 }
 
+    @media (max-width: 268px) {
+     strong {
+      font-size: 0.65rem; /* or 0.75rem or whatever you prefer */
+      font-weight: 600; /* optional: reduce boldness */
+    }
+      .match-header {
+        font-size: 0.3rem;
+      }
+
+  }
 
     @media (max-width: 768px) {
       .match-grid {
