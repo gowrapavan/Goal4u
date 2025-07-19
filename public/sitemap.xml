@@ -6,6 +6,7 @@
                       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- Main Pages -->
+   
   <url>
     <loc>https://goal4u.netlify.app/</loc>
     <lastmod>2025-07-19</lastmod>
