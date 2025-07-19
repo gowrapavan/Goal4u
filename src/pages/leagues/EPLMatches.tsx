@@ -1,5 +1,5 @@
 import { useEffect, useState ,useRef  } from "react";
-import { fetchEPLMatchesByWeek } from "../../services/Leagues/eplservices";
+import { fetchEPLMatchesByWeek } from "../../services/Leagues/eplServices";
 import { getTeamLogoByKey } from "../../services/teamlogo";
 import { fetchFinalScoresIfMissing } from "./fetchFinalScoresIfMissing";
 import { useNavigate } from "react-router-dom";
