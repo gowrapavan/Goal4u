@@ -4,7 +4,9 @@ import requests
 from datetime import datetime, timedelta
 
 # === CONFIG ===
-API_KEY = 'AIzaSyCNqe4uWVgti_ZHBSI8_kKero_I6xf7qYk'  # Replace with your actual API key
+API_KEY = 'AIzaSyAsr9lyCtfa3xizgzs3x4LqYsKHhZuOpzY'  # Replace with your actual API key
+#API_KEY = 'AIzaSyCNqe4uWVgti_ZHBSI8_kKero_I6xf7qYk'  # gowraapi
+
 OUTPUT_DIR = 'shorts_data'
 OUTPUT_FILE = 'shorts.json'
 
@@ -29,7 +31,7 @@ CHANNEL_IDS = [
   'UCI4hFxNmsvfkus2-XC9MOng',
 
  #Popular Leagues & Competitions
-  'UCTv-XvfzLX3i4IGWAm4sbmA', #LaLiga
+  #'UCTv-XvfzLX3i4IGWAm4sbmA', #LaLiga not alowed
   'UCG5qGWdu8nIRZqJ_GgDwQ-w', #Premier League
   'UCU2PacFf99vhb3hNiYDmxww', #Champions League (UEFA)
 
@@ -46,6 +48,11 @@ CHANNEL_IDS = [
   'UCYo7yOTANHumC7XhvnwBQmA', #Inter Milan (alt)
   'UCemavGDC7r4G4kMra5WmX-g', #Beşiktaş JK
   'UCLSG2HDiE65l2Fl4jSl6eta', #Al Ahly SC
+  'UCnpdLn1-k-DcyWi0bNezRig',
+'UCUGj4_2zT8gY_O_xaiCsR6A',
+'UCL6KKxaCCnOJFaxV53Clp1A',
+'UC_apha4piyJCHSuYZbSi8uA',
+'UCeBYAZ84AQA2WVHGjpKRy7A',
 ]
 
 
