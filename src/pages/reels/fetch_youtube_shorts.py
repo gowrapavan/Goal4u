@@ -24,6 +24,9 @@ CHANNEL_IDS = [
   'UC2bW_AY9BlbYLGJSXAbjS4Q',
   'UCWsDFcIhY2DBi3GB5uykGXA',
   'UCQBxzdEPXjy05MtpfbdtMxQ',
+  'UCSZbXT5TLLW_i-5W8FZpFsg',
+
+  'UCI4hFxNmsvfkus2-XC9MOng',
 
  #Popular Leagues & Competitions
   'UCTv-XvfzLX3i4IGWAm4sbmA', #LaLiga
@@ -47,8 +50,8 @@ CHANNEL_IDS = [
 
 
 SEARCH_QUERY = 'highlights'
-MAX_RESULTS = 10
-DAYS_BACK = 30
+MAX_RESULTS = 30
+DAYS_BACK = 60
 
 # === FUNCTIONS ===
 def get_recent_date(days_back):
@@ -78,7 +81,8 @@ def fetch_shorts(channel_id):
     return [{
         'videoId': item['id']['videoId'],
         'title': item['snippet']['title'],
-        'uploadDate': item['snippet']['publishedAt'],  # ✅ Add this line
+        'uploadDate': item['snippet']['publishedAt'],
+        'channelName': item['snippet']['channelTitle'],  # ✅ Added channel name here
         'embedUrl': f"https://www.youtube.com/embed/{item['id']['videoId']}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0"
     } for item in items]
 
