@@ -1,123 +1,4 @@
-import React, { useRef } from "react";
-import { ChevronRight } from "lucide-react"; // or the appropriate package
-import playersData from "../../public/data/players/players.json";
-import { Helmet } from "react-helmet-async";
-
-
-const PlayersByClub = () => {
-   const scrollRefs = useRef({});
-
-  const scrollToNext = (teamIndex) => {
-    const container = scrollRefs.current[teamIndex];
-    if (container) {
-      const cardWidth = 146; // card width + margin
-      const scrollAmount = cardWidth * 2;
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
-  const getCompetitionFlag = (comp) => {
-    const flags = {
-      BRA: "🇧🇷", ARG: "🇦🇷", GER: "🇩🇪", FRA: "🇫🇷",
-      ESP: "🇪🇸", ENG: "🇬🇧", POR: "🇵🇹", ITA: "🇮🇹",
-      NED: "🇳🇱", BEL: "🇧🇪", POL: "🇵🇱", CRO: "🇭🇷",
-      URU: "🇺🇾", COL: "🇨🇴", CHI: "🇨🇱"
-    };
-    return flags[comp] || "⚽";
-  };
-
-  const getCardStyleByCompetition = (comp) => {
-    switch (comp) {
-      case "BRA": return { background: "linear-gradient(145deg, #009b3a, #ffcc29)", color: "#000" };
-      case "ARG": return { background: "linear-gradient(145deg, #75aadb, #fefefe)", color: "#000" };
-      case "GER": return { background: "linear-gradient(145deg, #000, #dd0000, #ffcc00)", color: "#000" };
-      case "FRA": return { background: "linear-gradient(145deg, #0055a4, #fff, #ef4135)", color: "#000" };
-      case "ESP": return { background: "linear-gradient(145deg, #aa151b, #f1bf00)", color: "#000" };
-      case "ENG": return { background: "linear-gradient(145deg, #00247d, #ffffff)", color: "#000" };
-      case "POR": return { background: "linear-gradient(145deg, #006600, #ff0000)", color: "#000" };
-      case "ITA": return { background: "linear-gradient(145deg, #008C45, #F4F5F0, #CD212A)", color: "#000" };
-      case "NED": return { background: "linear-gradient(145deg, #21468B, #FFFFFF, #AE1C28)", color: "#000" };
-      case "BEL": return { background: "linear-gradient(145deg, #000000, #FFD700, #FF0000)", color: "#000" };
-      case "POL": return { background: "linear-gradient(145deg, #dc143c, #ffffff)", color: "#000" };
-      case "CRO": return { background: "linear-gradient(145deg, #ffffff, #ff0000)", color: "#000" };
-      case "URU": return { background: "linear-gradient(145deg, #68add8, #fff)", color: "#000" };
-      case "COL": return { background: "linear-gradient(145deg, #ffe000, #0033a0, #ce1126)", color: "#000" };
-      case "CHI": return { background: "linear-gradient(145deg, #0033a0, #ffffff, #d52b1e)", color: "#000" };
-      default: return { background: "linear-gradient(145deg, #ddd, #bbb)", color: "#000" };
-    }
-  };
-
-  return (
-        <>
-        <Helmet>
-          <title>Football Stars by Club & Country | Goal4U</title>
-          <meta            name="description"            content="Explore top football players grouped by clubs and national competitions—view stats, photos, and career insights on Goal4U."
-          />
-          <meta property="og:title" content="Top Football Players by Club — Goal4U" />
-          <meta
-            property="og:description"
-            content="Get to know players by club, league, and nationality. Detailed profiles including goals, career span, and physical stats."
-          />
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://goal4u.netlify.app/players" />
-          <meta property="og:image" content="https://goal4u.netlify.app/assets/img/og-players.jpg" />
-          <link rel="canonical" href="https://goal4u.netlify.app/players" />
-        </Helmet>
-
-    <div className="players-wrapper">
-      {playersData.map((group, index) => (
-        <div key={index} className="team-block">
-          
-          <h2 className="team-title">{group.teamGroup}</h2>
-
-          <div className="players-scroll-container">
-            <div className="players-row">
-              {group.players.map((player) => (
-                <div
-                  key={player.JerseyNo}
-                  className="card"
-                  style={getCardStyleByCompetition(player.Competition)}
-                >
-                  <div
-                    className="card-img"
-                    style={{ backgroundImage: `url(${player.PhotoUrl})` }}
-                  >
-                    <span className="badge">{player.JerseyNo}</span>
-                    <span className="flag-overlay">{getCompetitionFlag(player.Competition)}</span>
-                    <img className="team-logo" src={player.TeamLogo} alt={player.Team} />
-                  </div>
-
-                  <div className="card-content">
-                  <h3 className="player-name">{player.Name}</h3>
-                  <div className="main-line">
-                    {getCompetitionFlag(player.Competition)} ⚽ {player.Goals} • {player.Position}
-                  </div>
-                  <div className="career-span">{player.CareerSpan}</div>
-                  <div className="physical-stats">
-                    <span>{player.Height}</span>
-                    <span>{player.Weight}</span>
-                    <span>{new Date().getFullYear() - new Date(player.DOB).getFullYear()}y</span>
-                  </div>
-                </div>
-
-                </div>
-              ))}
-            </div>
-            <button 
-              className="scroll-indicator"
-              onClick={() => scrollToNext(index)}
-              aria-label="Scroll to next players"
-            >
-              <ChevronRight size={24} />
-            </button>          
-            </div>
-        </div>
-      ))}
-
-     <style jsx>{`
-  .players-wrapper {
+ .players-wrapper {
     padding: 30px 16px;
     font-family: 'Segoe UI', sans-serif;
   }
@@ -294,7 +175,7 @@ const PlayersByClub = () => {
 /* Small Desktops */
 @media (min-width: 1400px) {
   .players-row {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
 }
 
@@ -304,7 +185,40 @@ const PlayersByClub = () => {
     grid-template-columns: repeat(9, 1fr);
   }
 }
-  
+ 
+
+.expand-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.expand-toggle {
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.expand-toggle:hover {
+  background: #ddd;
+}
+
+@media screen and (max-width: 768px) {
+  .expand-toggle-wrapper {
+    display: none;
+  }
+}
+
+
 
 
 /* Large Desktops or Zoomed-Out Views */
@@ -445,14 +359,4 @@ const PlayersByClub = () => {
                       0 0 0 6px rgba(34, 197, 94, 0.2);
         }
       }
-    }
-  }
-`}</style>
-
-
-    </div>
-        </>
-  );
-};
-
-export default PlayersByClub;
+    

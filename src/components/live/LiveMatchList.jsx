@@ -186,10 +186,67 @@ const LiveMatchList = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-muted">No matches found for the selected date.</p>
-      )}
+          <div className="no-matches-placeholder">
+            <div className="animation-container">
+              <div className="ball"></div>
+            </div>
+            <h5 style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
+              No matches found for the selected date ⚽
+            </h5>
+            <p style={{ color: "#777", fontSize: "0.9rem" }}>
+              Please check back later or choose another date.
+            </p>
+          </div>      )}
 
-      <style jsx>{/* 👇 your styles unchanged */ `
+      <style jsx>{
+       /* 👇 your styles unchanged */ 
+
+      
+      
+      
+      
+      /* 👇 your styles unchanged */ `
+
+      .no-matches-placeholder {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  animation: fadeIn 0.4s ease-in-out;
+  margin-top: 1.5rem;
+}
+
+.animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.ball {
+  width: 60px;
+  height: 60px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/861/861512.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
         .match-header {
           position: relative;
           display: flex;
@@ -210,12 +267,28 @@ const LiveMatchList = () => {
           .match-header .match-center-text {
             display: none;
           }
+            .ball {
+          width: 160px;
+          height: 160px;
+          background-image: url('https://cdn-icons-png.flaticon.com/512/861/861512.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          animation: bounce 1.4s ease-in-out infinite;
+        }
+          .animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 164px;
+  margin-bottom: 1rem;
+}
         }
 
         .match-center-text {
           flex: 1;
           text-align: center;
         }
+          
 
         .goals-result img {
           width: 30px;

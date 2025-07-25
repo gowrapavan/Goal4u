@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 API_KEY = "9578f3077e264f6f8ef67fb61998f6d8"
 COMPETITIONS = ["ucl"]
-YEAR = "2025"
+YEAR = "2026"
 SAVE_DIR = f"./2026"
 
 os.makedirs(SAVE_DIR, exist_ok=True)

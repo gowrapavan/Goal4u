@@ -22,7 +22,7 @@ import MobileNav from './components/MobileNav';
 import LiveTV from './components/live/LiveTv';
 import ScrollToTop from './components/common/ScrollToTop';
 import FloatButton from './components/common/FloatButton';
-import PlayersByClub from './components/Player';
+import PlayersByClub from './pages/Players/Player';
 import Team from './components/team/Team';
 import TeamProfile from './components/team/TeamProfile';
 import LaLiga from './pages/leagues/LaLiga';

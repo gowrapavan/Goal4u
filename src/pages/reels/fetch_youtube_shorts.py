@@ -58,7 +58,7 @@ CHANNEL_IDS = [
 
 SEARCH_QUERY = 'highlights'
 MAX_RESULTS = 30
-DAYS_BACK = 60
+DAYS_BACK = 6
 
 # === FUNCTIONS ===
 def get_recent_date(days_back):
