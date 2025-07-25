@@ -64,7 +64,7 @@ const LaLigaMatchdaysWithSidebar = () => {
     const load = async () => {
       // ✅ Fetch static JSON files from public folder
       const [matchRes, teamRes] = await Promise.all([
-        fetch("/public/data/2026/esp.json"),
+        fetch("/data/2026/esp.json"),
         fetch("/data/teams/esp.json"),
       ]);
 
