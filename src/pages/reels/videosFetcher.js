@@ -67,20 +67,21 @@ export const fetchNextVideosBatch = async () => {
     };
   }
 
-  const nextBatch = allShuffledVideos
-    .slice(currentIndex, currentIndex + BATCH_SIZE)
-    .map((item, index) => ({
-      id: `${item.videoId}-${Date.now()}-${currentIndex + index}`,
-      type: 'youtube',
-      src: item.embedUrl?.includes("autoplay=1")
-  ? item.embedUrl
-  : `https://www.youtube.com/embed/${item.videoId}?autoplay=1&controls=1&modestbranding=1`,
+ const nextBatch = allShuffledVideos
+  .slice(currentIndex, currentIndex + BATCH_SIZE)
+  .map((item, index) => ({
+    id: `${item.videoId}-${Date.now()}-${currentIndex + index}`,
+    type: 'youtube',
+    src: item.embedUrl?.includes("autoplay=1")
+      ? item.embedUrl
+      : `https://www.youtube.com/embed/${item.videoId}?autoplay=1&controls=1&modestbranding=1`,
+    uploadDate: item.uploadDate || null,
+    title: item.title || '',
+    channelName: item.channelName || 'Unknown',
+    thumbnail: `https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`,
+    channelLogo: item.channelLogo || '/default-avatar.png', // ✅ ADD THIS LINE
+  }));
 
-      uploadDate: item.uploadDate || null,
-      title: item.title || '',
-      channelName: item.channelName || 'Unknown',
-      thumbnail: `https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`, // ✅ Add thumbnail
-    }));
 
   currentIndex += BATCH_SIZE;
 

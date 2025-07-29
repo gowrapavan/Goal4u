@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { fetchNextVideosBatch } from './videosFetcher'; // adjust if needed
+import { fetchNextVideosBatch } from './videosFetcher'; // Adjust path if needed
+import './Video.css';
 
 const truncate = (str, max = 60) =>
   str.length > max ? str.slice(0, max).trim() + '…' : str;
 
+const formatDate = (isoDate) => {
+  const d = new Date(isoDate);
+  return d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+
 const Video = () => {
   const [videos, setVideos] = useState([]);
   const [mainVideo, setMainVideo] = useState(null);
+  const [batchIndex, setBatchIndex] = useState(0);
 
   useEffect(() => {
     const loadInitialBatch = async () => {
-      const { newVideos } = await fetchNextVideosBatch();
+      const { newVideos } = await fetchNextVideosBatch(batchIndex);
       setVideos(newVideos);
       if (newVideos.length > 0) setMainVideo(newVideos[0]);
     };
     loadInitialBatch();
-  }, []);
+  }, [batchIndex]);
 
   const handleSelectVideo = (video) => {
     setMainVideo(video);
+  };
+
+  const handleLoadMore = async () => {
+    const nextIndex = batchIndex + 1;
+    const { newVideos } = await fetchNextVideosBatch(nextIndex);
+    setVideos((prev) => [...prev, ...newVideos]);
+    setBatchIndex(nextIndex);
   };
 
   if (!mainVideo) return <p>Loading...</p>;
@@ -44,8 +62,23 @@ const Video = () => {
           {/* Info */}
           <div className="video-info">
             <h2>{mainVideo.title}</h2>
-            <p>{mainVideo.channelName || 'Unknown Channel'}</p>
-            <p>Uploaded on {mainVideo.uploadDate}</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {mainVideo.channelLogo && (
+                <img
+                  src={mainVideo.channelLogo}
+                  alt={`Logo of ${mainVideo.channelName || 'Unknown Channel'}`}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/assets/img/6.svg';
+                  }}
+                  style={{ width: '32px', height: '32px', borderRadius: '50%' }}
+                />
+              )}
+              <p>{mainVideo.channelName || 'Unknown Channel'}</p>
+              <span style={{ color: '#888', marginLeft: 'auto' }}>
+                {formatDate(mainVideo.uploadDate)}
+              </span>
+            </div>
           </div>
 
           {/* Comments */}
@@ -55,7 +88,7 @@ const Video = () => {
           </div>
         </div>
 
-        {/* Related beside comments */}
+        {/* Related Videos Sidebar */}
         <div className="related-side">
           {relatedAboveFold.map((video) => (
             <div
@@ -73,8 +106,27 @@ const Video = () => {
                 />
               </div>
               <div className="info">
-                <h4>{truncate(video.title, 40)}</h4>
-                <p>{video.channelName}</p>
+                <h4>{truncate(video.title, 60)}</h4>
+
+                {/* Upload date */}
+                <p className="upload-date">{formatDate(video.uploadDate)}</p>
+
+                {/* Channel info (logo + name) */}
+                <div className="channel-meta">
+                  {video.channelLogo && (
+                    <img
+                      src={video.channelLogo}
+                      alt={`Logo of ${video.channelName || 'Unknown Channel'}`}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/default-avatar.png';
+                      }} style={{ width: '24px', height: '24px', borderRadius: '50%' }}
+
+                      className="related-channel-logo"
+                    />
+                  )}
+                  <p>{video.channelName || 'Unknown Channel'}</p>
+                </div>
               </div>
             </div>
           ))}
@@ -96,189 +148,35 @@ const Video = () => {
               }
               alt={video.title}
             />
-            <div className="grid-info">
-              <p className="title">{truncate(video.title)}</p>
-              <p className="channel">{video.channelName}</p>
+          <div className="grid-info">
+            <p className="title">{truncate(video.title)}</p>
+
+            <div className="channel-meta">
+              {video.channelLogo && (
+                <img
+                  src={video.channelLogo}
+                  alt={`Logo of ${video.channelName || 'Unknown Channel'}`}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/default-avatar.png';
+                  }}style={{ width: '24px', height: '24px', borderRadius: '50%' }}
+                  className="channel-logo"
+                />
+              )}
+              <span className="channel-name">{video.channelName || 'Unknown Channel'}</span>
+              <span className="upload-date">{formatDate(video.uploadDate)}</span>
             </div>
           </div>
+         </div>
         ))}
       </div>
 
-      <button className="load-more">Load More</button>
-
-      {/* CSS */}
-      <style>{`
-        .video-page {
-          max-width: 1300px;
-          margin: auto;
-          padding: 20px;
-          overflow-y: auto;
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-        }
-
-        .top-section {
-          display: flex;
-          flex-direction: row;
-          gap: 20px;
-        }
-
-        .main-column {
-          flex: 2;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .youtube-video {
-          aspect-ratio: 16 / 9;
-          width: 100%;
-          background: #000;
-          border-radius: 8px;
-          overflow: hidden;
-        }
-
-        .youtube-video iframe {
-          width: 100%;
-          height: 100%;
-          border: none;
-        }
-
-        .video-info h2 {
-          margin-bottom: 6px;
-          font-size: 22px;
-        }
-
-        .video-info p {
-          margin: 2px 0;
-          font-size: 14px;
-          color: #666;
-        }
-
-        .video-comments {
-          background: #f9f9f9;
-          padding: 16px;
-          border-radius: 8px;
-          min-height: 100px;
-        }
-
-        .related-side {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .related-item {
-          display: flex;
-          gap: 10px;
-          background: #fff;
-          padding: 6px;
-          border-radius: 6px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-          cursor: pointer;
-        }
-
-        .related-item:hover {
-          background: #f0f0f0;
-        }
-
-        .thumb {
-          width: 120px;
-          height: 68px;
-          border-radius: 4px;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-
-        .thumb img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .info h4 {
-          margin: 0;
-          font-size: 14px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .info p {
-          margin: 2px 0 0;
-          font-size: 12px;
-          color: #555;
-        }
-
-        .bottom-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 20px;
-        }
-
-        .grid-item {
-          display: flex;
-          flex-direction: column;
-          cursor: pointer;
-        }
-
-        .grid-item img {
-          width: 100%;
-          height: 160px;
-          object-fit: cover;
-          border-radius: 6px;
-        }
-
-        .grid-info {
-          margin-top: 8px;
-        }
-
-        .grid-info .title {
-          font-weight: 500;
-          font-size: 14px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .grid-info .channel {
-          font-size: 12px;
-          color: #555;
-        }
-
-        .load-more {
-          align-self: center;
-          margin-top: 20px;
-          padding: 10px 16px;
-          font-size: 14px;
-          border: none;
-          background: #0073ff;
-          color: white;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-
-        .load-more:hover {
-          background: #005ed1;
-        }
-
-        /* Custom Scrollbar */
-        .video-page::-webkit-scrollbar {
-          width: 10px;
-        }
-
-        .video-page::-webkit-scrollbar-thumb {
-          background-color: rgba(0,0,0,0.2);
-          border-radius: 10px;
-        }
-
-        .video-page::-webkit-scrollbar-track {
-          background: transparent;
-        }
-      `}</style>
+      {/* Load More */}
+      <div className="load-more-wrapper">
+        <button className="load-more" onClick={handleLoadMore}>
+          Load More
+        </button>
+      </div>
     </div>
   );
 };

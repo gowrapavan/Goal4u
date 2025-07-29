@@ -133,11 +133,41 @@ const Shorts = () => {
 
   if (loading) return <LoadingSpinner message="Loading football shorts..." />;
 
-  return (
-    <>
-      <div className="reel-feed-wrapper" ref={containerRef}>
-        {reelsData.map((reel, i) => (
-          <div key={reel.id} className="reel-slide" data-index={i}>
+return (
+  <>
+    {!isMobile && (
+      <div className="slide-nav-buttons fixed-buttons">
+        <button
+          onClick={() => scrollToReel(currentReel - 1)}
+          disabled={currentReel === 0}
+          className={`arrow-btn ${currentReel === 0 ? "disabled" : ""}`}
+        >
+          <img
+            src="/assets/img/up-arrow.png"
+            alt="Up"
+            className="nav-arrow"
+            style={{ opacity: currentReel === 0 ? 0.25 : 0.75 }}
+          />
+        </button>
+
+        <button
+          onClick={() => scrollToReel(currentReel + 1)}
+          disabled={currentReel >= reelsData.length - 1}
+          className="arrow-btn"
+        >
+          <img
+            src="/assets/img/down-arrow.png"
+            alt="Down"
+            className="nav-arrow"
+          />
+        </button>
+      </div>
+    )}
+
+    <div className="reel-feed-wrapper" ref={containerRef}>
+      {reelsData.map((reel, i) => (
+        <div key={reel.id} className="reel-slide" data-index={i}>
+          <div className="reel-wrapper-container">
             <div className="reel-wrapper">
               <div className="reel-content">
                 <iframe
@@ -160,17 +190,33 @@ const Shorts = () => {
                   </button>
                 )}
               </div>
-
-              <div className="nav-buttons desktop-only">
-                <button onClick={() => scrollToReel(currentReel - 1)}>↑</button>
-                <button onClick={() => scrollToReel(currentReel + 1)}>↓</button>
-              </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
+
 
       <style>{`
+      .fixed-buttons {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 1000;
+      }
+
+      .arrow-btn:disabled {
+        cursor: default;
+      }
+
+      .arrow-btn.disabled .nav-arrow {
+        pointer-events: none;
+      }
+
         .reel-feed-wrapper {
           height: 100vh;
           overflow-y: scroll;
@@ -194,8 +240,63 @@ const Shorts = () => {
         .reel-wrapper {
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 16px;
+          position: relative;
+            transform: translateX(-30px); /* shift video left */
+
         }
+          .reel-wrapper-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          position: relative;
+        }
+
+
+          .slide-nav-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+
+        .slide-nav-buttons button {
+          background: transparent;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+        }
+
+
+        .nav-arrow {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: rgba(0, 255, 170, 0.15);
+          backdrop-filter: blur(6px);
+          border: 2px solid rgba(0, 255, 170, 0.4);
+          box-shadow: 0 0 10px rgba(0, 255, 170, 0.6);
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-arrow:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(0, 255, 170, 0.8);
+        }
+                  .nav-arrow {
+          opacity: 0.75; /* 25% visible by default */
+          transition: opacity 0.3s ease, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-arrow:hover {
+          opacity: 1; /* fully visible on hover */
+          transform: scale(1.1);
+          box-shadow: 0 0 20px rgba(0, 255, 170, 0.8);
+        }
+
+
+
 
         .reel-content {
           width: 344px;
@@ -247,22 +348,17 @@ const Shorts = () => {
           cursor: pointer;
         }
 
-        .nav-buttons {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(-60%);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(-50%);
+          }
         }
 
-        .nav-buttons button {
-          background: #e50914;
-          border: none;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          font-size: 20px;
-          color: white;
-          cursor: pointer;
-        }
 
         .desktop-only {
           display: flex;

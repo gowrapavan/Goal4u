@@ -5,50 +5,54 @@ import re
 from datetime import datetime, timedelta
 
 # === CONFIG ===
-API_KEY = 'AIzaSyAsr9lyCtfa3xizgzs3x4LqYsKHhZuOpzY'  # Replace with your actual API key
+API_KEY = 'AIzaSyDuXasL2olDdV5w8n65zQSq5FmxknofYww'  # Replace with your actual API key
 
 OUTPUT_DIR = 'videos_data'
 OUTPUT_FILE = 'videos.json'
 
 CHANNEL_IDS = [
-    # Top Clubs
-    'UC14UlmYlSNiQCBe9Eookf_A',  # FC Barcelona
-    'UC8pLs2iN_c9iKOjKZpzb7kQ',  # Real Madrid
-    'UCkzCjdRMrW2vXLx8mvPVLdQ',  # Manchester City
-    'UC9LQwHZoucFT94I2h6JOcjw',  # Liverpool FC
-    'UCt9a_qP9CqHCNwilf-iULag',  # PSG
-    'UCLzKhsxrExAC6yAdtZ-BOWw',  # Juventus
-    'UCKcx1uK38H4AOkmfv4ywlrg',  # AC Milan
-    'UCvXzEblUa0cfny4HAJ_ZOWw',  # Inter Milan
-    'UCSZ21xyG8w_33KriMM69IxQ',
-    'UCooTLkxcpnTNx6vfOovfBFA',
-    'UCd09ztChTkJ9dlY6RLawSog',
-    'UC2bW_AY9BlbYLGJSXAbjS4Q',
-    'UCWsDFcIhY2DBi3GB5uykGXA',
-    'UCQBxzdEPXjy05MtpfbdtMxQ',
-    'UCSZbXT5TLLW_i-5W8FZpFsg',
-    'UCI4hFxNmsvfkus2-XC9MOng',
+ #Top Clubs
+  'UC14UlmYlSNiQCBe9Eookf_A',  # FC Barcelona
+  'UCWV3obpZVGgJ3j9FVhEjF2Q',  # Real Madrid
+  'UCkzCjdRMrW2vXLx8mvPVLdQ',  # Manchester City
+  'UC9LQwHZoucFT94I2h6JOcjw',  # Liverpool FCd
+  'UCt9a_qP9CqHCNwilf-iULag',  # PSG
+  'UCLzKhsxrExAC6yAdtZ-BOWw', #Juventus
+  'UCKcx1uK38H4AOkmfv4ywlrg', #AC Milan
+  'UCvXzEblUa0cfny4HAJ_ZOWw', #Inter Milan
+  'UCSZ21xyG8w_33KriMM69IxQ',
+  'UCooTLkxcpnTNx6vfOovfBFA',
+  'UCd09ztChTkJ9dlY6RLawSog',
+  'UC2bW_AY9BlbYLGJSXAbjS4Q',
+  'UCWsDFcIhY2DBi3GB5uykGXA',
+  'UCQBxzdEPXjy05MtpfbdtMxQ',
+  'UCSZbXT5TLLW_i-5W8FZpFsg',
+  'UCE97AW7eR8VVbVPBy4cCLKg',
+  'UCKvn9VBLAiLiYL4FFJHri6g',
 
-    # Popular Leagues
-    'UCG5qGWdu8nIRZqJ_GgDwQ-w',  # Premier League
-    'UCU2PacFf99vhb3hNiYDmxww',  # UEFA Champions League
 
-    # Other Clubs
-    'UCuzKFwdh7z2GHcIOX_tXgxA',  # Atlético Madrid
-    'UC3Ad7MMhJ1NHAkYbtgbVJ1Q',  # Hamid TV
-    'UCyGa1YEx9ST66rYrJTGIKOw',  # UEFA
-    'UCcclZ7Nbh0U383eP0N-nV0g',  # 433
-    'UCBTy8j2cPy6zw68godcE7MQ',  # AFTV
-    'UCaBCtORHF5R7GZJ-LUiRxiQ',  # Celtic FC
-    'UCMZ_fSGkdkOzqi_MTLhU2kA',  # Borussia Dortmund
-    'UCYo7yOTANHumC7XhvnwBQmA',  # Inter Milan (alt)
-    'UCemavGDC7r4G4kMra5WmX-g',  # Beşiktaş JK
-    'UCLSG2HDiE65l2Fl4jSl6eta',  # Al Ahly SC
-    'UCnpdLn1-k-DcyWi0bNezRig',
-    'UCUGj4_2zT8gY_O_xaiCsR6A',
-    'UCL6KKxaCCnOJFaxV53Clp1A',
-    'UC_apha4piyJCHSuYZbSi8uA',
-    'UCeBYAZ84AQA2WVHGjpKRy7A',
+  'UCI4hFxNmsvfkus2-XC9MOng',
+
+ #Popular Leagues & Competitions
+  #'UCTv-XvfzLX3i4IGWAm4sbmA', #LaLiga not alowed
+  'UCG5qGWdu8nIRZqJ_GgDwQ-w', #Premier League
+  'UCU2PacFf99vhb3hNiYDmxww', #Champions League (UEFA)
+
+ #Other Clubs & Channels
+  'UCuzKFwdh7z2GHcIOX_tXgxA', #Atlético Madrid
+  'UC3Ad7MMhJ1NHAkYbtgbVJ1Q', #Hamid TV (shorts/highlights content)
+  'UCyGa1YEx9ST66rYrJTGIKOw', #UEFA (⚠️ allows embedding, but avoid FIFA content)
+
+ #Additional Safe Channels
+  'UCcclZ7Nbh0U383eP0N-nV0g', #433 (works well)
+  'UCBTy8j2cPy6zw68godcE7MQ', #AFTV
+  'UCK8rTVgp3-MebXkmeJcQb1Q', #Borussia Dortmund
+  'UCvXzEblUa0cfny4HAJ_ZOWw', #Inter Milan (alt)
+  'UCnpdLn1-k-DcyWi0bNezRig',
+'UCUGj4_2zT8gY_O_xaiCsR6A',
+'UCL6KKxaCCnOJFaxV53Clp1A',
+'UC_apha4piyJCHSuYZbSi8uA',
+'UCeBYAZ84AQA2WVHGjpKRy7A',
 ]
 
 SEARCH_QUERY = 'highlights'
@@ -134,12 +138,30 @@ def save_to_json(data, folder, filename):
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"✅ Saved {len(data)} videos to {path}")
 
+def get_channel_name(channel_id):
+    url = "https://www.googleapis.com/youtube/v3/channels"
+    params = {
+        'key': API_KEY,
+        'id': channel_id,
+        'part': 'snippet'
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        items = response.json().get('items', [])
+        if items:
+            return items[0]['snippet']['title']
+    return "Unknown Channel"
+
+
+
 # === MAIN ===
 def main():
     all_videos = []
     for channel_id in CHANNEL_IDS:
-        print(f"📡 Fetching from channel: {channel_id}")
         videos = fetch_videos(channel_id)
+        channel_name = get_channel_name(channel_id)
+        print(f"📡 Fetching from channel: {channel_id} : {channel_name} — {len(videos)} videos were fetched")
+
         all_videos.extend(videos)
 
     save_to_json(all_videos, OUTPUT_DIR, OUTPUT_FILE)
