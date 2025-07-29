@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Video from './Video';
+import VideoShorts from './video-short';
+
 import Shorts from './Shorts';
 
 const InstaFeeds = () => {
@@ -10,9 +12,8 @@ const InstaFeeds = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -25,14 +26,14 @@ const InstaFeeds = () => {
               <Video />
             </div>
             <div className="shorts-section">
-              <Shorts />
+              <VideoShorts />
             </div>
           </>
         )}
 
         {isMobile && (
           <div className="shorts-section mobile-only">
-            <Shorts />
+            <VideoShorts />
           </div>
         )}
       </div>
@@ -48,13 +49,11 @@ const InstaFeeds = () => {
         }
 
         .instafeeds-container {
-  display: flex;
-  height: calc(100vh - 95px); /* adjust to your actual header height */
-  width: 100vw;
-  overflow: hidden;
-  margin-top: 60px; /* to avoid being under header */
-}
-
+          display: flex;
+          height: 100vh;
+          width: 100vw;
+          overflow: hidden;
+        }
 
         .video-section {
           flex: 6;
@@ -75,7 +74,6 @@ const InstaFeeds = () => {
           display: none;
         }
 
-        /* Mobile view - show only shorts fullscreen */
         @media (max-width: 768px) {
           .instafeeds-container.mobile {
             flex-direction: column;

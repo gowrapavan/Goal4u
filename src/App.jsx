@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { initGA, trackPageView } from './services/gmanger-tag/GA_Measurement';
 import { HelmetProvider } from 'react-helmet-async';
 import InstaFeeds from "./pages/reels/ReelFeed";
-
+import Shorts from "./pages/reels/Shorts";
 
 // Components
 import Header from './components/Header';
@@ -28,7 +28,6 @@ import TeamProfile from './components/team/TeamProfile';
 import LaLiga from './pages/leagues/LaLiga';
 import EPL from './pages/leagues/EPL';
 import Bundesliga from './pages/leagues/DEB';
-
 import Standings from './pages/leagues/Standings';
 import MultipleTV from './pages/TV/MultipleTV';
 import Koora from './components/koora';
@@ -46,15 +45,18 @@ function usePageTracking() {
 function AppWrapper() {
   usePageTracking();
   const location = useLocation();
-  const isReelsPage = location.pathname === '/reels';
 
+  // Pages where footer should be hidden
+  const noFooterPages = ['/shorts', '/shorts4u'];
 
   return (
     <>
       <MobileNav />
       <ScrollToTop />
       <div id="layout">
-        <Header />
+        {/* Header should be shown on all pages except '/shorts' */}
+        {location.pathname !== '/shorts' && <Header />}
+
         <Routes>
           <Route
             path="/"
@@ -66,7 +68,8 @@ function AppWrapper() {
               </>
             }
           />
-          <Route path="/reels" element={<InstaFeeds />} />
+          <Route path="/shorts4u" element={<InstaFeeds />} />
+          <Route path="/shorts" element={<Shorts />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
@@ -84,13 +87,18 @@ function AppWrapper() {
           <Route path="/league/bundesliga" element={<Bundesliga />} />
           <Route path="/league/standings" element={<Standings />} />
         </Routes>
+
         <MobileFooter />
-        {!isReelsPage && <Footer />}
+
+        {/* Hide Footer on /shorts and /shorts4u */}
+        {!noFooterPages.includes(location.pathname) && <Footer />}
+
         <FloatButton />
       </div>
     </>
   );
 }
+
 
 function App() {
   useEffect(() => {
