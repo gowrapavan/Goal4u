@@ -37,7 +37,7 @@ const Shorts = () => {
       };
 
       container.addEventListener('scroll', handleScroll);
-      handleScroll(); // initial run
+      handleScroll();
 
       return () => {
         container.removeEventListener('scroll', handleScroll);
@@ -57,7 +57,7 @@ const Shorts = () => {
         {reelsData.map((reel, i) => (
           <div key={`${reel.id}-${i}`} className="reel-slide" data-index={i}>
             <iframe
-              src={`${reel.src}?enablejsapi=1`}
+              src={reel.src}
               allow="autoplay; encrypted-media; fullscreen"
               allowFullScreen
               playsInline
@@ -128,13 +128,16 @@ const Shorts = () => {
 
         .reel-slide {
           scroll-snap-align: start;
-          height: calc(100vh - 12px);
+          height: 100vh;
           width: 100vw;
           position: relative;
           overflow: hidden;
         }
 
         .reel-slide iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           border: none;
@@ -149,10 +152,11 @@ const Shorts = () => {
           flex-direction: column;
           gap: 14px;
           align-items: center;
+          z-index: 2;
         }
 
         .action-btn {
-          background: rgba(255,255,255,0.1);
+          background: rgba(255, 255, 255, 0.15);
           border: none;
           color: white;
           font-size: 22px;
