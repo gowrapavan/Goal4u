@@ -63,20 +63,19 @@ const Shorts = () => {
               playsInline
               title={`reel-${reel.id}`}
             />
+            <div className="reel-actions">
+              <button className="action-btn">❤️</button>
+              <button className="action-btn">🔗</button>
+              {reel.channelLogo && (
+                <img
+                  src={reel.channelLogo}
+                  alt={reel.channelName}
+                  className="channel-logo"
+                />
+              )}
+            </div>
           </div>
         ))}
-      </div>
-
-      <div className="reel-actions">
-        <button className="action-btn">❤️</button>
-        <button className="action-btn">🔗</button>
-        {reelsData[0]?.channelLogo && (
-          <img
-            src={reelsData[0].channelLogo}
-            alt={reelsData[0].channelName}
-            className="channel-logo"
-          />
-        )}
       </div>
 
       <style>{`
@@ -143,14 +142,13 @@ const Shorts = () => {
         }
 
         .reel-actions {
-          position: fixed;
-          bottom: 60px;
+          position: absolute;
           right: 10px;
+          bottom: 60px;
           display: flex;
           flex-direction: column;
           gap: 14px;
           align-items: center;
-          z-index: 20;
         }
 
         .action-btn {
