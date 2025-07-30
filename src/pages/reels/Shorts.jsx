@@ -37,7 +37,7 @@ const Shorts = () => {
       };
 
       container.addEventListener('scroll', handleScroll);
-      handleScroll();
+      handleScroll(); // initial run
 
       return () => {
         container.removeEventListener('scroll', handleScroll);
@@ -57,25 +57,26 @@ const Shorts = () => {
         {reelsData.map((reel, i) => (
           <div key={`${reel.id}-${i}`} className="reel-slide" data-index={i}>
             <iframe
-              src={reel.src}
+              src={`${reel.src}?enablejsapi=1`}
               allow="autoplay; encrypted-media; fullscreen"
               allowFullScreen
               playsInline
               title={`reel-${reel.id}`}
             />
-            <div className="reel-actions">
-              <button className="action-btn">❤️</button>
-              <button className="action-btn">🔗</button>
-              {reel.channelLogo && (
-                <img
-                  src={reel.channelLogo}
-                  alt={reel.channelName}
-                  className="channel-logo"
-                />
-              )}
-            </div>
           </div>
         ))}
+      </div>
+
+      <div className="reel-actions">
+        <button className="action-btn">❤️</button>
+        <button className="action-btn">🔗</button>
+        {reelsData[0]?.channelLogo && (
+          <img
+            src={reelsData[0].channelLogo}
+            alt={reelsData[0].channelName}
+            className="channel-logo"
+          />
+        )}
       </div>
 
       <style>{`
@@ -128,16 +129,13 @@ const Shorts = () => {
 
         .reel-slide {
           scroll-snap-align: start;
-          height: 100vh;
+          height: calc(100vh - 12px);
           width: 100vw;
           position: relative;
           overflow: hidden;
         }
 
         .reel-slide iframe {
-          position: absolute;
-          top: 0;
-          left: 0;
           width: 100%;
           height: 100%;
           border: none;
@@ -145,18 +143,18 @@ const Shorts = () => {
         }
 
         .reel-actions {
-          position: absolute;
-          right: 10px;
+          position: fixed;
           bottom: 60px;
+          right: 10px;
           display: flex;
           flex-direction: column;
           gap: 14px;
           align-items: center;
-          z-index: 2;
+          z-index: 20;
         }
 
         .action-btn {
-          background: rgba(255, 255, 255, 0.15);
+          background: rgba(255,255,255,0.1);
           border: none;
           color: white;
           font-size: 22px;
