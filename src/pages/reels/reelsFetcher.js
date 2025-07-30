@@ -6,7 +6,7 @@ const groupByChannel = (data) => {
     if (!groups[channel]) groups[channel] = [];
     groups[channel].push(item);
   });
-  return Object.values(groups); // returns an array of arrays
+  return Object.values(groups);
 };
 
 // Interleave shorts to avoid consecutive same-channel videos
@@ -22,7 +22,7 @@ const interleaveShorts = (channelGroups) => {
     if (availableGroups.length === 0) break;
 
     const lastChannel = result.length > 0 ? result[result.length - 1].channelName : null;
-    const eligible = availableGroups.filter(({ group }) => group[0].channelName !== lastChannel);
+    const eligible = availableGroups.filter(({ group }) => group[pointers[group.length - 1]]?.channelName !== lastChannel);
 
     const pickFrom = eligible.length > 0 ? eligible : availableGroups;
     const { group, i } = pickFrom[Math.floor(Math.random() * pickFrom.length)];
@@ -34,10 +34,12 @@ const interleaveShorts = (channelGroups) => {
   return result;
 };
 
-// Store processed shorts and pointer
+// Core state
 let allShuffledShorts = [];
 let currentIndex = 0;
 const BATCH_SIZE = 5;
+
+let preloadedBatch = null;
 
 // Load and prepare data
 const loadShortsData = async () => {
@@ -56,7 +58,22 @@ const loadShortsData = async () => {
   }
 };
 
-// Fetch next batch
+// Format a batch of videos
+const formatBatch = (startIndex) => {
+  return allShuffledShorts
+    .slice(startIndex, startIndex + BATCH_SIZE)
+    .map((item, index) => ({
+      id: `${item.videoId}-${Date.now()}-${startIndex + index}`,
+      type: 'youtube',
+      src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
+      uploadDate: item.uploadDate || null,
+      title: item.title || '',
+      channelName: item.channelName || 'Unknown',
+      channelLogo: item.channelLogo || '',
+    }));
+};
+
+// Fetch next batch for UI to render
 export const fetchNextReelsBatch = async () => {
   await loadShortsData();
 
@@ -67,22 +84,32 @@ export const fetchNextReelsBatch = async () => {
     };
   }
 
-  const nextBatch = allShuffledShorts
-    .slice(currentIndex, currentIndex + BATCH_SIZE)
-    .map((item, index) => ({
-      id: `${item.videoId}-${Date.now()}-${currentIndex + index}`,
-      type: 'youtube',
-      src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
-      uploadDate: item.uploadDate || null,
-      title: item.title || '',
-      channelName: item.channelName || 'Unknown',
-      channelLogo: item.channelLogo || '', // ✅ Include logo
-    }));
-
+  const batch = preloadedBatch || formatBatch(currentIndex);
   currentIndex += BATCH_SIZE;
+  preloadedBatch = null;
 
   return {
-    newVideos: nextBatch,
+    newVideos: batch,
     hasMore: currentIndex < allShuffledShorts.length,
   };
+};
+
+// Preload next batch in background
+export const prefetchNextReelsBatch = async () => {
+  await loadShortsData();
+
+  if (!preloadedBatch && currentIndex < allShuffledShorts.length) {
+    preloadedBatch = formatBatch(currentIndex);
+  }
+};
+
+// Check whether to preload more (to call inside component based on current position)
+export const maybePrefetchMore = (currentVisibleIndex) => {
+  const shouldPrefetch =
+    currentVisibleIndex !== 0 &&
+    (currentVisibleIndex + 1) % BATCH_SIZE === 3;
+
+  if (shouldPrefetch) {
+    prefetchNextReelsBatch();
+  }
 };
