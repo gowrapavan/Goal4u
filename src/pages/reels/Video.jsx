@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchNextVideosBatch } from './videosFetcher'; // Adjust path if needed
-import './Video.css';
+import './video.css';
 
 const truncate = (str, max = 60) =>
   str.length > max ? str.slice(0, max).trim() + '…' : str;
