@@ -76,7 +76,7 @@ with open("youtube_logos.json", "w", encoding="utf-8") as f:
     print("✅ Saved channel logos to youtube_logos.json")
 
 # STEP 5: Update videos_data/videos.json
-video_file_path = "videos_data/videos.json"
+video_file_path = "shorts_data/shorts.json"
 
 with open(video_file_path, "r", encoding="utf-8") as f:
     video_data = json.load(f)

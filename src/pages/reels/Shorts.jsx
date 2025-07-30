@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { fetchNextReelsBatch } from './reelsFetcher';
 
@@ -6,6 +7,7 @@ const Shorts = () => {
   const [loading, setLoading] = useState(true);
   const [reelsData, setReelsData] = useState([]);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadInitialBatch = async () => {
@@ -17,8 +19,29 @@ const Shorts = () => {
   }, []);
 
   useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.style.scrollBehavior = 'smooth';
+    if (!loading && containerRef.current) {
+      const container = containerRef.current;
+
+      const handleScroll = () => {
+        const slides = container.querySelectorAll('.reel-slide');
+        slides.forEach((slide) => {
+          const rect = slide.getBoundingClientRect();
+          const iframe = slide.querySelector('iframe');
+
+          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+            iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+          } else {
+            iframe?.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          }
+        });
+      };
+
+      container.addEventListener('scroll', handleScroll);
+      handleScroll(); // initial run
+
+      return () => {
+        container.removeEventListener('scroll', handleScroll);
+      };
     }
   }, [loading]);
 
@@ -26,16 +49,31 @@ const Shorts = () => {
 
   return (
     <>
+      <div className="shorts-header">
+        <button className="back-btn" onClick={() => navigate('/')}>←</button>
+      </div>
+
       <div className="reel-feed-wrapper" ref={containerRef}>
         {reelsData.map((reel, i) => (
           <div key={`${reel.id}-${i}`} className="reel-slide" data-index={i}>
             <iframe
-              src={reel.src}
+              src={`${reel.src}?enablejsapi=1`}
               allow="autoplay; encrypted-media; fullscreen"
               allowFullScreen
               playsInline
               title={`reel-${reel.id}`}
             />
+            <div className="reel-actions">
+              <button className="action-btn">❤️</button>
+              <button className="action-btn">🔗</button>
+              {reel.channelLogo && (
+                <img
+                  src={reel.channelLogo}
+                  alt={reel.channelName}
+                  className="channel-logo"
+                />
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -47,6 +85,27 @@ const Shorts = () => {
           height: 100%;
           background-color: #000;
           overflow: hidden;
+        }
+
+        .shorts-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 40px;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          padding-left: 10px;
+          background: rgba(0, 0, 0, 0.6);
+        }
+
+        .back-btn {
+          background: none;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
         }
 
         .reel-feed-wrapper {
@@ -69,7 +128,7 @@ const Shorts = () => {
 
         .reel-slide {
           scroll-snap-align: start;
-          height: calc(100vh - 24px);
+          height: calc(100vh - 12px);
           width: 100vw;
           position: relative;
           overflow: hidden;
@@ -80,6 +139,34 @@ const Shorts = () => {
           height: 100%;
           border: none;
           object-fit: cover;
+        }
+
+        .reel-actions {
+          position: absolute;
+          right: 10px;
+          bottom: 60px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          align-items: center;
+        }
+
+        .action-btn {
+          background: rgba(255,255,255,0.1);
+          border: none;
+          color: white;
+          font-size: 22px;
+          padding: 8px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        .channel-logo {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          object-fit: contain;
+          background: white;
         }
       `}</style>
     </>

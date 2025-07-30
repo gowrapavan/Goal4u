@@ -21,7 +21,6 @@ const interleaveShorts = (channelGroups) => {
 
     if (availableGroups.length === 0) break;
 
-    // Randomly pick one group that's not the same as the previous
     const lastChannel = result.length > 0 ? result[result.length - 1].channelName : null;
     const eligible = availableGroups.filter(({ group }) => group[0].channelName !== lastChannel);
 
@@ -68,14 +67,17 @@ export const fetchNextReelsBatch = async () => {
     };
   }
 
-  const nextBatch = allShuffledShorts.slice(currentIndex, currentIndex + BATCH_SIZE).map((item, index) => ({
-    id: `${item.videoId}-${Date.now()}-${currentIndex + index}`,
-    type: 'youtube',
-    src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
-    uploadDate: item.uploadDate || null,
-    title: item.title || '',
-    channelName: item.channelName || 'Unknown',
-  }));
+  const nextBatch = allShuffledShorts
+    .slice(currentIndex, currentIndex + BATCH_SIZE)
+    .map((item, index) => ({
+      id: `${item.videoId}-${Date.now()}-${currentIndex + index}`,
+      type: 'youtube',
+      src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
+      uploadDate: item.uploadDate || null,
+      title: item.title || '',
+      channelName: item.channelName || 'Unknown',
+      channelLogo: item.channelLogo || '', // ✅ Include logo
+    }));
 
   currentIndex += BATCH_SIZE;
 
