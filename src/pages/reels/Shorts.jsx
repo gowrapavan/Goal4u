@@ -13,9 +13,14 @@ const Shorts = () => {
       setReelsData(newVideos);
       setLoading(false);
     };
-
     loadInitialBatch();
   }, []);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.style.scrollBehavior = 'smooth';
+    }
+  }, [loading]);
 
   if (loading) return <LoadingSpinner message="Loading..." />;
 
@@ -36,36 +41,35 @@ const Shorts = () => {
       </div>
 
       <style>{`
-        html, body {
+        html, body, #root {
           margin: 0;
           padding: 0;
           height: 100%;
-          background-color: #fff;
-          overscroll-behavior-y: contain;
-          touch-action: pan-y;
-        }
-
-        #root {
-          height: 100%;
+          background-color: #000;
+          overflow: hidden;
         }
 
         .reel-feed-wrapper {
-          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           overflow-y: scroll;
           scroll-snap-type: y mandatory;
           scroll-behavior: smooth;
-          background-color: #000;
           -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          background-color: #000;
         }
 
-        .reel-feed-wrapper::-webkit-scrollbar,
-        .reel-feed-wrapper::-moz-scrollbar {
+        .reel-feed-wrapper::-webkit-scrollbar {
           display: none;
         }
 
         .reel-slide {
           scroll-snap-align: start;
-          height: 100vh;
+          height: calc(100vh - 24px);
           width: 100vw;
           position: relative;
           overflow: hidden;
@@ -75,6 +79,7 @@ const Shorts = () => {
           width: 100%;
           height: 100%;
           border: none;
+          object-fit: cover;
         }
       `}</style>
     </>
