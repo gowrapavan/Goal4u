@@ -180,7 +180,7 @@ const Shorts = () => {
 
         .reel-slide {
           scroll-snap-align: start;
-          height: calc(100vh - 12px);
+          height: calc(100vh - 24px);
           width: 100vw;
           position: relative;
           overflow: hidden;

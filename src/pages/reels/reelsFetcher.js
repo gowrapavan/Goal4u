@@ -9,7 +9,7 @@ const groupByChannel = (data) => {
   return Object.values(groups);
 };
 
-// Interleave shorts to avoid consecutive same-channel videos
+// Interleave shorts to avoid same-channel repetition
 const interleaveShorts = (channelGroups) => {
   const result = [];
   const pointers = new Array(channelGroups.length).fill(0);
@@ -22,7 +22,9 @@ const interleaveShorts = (channelGroups) => {
     if (availableGroups.length === 0) break;
 
     const lastChannel = result.length > 0 ? result[result.length - 1].channelName : null;
-    const eligible = availableGroups.filter(({ group }) => group[pointers[group.length - 1]]?.channelName !== lastChannel);
+    const eligible = availableGroups.filter(({ group }) =>
+      group[pointers[group.length - 1]]?.channelName !== lastChannel
+    );
 
     const pickFrom = eligible.length > 0 ? eligible : availableGroups;
     const { group, i } = pickFrom[Math.floor(Math.random() * pickFrom.length)];
@@ -38,7 +40,6 @@ const interleaveShorts = (channelGroups) => {
 let allShuffledShorts = [];
 let currentIndex = 0;
 const BATCH_SIZE = 5;
-
 let preloadedBatch = null;
 
 // Load and prepare data
@@ -58,57 +59,47 @@ const loadShortsData = async () => {
   }
 };
 
-// Format a batch of videos
-const formatBatch = (startIndex) => {
-  return allShuffledShorts
+// Format a batch
+const formatBatch = (startIndex) =>
+  allShuffledShorts
     .slice(startIndex, startIndex + BATCH_SIZE)
     .map((item, index) => ({
       id: `${item.videoId}-${Date.now()}-${startIndex + index}`,
       type: 'youtube',
-      src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`,
+      src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&autoplay=0&controls=1`,
       uploadDate: item.uploadDate || null,
       title: item.title || '',
       channelName: item.channelName || 'Unknown',
       channelLogo: item.channelLogo || '',
     }));
-};
 
-// Fetch next batch for UI to render
+// Fetch next batch
 export const fetchNextReelsBatch = async () => {
   await loadShortsData();
 
   if (currentIndex >= allShuffledShorts.length) {
-    return {
-      newVideos: [],
-      hasMore: false,
-    };
+    return { newVideos: [], hasMore: false };
   }
 
   const batch = preloadedBatch || formatBatch(currentIndex);
   currentIndex += BATCH_SIZE;
   preloadedBatch = null;
 
-  return {
-    newVideos: batch,
-    hasMore: currentIndex < allShuffledShorts.length,
-  };
+  return { newVideos: batch, hasMore: currentIndex < allShuffledShorts.length };
 };
 
-// Preload next batch in background
+// Preload next batch
 export const prefetchNextReelsBatch = async () => {
   await loadShortsData();
-
   if (!preloadedBatch && currentIndex < allShuffledShorts.length) {
     preloadedBatch = formatBatch(currentIndex);
   }
 };
 
-// Check whether to preload more (to call inside component based on current position)
+// Conditional prefetch
 export const maybePrefetchMore = (currentVisibleIndex) => {
   const shouldPrefetch =
-    currentVisibleIndex !== 0 &&
-    (currentVisibleIndex + 1) % BATCH_SIZE === 3;
-
+    currentVisibleIndex !== 0 && (currentVisibleIndex + 1) % BATCH_SIZE === 3;
   if (shouldPrefetch) {
     prefetchNextReelsBatch();
   }
