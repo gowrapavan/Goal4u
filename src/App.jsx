@@ -31,6 +31,8 @@ import Bundesliga from './pages/leagues/DEB';
 import Standings from './pages/leagues/Standings';
 import MultipleTV from './pages/TV/MultipleTV';
 import Koora from './components/koora';
+import DMobileFooter from './pages/head-foot/dMobileFooter';
+
 
 import './App.css';
 
@@ -88,7 +90,16 @@ function AppWrapper() {
           <Route path="/league/standings" element={<Standings />} />
         </Routes>
 
-        <MobileFooter />
+{/* Show appropriate mobile footer based on page and screen size */}
+{window.innerWidth <= 768 && (
+  location.pathname === '/shorts' ? (
+    <DMobileFooter />
+  ) : (
+    <MobileFooter />
+  )
+)}
+
+
 
         {/* Hide Footer on /shorts and /shorts4u */}
         {!noFooterPages.includes(location.pathname) && <Footer />}

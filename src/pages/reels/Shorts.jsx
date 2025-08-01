@@ -162,7 +162,7 @@ const Shorts = () => {
 
         .reel-feed-wrapper {
           position: fixed;
-          top: 0;
+          top: 2.5%;
           left: 0;
           right: 0;
           bottom: 0;
@@ -172,6 +172,7 @@ const Shorts = () => {
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
           background-color: #000;
+
         }
 
         .reel-feed-wrapper::-webkit-scrollbar {
@@ -180,7 +181,7 @@ const Shorts = () => {
 
         .reel-slide {
           scroll-snap-align: start;
-          height: calc(100vh - 24px);
+          height: calc(100vh - 20px);
           width: 100vw;
           position: relative;
           overflow: hidden;
