@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { fetchNextReelsBatch, maybePrefetchMore } from './reelsFetcher';
 
@@ -37,8 +37,29 @@ const Shorts = () => {
   const [likeAnimating, setLikeAnimating] = useState({});
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  // Load first batch of videos
+  // --- 1. Read videoId from URL on mount ---
+  useEffect(() => {
+    const videoIdFromUrl = searchParams.get('videoId');
+    if (videoIdFromUrl && reelsData.length > 0) {
+      // Find index of the video
+      const idx = reelsData.findIndex(
+        v => v.videoId === videoIdFromUrl || (v.id && v.id.startsWith(videoIdFromUrl))
+      );
+      if (idx !== -1) {
+        setCurrentIndex(idx);
+        // Scroll to the video
+        setTimeout(() => {
+          const slide = containerRef.current?.querySelector(`.reel-slide[data-index="${idx}"]`);
+          if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [reelsData, searchParams]);
+
+  // --- 2. Load first batch of videos ---
   useEffect(() => {
     const loadInitialBatch = async () => {
       const { newVideos } = await fetchNextReelsBatch();
@@ -48,7 +69,7 @@ const Shorts = () => {
     loadInitialBatch();
   }, []);
 
-  // Scroll autoplay behavior
+  // --- 3. Scroll autoplay behavior ---
   useEffect(() => {
     if (!loading && containerRef.current) {
       const container = containerRef.current;
@@ -83,12 +104,12 @@ const Shorts = () => {
     }
   }, [loading]);
 
-  // Optional: prefetch logic
+  // --- 4. Prefetch logic ---
   useEffect(() => {
     maybePrefetchMore(currentIndex);
   }, [currentIndex]);
 
-  // 🚀 Auto-load more videos when last reel is visible
+  // --- 5. Auto-load more videos when last reel is visible ---
   useEffect(() => {
     const loadMoreIfNeeded = async () => {
       if (currentIndex === reelsData.length - 1) {
@@ -99,7 +120,20 @@ const Shorts = () => {
     loadMoreIfNeeded();
   }, [currentIndex]);
 
-  // Handle comment popup open/close
+  // --- 6. Share button logic ---
+  const handleShare = (videoId, e) => {
+    e.stopPropagation();
+    const shareUrl = `${window.location.origin}/shorts?videoId=${videoId}`;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareUrl);
+      alert('Shareable link copied!');
+    } else {
+      // fallback
+      window.prompt('Copy this link:', shareUrl);
+    }
+  };
+
+  // --- 7. Comment popup open/close ---
   const openComments = (idx, e) => {
     if (e) e.stopPropagation();
     setCommentReelIndex(idx);
@@ -112,7 +146,7 @@ const Shorts = () => {
     document.body.style.overflow = '';
   };
 
-  // Like button logic
+  // --- 8. Like button logic ---
   const handleLike = (idx, e) => {
     if (e) e.stopPropagation();
     setLiked(prev => ({ ...prev, [idx]: !prev[idx] }));
@@ -122,7 +156,7 @@ const Shorts = () => {
     }, 600);
   };
 
-  // Get comments for a reel (dummy fallback)
+  // --- 9. Get comments for a reel (dummy fallback) ---
   const getCommentsForReel = reel =>
     Array.isArray(reel?.comments) && reel.comments.length > 0
       ? reel.comments
@@ -138,16 +172,20 @@ const Shorts = () => {
           <span className="back-text">Back To Home</span>
         </button>
         <div className="shorts-logo-wrap">
-  <a href="/">
-    <img src={LOGO_URL} alt="Logo" className="shorts-logo" />
-  </a>
-</div>
-
+          <a href="/">
+            <img src={LOGO_URL} alt="Logo" className="shorts-logo" />
+          </a>
+        </div>
       </div>
 
       <div className="reel-feed-wrapper" ref={containerRef}>
         {reelsData.map((reel, i) => (
-          <div key={`${reel.id || reel.videoId || i}-${i}`} className="reel-slide" data-index={i}>
+          <div
+            key={`${reel.id || reel.videoId || i}-${i}`}
+            className={`reel-slide${i === currentIndex ? ' active' : ''}`}
+            data-index={i}
+            style={i === currentIndex ? { outline: '2px solid #ff3b5c' } : {}}
+          >
             <iframe
               src={`${reel.src || reel.embedUrl}?enablejsapi=1`}
               allow="autoplay; encrypted-media; fullscreen"
@@ -157,7 +195,7 @@ const Shorts = () => {
             />
             <div
               className="reel-actions"
-              onClick={e => e.stopPropagation()} // Prevent click-through to video
+              onClick={e => e.stopPropagation()}
             >
               <button
                 className={`action-btn like-btn${liked[i] ? ' liked' : ''}${likeAnimating[i] ? ' animate' : ''}`}
@@ -188,7 +226,7 @@ const Shorts = () => {
               <button
                 className="action-btn share-btn"
                 title="Share"
-                onClick={e => e.stopPropagation()}
+                onClick={e => handleShare(reel.videoId || (reel.id && reel.id.split('-')[0]), e)}
                 tabIndex={0}
               >
                 <span className="action-icon">🔗</span>
@@ -440,7 +478,6 @@ const Shorts = () => {
           height: 38px;
           border-radius: 50%;
           object-fit: contain;
-          background: white;
           margin-top: 10px;
           border: 2px solid #fff2;
         }
