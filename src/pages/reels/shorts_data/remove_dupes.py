@@ -1,6 +1,6 @@
 import json
 import sys
-from pathlib import Path
+from pathlib import Path             # cmd to run     python remove_dupes.py shorts.json
 
 def remove_duplicates_by_video_id(json_path):
     json_path = Path(json_path)
@@ -43,3 +43,5 @@ if __name__ == "__main__":
         print("Usage: python remove_dupes.py path/to/your.json")
     else:
         remove_duplicates_by_video_id(sys.argv[1])
+
+# python remove_dupes.py shorts.json
