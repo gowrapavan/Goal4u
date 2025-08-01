@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
-import { fetchNextReelsBatch, maybePrefetchMore } from './reelsFetcher';
+import { fetchNextReelsBatch, maybePrefetchMore, findVideoById } from './reelsFetcher';
+import ShareButton from './SharePopup'; // adjust path if needed
+
+import './shorts.css'
+// Dummy fallback comments for demonstration
 
 // Dummy fallback comments for demonstration
 const DUMMY_COMMENTS = [
@@ -40,23 +44,73 @@ const Shorts = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // --- 1. Read videoId from URL on mount ---
+  // --- 1. Handle video param from URL ---
   useEffect(() => {
-    const videoIdFromUrl = searchParams.get('videoId');
-    if (videoIdFromUrl && reelsData.length > 0) {
-      // Find index of the video
-      const idx = reelsData.findIndex(
-        v => v.videoId === videoIdFromUrl || (v.id && v.id.startsWith(videoIdFromUrl))
-      );
-      if (idx !== -1) {
-        setCurrentIndex(idx);
-        // Scroll to the video
-        setTimeout(() => {
-          const slide = containerRef.current?.querySelector(`.reel-slide[data-index="${idx}"]`);
-          if (slide) slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+    const handleVideoFromUrl = async () => {
+      const videoIdFromUrl = searchParams.get('video');
+      if (!videoIdFromUrl) return;
+
+      // First check if video is already in loaded data
+      if (reelsData.length > 0) {
+        const idx = reelsData.findIndex(
+          v => {
+            const videoId = v.videoId || (v.id && v.id.split('-')[0]);
+            return videoId === videoIdFromUrl;
+          }
+        );
+        
+        if (idx !== -1) {
+          setCurrentIndex(idx);
+          setTimeout(() => {
+            const slide = containerRef.current?.querySelector(`.reel-slide[data-index="${idx}"]`);
+            if (slide) {
+              slide.scrollIntoView({ behavior: 'auto', block: 'start' });
+              // Autoplay the video
+              const iframe = slide.querySelector('iframe');
+              iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+          }, 300);
+          return;
+        }
       }
-    }
+
+      // If video not found in loaded data, search in all available videos
+      try {
+        const foundVideo = await findVideoById(videoIdFromUrl);
+        if (foundVideo) {
+          // Add the found video to the beginning of reelsData
+          setReelsData(prev => {
+            // Check if video is already in the list to avoid duplicates
+            const exists = prev.some(v => {
+              const videoId = v.videoId || (v.id && v.id.split('-')[0]);
+              return videoId === videoIdFromUrl;
+            });
+            
+            if (!exists) {
+              return [foundVideo, ...prev];
+            }
+            return prev;
+          });
+          
+          // Set current index to 0 (the newly added video)
+          setCurrentIndex(0);
+          
+          setTimeout(() => {
+            const slide = containerRef.current?.querySelector(`.reel-slide[data-index="0"]`);
+            if (slide) {
+              slide.scrollIntoView({ behavior: 'auto', block: 'start' });
+              // Autoplay the video
+              const iframe = slide.querySelector('iframe');
+              iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+          }, 300);
+        }
+      } catch (error) {
+        console.error('Error finding video by ID:', error);
+      }
+    };
+
+    handleVideoFromUrl();
   }, [reelsData, searchParams]);
 
   // --- 2. Load first batch of videos ---
@@ -91,8 +145,21 @@ const Shorts = () => {
         });
 
         if (activeIndex !== -1) {
+          const currentReel = reelsData[activeIndex];
+          const currentVideoId = currentReel?.videoId || (currentReel?.id && currentReel.id.split('-')[0]);
+          
+          // Update URL with current video ID
+          if (currentVideoId) {
+            const newUrl = `/shorts?video=${currentVideoId}`;
+            const currentUrl = location.pathname + location.search;
+            if (currentUrl !== newUrl) {
+              window.history.replaceState(null, '', newUrl);
+            }
+          }
+          
           setCurrentIndex(activeIndex);
         }
+
       };
 
       container.addEventListener('scroll', handleScroll);
@@ -102,7 +169,7 @@ const Shorts = () => {
         container.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [loading]);
+  }, [loading, reelsData, location]);
 
   // --- 4. Prefetch logic ---
   useEffect(() => {
@@ -120,18 +187,6 @@ const Shorts = () => {
     loadMoreIfNeeded();
   }, [currentIndex]);
 
-  // --- 6. Share button logic ---
-  const handleShare = (videoId, e) => {
-    e.stopPropagation();
-    const shareUrl = `${window.location.origin}/shorts?videoId=${videoId}`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(shareUrl);
-      alert('Shareable link copied!');
-    } else {
-      // fallback
-      window.prompt('Copy this link:', shareUrl);
-    }
-  };
 
   // --- 7. Comment popup open/close ---
   const openComments = (idx, e) => {
@@ -223,15 +278,9 @@ const Shorts = () => {
                 </span>
                 <span className="action-label">Like</span>
               </button>
-              <button
-                className="action-btn share-btn"
-                title="Share"
-                onClick={e => handleShare(reel.videoId || (reel.id && reel.id.split('-')[0]), e)}
-                tabIndex={0}
-              >
-                <span className="action-icon">🔗</span>
-                <span className="action-label">Share</span>
-              </button>
+
+              <ShareButton videoId={reel.videoId} />
+
               <button
                 className="action-btn comment-btn"
                 title="Comments"
@@ -294,329 +343,6 @@ const Shorts = () => {
         </div>
       </div>
 
-      <style>{`
-        html, body, #root {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          background-color: #000;
-          overflow: hidden;
-        }
-        .shorts-header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 48px;
-          z-index: 20;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 16px;
-          background: rgba(0, 0, 0, 0.7);
-          backdrop-filter: blur(6px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .back-btn {
-          display: flex;
-          align-items: center;
-          color: white;
-          font-weight: 500;
-          background: none;
-          border: none;
-          cursor: pointer;
-          gap: 8px;
-          padding: 6px 12px;
-          border-radius: 999px;
-          transition: background 0.2s ease;
-        }
-        .back-btn:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-        .back-btn .arrow {
-          font-size: 20px;
-          line-height: 1;
-        }
-        .back-btn .back-text {
-          font-size: 9px;
-          line-height: 1;
-          padding-top: 5px;
-        }
-        .shorts-logo-wrap {
-          display: flex;
-          align-items: center;
-          height: 100%;
-        }
-        .shorts-logo {
-          height: 36px;
-          width: auto;
-          object-fit: contain;
-          filter: drop-shadow(0 2px 8px #0008);
-          background: transparent;
-          border-radius: 8px;
-        }
-        .reel-feed-wrapper {
-          position: fixed;
-          top: 2.5%;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow-y: scroll;
-          scroll-snap-type: y mandatory;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          background-color: #000;
-        }
-        .reel-feed-wrapper::-webkit-scrollbar {
-          display: none;
-        }
-        .reel-slide {
-          scroll-snap-align: start;
-          height: calc(100vh - 20px);
-          width: 100vw;
-          position: relative;
-          overflow: hidden;
-        }
-        .reel-slide iframe {
-          width: 100%;
-          height: 100%;
-          border: none;
-          object-fit: cover;
-        }
-        .reel-actions {
-          position: absolute;
-          right: 10px;
-          bottom: 60px;
-          display: flex;
-          flex-direction: column;
-          gap: 18px;
-          align-items: center;
-          z-index: 2;
-        }
-        .action-btn {
-          background: rgba(30,30,30,0.7);
-          border: none;
-          color: white;
-          font-size: 22px;
-          padding: 0;
-          border-radius: 50%;
-          cursor: pointer;
-          width: 48px;
-          height: 48px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          transition: background 0.18s;
-          box-shadow: 0 2px 8px 0 rgba(0,0,0,0.12);
-          position: relative;
-          outline: none;
-        }
-        .action-btn:active {
-          background: rgba(255,255,255,0.18);
-        }
-        .action-btn:focus {
-          outline: 2px solid #33ffc9;
-        }
-        .action-icon {
-          font-size: 24px;
-          display: block;
-          margin-bottom: 2px;
-        }
-        .like-btn .action-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .like-heart-svg {
-          width: 28px;
-          height: 28px;
-          display: block;
-          transition: transform 0.18s cubic-bezier(.4,0,.2,1);
-          filter: drop-shadow(0 2px 8px #0008);
-        }
-        .like-heart {
-          transition: fill 0.25s cubic-bezier(.4,0,.2,1), stroke 0.18s;
-        }
-        .like-btn.liked .like-heart {
-          fill: #ff3b5c;
-          stroke: #ff3b5c;
-        }
-        .like-btn .like-heart {
-          fill: none;
-          stroke: #fff;
-        }
-        .like-btn.liked .like-heart-svg {
-          animation: like-pop 0.6s cubic-bezier(.4,0,.2,1);
-        }
-        .like-btn.animate .like-heart-svg {
-          animation: like-pop 0.6s cubic-bezier(.4,0,.2,1);
-        }
-        @keyframes like-pop {
-          0% { transform: scale(1);}
-          20% { transform: scale(1.3);}
-          40% { transform: scale(0.95);}
-          60% { transform: scale(1.1);}
-          80% { transform: scale(0.98);}
-          100% { transform: scale(1);}
-        }
-        .action-label {
-          font-size: 10px;
-          color: #fff;
-          opacity: 0.7;
-          font-weight: 400;
-          letter-spacing: 0.01em;
-          margin-top: 0;
-          margin-bottom: 0;
-          line-height: 1;
-        }
-        .share-btn .action-icon { color: #00bfff; }
-        .comment-btn .action-icon { color: #fff; }
-        .channel-logo {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          object-fit: contain;
-          margin-top: 10px;
-          border: 2px solid #fff2;
-        }
-
-        /* Comment Popup Drawer */
-        .comment-popup-backdrop {
-          position: fixed;
-          left: 0; top: 0; right: 0; bottom: 0;
-          z-index: 100;
-          background: rgba(0,0,0,0.0);
-          opacity: 0;
-          transition: opacity 0.25s;
-          pointer-events: none;
-        }
-        .comment-popup-backdrop.open {
-          background: rgba(0,0,0,0.45);
-          opacity: 1;
-          pointer-events: auto;
-        }
-        .comment-popup-drawer {
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 100vw;
-          max-width: 480px;
-          margin: 0 auto;
-          background: #181818;
-          border-radius: 18px 18px 0 0;
-          min-height: 40vh;
-          max-height: 70vh;
-          box-shadow: 0 -4px 32px 0 rgba(0,0,0,0.18);
-          transform: translateY(100%);
-          transition: transform 0.28s cubic-bezier(.4,0,.2,1);
-          z-index: 101;
-          display: flex;
-          flex-direction: column;
-          overflow: hidden;
-        }
-        .comment-popup-drawer.open {
-          transform: translateY(0);
-        }
-        .comment-popup-close {
-          position: absolute;
-          top: 10px;
-          right: 18px;
-          background: none;
-          border: none;
-          color: #fff;
-          font-size: 28px;
-          cursor: pointer;
-          z-index: 2;
-          opacity: 0.7;
-          transition: opacity 0.15s;
-        }
-        .comment-popup-close:hover { opacity: 1; }
-        .comment-popup-header {
-          padding: 18px 0 10px 0;
-          text-align: center;
-          border-bottom: 1px solid #222;
-          background: transparent;
-        }
-        .comment-popup-title {
-          color: #fff;
-          font-size: 17px;
-          font-weight: 600;
-          letter-spacing: 0.01em;
-        }
-        .comment-popup-list {
-          flex: 1 1 auto;
-          overflow-y: auto;
-          padding: 10px 18px 18px 18px;
-          background: transparent;
-        }
-        .comment-item {
-          margin-bottom: 18px;
-          padding-bottom: 10px;
-          border-bottom: 1px solid #232323;
-        }
-        .comment-item:last-child {
-          border-bottom: none;
-        }
-        .comment-author {
-          color: #b3e5fc;
-          font-size: 13px;
-          font-weight: 500;
-          margin-bottom: 2px;
-        }
-        .comment-text {
-          color: #fff;
-          font-size: 15px;
-          margin-bottom: 4px;
-          word-break: break-word;
-        }
-        .comment-meta {
-          font-size: 11px;
-          color: #aaa;
-          display: flex;
-          gap: 12px;
-        }
-        .comment-like {
-          color: #d71616ff;
-        }
-        .comment-date {
-          color: #888;
-        }
-        .comment-empty {
-          color: #aaa;
-          text-align: center;
-          border-bottom: none;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-          .shorts-header {
-            padding: 0 8px;
-          }
-          .shorts-logo {
-            height: 28px;
-          }
-          .comment-popup-drawer {
-            max-width: 100vw;
-            min-height: 45vh;
-            max-height: 80vh;
-            border-radius: 16px 16px 0 0;
-          }
-          .comment-popup-header {
-            padding: 14px 0 8px 0;
-          }
-          .comment-popup-list {
-            padding: 8px 10px 14px 10px;
-          }
-        }
-        @media (max-width: 400px) {
-          .comment-popup-drawer {
-            min-height: 55vh;
-          }
-        }
-      `}</style>
     </>
   );
 };

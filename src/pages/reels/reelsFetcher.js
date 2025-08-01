@@ -45,6 +45,44 @@ const markAsWatched = (ids) => {
 
 // === Core Logic ===
 
+// Find a specific video by videoId from all available data
+export const findVideoById = async (targetVideoId) => {
+  try {
+    const res = await fetch('/shorts_data/shorts.json');
+    if (!res.ok) throw new Error(`Failed to fetch shorts.json: ${res.status}`);
+    const data = await res.json();
+
+    const validShorts = data.filter(
+      item => item && item.videoId && item.embedUrl
+    );
+
+    const foundVideo = validShorts.find(item => item.videoId === targetVideoId);
+    
+    if (foundVideo) {
+      return {
+        id: `${foundVideo.videoId}-0`,
+        videoId: foundVideo.videoId,
+        type: 'youtube',
+        src: foundVideo.embedUrl || `https://www.youtube.com/embed/${foundVideo.videoId}?enablejsapi=1&autoplay=0&controls=1`,
+        uploadDate: foundVideo.uploadDate || null,
+        title: foundVideo.title || '',
+        channelName: foundVideo.channelName || 'Unknown',
+        channelLogo: foundVideo.channelLogo || '',
+        comments: Array.isArray(foundVideo.comments) ? foundVideo.comments : [],
+        likeCount: foundVideo.likeCount || 0,
+        viewCount: foundVideo.viewCount || 0,
+        publishedAt: foundVideo.publishedAt || null,
+        duration: foundVideo.duration || null,
+      };
+    }
+    
+    return null;
+  } catch (err) {
+    console.error('❌ Error finding video by ID:', err);
+    return null;
+  }
+};
+
 // Group shorts by channel
 const groupByChannel = (data) => {
   const groups = {};
@@ -113,7 +151,8 @@ const formatBatch = (startIndex) =>
   allShuffledShorts
     .slice(startIndex, startIndex + BATCH_SIZE)
     .map((item, index) => ({
-      id: `${item.videoId}-${Date.now()}-${startIndex + index}`,
+      id: `${item.videoId}-${startIndex + index}`,
+      videoId: item.videoId,
       type: 'youtube',
       src: item.embedUrl || `https://www.youtube.com/embed/${item.videoId}?enablejsapi=1&autoplay=0&controls=1`,
       uploadDate: item.uploadDate || null,

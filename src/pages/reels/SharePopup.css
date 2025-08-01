@@ -1,0 +1,127 @@
+.share-popup {
+  background: #181818;
+  border-radius: 16px 16px 16px 16px;
+  padding: 20px;
+  margin-bottom: 50%; /* 🧱 pushes popup up from bottom nav */
+  width: 100%;
+  max-width: 500px;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+@media (max-width: 500px) {
+  .share-popup {
+      margin-bottom: 7%; /* 🧱 pushes popup up from bottom nav */
+        border-radius: 16px 16px 0 0;
+
+  }
+
+}
+@media (max-width: 450px) {
+  .share-popup {
+      margin-bottom: 6%; /* 🧱 pushes popup up from bottom nav */
+        border-radius: 16px 16px 0 0;
+
+  }
+
+}
+@media (max-width: 360px) {
+  .share-popup {
+      margin-bottom: 10%; /* 🧱 pushes popup up from bottom nav */
+        border-radius: 16px 16px 0 0;
+
+  }
+
+}
+
+.copy-link-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+/* Optional: to prevent icon overlap */
+.share-icons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 15px 0 25px 0; /* extra bottom margin before copy link */
+}
+
+.share-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.share-popup {
+  background: #181818;
+  border-radius: 16px 16px 0 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.action-icon-share {
+  width: 22px;
+  height: 20px;
+  filter: invert(1); /* makes icons visible on dark */
+}
+
+.action-label-share {
+  font-size: 10px;
+  color: #aaa;
+  opacity: 0.8;
+  padding-top: 12px;
+}
+
+.share-icons {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.share-icons img {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  filter: brightness(1.2); /* for better visibility */
+}
+
+.copy-link-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.copy-link-btn:hover {
+  background: #3a3a3a;
+}
