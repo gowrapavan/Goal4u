@@ -1,93 +1,86 @@
 
-        .shorts-header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 48px;
-          z-index: 20;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 16px;
-          background: rgba(0, 0, 0, 0.7);
-          backdrop-filter: blur(6px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .back-btn {
-          display: flex;
-          align-items: center;
-          color: white;
-          font-weight: 500;
-          background: none;
-          border: none;
-          cursor: pointer;
-          gap: 8px;
-          padding: 6px 12px;
-          border-radius: 999px;
-          transition: background 0.2s ease;
-        }
-        .back-btn:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-        .back-btn .arrow {
-          font-size: 20px;
-          line-height: 1;
-        }
-        .back-btn .back-text {
-          font-size: 9px;
-          line-height: 1;
-          padding-top: 5px;
-        }
-        .shorts-logo-wrap {
-          display: flex;
-          align-items: center;
-          height: 100%;
-        }
-        .shorts-logo {
-          height: 36px;
-          width: auto;
-          object-fit: contain;
-          filter: drop-shadow(0 2px 8px #0008);
-          background: transparent;
-          border-radius: 8px;
-        }
-        .reel-feed-wrapper {
-          position: fixed;
-          top: 2.5%;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow-y: scroll;
-          scroll-snap-type: y mandatory;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-          background-color: #000;
-        }
-        .reel-feed-wrapper::-webkit-scrollbar {
-          display: none;
-        }
-        .reel-slide {
-          scroll-snap-align: start;
-          height: calc(100vh - 20px);
-          width: 100vw;
-          position: relative;
-          overflow: hidden;
-        }
-        .reel-slide iframe {
-          width: 100%;
-          height: 100%;
-          border: none;
-          object-fit: cover;
-        }
-
-
-
-
-
-
-/* REEL ACTIONS WRAPPER */
+.shorts-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 48px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.back-btn {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.back-btn .arrow {
+    font-size: 20px;
+    line-height: 1;
+}
+.back-btn .back-text {
+    font-size: 9px;
+    line-height: 1;
+    padding-top: 5px;
+}
+.shorts-logo-wrap {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.shorts-logo {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px #0008);
+    background: transparent;
+    border-radius: 8px;
+}
+.reel-feed-wrapper {
+    position: fixed;
+    top: 2.5%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background-color: #000;
+}
+.reel-feed-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.reel-slide {
+    scroll-snap-align: start;
+    height: calc(100vh - 20px);
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+.reel-slide iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
 .reel-actions {
   position: absolute;
   right: 12px;
