@@ -37,7 +37,7 @@
 .copy-link-btn {
   width: 100%;
   padding: 12px;
-  background: #2a2a2a;
+  background: #ac9191;
   border: none;
   border-radius: 8px;
   font-weight: bold;
@@ -85,15 +85,32 @@
 }
 
 .action-icon-share {
-  width: 22px;
-  height: 20px;
-  filter: invert(1); /* makes icons visible on dark */
+  width: 21px;
+  height: 19px;
+}
+.share-popup-overlay .share-popup h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(95, 249, 0);
+  text-align: center;
+  position: relative;
+}
+
+/* 3D underline effect */
+.share-popup-overlay .share-popup h4::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 6px auto 0;
+  background: linear-gradient(145deg, #2fff40, #24dd71); /* 3D-style gradient */
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .action-label-share {
   font-size: 10px;
-  color: #aaa;
-  opacity: 0.8;
   padding-top: 12px;
 }
 

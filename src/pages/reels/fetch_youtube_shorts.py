@@ -61,7 +61,7 @@ MAX_RESULTS = 30
 OUTPUT_DIR = "shorts_data"
 OUTPUT_FILE = "shorts.json"
 DAYS_BACK = 30
-TOP_COMMENT_COUNT = 8
+TOP_COMMENT_COUNT = 10
 RETRY_LIMIT = 3
 RETRY_DELAY = 2
 
@@ -103,6 +103,8 @@ def get_channel_metadata(channel_id):
         "channelLogo": snippet["thumbnails"]["default"]["url"],
     }
 
+from isodate import parse_duration  # Ensure this import is at the top
+
 def fetch_shorts(channel_id, meta):
     url = (
         f"https://www.googleapis.com/youtube/v3/search?"
@@ -110,33 +112,59 @@ def fetch_shorts(channel_id, meta):
     )
     data = safe_request(url)
 
-    recent_shorts = []
+    recent_videos = []
     one_month_ago = datetime.utcnow() - timedelta(days=DAYS_BACK)
+
+    video_ids = []
+    snippets = {}
 
     for item in data.get("items", []):
         video_id = item["id"]["videoId"]
         snippet = item["snippet"]
-        title = snippet["title"]
         published_at = snippet["publishedAt"]
-
-        if "#shorts" not in title.lower() and "shorts" not in snippet.get("description", "").lower():
-            continue
 
         upload_date = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
         if upload_date < one_month_ago:
             continue
 
-        recent_shorts.append({
+        video_ids.append(video_id)
+        snippets[video_id] = snippet
+
+    # Fetch durations
+    details = get_video_details(video_ids)
+
+    for video_id in video_ids:
+        snippet = snippets[video_id]
+        detail = details.get(video_id, {})
+        duration_str = detail.get("duration", "PT0S")
+
+        try:
+            duration_seconds = parse_duration(duration_str).total_seconds()
+        except Exception:
+            duration_seconds = 0
+
+        # Check if it's a short by tag OR short by duration
+        is_short = (
+            "#shorts" in snippet["title"].lower()
+            or "shorts" in snippet.get("description", "").lower()
+            or duration_seconds <= 120  # 2 minutes max
+        )
+
+        if not is_short:
+            continue
+
+        recent_videos.append({
             "videoId": video_id,
-            "title": title,
+            "title": snippet["title"],
             "description": snippet.get("description", ""),
-            "uploadDate": published_at,
+            "uploadDate": snippet["publishedAt"],
             "channelName": meta["channelName"],
             "channelLogo": meta["channelLogo"],
             "embedUrl": f"https://www.youtube.com/embed/{video_id}?autoplay=0&mute=1"
         })
 
-    return recent_shorts
+    return recent_videos
+
 
 def get_video_details(video_ids):
     all_details = {}

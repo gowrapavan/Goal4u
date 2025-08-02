@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { fetchNextReelsBatch, maybePrefetchMore, findVideoById } from './reelsFetcher';
 import ShareButton from './SharePopup'; // adjust path if needed
+import { Helmet } from 'react-helmet-async';
 
 import './shorts.css'
 // Dummy fallback comments for demonstration
@@ -43,6 +44,12 @@ const Shorts = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const currentTitle = reelsData?.[currentIndex]?.title || 'Goal4U Shorts';
+  const currentVideoId =
+  reelsData?.[currentIndex]?.videoId ||
+  (reelsData?.[currentIndex]?.id?.split('-')[0]) ||
+  '';
+
 
   // --- 1. Handle video param from URL ---
   useEffect(() => {
@@ -150,7 +157,7 @@ const Shorts = () => {
           
           // Update URL with current video ID
           if (currentVideoId) {
-            const newUrl = `/shorts?video=${currentVideoId}`;
+            const newUrl = `/shorts/${currentVideoId}`;
             const currentUrl = location.pathname + location.search;
             if (currentUrl !== newUrl) {
               window.history.replaceState(null, '', newUrl);
@@ -218,9 +225,63 @@ const Shorts = () => {
       : DUMMY_COMMENTS;
 
   if (loading) return <LoadingSpinner message="Loading..." />;
+  function formatLikeCount(num) {
+  if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return num.toString();
+}
+
 
   return (
     <>
+<Helmet>
+  {/* Page title based on current reel */}
+  <title>{currentTitle || "Goal4U – Watch Football Highlights & Shorts"}</title>
+
+  {/* General site metadata */}
+  <meta name="description" content={currentTitle ? `Watch: ${currentTitle}` : "Your hub for football reels, goals, moments and more. Powered by Goal4U."} />
+  <meta name="keywords" content="football, shorts, reels, highlights, real madrid, kylian mbappe, messi, haaland, goals, goal4u" />
+  <meta name="author" content="Goal4U" />
+
+  {/* OpenGraph for sharing */}
+  <meta property="og:title" content={currentTitle || "Goal4U – Football Reels"} />
+  <meta property="og:description" content={currentTitle ? `Watch: ${currentTitle}` : "Latest football shorts and match moments."} />
+  <meta property="og:image" content={reelsData?.[currentIndex]?.thumbnail || "/default-thumb.jpg"} />
+  <meta property="og:url" content={`https://goal4u.netlify.app/shorts/${currentVideoId || ""}`} />
+  <meta property="og:type" content="video.other" />
+
+  {/* Twitter Cards */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={currentTitle || "Goal4U – Football Highlights"} />
+  <meta name="twitter:description" content={currentTitle ? `Watch: ${currentTitle}` : "Stream quick football reels"} />
+  <meta name="twitter:image" content={reelsData?.[currentIndex]?.thumbnail || "/default-thumb.jpg"} />
+
+  {/* Conditional structured data only if a reel is being viewed */}
+  {currentTitle && reelsData?.[currentIndex] && (
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": currentTitle,
+        "description": `Watch: ${currentTitle}`,
+        "thumbnailUrl": reelsData[currentIndex].thumbnail || "/default-thumb.jpg",
+        "uploadDate": reelsData[currentIndex].uploadDate || new Date().toISOString(),
+        "contentUrl": reelsData[currentIndex].src || reelsData[currentIndex].embedUrl,
+        "embedUrl": reelsData[currentIndex].embedUrl,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Goal4U",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://goal4u.netlify.app/logo.png" // or your real logo URL
+          }
+        }
+      })}
+    </script>
+  )}
+</Helmet>
+
+
       <div className="shorts-header">
         <button className="back-btn" onClick={() => navigate('/')}>
           <span className="arrow">←</span>
@@ -276,10 +337,11 @@ const Shorts = () => {
                     />
                   </svg>
                 </span>
-                <span className="action-label">Like</span>
+                  <p className="action-label">{formatLikeCount(reel.likeCount)}</p>
+
               </button>
 
-              <ShareButton videoId={reel.videoId} />
+              
 
               <button
                 className="action-btn comment-btn"
@@ -290,6 +352,7 @@ const Shorts = () => {
                 <span className="action-icon">💬</span>
                 <span className="action-label">Comment</span>
               </button>
+              <ShareButton videoId={reel.videoId} />
               {reel.channelLogo && (
                 <img
                   src={reel.channelLogo}

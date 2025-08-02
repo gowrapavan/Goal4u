@@ -4,7 +4,7 @@ import "./SharePopup.css"; // Create this CSS file or use Tailwind if preferred
 const ShareButton = ({ videoId }) => {
   const [showPopup, setShowPopup] = useState(false);
 
-  const shareUrl = `${window.location.origin}/shorts?video=${videoId}`;
+  const shareUrl = `${window.location.origin}/shorts/${videoId}`;
 
   const handleCopy = async () => {
     try {
