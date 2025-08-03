@@ -45,7 +45,7 @@ const DMobileFooter = () => {
       <Link to="/livetv" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-tv" style={iconStyle}></i> Live
       </Link>
-      <Link to="/shorts" style={itemStyle} onClick={scrollToTop}>
+      <Link to="/shorts/" style={itemStyle} onClick={scrollToTop}>
         <i className="fa fa-play-circle" style={iconStyle}></i> Reels
       </Link>
       <Link to="/clubs" style={itemStyle} onClick={scrollToTop}>

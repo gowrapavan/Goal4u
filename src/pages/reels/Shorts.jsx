@@ -1,36 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import { fetchNextReelsBatch, maybePrefetchMore, findVideoById } from './reelsFetcher';
-import ShareButton from './SharePopup'; // adjust path if needed
-import { Helmet } from 'react-helmet-async';
+import ShareButton from './SharePopup';
+import './shorts.css';
 
-import './shorts.css'
-// Dummy fallback comments for demonstration
-
-// Dummy fallback comments for demonstration
 const DUMMY_COMMENTS = [
-  {
-    author: '@john_doe',
-    text: 'Amazing video! 🔥',
-    likeCount: 12,
-    publishedAt: '2025-07-20T12:00:00Z',
-  },
-  {
-    author: '@footballfan',
-    text: 'Love this moment 😍',
-    likeCount: 7,
-    publishedAt: '2025-07-20T12:01:00Z',
-  },
-  {
-    author: '@soccerlife',
-    text: 'Who else is watching in 2025?',
-    likeCount: 3,
-    publishedAt: '2025-07-20T12:02:00Z',
-  },
+  { author: '@john_doe', text: 'Amazing video! 🔥', likeCount: 12, publishedAt: '2025-07-20T12:00:00Z' },
+  { author: '@footballfan', text: 'Love this moment 😍', likeCount: 7, publishedAt: '2025-07-20T12:01:00Z' },
+  { author: '@soccerlife', text: 'Who else is watching in 2025?', likeCount: 3, publishedAt: '2025-07-20T12:02:00Z' },
 ];
+if (typeof window !== 'undefined') {
+  const { pathname } = window.location;
+  if (/^\/shorts\/[^/]+$/.test(pathname)) {
+    // Force redirect to /shorts on full page reload (not navigation)
+    if (performance?.navigation?.type === 1 || performance?.getEntriesByType('navigation')[0]?.type === 'reload') {
+      window.location.replace('/shorts');
+    }
+  }
+}
 
-const LOGO_URL = "/assets/img/6.png"; // Change to your logo path
+const LOGO_URL = "/assets/img/6.png";
 
 const Shorts = () => {
   const [loading, setLoading] = useState(true);
@@ -40,133 +31,161 @@ const Shorts = () => {
   const [commentReelIndex, setCommentReelIndex] = useState(null);
   const [liked, setLiked] = useState({});
   const [likeAnimating, setLikeAnimating] = useState({});
+  const [playingIndex, setPlayingIndex] = useState(null); // index of currently playing reel
   const containerRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const currentTitle = reelsData?.[currentIndex]?.title || 'Goal4U Shorts';
-  const currentVideoId =
-  reelsData?.[currentIndex]?.videoId ||
-  (reelsData?.[currentIndex]?.id?.split('-')[0]) ||
-  '';
+  const { videoId: videoIdFromUrl } = useParams();
+    useEffect(() => {
+    const isShortsWithId = /^\/shorts\/[^/]+$/.test(location.pathname);
+    const navEntries = performance.getEntriesByType('navigation');
+    const isReload =
+      performance?.navigation?.type === 1 || // legacy
+      navEntries[0]?.type === 'reload'; // modern
 
+    if (isShortsWithId && isReload) {
+      navigate('/shorts', { replace: true });
+    }
+  }, [location]);
 
-  // --- 1. Handle video param from URL ---
+  // --- 1. Initial Reel Selection (on Page Load or Refresh) ---
   useEffect(() => {
-    const handleVideoFromUrl = async () => {
-      const videoIdFromUrl = searchParams.get('video');
-      if (!videoIdFromUrl) return;
-
-      // First check if video is already in loaded data
-      if (reelsData.length > 0) {
-        const idx = reelsData.findIndex(
-          v => {
-            const videoId = v.videoId || (v.id && v.id.split('-')[0]);
-            return videoId === videoIdFromUrl;
-          }
-        );
-        
-        if (idx !== -1) {
-          setCurrentIndex(idx);
-          setTimeout(() => {
-            const slide = containerRef.current?.querySelector(`.reel-slide[data-index="${idx}"]`);
-            if (slide) {
-              slide.scrollIntoView({ behavior: 'auto', block: 'start' });
-              // Autoplay the video
-              const iframe = slide.querySelector('iframe');
-              iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            }
-          }, 300);
-          return;
-        }
-      }
-
-      // If video not found in loaded data, search in all available videos
-      try {
-        const foundVideo = await findVideoById(videoIdFromUrl);
-        if (foundVideo) {
-          // Add the found video to the beginning of reelsData
-          setReelsData(prev => {
-            // Check if video is already in the list to avoid duplicates
-            const exists = prev.some(v => {
-              const videoId = v.videoId || (v.id && v.id.split('-')[0]);
-              return videoId === videoIdFromUrl;
-            });
-            
-            if (!exists) {
-              return [foundVideo, ...prev];
-            }
-            return prev;
-          });
-          
-          // Set current index to 0 (the newly added video)
-          setCurrentIndex(0);
-          
-          setTimeout(() => {
-            const slide = containerRef.current?.querySelector(`.reel-slide[data-index="0"]`);
-            if (slide) {
-              slide.scrollIntoView({ behavior: 'auto', block: 'start' });
-              // Autoplay the video
-              const iframe = slide.querySelector('iframe');
-              iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            }
-          }, 300);
-        }
-      } catch (error) {
-        console.error('Error finding video by ID:', error);
-      }
-    };
-
-    handleVideoFromUrl();
-  }, [reelsData, searchParams]);
-
-  // --- 2. Load first batch of videos ---
-  useEffect(() => {
-    const loadInitialBatch = async () => {
+    const initializeShorts = async () => {
       const { newVideos } = await fetchNextReelsBatch();
-      setReelsData(prev => [...prev, ...newVideos]);
+      let finalData = [...newVideos];
+
+      if (videoIdFromUrl) {
+        // Find the requested reel
+        const foundIndex = finalData.findIndex(video => video.videoId === videoIdFromUrl);
+        if (foundIndex !== -1) {
+          // Place the requested reel at index 0, shuffle the rest
+          const requested = finalData[foundIndex];
+          const rest = finalData.filter((_, idx) => idx !== foundIndex);
+          for (let i = rest.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [rest[i], rest[j]] = [rest[j], rest[i]];
+          }
+          finalData = [requested, ...rest];
+          setReelsData(finalData);
+          setCurrentIndex(0);
+          setPlayingIndex(null); // Don't autoplay
+          setTimeout(() => {
+            const slide = containerRef.current?.querySelector('.reel-slide[data-index="0"]');
+            if (slide) slide.scrollIntoView({ behavior: 'auto', block: 'center' });
+          }, 200);
+        } else {
+          // Try to fetch individually if not found
+          try {
+            const foundVideo = await findVideoById(videoIdFromUrl);
+            if (foundVideo) {
+              for (let i = finalData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [finalData[i], finalData[j]] = [finalData[j], finalData[i]];
+              }
+              finalData = [foundVideo, ...finalData];
+              setReelsData(finalData);
+              setCurrentIndex(0);
+              setPlayingIndex(null);
+              setTimeout(() => {
+                const slide = containerRef.current?.querySelector('.reel-slide[data-index="0"]');
+                if (slide) slide.scrollIntoView({ behavior: 'auto', block: 'center' });
+              }, 200);
+            } else {
+              setReelsData(finalData);
+            }
+          } catch (err) {
+            setReelsData(finalData);
+          }
+        }
+      } else {
+        // No videoId: pick random as first, shuffle rest
+        const randomIndex = Math.floor(Math.random() * finalData.length);
+        const randomVideo = finalData[randomIndex];
+        const rest = finalData.filter((_, idx) => idx !== randomIndex);
+        for (let i = rest.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [rest[i], rest[j]] = [rest[j], rest[i]];
+        }
+        finalData = [randomVideo, ...rest];
+        setReelsData(finalData);
+        setCurrentIndex(0);
+        setPlayingIndex(null);
+        setTimeout(() => {
+          const slide = containerRef.current?.querySelector('.reel-slide[data-index="0"]');
+          if (slide) slide.scrollIntoView({ behavior: 'auto', block: 'center' });
+        }, 200);
+      }
       setLoading(false);
     };
-    loadInitialBatch();
-  }, []);
+    initializeShorts();
+  }, [videoIdFromUrl, navigate]);
 
-  // --- 3. Scroll autoplay behavior ---
+  // --- 2. Scroll/Play/Pause Control with Autoplay on Scroll ---
   useEffect(() => {
-    if (!loading && containerRef.current) {
+    if (!loading && containerRef.current && reelsData.length > 0) {
       const container = containerRef.current;
+      let scrollTimeout;
+
+      const disableIframePointerEvents = () => {
+        const iframes = container.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+          iframe.style.pointerEvents = 'none';
+        });
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          iframes.forEach(iframe => {
+            iframe.style.pointerEvents = 'auto';
+          });
+        }, 300);
+      };
 
       const handleScroll = () => {
+        disableIframePointerEvents();
+
         const slides = container.querySelectorAll('.reel-slide');
-        let activeIndex = -1;
+        let maxVisibility = 0;
+        let bestIndex = -1;
 
         slides.forEach((slide, idx) => {
           const rect = slide.getBoundingClientRect();
-          const iframe = slide.querySelector('iframe');
-
-          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-            activeIndex = idx;
-            iframe?.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-          } else {
-            iframe?.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          const visibleHeight = Math.max(0, Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top));
+          if (visibleHeight > maxVisibility) {
+            maxVisibility = visibleHeight;
+            bestIndex = idx;
           }
         });
 
-        if (activeIndex !== -1) {
-          const currentReel = reelsData[activeIndex];
-          const currentVideoId = currentReel?.videoId || (currentReel?.id && currentReel.id.split('-')[0]);
-          
-          // Update URL with current video ID
+        // Autoplay the most visible reel, pause others
+        slides.forEach((slide, idx) => {
+          const iframe = slide.querySelector('iframe');
+          if (idx === bestIndex) {
+            iframe?.contentWindow?.postMessage(
+              JSON.stringify({ event: 'command', func: 'playVideo', args: [] }),
+              '*'
+            );
+          } else {
+            iframe?.contentWindow?.postMessage(
+              JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+              '*'
+            );
+          }
+        });
+
+        // Update URL and Helmet metadata for the most visible reel
+        if (bestIndex !== -1) {
+          const currentReel = reelsData[bestIndex];
+          const currentVideoId = currentReel?.videoId;
           if (currentVideoId) {
             const newUrl = `/shorts/${currentVideoId}`;
             const currentUrl = location.pathname + location.search;
             if (currentUrl !== newUrl) {
-              window.history.replaceState(null, '', newUrl);
+              window.history.replaceState({}, '', newUrl);
             }
           }
-          
-          setCurrentIndex(activeIndex);
+          if (bestIndex !== currentIndex) {
+            setCurrentIndex(bestIndex);
+          }
         }
-
       };
 
       container.addEventListener('scroll', handleScroll);
@@ -174,16 +193,17 @@ const Shorts = () => {
 
       return () => {
         container.removeEventListener('scroll', handleScroll);
+        clearTimeout(scrollTimeout);
       };
     }
-  }, [loading, reelsData, location]);
+  }, [loading, reelsData, location, currentIndex]);
 
-  // --- 4. Prefetch logic ---
+  // --- 3. Prefetch logic ---
   useEffect(() => {
     maybePrefetchMore(currentIndex);
   }, [currentIndex]);
 
-  // --- 5. Auto-load more videos when last reel is visible ---
+  // --- 4. Auto-load more videos when last reel is visible ---
   useEffect(() => {
     const loadMoreIfNeeded = async () => {
       if (currentIndex === reelsData.length - 1) {
@@ -192,10 +212,9 @@ const Shorts = () => {
       }
     };
     loadMoreIfNeeded();
-  }, [currentIndex]);
+  }, [currentIndex, reelsData.length]);
 
-
-  // --- 7. Comment popup open/close ---
+  // --- 5. Comment popup open/close ---
   const openComments = (idx, e) => {
     if (e) e.stopPropagation();
     setCommentReelIndex(idx);
@@ -204,11 +223,11 @@ const Shorts = () => {
   };
   const closeComments = () => {
     setShowComments(false);
-    setTimeout(() => setCommentReelIndex(null), 300); // after animation
+    setTimeout(() => setCommentReelIndex(null), 300);
     document.body.style.overflow = '';
   };
 
-  // --- 8. Like button logic ---
+  // --- 6. Like button logic ---
   const handleLike = (idx, e) => {
     if (e) e.stopPropagation();
     setLiked(prev => ({ ...prev, [idx]: !prev[idx] }));
@@ -218,7 +237,30 @@ const Shorts = () => {
     }, 600);
   };
 
-  // --- 9. Get comments for a reel (dummy fallback) ---
+  // --- 7. Play button logic ---
+  const handlePlay = (idx, e) => {
+    if (e) e.stopPropagation();
+    setPlayingIndex(idx);
+    setTimeout(() => {
+      const slides = containerRef.current?.querySelectorAll('.reel-slide');
+      slides?.forEach((slide, i) => {
+        const iframe = slide.querySelector('iframe');
+        if (i === idx) {
+          iframe?.contentWindow?.postMessage(
+            JSON.stringify({ event: 'command', func: 'playVideo', args: [] }),
+            '*'
+          );
+        } else {
+          iframe?.contentWindow?.postMessage(
+            JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }),
+            '*'
+          );
+        }
+      });
+    }, 100);
+  };
+
+  // --- 8. Get comments for a reel (dummy fallback) ---
   const getCommentsForReel = reel =>
     Array.isArray(reel?.comments) && reel.comments.length > 0
       ? reel.comments
@@ -226,61 +268,57 @@ const Shorts = () => {
 
   if (loading) return <LoadingSpinner message="Loading..." />;
   function formatLikeCount(num) {
-  if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
-  if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
-  return num.toString();
-}
+    if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+    return num.toString();
+  }
 
+  // --- 9. Dynamic Helmet metadata ---
+  const activeReel = reelsData[currentIndex] || {};
+  const currentTitle = activeReel.title || "Goal4U – Watch Football Highlights & Shorts";
+  const currentThumbnail = activeReel.thumbnail || "/default-thumb.jpg";
+  const currentVideoId = activeReel.videoId;
+  const currentUrl = `https://goal4u.netlify.app/shorts/${currentVideoId || ""}`;
 
   return (
     <>
-<Helmet>
-  {/* Page title based on current reel */}
-  <title>{currentTitle || "Goal4U – Watch Football Highlights & Shorts"}</title>
-
-  {/* General site metadata */}
-  <meta name="description" content={currentTitle ? `Watch: ${currentTitle}` : "Your hub for football reels, goals, moments and more. Powered by Goal4U."} />
-  <meta name="keywords" content="football, shorts, reels, highlights, real madrid, kylian mbappe, messi, haaland, goals, goal4u" />
-  <meta name="author" content="Goal4U" />
-
-  {/* OpenGraph for sharing */}
-  <meta property="og:title" content={currentTitle || "Goal4U – Football Reels"} />
-  <meta property="og:description" content={currentTitle ? `Watch: ${currentTitle}` : "Latest football shorts and match moments."} />
-  <meta property="og:image" content={reelsData?.[currentIndex]?.thumbnail || "/default-thumb.jpg"} />
-  <meta property="og:url" content={`https://goal4u.netlify.app/shorts/${currentVideoId || ""}`} />
-  <meta property="og:type" content="video.other" />
-
-  {/* Twitter Cards */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={currentTitle || "Goal4U – Football Highlights"} />
-  <meta name="twitter:description" content={currentTitle ? `Watch: ${currentTitle}` : "Stream quick football reels"} />
-  <meta name="twitter:image" content={reelsData?.[currentIndex]?.thumbnail || "/default-thumb.jpg"} />
-
-  {/* Conditional structured data only if a reel is being viewed */}
-  {currentTitle && reelsData?.[currentIndex] && (
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "name": currentTitle,
-        "description": `Watch: ${currentTitle}`,
-        "thumbnailUrl": reelsData[currentIndex].thumbnail || "/default-thumb.jpg",
-        "uploadDate": reelsData[currentIndex].uploadDate || new Date().toISOString(),
-        "contentUrl": reelsData[currentIndex].src || reelsData[currentIndex].embedUrl,
-        "embedUrl": reelsData[currentIndex].embedUrl,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Goal4U",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://goal4u.netlify.app/logo.png" // or your real logo URL
-          }
-        }
-      })}
-    </script>
-  )}
-</Helmet>
-
+      <Helmet>
+        <title>{currentTitle}</title>
+        <meta name="description" content={`Watch: ${currentTitle}`} />
+        <meta name="keywords" content="football, shorts, reels, highlights, real madrid, mbappe, messi, haaland, goals, goal4u" />
+        <meta name="author" content="Goal4U" />
+        <meta property="og:title" content={currentTitle} />
+        <meta property="og:description" content={`Watch: ${currentTitle}`} />
+        <meta property="og:image" content={currentThumbnail} />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:type" content="video.other" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={currentTitle} />
+        <meta name="twitter:description" content={`Watch: ${currentTitle}`} />
+        <meta name="twitter:image" content={currentThumbnail} />
+        {activeReel && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "name": currentTitle,
+              "description": `Watch: ${currentTitle}`,
+              "thumbnailUrl": currentThumbnail,
+              "uploadDate": activeReel.uploadDate || new Date().toISOString(),
+              "contentUrl": activeReel.src || activeReel.embedUrl,
+              "embedUrl": activeReel.embedUrl,
+              "publisher": {
+                "@type": "Organization",
+                "name": "Goal4U",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://goal4u.netlify.app/logo.png"
+                }
+              }
+            })}
+          </script>
+        )}
+      </Helmet>
 
       <div className="shorts-header">
         <button className="back-btn" onClick={() => navigate('/')}>
@@ -297,18 +335,22 @@ const Shorts = () => {
       <div className="reel-feed-wrapper" ref={containerRef}>
         {reelsData.map((reel, i) => (
           <div
-            key={`${reel.id || reel.videoId || i}-${i}`}
+            key={reel.videoId}
             className={`reel-slide${i === currentIndex ? ' active' : ''}`}
             data-index={i}
             style={i === currentIndex ? { outline: '2px solid #ff3b5c' } : {}}
           >
-            <iframe
-              src={`${reel.src || reel.embedUrl}?enablejsapi=1`}
-              allow="autoplay; encrypted-media; fullscreen"
-              allowFullScreen
-              playsInline
-              title={`reel-${reel.id || reel.videoId || i}`}
-            />
+            <div className="reel-video-wrap" style={{ position: 'relative', width: '100%', height: '100%' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${reel.videoId}?enablejsapi=1&controls=1&modestbranding=1&autoplay=0`}
+                allow="autoplay; encrypted-media; fullscreen"
+                allowFullScreen
+                playsInline
+                title={`reel-${reel.videoId}`}
+                style={{ width: '100%', height: '100%' }}
+              />
+           
+            </div>
             <div
               className="reel-actions"
               onClick={e => e.stopPropagation()}
@@ -337,12 +379,8 @@ const Shorts = () => {
                     />
                   </svg>
                 </span>
-                  <p className="action-label">{formatLikeCount(reel.likeCount)}</p>
-
+                <p className="action-label">{formatLikeCount(reel.likeCount)}</p>
               </button>
-
-              
-
               <button
                 className="action-btn comment-btn"
                 title="Comments"
@@ -405,7 +443,6 @@ const Shorts = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };

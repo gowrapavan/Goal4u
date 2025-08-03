@@ -49,7 +49,7 @@ function AppWrapper() {
   const location = useLocation();
 
   // Pages where footer should be hidden
-  const noFooterPages = ['/shorts', '/shorts4u'];
+  const noFooterPages = ['/shorts/:videoId?', '/shorts4u'];
 
   return (
     <>
@@ -57,7 +57,8 @@ function AppWrapper() {
       <ScrollToTop />
       <div id="layout">
         {/* Header should be shown on all pages except '/shorts' */}
-        {location.pathname !== '/shorts' && <Header />}
+        {!location.pathname.startsWith('/shorts') && <Header />}
+
 
         <Routes>
           <Route
@@ -71,7 +72,7 @@ function AppWrapper() {
             }
           />
           <Route path="/shorts4u" element={<InstaFeeds />} />
-          <Route path="/shorts" element={<Shorts />} />
+          <Route path="/shorts/:videoId?" element={<Shorts />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
@@ -92,7 +93,7 @@ function AppWrapper() {
 
 {/* Show appropriate mobile footer based on page and screen size */}
 {window.innerWidth <= 768 && (
-  location.pathname === '/shorts' ? (
+  location.pathname.startsWith('/shorts') ? (
     <DMobileFooter />
   ) : (
     <MobileFooter />
@@ -101,8 +102,10 @@ function AppWrapper() {
 
 
 
+
         {/* Hide Footer on /shorts and /shorts4u */}
-        {!noFooterPages.includes(location.pathname) && <Footer />}
+        {!location.pathname.startsWith('/shorts') && <Footer />}
+
 
         <FloatButton />
       </div>
