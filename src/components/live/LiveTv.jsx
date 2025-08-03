@@ -65,33 +65,67 @@ const LiveTV = () => {
   const navigate = useNavigate();
 
   // --- On mount, check for provider-specific param and set stream if present ---
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    let found = false;
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+
+  const determineInitialStream = (channelList) => {
     for (const provider of Object.keys(PARAM_KEYS)) {
       const paramKey = PARAM_KEYS[provider];
       const code = params.get(paramKey);
       if (code) {
-        const codeMap = loadCodeMap(provider);
-        const url = codeMap[code];
-        if (url) {
-          setIframeURL(url);
+        const decodedLabel = decode(code);
+        const matched = channelList.find(
+          (c) =>
+            c.label.toLowerCase() === decodedLabel.toLowerCase() &&
+            c.url.toLowerCase().includes(provider)
+        );
+        if (matched) {
+          setIframeURL(matched.url);
           setSelectedStream(provider);
-          found = true;
-          break;
+          return true;
         }
       }
     }
-    // Only set default if no code param in URL and path is exactly /livetv (no params at all)
+    return false;
+  };
+
+  let isMounted = true;
+  Promise.all(
+    jsonFiles.map((file) =>
+      fetch(file)
+        .then((res) => res.json())
+        .catch(() => [])
+    )
+  ).then((results) => {
+    if (!isMounted) return;
+    const all = results.flat().filter(Boolean);
+    setChannels(all);
+
+    const matched = determineInitialStream(all);
+
+    // No param or no match: default to Elixx
     if (
-      !found &&
+      !matched &&
       location.pathname === "/livetv" &&
       Array.from(params.keys()).length === 0
     ) {
-      setSelectedStream("elixx");
+      const defaultProvider = "elixx";
+      setSelectedStream(defaultProvider);
+      const defaultChannel = all.find((c) =>
+        c.url.toLowerCase().includes(defaultProvider)
+      );
+      if (defaultChannel) {
+        setIframeURL(defaultChannel.url);
+      }
     }
-    // eslint-disable-next-line
-  }, [location.search, location.pathname]);
+  });
+
+  return () => {
+    isMounted = false;
+  };
+}, [location.search, location.pathname]);
+
+
 
   // Fetch all channels from JSON files
   useEffect(() => {
@@ -170,22 +204,24 @@ const LiveTV = () => {
     )?.keyword;
     if (!provider) return;
 
-    let codeMap = loadCodeMap(provider);
-    let code = Object.keys(codeMap).find((k) => codeMap[k] === iframeURL);
-    if (!code) {
-      code = generateShortCode();
-      codeMap[code] = iframeURL;
-      // Keep only last 50 codes to avoid localStorage bloat
-      const keys = Object.keys(codeMap);
-      if (keys.length > 50) {
-        for (let i = 0; i < keys.length - 50; i++) delete codeMap[keys[i]];
-      }
-      saveCodeMap(provider, codeMap);
-    }
-    // Build new URL with only the correct param
-    const params = new URLSearchParams();
-    params.set(PARAM_KEYS[provider], code);
-    navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+    const matchedChannel = channels.find(c => c.url === iframeURL);
+    if (!matchedChannel) return;
+
+    // Encode the channel label
+    const encodedLabel = encode(matchedChannel.label);
+
+    // Determine correct param key
+    const paramKey = PARAM_KEYS[provider];
+
+    // Build URL
+const params = new URLSearchParams(location.search);
+
+// Update only the current provider's param
+params.set(paramKey, encodedLabel);
+
+navigate(`${location.pathname}?${params.toString()}`, { replace: true });
+
+
     // eslint-disable-next-line
   }, [iframeURL]);
 
