@@ -69,24 +69,18 @@ useEffect(() => {
   const params = new URLSearchParams(location.search);
 
   const determineInitialStream = (channelList) => {
-    for (const provider of Object.keys(PARAM_KEYS)) {
-      const paramKey = PARAM_KEYS[provider];
-      const code = params.get(paramKey);
-      if (code) {
-        const decodedLabel = decode(code);
-        const matched = channelList.find(
-          (c) =>
-            c.label.toLowerCase() === decodedLabel.toLowerCase() &&
-            c.url.toLowerCase().includes(provider)
-        );
-        if (matched) {
-          setIframeURL(matched.url);
-          setSelectedStream(provider);
-          return true;
-        }
-      }
-    }
-    return false;
+const code = params.get("stream");
+if (code) {
+  const decodedLabel = decode(code);
+  const matched = channelList.find((c) => c.label.toLowerCase() === decodedLabel.toLowerCase());
+  if (matched) {
+    setIframeURL(matched.url);
+    const matchedProvider = PROVIDERS.find((p) => matched.url.toLowerCase().includes(p.keyword));
+    if (matchedProvider) setSelectedStream(matchedProvider.keyword);
+    return true;
+  }
+}
+
   };
 
   let isMounted = true;
@@ -144,12 +138,8 @@ useEffect(() => {
       // Only set default if no code param in URL and path is exactly /livetv (no params at all)
       const params = new URLSearchParams(location.search);
       let hasCode = false;
-      for (const provider of Object.keys(PARAM_KEYS)) {
-        if (params.get(PARAM_KEYS[provider])) {
-          hasCode = true;
-          break;
-        }
-      }
+     hasCode = params.has("stream");
+
       if (
         !hasCode &&
         location.pathname === "/livetv" &&
@@ -211,15 +201,8 @@ useEffect(() => {
     const encodedLabel = encode(matchedChannel.label);
 
     // Determine correct param key
-    const paramKey = PARAM_KEYS[provider];
+    navigate(`${location.pathname}?stream=${encodedLabel}`, { replace: true });
 
-    // Build URL
-const params = new URLSearchParams(location.search);
-
-// Update only the current provider's param
-params.set(paramKey, encodedLabel);
-
-navigate(`${location.pathname}?${params.toString()}`, { replace: true });
 
 
     // eslint-disable-next-line
