@@ -8,7 +8,7 @@
   { "label": "MARITIMO",   "url": "https://elixx.cc/aw/maritimo.php",   "Logo": "/assets/img/tv-logo/maritimo.png" },
   { "label": "VITORIA",    "url": "https://elixx.cc/aw/vitoria.php",    "Logo": "/assets/img/tv-logo/vitoria.png" },
   { "label": "AVES",       "url": "https://elixx.cc/aw/aves.php",       "Logo": "/assets/img/tv-logo/aves.png" },
-  { "label": "AJAXW",      "url": "https://elixx.cc/aw/ajaxw.php",      "Logo": "/assets/img/tv-logo/ajaxw.png" },
+  { "label": "AJAXW",      "url": "https://elixx.cc/aw/ajaxw.php",      "Logo": "" },
   { "label": "ADORTMUND",  "url": "https://elixx.cc/aw/adortmund.php",  "Logo": "/assets/img/tv-logo/adortmund.png" },
   { "label": "EVALENCIA",  "url": "https://elixx.cc/aw/evalencia.php",  "Logo": "/assets/img/tv-logo/evalencia.png" },
   { "label": "LAZIO",      "url": "https://elixx.cc/aw/lazio.php",      "Logo": "/assets/img/tv-logo/lazio.png" },

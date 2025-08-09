@@ -301,7 +301,7 @@ if (code) {
           padding: 10px 16px;
           border-radius: 6px;
           border: 1px solid #444;
-          background: #2a2a2a;
+          background: rgba(6, 138, 6, 0.6);
           color: #ffffff;
           font-size: 14px;
           font-weight: 500;
@@ -311,7 +311,7 @@ if (code) {
           transition: all 0.2s ease;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           appearance: none;
-          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+          background-image: url("/assets/img/icon/live.png");
           background-position: right 12px center;
           background-repeat: no-repeat, no-repeat;
           background-size: 16px;
@@ -319,7 +319,7 @@ if (code) {
         }
         
         .livetv-provider-select:hover {
-          background: #333;
+          background: #238210c5;
           border-color: #555;
         }
         
@@ -329,7 +329,7 @@ if (code) {
         }
         
         .livetv-provider-select option {
-          background: #2a2a2a;
+          background: #12ac1fff;
           color: #ffffff;
           padding: 8px 12px;
           border: none;

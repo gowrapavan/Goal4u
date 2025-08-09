@@ -1,4 +1,134 @@
+import axios from 'axios';
 import { ApiMatch, Match, Competition } from '../types/match';
+
+export const COMPETITIONS: Competition[] = [
+  { code: 'EPL', name: 'Premier League', country: 'England' },
+  { code: 'ESP', name: 'La Liga', country: 'Spain' },
+  { code: 'ITSA', name: 'Serie A', country: 'Italy' },
+  { code: 'DEB', name: 'Bundesliga', country: 'Germany' },
+  { code: 'MLS', name: 'Major League Soccer', country: 'USA' },
+  { code: 'FRL1', name: 'Ligue 1', country: 'France' },
+  { code: 'CWC', name: 'FIFA Club World Cup', country: 'International' },
+  { code: 'UCL', name: 'UEFA Champions League', country: 'Europe' },
+];
+
+const LOCAL_BASE_URL = '/data/2026';
+
+function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
+  return {
+    GameId: apiMatch.GameId,
+    HomeTeamName: apiMatch.HomeTeamName,
+    AwayTeamName: apiMatch.AwayTeamName,
+    HomeTeamScore: apiMatch.HomeTeamScore,
+    AwayTeamScore: apiMatch.AwayTeamScore,
+    DateTime: apiMatch.DateTime ?? apiMatch.Date,
+    Status: apiMatch.Status,
+    IsClosed: apiMatch.IsClosed,
+    Competition: competition,
+    AwayTeamCountryCode: apiMatch.AwayTeamCountryCode,
+    HomeTeamCountryCode: apiMatch.HomeTeamCountryCode,
+    Group: apiMatch.Group || undefined,
+    Season: apiMatch.Season,
+    Winner: apiMatch.Winner,
+    HomeTeamKey: apiMatch.HomeTeamKey,
+    AwayTeamKey: apiMatch.AwayTeamKey,
+    Updated: apiMatch.Updated,
+  };
+}
+
+// Local date formatter (no UTC conversion)
+function formatDateLocal(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+export class LiveMatch {
+  /**
+   * Fetch matches for a given date from local JSON
+   */
+  static async fetchMatchesByDate(date: string): Promise<Match[]> {
+    const results: Match[] = [];
+
+    for (const comp of COMPETITIONS) {
+      try {
+        const url = `${LOCAL_BASE_URL}/${comp.code}.json`;
+        const response = await axios.get<ApiMatch[]>(url);
+
+        const transformed = response.data
+          .filter((m) => formatDateLocal(new Date(m.DateTime ?? m.Date)) === date)
+          .map((m) => transformApiMatch(m, comp.code));
+
+        results.push(...transformed);
+      } catch (err: any) {
+        console.error(`❌ Failed to load local JSON for ${comp.code}:`, err.message || err);
+      }
+    }
+
+    return results.sort(
+      (a, b) => new Date(a.DateTime ?? '').getTime() - new Date(b.DateTime ?? '').getTime()
+    );
+  }
+
+  /**
+   * Fetch recent matches for the past `days`
+   */
+  static async fetchRecentMatches(days: number = 7): Promise<Match[]> {
+    const today = new Date();
+    const dates = Array.from({ length: days }, (_, i) => {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      return formatDateLocal(d);
+    });
+
+    let allMatches: Match[] = [];
+
+    for (const date of dates) {
+      const matches = await this.fetchMatchesByDate(date);
+      allMatches.push(...matches);
+    }
+
+    // Remove duplicates by GameId
+    const seen = new Set<number>();
+    const uniqueMatches = allMatches.filter((m) => {
+      if (seen.has(m.GameId)) return false;
+      seen.add(m.GameId);
+      return true;
+    });
+
+    return uniqueMatches.sort(
+      (a, b) => new Date(b.DateTime ?? '').getTime() - new Date(a.DateTime ?? '').getTime()
+    );
+  }
+
+  /**
+   * Fetch only today's live or scheduled matches
+   * Uses local date to avoid time zone bleed
+   */
+  static async fetchLiveMatches(): Promise<Match[]> {
+    const todayStr = formatDateLocal(new Date());
+    const matches = await this.fetchMatchesByDate(todayStr);
+
+    return matches
+      .filter((match) => {
+        const matchLocalDate = formatDateLocal(new Date(match.DateTime ?? ''));
+        return (
+          matchLocalDate === todayStr &&
+          (match.Status === 'InProgress' || match.Status === 'Scheduled')
+        );
+      })
+      .sort(
+        (a, b) => new Date(a.DateTime ?? '').getTime() - new Date(b.DateTime ?? '').getTime()
+      );
+  }
+}
+
+
+
+
+
+/*import { ApiMatch, Match, Competition } from '../types/match';
 import { fetchBoxScoreById } from './boxscore'; // ⬅️ import full box score
 const API_KEY = import.meta.env.VITE_SPORTSLIVE_API_KEY;
 const BASE_URL = 'https://api.sportsdata.io/v4/soccer/scores/json/ScoresBasic';
@@ -8,6 +138,7 @@ export const COMPETITIONS: Competition[] = [
   { code: 'ESP', name: 'La Liga', country: 'Spain' },
   { code: 'ITSA', name: 'Serie A', country: 'Italy' },
   { code: 'DEB', name: 'Bundesliga', country: 'Germany' },
+  { code: 'MLS', name: 'Major League Soccer', country: 'USA' },
   { code: 'FRL1', name: 'Ligue 1', country: 'France' },
   { code: 'CWC', name: 'FIFA Club World Cup', country: 'International' },
   { code: 'UCL', name: 'UEFA Champions League', country: 'Europe' },
@@ -171,3 +302,4 @@ export class LiveMatch {
     });
   }
 }
+*/

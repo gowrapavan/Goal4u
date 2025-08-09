@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const PREFERRED_COMPETITIONS = [
   'EPL', 'DEB', 'ITSA', 'FRL1', 'NLC', 'PTC', 'MLS', 'SPL', 'SKC',
-  'CWC', 'UCL'
+  'CWC', 'UCL',
 ];
 
 const INTERNATIONAL_COMPS = ['CWC', 'WC'];
@@ -19,7 +19,7 @@ const PREFERRED_CLUBS = [
   'Paris Saint-Germain FC', 'Olympique de Marseille', 'AS Monaco FC', 'Olympique Lyonnais',
   'LOSC Lille', 'RC Lens', 'Stade Rennais FC',
   'AFC Ajax', 'PSV Eindhoven', 'Feyenoord Rotterdam',
-  'FC Porto', 'SL Benfica', 'Sporting CP',
+  'FC Porto', 'SL Benfica', 'Sporting CP','New England Revolution',
   'Celtic FC', 'Rangers FC',
   'Al Hilal', 'Al Ahly', 'Palmeiras', 'Club León', 'Seattle Sounders FC',
   'Shabab Al Ahli', 'Flamengo', 'Club América', 'Galatasaray', 'Besiktas',

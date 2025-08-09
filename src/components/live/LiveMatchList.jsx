@@ -14,6 +14,7 @@ const COMPETITION_NAMES = {
   FRA: 'Ligue 1',
   CWC: 'FIFA Club World Cup',
   UCL: 'Champions League',
+  MLS: 'Major League Soccer',
 };
 
 const LiveMatchList = () => {
