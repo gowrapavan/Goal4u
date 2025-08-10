@@ -58,11 +58,7 @@ A responsive live-streaming hub with:
 
 ### 🖼 Screenshot
 
-<p align="center">
-  <picture>
-    <img src="https://goal4u.netlify.app/assets/img/stock/live-tv-ss.png" alt="Goal4U Screenshot" >
-  </picture>
-</p>
+ <img src="https://goal4u.netlify.app/assets/img/stock/live-tv-ss.png" alt="Goal4U Screenshot" >
 
 
 ## 🛠 Tech Stack
@@ -136,4 +132,5 @@ This project is licensed under the *MIT License* — free to use and modify.
 - AI-powered match predictions
 
 ⚽ *GOAL4U — Because every moment matters.*
+
 
