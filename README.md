@@ -1,7 +1,7 @@
 <div style="display: flex; justify-content: center;">
   <picture>
     <source srcset="https://goal4u.netlify.app/assets/img/white-logo.png" media="(prefers-color-scheme: dark)">
-    <img src="https://goal4u.netlify.app/assets/img/fav1.png" alt="Goal4U Logo" width="580" height="220">
+    <img src="https://goal4u.netlify.app/assets/img/fav2.png" alt="Goal4U Logo" width="580" height="220">
   </picture>
 </div>
 
@@ -136,3 +136,4 @@ This project is licensed under the *MIT License* — free to use and modify.
 - AI-powered match predictions
 
 ⚽ *GOAL4U — Because every moment matters.*
+
