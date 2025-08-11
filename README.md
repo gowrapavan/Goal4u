@@ -9,6 +9,19 @@
 **GOAL4U — The Home of Football**
 
 [![Website](https://img.shields.io/badge/Live%20Site-Goal4U-green?style=for-the-badge&logo=netlify)](https://goal4u.netlify.app)  
+![License](https://img.shields.io/github/license/gowrapavan/Goal4u)
+![GitHub stars](https://img.shields.io/github/stars/gowrapavan/Goal4u?style=social)
+![GitHub forks](https://img.shields.io/github/forks/gowrapavan/Goal4u?style=social)
+![GitHub issues](https://img.shields.io/github/issues/gowrapavan/Goal4u)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/gowrapavan/Goal4u)
+![GitHub last commit](https://img.shields.io/github/last-commit/gowrapavan/Goal4u)
+
+![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white)
+![Expressjs](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
 Live football scores, match fixtures, streaming, and highlights — all in one place.
 
 
@@ -92,7 +105,7 @@ src/
 
 ### 1️⃣ Clone the Repository
 ```
-git clone https://github.com/yourusername/goal4u.git
+git clone https://github.com/gowrapavan/goal4u.git
 cd goal4u
 ```
 
@@ -132,5 +145,6 @@ This project is licensed under the *MIT License* — free to use and modify.
 - AI-powered match predictions
 
 ⚽ *GOAL4U — Because every moment matters.*
+
 
 
