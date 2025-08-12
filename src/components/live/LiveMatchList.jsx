@@ -5,6 +5,8 @@ import ErrorMessage from '../common/ErrorMessage';
 import { LiveMatch } from '../../services/live-match';
 import { getTeamLogoByKey } from '../../services/teamlogo';
 import ModernSpinner from '../common/ModernSpinner';
+import ElixxMatchList from './proxy/ElixxMatchList';
+import ProxedMatches from './proxy/ProxedMatches';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
@@ -111,6 +113,7 @@ const LiveMatchList = () => {
   });
 
   return (
+    
    <div className="live-match-list container" style={{ marginTop: '0.1rem' }}>
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3 style={{ color: '#212529' }}>Live & Recent Matches</h3>
@@ -139,6 +142,8 @@ const LiveMatchList = () => {
           </button>
         ))}
       </div>
+        {/* Elixx.cc Matches */}
+          <ProxedMatches />
 
       {loading ? (
         <ModernSpinner />
@@ -316,6 +321,7 @@ const LiveMatchList = () => {
           display: flex;
           align-items: center;
         }
+          
 
         .goals {
           font-size: 0.9rem;

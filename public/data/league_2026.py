@@ -4,8 +4,8 @@ import os
 import time
 
 API_KEY = "9578f3077e264f6f8ef67fb61998f6d8"
-COMPETITIONS = ["mls"]
-YEAR = "2025"
+COMPETITIONS = ["ucl"]
+YEAR = "2026"
 SAVE_DIR = f"./2026"
 
 os.makedirs(SAVE_DIR, exist_ok=True)

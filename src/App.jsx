@@ -49,7 +49,7 @@ function AppWrapper() {
   const location = useLocation();
 
   // Pages where footer should be hidden
-  const noFooterPages = ['/shorts/:videoId?', '/shorts4u'];
+  const noFooterPages = ['/shorts/:videoId?'];
 
   return (
     <>
@@ -71,7 +71,7 @@ function AppWrapper() {
               </>
             }
           />
-          <Route path="/shorts4u" element={<InstaFeeds />} />
+          <Route path="/reels" element={<InstaFeeds />} />
           <Route path="/shorts/:videoId?" element={<Shorts />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
@@ -103,7 +103,7 @@ function AppWrapper() {
 
 
 
-        {/* Hide Footer on /shorts and /shorts4u */}
+        {/* Hide Footer on /shorts  */}
         {!location.pathname.startsWith('/shorts') && <Footer />}
 
 
