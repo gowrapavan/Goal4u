@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { initGA, trackPageView } from './services/gmanger-tag/GA_Measurement';
 import { HelmetProvider } from 'react-helmet-async';
 import InstaFeeds from "./pages/reels/ReelFeed";
+import Video from "./pages/reels/Video";
+import YVideo from "./pages/reels/YVideo";
+
+
 import Shorts from "./pages/reels/Shorts";
 
 // Components
@@ -71,7 +75,8 @@ function AppWrapper() {
               </>
             }
           />
-          <Route path="/reels" element={<InstaFeeds />} />
+          <Route path="/reels" element={<YVideo />} />
+          <Route path="/reels/:videoId" element={<Video />} />
           <Route path="/shorts/:videoId?" element={<Shorts />} />
           <Route path="/MultipleTV" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />

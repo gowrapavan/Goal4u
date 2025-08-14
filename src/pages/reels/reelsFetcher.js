@@ -1,3 +1,5 @@
+const GITHUB_SHORTS_JSON = 'https://raw.githubusercontent.com/gowrapavan/shortsdata/main/shorts_data/shorts.json';
+
 // === Constants & Helpers ===
 const WATCHED_KEY = 'watched_shorts';
 const WATCHED_TIMESTAMP_KEY = 'watched_shorts_timestamp';
@@ -48,7 +50,7 @@ const markAsWatched = (ids) => {
 // Find a specific video by videoId from all available data
 export const findVideoById = async (targetVideoId) => {
   try {
-    const res = await fetch('/shorts_data/shorts.json');
+    const res = await fetch(GITHUB_SHORTS_JSON);
     if (!res.ok) throw new Error(`Failed to fetch shorts.json: ${res.status}`);
     const data = await res.json();
 
@@ -126,7 +128,7 @@ const loadShortsData = async () => {
   if (allShuffledShorts.length > 0) return;
 
   try {
-    const res = await fetch('/shorts_data/shorts.json');
+    const res = await fetch(GITHUB_SHORTS_JSON);
     if (!res.ok) throw new Error(`Failed to fetch shorts.json: ${res.status}`);
     const data = await res.json();
 

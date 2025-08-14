@@ -26,7 +26,6 @@ const InstaFeeds = () => {
               <Video />
             </div>
             <div className="shorts-section">
-              <VideoShorts />
             </div>
           </>
         )}
