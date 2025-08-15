@@ -100,6 +100,7 @@
   margin-bottom: 24px;
 }
 
+
 .video-title {
   font-size: 20px;
   font-weight: 600;
@@ -209,6 +210,7 @@
   z-index: 998;
 }
 
+/* Default (mobile) — keep your current style */
 .share-menu {
   position: absolute;
   top: 100%;
@@ -221,6 +223,18 @@
   z-index: 999;
   margin-top: 8px;
 }
+
+/* Desktop — show above button if not enough space */
+@media (min-width: 992px) {
+  .share-menu {
+    bottom: 100%;
+    top: auto;
+    margin-top: 0;
+    margin-bottom: 8px;
+    right: 0;
+  }
+}
+
 
 .share-option {
   display: flex;
@@ -419,9 +433,12 @@
   gap: 12px;
   cursor: pointer;
   border-radius: 8px;
-  padding: 8px;
+  padding: 0; /* remove extra padding */
   transition: background-color 0.2s ease;
+  align-items: center; /* vertically align thumbnail and text */
+  min-height: unset; /* avoid forced row height */
 }
+
 
 .mobile-related-item:hover {
   background: #f9f9f9;
@@ -430,11 +447,17 @@
 .mobile-related-thumbnail {
   position: relative;
   flex-shrink: 0;
-  width: 160px;
-  aspect-ratio: 16/9;
+  width: 140px;
+  aspect-ratio: 16 / 9;
   border-radius: 8px;
   overflow: hidden;
   background: #f0f0f0;
+}
+
+.mobile-related-info {
+  flex: 1;
+  min-width: 0;
+  padding: 0; /* remove unnecessary top/bottom padding */
 }
 
 .mobile-related-thumbnail img {
