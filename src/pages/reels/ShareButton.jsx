@@ -4,7 +4,7 @@ const ShareButton = ({ video }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
-  const shareUrl = `${window.location.origin}/reels/${video.videoId}`;
+  const shareUrl = `${window.location.origin}/videos/${video.videoId}`;
 
   const handleCopyLink = async () => {
     try {

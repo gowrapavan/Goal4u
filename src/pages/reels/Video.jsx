@@ -74,7 +74,7 @@ const Video = () => {
       } else {
         // If video not found, default to first video and update URL
         setMainVideo(allVideos[0]);
-        navigate(`/reels/${allVideos[0].videoId}`, { replace: true });
+        navigate(`/videos/${allVideos[0].videoId}`, { replace: true });
       }
       
       setBatchIndex(3); // Start from batch 3 for future loads
@@ -92,7 +92,7 @@ const Video = () => {
     await new Promise(resolve => setTimeout(resolve, 300));
     
     setMainVideo(video);
-    navigate(`/reels/${video.videoId}`);
+    navigate(`/videos/${video.videoId}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // Load new content-based recommendations for the selected video
@@ -240,7 +240,7 @@ const Video = () => {
 
         {/* Sidebar with Related Videos */}
         <div className="sidebar d-none d-md-block">
-          <h3 className="sidebar-title">Up next</h3>
+          <h3 className="sidebar-title">Recent Videos</h3>
           <div className="related-videos">
             {relatedSidebar.map((video) => (
               <div
@@ -270,7 +270,7 @@ const Video = () => {
 
       {/* Mobile Related Videos - Full Width */}
       <div className="mobile-related-section d-md-none">
-        <h3 className="mobile-related-title">Up next</h3>
+        <h3 className="mobile-related-title">Recent Videos</h3>
         <div className="mobile-related-videos">
           {relatedSidebar.map((video) => (
             <div
@@ -300,9 +300,9 @@ const Video = () => {
       {relatedGrid.length > 0 && (
         <div className="more-videos-section">
           <div className="section-header">
-            <div className="section-title-wrapper">
-              <h2 className="section-title">Recommended for you</h2>
-              <div className="section-subtitle">Discover more amazing content</div>
+            <div className="v-section-title-wrapper">
+              <h2 className="v-section-title-recommended">Recommended for you</h2>
+              <div className="v-section-subtitle">Discover more amazing content</div>
             </div>
           </div>
           <div className="videos-grid">
