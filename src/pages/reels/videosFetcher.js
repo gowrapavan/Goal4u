@@ -6,7 +6,9 @@ const loadVideosData = async () => {
 };
 
 // Call this at the start of your app
-await loadVideosData();
+(async () => {
+  await loadVideosData();
+})();
 
 // Simulate API delay for realistic loading experience
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
