@@ -84,7 +84,7 @@ const Header = () => {
                 <div className="logo">
                   <Link to="/" title="Return Home">
                     <img
-                      src="/assets/img/fav2.png"
+                      src="/assets/img/site-logo/bg-white.png"
                       alt="Logo"
                       className="logo_img"
                     />
