@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-const LOGO_URL = "/assets/img/6.png";
+const LOGO_URL = "/assets/img/favicon.ico";
 
 const Shorts = () => {
   const [loading, setLoading] = useState(true);

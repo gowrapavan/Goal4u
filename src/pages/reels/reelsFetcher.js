@@ -123,7 +123,7 @@ const interleaveShorts = (channelGroups) => {
   return result;
 };
 
-// Load and prepare data
+// Load and prepare data (new + trending old shorts)
 const loadShortsData = async () => {
   if (allShuffledShorts.length > 0) return;
 
@@ -132,14 +132,44 @@ const loadShortsData = async () => {
     if (!res.ok) throw new Error(`Failed to fetch shorts.json: ${res.status}`);
     const data = await res.json();
 
-    // Only keep valid shorts with videoId and embedUrl
+    // ✅ Only keep valid shorts
     const validShorts = data.filter(
       item => item && item.videoId && item.embedUrl
     );
 
-    const grouped = groupByChannel(validShorts);
+    // ✅ Separate NEW vs OLD
+    const now = Date.now();
+    const NEW_DAYS_THRESHOLD = 15; // last 15 days = "new"
+    const newShorts = [];
+    const oldShorts = [];
+
+    validShorts.forEach(item => {
+      const publishedAt = item.publishedAt ? new Date(item.publishedAt).getTime() : null;
+      if (publishedAt && (now - publishedAt) / (1000 * 60 * 60 * 24) <= NEW_DAYS_THRESHOLD) {
+        newShorts.push(item);
+      } else {
+        oldShorts.push(item);
+      }
+    });
+
+    // ✅ Sort new by most recent
+    newShorts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    // ✅ Sort old by popularity (likes/views)
+    oldShorts.sort((a, b) => {
+      const scoreA = (a.likeCount || 0) + (a.viewCount || 0);
+      const scoreB = (b.likeCount || 0) + (b.viewCount || 0);
+      return scoreB - scoreA; // highest engagement first
+    });
+
+    // ✅ Merge them: New first, then old trending
+    const combined = [...newShorts, ...oldShorts];
+
+    // ✅ Group + interleave by channel
+    const grouped = groupByChannel(combined);
     const interleaved = interleaveShorts(grouped);
 
+    // ✅ Exclude watched
     const watchedIds = new Set(getWatchedIds());
     allShuffledShorts = interleaved.filter(item => !watchedIds.has(item.videoId));
   } catch (err) {
@@ -147,6 +177,7 @@ const loadShortsData = async () => {
     allShuffledShorts = [];
   }
 };
+
 
 // Format a batch of videos
 const formatBatch = (startIndex) =>
