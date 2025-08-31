@@ -1,0 +1,1810 @@
+[
+  {
+    "time": "17:00 IST",
+    "game": "football",
+    "home_team": "Aston Villa",
+    "away_team": "Newcastle United",
+    "label": "Aston Villa vs Newcastle United",
+    "url": "https://cdn23.koora10.live/chtv/ch1.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Brighton",
+    "away_team": "Fulham",
+    "label": "Brighton vs Fulham",
+    "url": "https://cdn23.koora10.live/chtv/ch2.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Sunderland",
+    "away_team": "West Ham United",
+    "label": "Sunderland vs West Ham United",
+    "url": "https://cdn23.koora10.live/chtv/ch3.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Tottenham",
+    "away_team": "Burnley",
+    "label": "Tottenham vs Burnley",
+    "url": "https://cdn23.koora10.live/chtv/ch1.php"
+  },
+  {
+    "time": "20:30 IST",
+    "game": "football",
+    "home_team": "Lens",
+    "away_team": "Lyon",
+    "label": "Lens vs Lyon",
+    "url": "https://cdn23.koora10.live/chtv/ch4.php"
+  },
+  {
+    "time": "20:30 IST",
+    "game": "football",
+    "home_team": "ENPPI",
+    "away_team": "Wadi Degla",
+    "label": "ENPPI vs Wadi Degla",
+    "url": "https://cdn23.koora10.live/chtv/ch5.php"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Wolverhampton",
+    "away_team": "Manchester City",
+    "label": "Wolverhampton vs Manchester City",
+    "url": "https://cdn23.koora10.live/chtv/ch1.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "AS Monaco",
+    "away_team": "Le Havre",
+    "label": "AS Monaco vs Le Havre",
+    "url": "https://cdn23.koora10.live/chtv/ch6.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "CAR CAF",
+    "away_team": "Tanzania TZA",
+    "label": "CAR CAF vs Tanzania TZA",
+    "url": "https://cdn23.koora10.live/chtv/ch7.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Burkina Faso BFA",
+    "away_team": "Madagascar MDG",
+    "label": "Burkina Faso BFA vs Madagascar MDG",
+    "url": "https://cdn23.koora10.live/chtv/ch8.php"
+  },
+  {
+    "time": "23:00 IST",
+    "game": "football",
+    "home_team": "Mallorca",
+    "away_team": "Barcelona",
+    "label": "Mallorca vs Barcelona",
+    "url": "https://cdn23.koora10.live/chtv/ch9.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Zamalek",
+    "away_team": "Al Mokawloon",
+    "label": "Zamalek vs Al Mokawloon",
+    "url": "https://cdn23.koora10.live/chtv/ch10.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Ghazl El Mehalla",
+    "away_team": "Smouha",
+    "label": "Ghazl El Mehalla vs Smouha",
+    "url": "https://cdn23.koora10.live/chtv/ch2.php"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Stuttgart",
+    "away_team": "Bayern München",
+    "label": "Stuttgart vs Bayern München",
+    "url": "https://cdn23.koora10.live/chtv/ch3.php"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Inter",
+    "away_team": "Olympiakos Piraeus",
+    "label": "Inter vs Olympiakos Piraeus",
+    "url": "https://cdn23.koora10.live/chtv/ch4.php"
+  },
+  {
+    "time": "00:15 IST",
+    "game": "football",
+    "home_team": "Atalanta",
+    "away_team": "Juventus",
+    "label": "Atalanta vs Juventus",
+    "url": "https://cdn23.koora10.live/chtv/ch5.php"
+  },
+  {
+    "time": "00:35 IST",
+    "game": "football",
+    "home_team": "Nice",
+    "away_team": "Toulouse",
+    "label": "Nice vs Toulouse",
+    "url": "https://cdn23.koora10.live/chtv/ch6.php"
+  },
+  {
+    "time": "01:00 IST",
+    "game": "football",
+    "home_team": "Alaves",
+    "away_team": "Levante",
+    "label": "Alaves vs Levante",
+    "url": "https://cdn23.koora10.live/chtv/ch7.php"
+  },
+  {
+    "time": "01:00 IST",
+    "game": "football",
+    "home_team": "Valencia",
+    "away_team": "Real Sociedad",
+    "label": "Valencia vs Real Sociedad",
+    "url": "https://cdn23.koora10.live/chtv/ch8.php"
+  },
+  {
+    "time": "05:00 IST",
+    "game": "football",
+    "home_team": "Inter Miami",
+    "away_team": "LA Galaxy",
+    "label": "Inter Miami vs LA Galaxy",
+    "url": "https://cdn23.koora10.live/chtv/ch1.php"
+  },
+  {
+    "time": "05:35 IST",
+    "game": "football",
+    "home_team": "Guadalajara",
+    "away_team": "JuÃ¡rez",
+    "label": "Guadalajara vs JuÃ¡rez",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "VÃ©lez Sarsfield",
+    "away_team": "Independiente",
+    "label": "VÃ©lez Sarsfield vs Independiente",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Inter Miami",
+    "away_team": "LA Galaxy",
+    "label": "Inter Miami vs LA Galaxy",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "football",
+    "home_team": "Corinthians",
+    "away_team": "Bahia",
+    "label": "Corinthians vs Bahia",
+    "url": "https://sportzonline.si/channels/bra/br1.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "f1",
+    "home_team": "NFL Pre-Season: New York Jets @ New York Giants",
+    "away_team": "",
+    "label": "NFL Pre-Season: New York Jets @ New York Giants",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "f1",
+    "home_team": "UFC 319: Prelims",
+    "away_team": "",
+    "label": "UFC 319: Prelims",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "f1",
+    "home_team": "UFC 319: Prelims",
+    "away_team": "",
+    "label": "UFC 319: Prelims",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "07:30 IST",
+    "game": "football",
+    "home_team": "Cruz Azul",
+    "away_team": "Santos Laguna",
+    "label": "Cruz Azul vs Santos Laguna",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "07:30 IST",
+    "game": "football",
+    "home_team": "Tigres UANL",
+    "away_team": "AmÃ©rica",
+    "label": "Tigres UANL vs AmÃ©rica",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "08:30 IST",
+    "game": "f1",
+    "home_team": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "away_team": "",
+    "label": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "08:30 IST",
+    "game": "f1",
+    "home_team": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "away_team": "",
+    "label": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "08:30 IST",
+    "game": "f1",
+    "home_team": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "away_team": "",
+    "label": "UFC 319: Dricus du Plessis v Khamzat Chimaev",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "09:30 IST",
+    "game": "football",
+    "home_team": "Toluca",
+    "away_team": "Pumas UNAM",
+    "label": "Toluca vs Pumas UNAM",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "14:30 IST",
+    "game": "f1",
+    "home_team": "Moto3 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto3 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "14:30 IST",
+    "game": "f1",
+    "home_team": "Moto3 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto3 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/pt/sporttv4.php"
+  },
+  {
+    "time": "14:30 IST",
+    "game": "f1",
+    "home_team": "Moto3 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto3 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "football",
+    "home_team": "Farense",
+    "away_team": "Torreense",
+    "label": "Farense vs Torreense",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "f1",
+    "home_team": "DP World Tour: Danish Golf Championship - D4",
+    "away_team": "",
+    "label": "DP World Tour: Danish Golf Championship - D4",
+    "url": "https://sportzonline.si/channels/pt/sporttv3.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "f1",
+    "home_team": "Moto2 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto2 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "f1",
+    "home_team": "Moto2 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto2 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/pt/sporttv4.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "f1",
+    "home_team": "Moto2 Grand Prix of Austria",
+    "away_team": "",
+    "label": "Moto2 Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "16:45 IST",
+    "game": "football",
+    "home_team": "Go Ahead Eagles",
+    "away_team": "Ajax",
+    "label": "Go Ahead Eagles vs Ajax",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "16:45 IST",
+    "game": "football",
+    "home_team": "Go Ahead Eagles",
+    "away_team": "Ajax",
+    "label": "Go Ahead Eagles vs Ajax",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "17:30 IST",
+    "game": "football",
+    "home_team": "Ipswich Town",
+    "away_team": "Southampton",
+    "label": "Ipswich Town vs Southampton",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "17:30 IST",
+    "game": "football",
+    "home_team": "FV Engers 07",
+    "away_team": "Eintracht Frankfurt",
+    "label": "FV Engers 07 vs Eintracht Frankfurt",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "17:45 IST",
+    "game": "f1",
+    "home_team": "MotoGP Grand Prix of Austria",
+    "away_team": "",
+    "label": "MotoGP Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "17:45 IST",
+    "game": "f1",
+    "home_team": "MotoGP Grand Prix of Austria",
+    "away_team": "",
+    "label": "MotoGP Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/pt/sporttv4.php"
+  },
+  {
+    "time": "17:45 IST",
+    "game": "f1",
+    "home_team": "MotoGP Grand Prix of Austria",
+    "away_team": "",
+    "label": "MotoGP Grand Prix of Austria",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "19:00 IST",
+    "game": "football",
+    "home_team": "Twente",
+    "away_team": "PSV",
+    "label": "Twente vs PSV",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Chelsea",
+    "away_team": "Crystal Palace",
+    "label": "Chelsea vs Crystal Palace",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Chelsea",
+    "away_team": "Crystal Palace",
+    "label": "Chelsea vs Crystal Palace",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Chelsea",
+    "away_team": "Crystal Palace",
+    "label": "Chelsea vs Crystal Palace",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Nottingham Forest",
+    "away_team": "Brentford",
+    "label": "Nottingham Forest vs Brentford",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Nottingham Forest",
+    "away_team": "Brentford",
+    "label": "Nottingham Forest vs Brentford",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Brest",
+    "away_team": "Lille",
+    "label": "Brest vs Lille",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Brest",
+    "away_team": "Lille",
+    "label": "Brest vs Lille",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "20:00 IST",
+    "game": "football",
+    "home_team": "Lokomotive Leipzig",
+    "away_team": "Schalke 04",
+    "label": "Lokomotive Leipzig vs Schalke 04",
+    "url": "https://sportzonline.si/channels/hd/hd3.php"
+  },
+  {
+    "time": "20:00 IST",
+    "game": "football",
+    "home_team": "Atlas Delmenhorst",
+    "away_team": "Borussia M'gladbach",
+    "label": "Atlas Delmenhorst vs Borussia M'gladbach",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "21:00 IST",
+    "game": "football",
+    "home_team": "Rio Ave",
+    "away_team": "Nacional",
+    "label": "Rio Ave vs Nacional",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "21:30 IST",
+    "game": "football",
+    "home_team": "Celta de Vigo",
+    "away_team": "Getafe",
+    "label": "Celta de Vigo vs Getafe",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "21:30 IST",
+    "game": "football",
+    "home_team": "Celta de Vigo",
+    "away_team": "Getafe",
+    "label": "Celta de Vigo vs Getafe",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "21:45 IST",
+    "game": "football",
+    "home_team": "Angers SCO",
+    "away_team": "Paris",
+    "label": "Angers SCO vs Paris",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "21:45 IST",
+    "game": "football",
+    "home_team": "Angers SCO",
+    "away_team": "Paris",
+    "label": "Angers SCO vs Paris",
+    "url": "https://sportzonline.si/channels/pt/sporttv3.php"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Manchester United",
+    "away_team": "Arsenal",
+    "label": "Manchester United vs Arsenal",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Manchester United",
+    "away_team": "Arsenal",
+    "label": "Manchester United vs Arsenal",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Manchester United",
+    "away_team": "Arsenal",
+    "label": "Manchester United vs Arsenal",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Manchester United",
+    "away_team": "Arsenal",
+    "label": "Manchester United vs Arsenal",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Hallescher FC",
+    "away_team": "Augsburg",
+    "label": "Hallescher FC vs Augsburg",
+    "url": "https://sportzonline.si/channels/hd/hd3.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Homberg",
+    "away_team": "Holstein Kiel",
+    "label": "Homberg vs Holstein Kiel",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Monza",
+    "away_team": "Frosinone",
+    "label": "Monza vs Frosinone",
+    "url": "https://sportzonline.si/channels/hd/hd7.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "GenÃ§lerbirliÄi",
+    "away_team": "Antalyaspor",
+    "label": "GenÃ§lerbirliÄi vs Antalyaspor",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "23:00 IST",
+    "game": "football",
+    "home_team": "Parma",
+    "away_team": "Pescara",
+    "label": "Parma vs Pescara",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Alverca",
+    "away_team": "Sporting Braga",
+    "label": "Alverca vs Sporting Braga",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Santa Clara",
+    "away_team": "Moreirense",
+    "label": "Santa Clara vs Moreirense",
+    "url": "https://sportzonline.si/channels/pt/sporttv4.php"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Athletic Club",
+    "away_team": "Sevilla",
+    "label": "Athletic Club vs Sevilla",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Athletic Club",
+    "away_team": "Sevilla",
+    "label": "Athletic Club vs Sevilla",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Athletic Club",
+    "away_team": "Sevilla",
+    "label": "Athletic Club vs Sevilla",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "01:00 IST",
+    "game": "football",
+    "home_team": "BeÅiktaÅ",
+    "away_team": "EyÃ¼pspor",
+    "label": "BeÅiktaÅ vs EyÃ¼pspor",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Nantes",
+    "away_team": "PSG",
+    "label": "Nantes vs PSG",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Nantes",
+    "away_team": "PSG",
+    "label": "Nantes vs PSG",
+    "url": "https://sportzonline.si/channels/pt/sporttv3.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Cesena",
+    "away_team": "Pisa",
+    "label": "Cesena vs Pisa",
+    "url": "https://sportzonline.si/channels/hd/hd7.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Chapecoense",
+    "away_team": "Paysandu",
+    "label": "Chapecoense vs Paysandu",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Santos",
+    "away_team": "Vasco da Gama",
+    "label": "Santos vs Vasco da Gama",
+    "url": "https://sportzonline.si/channels/bra/br4.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "AtlÃ©tico Mineiro",
+    "away_team": "GrÃªmio",
+    "label": "AtlÃ©tico Mineiro vs GrÃªmio",
+    "url": "https://sportzonline.si/channels/bra/br5.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Milan",
+    "away_team": "Bari 1908",
+    "label": "Milan vs Bari 1908",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Milan",
+    "away_team": "Bari 1908",
+    "label": "Milan vs Bari 1908",
+    "url": "https://sportzonline.si/channels/hd/hd8.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Milan",
+    "away_team": "Bari 1908",
+    "label": "Milan vs Bari 1908",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Espanyol",
+    "away_team": "AtlÃ©tico Madrid",
+    "label": "Espanyol vs AtlÃ©tico Madrid",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Espanyol",
+    "away_team": "AtlÃ©tico Madrid",
+    "label": "Espanyol vs AtlÃ©tico Madrid",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Espanyol",
+    "away_team": "AtlÃ©tico Madrid",
+    "label": "Espanyol vs AtlÃ©tico Madrid",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Sporting CP",
+    "away_team": "Arouca",
+    "label": "Sporting CP vs Arouca",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/bra/br1.php"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "River Plate",
+    "away_team": "Godoy Cruz",
+    "label": "River Plate vs Godoy Cruz",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "River Plate",
+    "away_team": "Godoy Cruz",
+    "label": "River Plate vs Godoy Cruz",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "River Plate",
+    "away_team": "Godoy Cruz",
+    "label": "River Plate vs Godoy Cruz",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "QuerÃ©taro",
+    "away_team": "Atlas",
+    "label": "QuerÃ©taro vs Atlas",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "05:40 IST",
+    "game": "football",
+    "home_team": "Deportes Tolima",
+    "away_team": "Millonarios",
+    "label": "Deportes Tolima vs Millonarios",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Independiente Rivadavia",
+    "away_team": "Boca Juniors",
+    "label": "Independiente Rivadavia vs Boca Juniors",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Botafogo",
+    "away_team": "Palmeiras",
+    "label": "Botafogo vs Palmeiras",
+    "url": "https://sportzonline.si/channels/bra/br3.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Independiente Rivadavia",
+    "away_team": "Boca Juniors",
+    "label": "Independiente Rivadavia vs Boca Juniors",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Independiente Rivadavia",
+    "away_team": "Boca Juniors",
+    "label": "Independiente Rivadavia vs Boca Juniors",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "06:00 IST",
+    "game": "football",
+    "home_team": "Botafogo",
+    "away_team": "Palmeiras",
+    "label": "Botafogo vs Palmeiras",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "football",
+    "home_team": "Monterrey",
+    "away_team": "MazatlÃ¡n",
+    "label": "Monterrey vs MazatlÃ¡n",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Hellas Verona",
+    "away_team": "Audace Cerignola",
+    "label": "Hellas Verona vs Audace Cerignola",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Dynamo Dresden",
+    "away_team": "Mainz 05",
+    "label": "Dynamo Dresden vs Mainz 05",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "PreuÃen MÃ¼nster",
+    "away_team": "Hertha BSC",
+    "label": "PreuÃen MÃ¼nster vs Hertha BSC",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Schweinfurt",
+    "away_team": "Fortuna DÃ¼sseldorf",
+    "label": "Schweinfurt vs Fortuna DÃ¼sseldorf",
+    "url": "https://sportzonline.si/channels/hd/hd3.php"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Hellas Verona",
+    "away_team": "Audace Cerignola",
+    "label": "Hellas Verona vs Audace Cerignola",
+    "url": "https://sportzonline.si/channels/hd/hd7.php"
+  },
+  {
+    "time": "23:00 IST",
+    "game": "football",
+    "home_team": "Spezia",
+    "away_team": "Sampdoria",
+    "label": "Spezia vs Sampdoria",
+    "url": "https://sportzonline.si/channels/hd/hd8.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Sporting GijÃ³n",
+    "away_team": "CÃ³rdoba",
+    "label": "Sporting GijÃ³n vs CÃ³rdoba",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Sporting GijÃ³n",
+    "away_team": "CÃ³rdoba",
+    "label": "Sporting GijÃ³n vs CÃ³rdoba",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "01:00 IST",
+    "game": "football",
+    "home_team": "KasÄ±mpaÅa",
+    "away_team": "Trabzonspor",
+    "label": "KasÄ±mpaÅa vs Trabzonspor",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Rot-Weiss Essen",
+    "away_team": "Borussia Dortmund",
+    "label": "Rot-Weiss Essen vs Borussia Dortmund",
+    "url": "https://sportzonline.si/channels/hd/hd3.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Rot-Weiss Essen",
+    "away_team": "Borussia Dortmund",
+    "label": "Rot-Weiss Essen vs Borussia Dortmund",
+    "url": "https://sportzonline.si/channels/pt/eleven3.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Udinese",
+    "away_team": "Carrarese",
+    "label": "Udinese vs Carrarese",
+    "url": "https://sportzonline.si/channels/hd/hd7.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Le Mans",
+    "away_team": "Montpellier",
+    "label": "Le Mans vs Montpellier",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Leeds United",
+    "away_team": "Everton",
+    "label": "Leeds United vs Everton",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Leeds United",
+    "away_team": "Everton",
+    "label": "Leeds United vs Everton",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Leeds United",
+    "away_team": "Everton",
+    "label": "Leeds United vs Everton",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Elche",
+    "away_team": "Real Betis",
+    "label": "Elche vs Real Betis",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Elche",
+    "away_team": "Real Betis",
+    "label": "Elche vs Real Betis",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Elche",
+    "away_team": "Real Betis",
+    "label": "Elche vs Real Betis",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "f1",
+    "home_team": "ATP Tour: Cincinnati - Final",
+    "away_team": "",
+    "label": "ATP Tour: Cincinnati - Final",
+    "url": "https://sportzonline.si/channels/pt/sporttv4.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Gil Vicente",
+    "away_team": "Porto",
+    "label": "Gil Vicente vs Porto",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Gil Vicente",
+    "away_team": "Porto",
+    "label": "Gil Vicente vs Porto",
+    "url": "https://sportzonline.si/channels/bra/br3.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Torino",
+    "away_team": "Modena",
+    "label": "Torino vs Modena",
+    "url": "https://sportzonline.si/channels/hd/hd8.php"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Torino",
+    "away_team": "Modena",
+    "label": "Torino vs Modena",
+    "url": "https://sportzonline.si/channels/pt/sporttv3.php"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "AlmerÃ­a",
+    "away_team": "Albacete",
+    "label": "AlmerÃ­a vs Albacete",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Volta Redonda",
+    "away_team": "CRB",
+    "label": "Volta Redonda vs CRB",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "04:45 IST",
+    "game": "football",
+    "home_team": "Junior",
+    "away_team": "AtlÃ©tico Bucaramanga",
+    "label": "Junior vs AtlÃ©tico Bucaramanga",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "05:30 IST",
+    "game": "football",
+    "home_team": "Mirassol",
+    "away_team": "Cruzeiro",
+    "label": "Mirassol vs Cruzeiro",
+    "url": "https://sportzonline.si/channels/bra/br1.php"
+  },
+  {
+    "time": "05:40 IST",
+    "game": "football",
+    "home_team": "Deportes Tolima",
+    "away_team": "Millonarios",
+    "label": "Deportes Tolima vs Millonarios",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Deportivo Pasto",
+    "away_team": "MedellÃ­n",
+    "label": "Deportivo Pasto vs MedellÃ­n",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al Nassr",
+    "away_team": "Al Ittihad",
+    "label": "Al Nassr vs Al Ittihad",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al Nassr",
+    "away_team": "Al Ittihad",
+    "label": "Al Nassr vs Al Ittihad",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al Nassr",
+    "away_team": "Al Ittihad",
+    "label": "Al Nassr vs Al Ittihad",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al Nassr",
+    "away_team": "Al Ittihad",
+    "label": "Al Nassr vs Al Ittihad",
+    "url": "https://sportzonline.si/channels/bra/br4.php"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Tranmere Rovers",
+    "away_team": "Burton Albion",
+    "label": "Tranmere Rovers vs Burton Albion",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/hd/hd3.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Real Madrid",
+    "away_team": "Osasuna",
+    "label": "Real Madrid vs Osasuna",
+    "url": "https://sportzonline.si/channels/bra/br5.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "FerencvÃ¡ros",
+    "away_team": "QarabaÄ",
+    "label": "FerencvÃ¡ros vs QarabaÄ",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "FerencvÃ¡ros",
+    "away_team": "QarabaÄ",
+    "label": "FerencvÃ¡ros vs QarabaÄ",
+    "url": "https://sportzonline.si/channels/pt/eleven3.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Paphos",
+    "away_team": "Crvena Zvezda",
+    "label": "Paphos vs Crvena Zvezda",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Paphos",
+    "away_team": "Crvena Zvezda",
+    "label": "Paphos vs Crvena Zvezda",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Paphos",
+    "away_team": "Crvena Zvezda",
+    "label": "Paphos vs Crvena Zvezda",
+    "url": "https://sportzonline.si/channels/bra/br3.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Rangers",
+    "away_team": "Club Brugge",
+    "label": "Rangers vs Club Brugge",
+    "url": "https://sportzonline.si/channels/hd/hd8.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Rangers",
+    "away_team": "Club Brugge",
+    "label": "Rangers vs Club Brugge",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Rangers",
+    "away_team": "Club Brugge",
+    "label": "Rangers vs Club Brugge",
+    "url": "https://sportzonline.si/channels/pt/sporttv5.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Walsall",
+    "away_team": "Grimsby Town",
+    "label": "Walsall vs Grimsby Town",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "VÃ©lez Sarsfield",
+    "away_team": "Fortaleza",
+    "label": "VÃ©lez Sarsfield vs Fortaleza",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "VÃ©lez Sarsfield",
+    "away_team": "Fortaleza",
+    "label": "VÃ©lez Sarsfield vs Fortaleza",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "VÃ©lez Sarsfield",
+    "away_team": "Fortaleza",
+    "label": "VÃ©lez Sarsfield vs Fortaleza",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "VÃ©lez Sarsfield",
+    "away_team": "Fortaleza",
+    "label": "VÃ©lez Sarsfield vs Fortaleza",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "HuracÃ¡n",
+    "away_team": "Once Caldas",
+    "label": "HuracÃ¡n vs Once Caldas",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "SÃ£o Paulo",
+    "away_team": "AtlÃ©tico Nacional",
+    "label": "SÃ£o Paulo vs AtlÃ©tico Nacional",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "SÃ£o Paulo",
+    "away_team": "AtlÃ©tico Nacional",
+    "label": "SÃ£o Paulo vs AtlÃ©tico Nacional",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "SÃ£o Paulo",
+    "away_team": "AtlÃ©tico Nacional",
+    "label": "SÃ£o Paulo vs AtlÃ©tico Nacional",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "SÃ£o Paulo",
+    "away_team": "AtlÃ©tico Nacional",
+    "label": "SÃ£o Paulo vs AtlÃ©tico Nacional",
+    "url": "https://sportzonline.si/channels/bra/br1.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Fluminense",
+    "away_team": "AmÃ©rica de Cali",
+    "label": "Fluminense vs AmÃ©rica de Cali",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Fluminense",
+    "away_team": "AmÃ©rica de Cali",
+    "label": "Fluminense vs AmÃ©rica de Cali",
+    "url": "https://sportzonline.si/channels/bra/br3.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Mushuc Runa",
+    "away_team": "Independiente del Valle",
+    "label": "Mushuc Runa vs Independiente del Valle",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al-Ahli",
+    "away_team": "Al Quadisiya",
+    "label": "Al-Ahli vs Al Quadisiya",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al-Ahli",
+    "away_team": "Al Quadisiya",
+    "label": "Al-Ahli vs Al Quadisiya",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "18:30 IST",
+    "game": "football",
+    "home_team": "Al-Ahli",
+    "away_team": "Al Quadisiya",
+    "label": "Al-Ahli vs Al Quadisiya",
+    "url": "https://sportzonline.si/channels/bra/br4.php"
+  },
+  {
+    "time": "00:30 IST",
+    "game": "f1",
+    "home_team": "Diamond League: Switzerland",
+    "away_team": "",
+    "label": "Diamond League: Switzerland",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "00:30 IST",
+    "game": "f1",
+    "home_team": "ATP World Tour 250: Winston-Salem",
+    "away_team": "",
+    "label": "ATP World Tour 250: Winston-Salem",
+    "url": "https://sportzonline.si/channels/pt/sporttv3.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "FenerbahÃ§e",
+    "away_team": "Benfica",
+    "label": "FenerbahÃ§e vs Benfica",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "FenerbahÃ§e",
+    "away_team": "Benfica",
+    "label": "FenerbahÃ§e vs Benfica",
+    "url": "https://sportzonline.si/channels/hd/hd10.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "FenerbahÃ§e",
+    "away_team": "Benfica",
+    "label": "FenerbahÃ§e vs Benfica",
+    "url": "https://sportzonline.si/channels/pt/sporttv5.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Celtic",
+    "away_team": "Kairat",
+    "label": "Celtic vs Kairat",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Celtic",
+    "away_team": "Kairat",
+    "label": "Celtic vs Kairat",
+    "url": "https://sportzonline.si/channels/pt/eleven1.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Basel",
+    "away_team": "KÃ¸benhavn",
+    "label": "Basel vs KÃ¸benhavn",
+    "url": "https://sportzonline.si/channels/hd/hd2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Basel",
+    "away_team": "KÃ¸benhavn",
+    "label": "Basel vs KÃ¸benhavn",
+    "url": "https://sportzonline.si/channels/hd/hd4.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Basel",
+    "away_team": "KÃ¸benhavn",
+    "label": "Basel vs KÃ¸benhavn",
+    "url": "https://sportzonline.si/channels/pt/eleven2.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "BodÃ¸ / Glimt",
+    "away_team": "Sturm Graz",
+    "label": "BodÃ¸ / Glimt vs Sturm Graz",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "BodÃ¸ / Glimt",
+    "away_team": "Sturm Graz",
+    "label": "BodÃ¸ / Glimt vs Sturm Graz",
+    "url": "https://sportzonline.si/channels/pt/eleven3.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Bolton Wanderers",
+    "away_team": "Reading",
+    "label": "Bolton Wanderers vs Reading",
+    "url": "https://sportzonline.si/channels/hd/hd9.php"
+  },
+  {
+    "time": "01:30 IST",
+    "game": "football",
+    "home_team": "Bolton Wanderers",
+    "away_team": "Reading",
+    "label": "Bolton Wanderers vs Reading",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Estudiantes",
+    "away_team": "Cerro PorteÃ±o",
+    "label": "Estudiantes vs Cerro PorteÃ±o",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Estudiantes",
+    "away_team": "Cerro PorteÃ±o",
+    "label": "Estudiantes vs Cerro PorteÃ±o",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Estudiantes",
+    "away_team": "Cerro PorteÃ±o",
+    "label": "Estudiantes vs Cerro PorteÃ±o",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Estudiantes",
+    "away_team": "Cerro PorteÃ±o",
+    "label": "Estudiantes vs Cerro PorteÃ±o",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "04:30 IST",
+    "game": "football",
+    "home_team": "Juventude",
+    "away_team": "Vasco da Gama",
+    "label": "Juventude vs Vasco da Gama",
+    "url": "https://sportzonline.si/channels/bra/br1.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "football",
+    "home_team": "Inter Miami",
+    "away_team": "Tigres UANL",
+    "label": "Inter Miami vs Tigres UANL",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "06:30 IST",
+    "game": "football",
+    "home_team": "Inter Miami",
+    "away_team": "Tigres UANL",
+    "label": "Inter Miami vs Tigres UANL",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/hd/hd5.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/hd/hd6.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/pt/sporttv1.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Internacional",
+    "away_team": "Flamengo",
+    "label": "Internacional vs Flamengo",
+    "url": "https://sportzonline.si/channels/bra/br2.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Independiente",
+    "away_team": "Universidad Chile",
+    "label": "Independiente vs Universidad Chile",
+    "url": "https://sportzonline.si/channels/pt/sporttv2.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Independiente",
+    "away_team": "Universidad Chile",
+    "label": "Independiente vs Universidad Chile",
+    "url": "https://sportzonline.si/channels/bra/br6.php"
+  },
+  {
+    "time": "07:00 IST",
+    "game": "football",
+    "home_team": "Bahia",
+    "away_team": "CearÃ¡",
+    "label": "Bahia vs CearÃ¡",
+    "url": "https://sportzonline.si/channels/bra/br5.php"
+  },
+  {
+    "time": "09:30 IST",
+    "game": "football",
+    "home_team": "Seattle Sounders FC",
+    "away_team": "Puebla",
+    "label": "Seattle Sounders FC vs Puebla",
+    "url": "https://sportzonline.si/channels/hd/hd1.php"
+  },
+  {
+    "time": "09:30 IST",
+    "game": "football",
+    "home_team": "Seattle Sounders FC",
+    "away_team": "Puebla",
+    "label": "Seattle Sounders FC vs Puebla",
+    "url": "https://sportzonline.si/channels/hd/hd11.php"
+  },
+  {
+    "time": "16:30 IST",
+    "game": "football",
+    "home_team": "Farense",
+    "away_team": "Torreense",
+    "label": "Farense vs Torreense",
+    "url": "https://elixx.cc/porto.html"
+  },
+  {
+    "time": "16:45 IST",
+    "game": "football",
+    "home_team": "Go Ahead Eagles",
+    "away_team": "Ajax",
+    "label": "Go Ahead Eagles vs Ajax",
+    "url": "https://elixx.cc/everton.html"
+  },
+  {
+    "time": "17:30 IST",
+    "game": "football",
+    "home_team": "Ipswich Town",
+    "away_team": "Southampton",
+    "label": "Ipswich Town vs Southampton",
+    "url": "https://elixx.cc/ajaxw.html"
+  },
+  {
+    "time": "17:30 IST",
+    "game": "football",
+    "home_team": "FV Engers 07",
+    "away_team": "Eintracht Frankfurt",
+    "label": "FV Engers 07 vs Eintracht Frankfurt",
+    "url": "https://elixx.cc/celtic.html"
+  },
+  {
+    "time": "19:00 IST",
+    "game": "football",
+    "home_team": "Twente",
+    "away_team": "PSV",
+    "label": "Twente vs PSV",
+    "url": "https://elixx.cc/everton.html"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Chelsea",
+    "away_team": "Crystal Palace",
+    "label": "Chelsea vs Crystal Palace",
+    "url": "https://elixx.cc/ajaxw.html"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Nottingham Forest",
+    "away_team": "Brentford",
+    "label": "Nottingham Forest vs Brentford",
+    "url": "https://elixx.cc/evalencia.html"
+  },
+  {
+    "time": "19:30 IST",
+    "game": "football",
+    "home_team": "Brest",
+    "away_team": "Lille",
+    "label": "Brest vs Lille",
+    "url": "https://elixx.cc/amilan.html"
+  },
+  {
+    "time": "20:00 IST",
+    "game": "football",
+    "home_team": "Lokomotive Leipzig",
+    "away_team": "Schalke 04",
+    "label": "Lokomotive Leipzig vs Schalke 04",
+    "url": "https://elixx.cc/lazio.html"
+  },
+  {
+    "time": "20:00 IST",
+    "game": "football",
+    "home_team": "Atlas Delmenhorst",
+    "away_team": "Borussia M'gladbach",
+    "label": "Atlas Delmenhorst vs Borussia M'gladbach",
+    "url": "https://elixx.cc/celtic.html"
+  },
+  {
+    "time": "21:00 IST",
+    "game": "football",
+    "home_team": "Rio Ave",
+    "away_team": "Nacional",
+    "label": "Rio Ave vs Nacional",
+    "url": "https://elixx.cc/porto.html"
+  },
+  {
+    "time": "21:30 IST",
+    "game": "football",
+    "home_team": "Celta de Vigo",
+    "away_team": "Getafe",
+    "label": "Celta de Vigo vs Getafe",
+    "url": "https://elixx.cc/everton.html"
+  },
+  {
+    "time": "21:45 IST",
+    "game": "football",
+    "home_team": "Angers SCO",
+    "away_team": "Paris",
+    "label": "Angers SCO vs Paris",
+    "url": "https://elixx.cc/amilan.html"
+  },
+  {
+    "time": "22:00 IST",
+    "game": "football",
+    "home_team": "Manchester United",
+    "away_team": "Arsenal",
+    "label": "Manchester United vs Arsenal",
+    "url": "https://elixx.cc/ajaxw.html"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Hallescher FC",
+    "away_team": "Augsburg",
+    "label": "Hallescher FC vs Augsburg",
+    "url": "https://elixx.cc/lazio.html"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Homberg",
+    "away_team": "Holstein Kiel",
+    "label": "Homberg vs Holstein Kiel",
+    "url": "https://elixx.cc/celtic.html"
+  },
+  {
+    "time": "22:30 IST",
+    "game": "football",
+    "home_team": "Monza",
+    "away_team": "Frosinone",
+    "label": "Monza vs Frosinone",
+    "url": "https://elixx.cc/roma.html"
+  },
+  {
+    "time": "23:00 IST",
+    "game": "football",
+    "home_team": "Parma",
+    "away_team": "Pescara",
+    "label": "Parma vs Pescara",
+    "url": "https://elixx.cc/adortmund.html"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Alverca",
+    "away_team": "Sporting Braga",
+    "label": "Alverca vs Sporting Braga",
+    "url": "https://elixx.cc/benfica.html"
+  },
+  {
+    "time": "23:30 IST",
+    "game": "football",
+    "home_team": "Santa Clara",
+    "away_team": "Moreirense",
+    "label": "Santa Clara vs Moreirense",
+    "url": "https://elixx.cc/braga.html"
+  },
+  {
+    "time": "00:00 IST",
+    "game": "football",
+    "home_team": "Athletic Club",
+    "away_team": "Sevilla",
+    "label": "Athletic Club vs Sevilla",
+    "url": "https://elixx.cc/everton.html"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Nantes",
+    "away_team": "PSG",
+    "label": "Nantes vs PSG",
+    "url": "https://elixx.cc/amilan.html"
+  },
+  {
+    "time": "01:15 IST",
+    "game": "football",
+    "home_team": "Cesena",
+    "away_team": "Pisa",
+    "label": "Cesena vs Pisa",
+    "url": "https://elixx.cc/roma.html"
+  },
+  {
+    "time": "01:45 IST",
+    "game": "football",
+    "home_team": "Milan",
+    "away_team": "Bari 1908",
+    "label": "Milan vs Bari 1908",
+    "url": "https://elixx.cc/adortmund.html"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Espanyol",
+    "away_team": "Atletico Madrid",
+    "label": "Espanyol vs Atletico Madrid",
+    "url": "https://elixx.cc/everton.html"
+  },
+  {
+    "time": "02:00 IST",
+    "game": "football",
+    "home_team": "Sporting CP",
+    "away_team": "Arouca",
+    "label": "Sporting CP vs Arouca",
+    "url": "https://elixx.cc/porto.html"
+  },
+  {
+    "time": "04:00 IST",
+    "game": "football",
+    "home_team": "River Plate",
+    "away_team": "Godoy Cruz",
+    "label": "River Plate vs Godoy Cruz",
+    "url": "https://elixx.cc/adortmund.html"
+  }
+]

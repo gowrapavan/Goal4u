@@ -45,8 +45,10 @@ const MainMenu = () => {
             <li className="current">
               <a href="index.html">Home</a>
             </li>
+                        <li><a href="/videos">Video4u</a></li>
 
-            <li>
+
+{            /*<li>
               <a href="#">World Cup</a>
               <div className="sf-mega">
                 <div className="row">
@@ -83,7 +85,7 @@ const MainMenu = () => {
                   </div>
                 </div>
               </div>
-            </li>
+            </li>*/}
 
             <li className="current">
               <a href="/clubs">Teams</a>

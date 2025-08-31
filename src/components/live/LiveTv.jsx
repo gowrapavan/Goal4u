@@ -30,17 +30,19 @@ function loadCodeMap(provider) {
   }
 }
 
-const jsonFiles = [
-  "/TV-streams/sportzonline.json",
-  "/TV-streams/vivosoccer.json",
-  "/TV-streams/elixx.json",
+// --- Providers ---
+const PROVIDERS = [
+  { label: "Sportzonline", keyword: "sportzonline" }, // ✅ fixed spelling
+  { label: "Doublexx", keyword: "doublexx" },
 ];
 
-const PROVIDERS = [
-  { label: "Vivosoccer", keyword: "vivosoccer" },
-  { label: "Sportzonline", keyword: "sportzonline" },
-  { label: "Elixx", keyword: "elixx" },
+
+// --- JSON Sources ---
+const jsonFiles = [
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/doublexx.json",
 ];
+
 
 const encode = (str) => {
   // Simple base64 encoding, replace for more secure if needed
@@ -60,7 +62,7 @@ const LiveTV = () => {
   const [iframeURL, setIframeURL] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showAdAlert, setShowAdAlert] = useState(false);
-  const [selectedStream, setSelectedStream] = useState(PROVIDERS[2].keyword); // default Elixx
+  const [selectedStream, setSelectedStream] = useState("doublexx");
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -69,18 +71,22 @@ useEffect(() => {
   const params = new URLSearchParams(location.search);
 
   const determineInitialStream = (channelList) => {
-const code = params.get("stream");
-if (code) {
-  const decodedLabel = decode(code);
-  const matched = channelList.find((c) => c.label.toLowerCase() === decodedLabel.toLowerCase());
-  if (matched) {
-    setIframeURL(matched.url);
-    const matchedProvider = PROVIDERS.find((p) => matched.url.toLowerCase().includes(p.keyword));
-    if (matchedProvider) setSelectedStream(matchedProvider.keyword);
-    return true;
-  }
-}
-
+    const code = params.get("stream");
+    if (code) {
+      const decodedLabel = decode(code);
+      const matched = channelList.find(
+        (c) => c.label.toLowerCase() === decodedLabel.toLowerCase()
+      );
+      if (matched) {
+        setIframeURL(matched.url);
+        const matchedProvider = PROVIDERS.find((p) =>
+          matched.url.toLowerCase().includes(p.keyword)
+        );
+        if (matchedProvider) setSelectedStream(matchedProvider.keyword);
+        return true;
+      }
+    }
+    return false;
   };
 
   let isMounted = true;
@@ -97,13 +103,12 @@ if (code) {
 
     const matched = determineInitialStream(all);
 
-    // No param or no match: default to Elixx
     if (
       !matched &&
       location.pathname === "/livetv" &&
       Array.from(params.keys()).length === 0
     ) {
-      const defaultProvider = "elixx";
+      const defaultProvider = "doublexx";
       setSelectedStream(defaultProvider);
       const defaultChannel = all.find((c) =>
         c.url.toLowerCase().includes(defaultProvider)
@@ -114,11 +119,11 @@ if (code) {
     }
   });
 
+  // ✅ cleanup correctly here
   return () => {
     isMounted = false;
   };
 }, [location.search, location.pathname]);
-
 
 
   // Fetch all channels from JSON files
@@ -145,8 +150,8 @@ if (code) {
         location.pathname === "/livetv" &&
         Array.from(params.keys()).length === 0
       ) {
-        // Set default channel if available and matches default provider (Elixx)
-        const defaultProvider = "elixx";
+        // Set default channel if available and matches default provider (DoubleXX)
+        const defaultProvider = "doublexx";
         const defaultChannel = all.find((c) =>
           c.url.toLowerCase().includes(defaultProvider)
         );
