@@ -5,7 +5,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-19T00:00:00",
     "DateTime": "2025-08-19T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 605,
@@ -14,11 +14,29 @@
     "AwayTeamKey": "OSA",
     "HomeTeamName": "Real Madrid CF",
     "AwayTeamName": "CA Osasuna",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 605,
+    "Points": {
+      "605": 3,
+      "993": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232289,
+        "GameId": 94414,
+        "TeamId": 605,
+        "PlayerId": 90027501,
+        "Name": "Kylian Mbappé",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94415,
@@ -26,7 +44,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T19:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 614,
@@ -35,11 +53,43 @@
     "AwayTeamKey": "RSO",
     "HomeTeamName": "Valencia CF",
     "AwayTeamName": "Real Sociedad de Fútbol",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "614": 1,
+      "626": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 231971,
+        "GameId": 94415,
+        "TeamId": 614,
+        "PlayerId": 90098063,
+        "Name": "Diego López",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90047262,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 56,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231972,
+        "GameId": 94415,
+        "TeamId": 626,
+        "PlayerId": 90075117,
+        "Name": "Takefusa Kubo",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051928,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 59,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94416,
@@ -47,7 +97,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T17:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 1571,
@@ -56,11 +106,57 @@
     "AwayTeamKey": "FCB",
     "HomeTeamName": "RCD Mallorca",
     "AwayTeamName": "FC Barcelona",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 559,
+    "Points": {
+      "1571": 0,
+      "559": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231939,
+        "GameId": 94416,
+        "TeamId": 559,
+        "PlayerId": 90036930,
+        "Name": "Raphinha",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90110679,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231943,
+        "GameId": 94416,
+        "TeamId": 559,
+        "PlayerId": 90055142,
+        "Name": "Ferrán Torres",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 13,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231961,
+        "GameId": 94416,
+        "TeamId": 559,
+        "PlayerId": 90110679,
+        "Name": "Lamine Yamal",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90098127,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 52,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 94417,
@@ -68,7 +164,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-17T00:00:00",
     "DateTime": "2025-08-17T17:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 616,
@@ -77,11 +173,85 @@
     "AwayTeamKey": "SEV",
     "HomeTeamName": "Athletic Club",
     "AwayTeamName": "Sevilla FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 616,
+    "Points": {
+      "616": 3,
+      "606": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232131,
+        "GameId": 94417,
+        "TeamId": 616,
+        "PlayerId": 90091990,
+        "Name": "Nico Williams",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 18,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232132,
+        "GameId": 94417,
+        "TeamId": 616,
+        "PlayerId": 90129772,
+        "Name": "Maroan Sannadi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232141,
+        "GameId": 94417,
+        "TeamId": 606,
+        "PlayerId": 90036294,
+        "Name": "Dodi Lukebakio",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90086614,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232143,
+        "GameId": 94417,
+        "TeamId": 606,
+        "PlayerId": 90084252,
+        "Name": "Lucien Agoume",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102442,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 35,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232147,
+        "GameId": 94417,
+        "TeamId": 616,
+        "PlayerId": 90071726,
+        "Name": "Roberto Navarro",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90091990,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 39,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94418,
@@ -89,7 +259,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-17T00:00:00",
     "DateTime": "2025-08-17T19:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 624,
@@ -98,11 +268,57 @@
     "AwayTeamKey": "ATM",
     "HomeTeamName": "RCD Espanyol de Barcelona",
     "AwayTeamName": "Club Atlético de Madrid",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 624,
+    "Points": {
+      "624": 3,
+      "554": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232162,
+        "GameId": 94418,
+        "TeamId": 554,
+        "PlayerId": 90070481,
+        "Name": "Julián Álvarez",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 47,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232177,
+        "GameId": 94418,
+        "TeamId": 624,
+        "PlayerId": 90062385,
+        "Name": "Miguel Rubio",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90048008,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 93,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232178,
+        "GameId": 94418,
+        "TeamId": 624,
+        "PlayerId": 90068474,
+        "Name": "Pere Milla",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90096377,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 107,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94419,
@@ -110,7 +326,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-17T00:00:00",
     "DateTime": "2025-08-17T15:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 622,
@@ -119,11 +335,43 @@
     "AwayTeamKey": "GET",
     "HomeTeamName": "RC Celta de Vigo",
     "AwayTeamName": "Getafe CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 617,
+    "Points": {
+      "622": 0,
+      "617": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232106,
+        "GameId": 94419,
+        "TeamId": 617,
+        "PlayerId": 90134480,
+        "Name": "Adrián Liso",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90122263,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232116,
+        "GameId": 94419,
+        "TeamId": 617,
+        "PlayerId": 90122263,
+        "Name": "Christantus Uche",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90129298,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 84,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94420,
@@ -131,7 +379,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-18T00:00:00",
     "DateTime": "2025-08-18T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 2450,
@@ -140,11 +388,43 @@
     "AwayTeamKey": "BET",
     "HomeTeamName": "Elche CF",
     "AwayTeamName": "Real Betis Balompié",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2450": 1,
+      "625": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232234,
+        "GameId": 94420,
+        "TeamId": 625,
+        "PlayerId": 90055143,
+        "Name": "Aitor Ruibal",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90079924,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 35,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232241,
+        "GameId": 94420,
+        "TeamId": 2450,
+        "PlayerId": 90084989,
+        "Name": "Germán Valera",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90103595,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 136,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94421,
@@ -152,7 +432,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-15T00:00:00",
     "DateTime": "2025-08-15T17:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 1169,
@@ -161,11 +441,71 @@
     "AwayTeamKey": "RAY",
     "HomeTeamName": "Girona FC",
     "AwayTeamName": "Rayo Vallecano de Madrid",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 3,
+    "Result": 621,
+    "Points": {
+      "1169": 0,
+      "621": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231716,
+        "GameId": 94421,
+        "TeamId": 621,
+        "PlayerId": 90083618,
+        "Name": "Jorge de Frutos",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231717,
+        "GameId": 94421,
+        "TeamId": 621,
+        "PlayerId": 90068565,
+        "Name": "Álvaro García",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083618,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231722,
+        "GameId": 94421,
+        "TeamId": 621,
+        "PlayerId": 90096977,
+        "Name": "Isi Palazón",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 71,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231727,
+        "GameId": 94421,
+        "TeamId": 1169,
+        "PlayerId": 90105694,
+        "Name": "Joel Roca",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044482,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 89,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94422,
@@ -173,7 +513,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-15T00:00:00",
     "DateTime": "2025-08-15T19:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 630,
@@ -182,19 +522,51 @@
     "AwayTeamKey": "OVI",
     "HomeTeamName": "Villarreal CF",
     "AwayTeamName": "Real Oviedo",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 630,
+    "Points": {
+      "630": 3,
+      "2842": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231742,
+        "GameId": 94422,
+        "TeamId": 630,
+        "PlayerId": 90086833,
+        "Name": "Pape Alassane Guèye",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044104,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 17,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231757,
+        "GameId": 94422,
+        "TeamId": 630,
+        "PlayerId": 90105692,
+        "Name": "Karl Etta",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 14,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94423,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
-    "DateTime": "2025-08-16T15:00:00",
-    "Status": "Scheduled",
+    "DateTime": "2025-08-16T19:30:00",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 995,
@@ -203,19 +575,65 @@
     "AwayTeamKey": "LEV",
     "HomeTeamName": "Deportivo Alavés",
     "AwayTeamName": "Levante UD",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 995,
+    "Points": {
+      "995": 3,
+      "619": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231967,
+        "GameId": 94423,
+        "TeamId": 995,
+        "PlayerId": 90043216,
+        "Name": "Toni Martínez",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90027794,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 32,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231974,
+        "GameId": 94423,
+        "TeamId": 619,
+        "PlayerId": 90027301,
+        "Name": "Jeremy Toljan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 60,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231977,
+        "GameId": 94423,
+        "TeamId": 995,
+        "PlayerId": 90054888,
+        "Name": "Nahuel Tenaglia",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 79,
+        "GameMinuteExtra": 2
+      }
+    ]
   },
   {
     "GameId": 94424,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "DateTime": "2025-08-24T19:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2842,
@@ -224,19 +642,65 @@
     "AwayTeamKey": "RMA",
     "HomeTeamName": "Real Oviedo",
     "AwayTeamName": "Real Madrid CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 605,
+    "Points": {
+      "2842": 0,
+      "605": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232964,
+        "GameId": 94424,
+        "TeamId": 605,
+        "PlayerId": 90027501,
+        "Name": "Kylian Mbappé",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90095603,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 59,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232977,
+        "GameId": 94424,
+        "TeamId": 605,
+        "PlayerId": 90027501,
+        "Name": "Kylian Mbappé",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90048341,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 132,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232978,
+        "GameId": 94424,
+        "TeamId": 605,
+        "PlayerId": 90048341,
+        "Name": "Vinícius Júnior",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90045227,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 143,
+        "GameMinuteExtra": 8
+      }
+    ]
   },
   {
     "GameId": 94425,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-23T00:00:00",
+    "DateTime": "2025-08-23T17:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 554,
@@ -245,19 +709,51 @@
     "AwayTeamKey": "ELC",
     "HomeTeamName": "Club Atlético de Madrid",
     "AwayTeamName": "Elche CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "554": 1,
+      "2450": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232736,
+        "GameId": 94425,
+        "TeamId": 554,
+        "PlayerId": 90031577,
+        "Name": "Alexander Sørloth",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90035657,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 14,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232740,
+        "GameId": 94425,
+        "TeamId": 2450,
+        "PlayerId": 90029521,
+        "Name": "Rafael Mir",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90106901,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 26,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94426,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-23T00:00:00",
+    "DateTime": "2025-08-23T19:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 619,
@@ -266,19 +762,93 @@
     "AwayTeamKey": "FCB",
     "HomeTeamName": "Levante UD",
     "AwayTeamName": "FC Barcelona",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 3,
+    "Result": 559,
+    "Points": {
+      "619": 0,
+      "559": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232775,
+        "GameId": 94426,
+        "TeamId": 619,
+        "PlayerId": 90091747,
+        "Name": "Iván Romero",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90027301,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 19,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232784,
+        "GameId": 94426,
+        "TeamId": 619,
+        "PlayerId": 90029647,
+        "Name": "José Luis Morales",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 58,
+        "GameMinuteExtra": 12
+      },
+      {
+        "GoalId": 232787,
+        "GameId": 94426,
+        "TeamId": 559,
+        "PlayerId": 90087065,
+        "Name": "Pedri",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90110679,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 63,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232788,
+        "GameId": 94426,
+        "TeamId": 559,
+        "PlayerId": 90055142,
+        "Name": "Ferrán Torres",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90036930,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 67,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232792,
+        "GameId": 94426,
+        "TeamId": 619,
+        "PlayerId": 90075795,
+        "Name": "Unai Elgezabal",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 116,
+        "GameMinuteExtra": 2
+      }
+    ]
   },
   {
     "GameId": 94427,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "DateTime": "2025-08-24T15:00:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 993,
@@ -287,19 +857,37 @@
     "AwayTeamKey": "VAL",
     "HomeTeamName": "CA Osasuna",
     "AwayTeamName": "Valencia CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 993,
+    "Points": {
+      "993": 3,
+      "614": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232906,
+        "GameId": 94427,
+        "TeamId": 993,
+        "PlayerId": 90041418,
+        "Name": "Ante Budimir",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90047235,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94428,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-23T00:00:00",
+    "DateTime": "2025-08-23T15:00:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1571,
@@ -308,19 +896,51 @@
     "AwayTeamKey": "CEL",
     "HomeTeamName": "RCD Mallorca",
     "AwayTeamName": "RC Celta de Vigo",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "1571": 1,
+      "622": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232677,
+        "GameId": 94428,
+        "TeamId": 622,
+        "PlayerId": 90121032,
+        "Name": "Javier Rueda Garcia",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90095637,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232711,
+        "GameId": 94428,
+        "TeamId": 1571,
+        "PlayerId": 90075791,
+        "Name": "Mateu Morey",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 49,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94429,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-25T00:00:00",
+    "DateTime": "2025-08-25T19:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 606,
@@ -329,19 +949,65 @@
     "AwayTeamKey": "GET",
     "HomeTeamName": "Sevilla FC",
     "AwayTeamName": "Getafe CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 617,
+    "Points": {
+      "606": 0,
+      "617": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233058,
+        "GameId": 94429,
+        "TeamId": 617,
+        "PlayerId": 90134480,
+        "Name": "Adrián Liso",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90087453,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 3,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233064,
+        "GameId": 94429,
+        "TeamId": 617,
+        "PlayerId": 90091953,
+        "Name": "Iglesias",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233067,
+        "GameId": 94429,
+        "TeamId": 617,
+        "PlayerId": 90134480,
+        "Name": "Adrián Liso",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90087453,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94430,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-25T00:00:00",
+    "DateTime": "2025-08-25T17:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 616,
@@ -350,19 +1016,37 @@
     "AwayTeamKey": "RAY",
     "HomeTeamName": "Athletic Club",
     "AwayTeamName": "Rayo Vallecano de Madrid",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 616,
+    "Points": {
+      "616": 3,
+      "621": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233051,
+        "GameId": 94430,
+        "TeamId": 616,
+        "PlayerId": 90079604,
+        "Name": "Oihan Sancet",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 64,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94431,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "DateTime": "2025-08-24T17:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 626,
@@ -371,19 +1055,79 @@
     "AwayTeamKey": "ESP",
     "HomeTeamName": "Real Sociedad de Fútbol",
     "AwayTeamName": "RCD Espanyol de Barcelona",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "626": 1,
+      "624": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232936,
+        "GameId": 94431,
+        "TeamId": 624,
+        "PlayerId": 90068474,
+        "Name": "Pere Milla",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90124996,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 7,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232946,
+        "GameId": 94431,
+        "TeamId": 624,
+        "PlayerId": 90068430,
+        "Name": "Javi Puado",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 38,
+        "GameMinuteExtra": 1
+      },
+      {
+        "GoalId": 232951,
+        "GameId": 94431,
+        "TeamId": 626,
+        "PlayerId": 90071239,
+        "Name": "Ander Barrenetxea",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 52,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232952,
+        "GameId": 94431,
+        "TeamId": 626,
+        "PlayerId": 90103720,
+        "Name": "Orri Steinn Óskarsson",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90029865,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 59,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94432,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-22T00:00:00",
+    "DateTime": "2025-08-22T19:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 625,
@@ -392,19 +1136,37 @@
     "AwayTeamKey": "ALA",
     "HomeTeamName": "Real Betis Balompié",
     "AwayTeamName": "Deportivo Alavés",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 625,
+    "Points": {
+      "625": 3,
+      "995": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232521,
+        "GameId": 94432,
+        "TeamId": 625,
+        "PlayerId": 90030433,
+        "Name": "Giovani Lo Celso",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94433,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "DateTime": "2025-08-24T17:30:00",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 630,
@@ -413,19 +1175,93 @@
     "AwayTeamKey": "GIR",
     "HomeTeamName": "Villarreal CF",
     "AwayTeamName": "Girona FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 5,
+    "AwayTeamScore": 0,
+    "Result": 630,
+    "Points": {
+      "630": 3,
+      "1169": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232934,
+        "GameId": 94433,
+        "TeamId": 630,
+        "PlayerId": 90044104,
+        "Name": "Nicolas Pépé",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232938,
+        "GameId": 94433,
+        "TeamId": 630,
+        "PlayerId": 90072726,
+        "Name": "Tajon Buchanan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90111438,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 26,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232940,
+        "GameId": 94433,
+        "TeamId": 630,
+        "PlayerId": 90100803,
+        "Name": "Rafa Marín",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90090399,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 40,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232942,
+        "GameId": 94433,
+        "TeamId": 630,
+        "PlayerId": 90072726,
+        "Name": "Tajon Buchanan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90111256,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232949,
+        "GameId": 94433,
+        "TeamId": 630,
+        "PlayerId": 90072726,
+        "Name": "Tajon Buchanan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105692,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 102,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94434,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-30T00:00:00",
+    "DateTime": "2025-08-30T19:30:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 605,
@@ -434,19 +1270,65 @@
     "AwayTeamKey": "MAL",
     "HomeTeamName": "Real Madrid CF",
     "AwayTeamName": "RCD Mallorca",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 605,
+    "Points": {
+      "605": 3,
+      "1571": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233601,
+        "GameId": 94434,
+        "TeamId": 1571,
+        "PlayerId": 90059806,
+        "Name": "Vedat Muriqi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105192,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233608,
+        "GameId": 94434,
+        "TeamId": 605,
+        "PlayerId": 90095603,
+        "Name": "Arda Güler",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112786,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 30,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233610,
+        "GameId": 94434,
+        "TeamId": 605,
+        "PlayerId": 90048341,
+        "Name": "Vinícius Júnior",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051897,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94435,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-29T00:00:00",
+    "DateTime": "2025-08-29T19:30:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 614,
@@ -455,19 +1337,65 @@
     "AwayTeamKey": "GET",
     "HomeTeamName": "Valencia CF",
     "AwayTeamName": "Getafe CF",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 0,
+    "Result": 614,
+    "Points": {
+      "614": 3,
+      "617": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233345,
+        "GameId": 94435,
+        "TeamId": 614,
+        "PlayerId": 90044305,
+        "Name": "Mouctar Diakhaby",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075814,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233354,
+        "GameId": 94435,
+        "TeamId": 614,
+        "PlayerId": 90044842,
+        "Name": "Arnaut Danjuma",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90101123,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 50,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233356,
+        "GameId": 94435,
+        "TeamId": 614,
+        "PlayerId": 90054787,
+        "Name": "Hugo Duro",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90084309,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 83,
+        "GameMinuteExtra": 6
+      }
+    ]
   },
   {
     "GameId": 94436,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-30T00:00:00",
+    "DateTime": "2025-08-30T17:00:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2842,
@@ -476,18 +1404,36 @@
     "AwayTeamKey": "RSO",
     "HomeTeamName": "Real Oviedo",
     "AwayTeamName": "Real Sociedad de Fútbol",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2842,
+    "Points": {
+      "2842": 3,
+      "626": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233563,
+        "GameId": 94436,
+        "TeamId": 2842,
+        "PlayerId": 90036277,
+        "Name": "Leander Dendoncker",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90109276,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94437,
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
+    "DateTime": "2025-08-31T17:00:00",
     "Status": "Scheduled",
     "Week": 3,
     "VenueType": "Home Away",
@@ -508,7 +1454,7 @@
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
+    "DateTime": "2025-08-31T17:30:00",
     "Status": "Scheduled",
     "Week": 3,
     "VenueType": "Home Away",
@@ -529,7 +1475,7 @@
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
+    "DateTime": "2025-08-31T19:30:00",
     "Status": "Scheduled",
     "Week": 3,
     "VenueType": "Home Away",
@@ -550,9 +1496,9 @@
     "RoundId": 1814,
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
+    "DateTime": "2025-08-31T15:00:00",
     "Status": "Scheduled",
-    "Week": 3,
+    "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 622,
     "AwayTeamId": 630,
@@ -570,9 +1516,9 @@
     "GameId": 94441,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-29T00:00:00",
+    "DateTime": "2025-08-29T17:30:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2450,
@@ -581,19 +1527,51 @@
     "AwayTeamKey": "LEV",
     "HomeTeamName": "Elche CF",
     "AwayTeamName": "Levante UD",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 2450,
+    "Points": {
+      "2450": 3,
+      "619": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233324,
+        "GameId": 94441,
+        "TeamId": 2450,
+        "PlayerId": 90029521,
+        "Name": "Rafael Mir",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90106901,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 63,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233326,
+        "GameId": 94441,
+        "TeamId": 2450,
+        "PlayerId": 90107077,
+        "Name": "Rodrigo Mendoza",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90029943,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 70,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94442,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-30T00:00:00",
+    "DateTime": "2025-08-30T17:30:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 1169,
@@ -602,19 +1580,51 @@
     "AwayTeamKey": "SEV",
     "HomeTeamName": "Girona FC",
     "AwayTeamName": "Sevilla FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 606,
+    "Points": {
+      "1169": 0,
+      "606": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233571,
+        "GameId": 94442,
+        "TeamId": 606,
+        "PlayerId": 90092127,
+        "Name": "Alfon",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051179,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233586,
+        "GameId": 94442,
+        "TeamId": 606,
+        "PlayerId": 90117633,
+        "Name": "Isaac Romero",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051179,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94443,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-08-31T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-30T00:00:00",
+    "DateTime": "2025-08-30T15:00:00",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 995,
@@ -623,11 +1633,43 @@
     "AwayTeamKey": "ATM",
     "HomeTeamName": "Deportivo Alavés",
     "AwayTeamName": "Club Atlético de Madrid",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "995": 1,
+      "554": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233462,
+        "GameId": 94443,
+        "TeamId": 554,
+        "PlayerId": 90098125,
+        "Name": "Giuliano Simeone",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 8,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233473,
+        "GameId": 94443,
+        "TeamId": 995,
+        "PlayerId": 90117287,
+        "Name": "Carlos Vicente",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94444,
@@ -1242,9 +2284,9 @@
     "GameId": 94473,
     "RoundId": 1814,
     "RoundName": "Regular Season",
-    "Date": "2025-09-24T00:00:00",
-    "DateTime": null,
-    "Status": "Scheduled",
+    "Date": "2025-08-27T00:00:00",
+    "DateTime": "2025-08-27T19:00:00",
+    "Status": "Final",
     "Week": 6,
     "VenueType": "Home Away",
     "HomeTeamId": 622,
@@ -1253,11 +2295,43 @@
     "AwayTeamKey": "BET",
     "HomeTeamName": "RC Celta de Vigo",
     "AwayTeamName": "Real Betis Balompié",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "622": 1,
+      "625": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233164,
+        "GameId": 94473,
+        "TeamId": 625,
+        "PlayerId": 90027766,
+        "Name": "Bartra",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90030433,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 78,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233168,
+        "GameId": 94473,
+        "TeamId": 622,
+        "PlayerId": 90099295,
+        "Name": "Hugo Álvarez",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 81,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 94474,

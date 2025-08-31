@@ -5,7 +5,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
     "DateTime": "2025-08-24T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 588,
@@ -14,11 +14,43 @@
     "AwayTeamKey": "PAR",
     "HomeTeamName": "Juventus FC",
     "AwayTeamName": "Parma Calcio 1913",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 588,
+    "Points": {
+      "588": 3,
+      "1434": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232963,
+        "GameId": 90217,
+        "TeamId": 588,
+        "PlayerId": 90064249,
+        "Name": "Jonathan David",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112787,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 52,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232970,
+        "GameId": 90217,
+        "TeamId": 588,
+        "PlayerId": 90028333,
+        "Name": "Dušan Vlahović",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112787,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 74,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90218,
@@ -26,7 +58,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-25T00:00:00",
     "DateTime": "2025-08-25T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 668,
@@ -35,11 +67,85 @@
     "AwayTeamKey": "TOR",
     "HomeTeamName": "FC Internazionale Milano",
     "AwayTeamName": "Torino FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 5,
+    "AwayTeamScore": 0,
+    "Result": 668,
+    "Points": {
+      "668": 3,
+      "673": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233052,
+        "GameId": 90218,
+        "TeamId": 668,
+        "PlayerId": 90045897,
+        "Name": "Alessandro Bastoni",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044848,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233054,
+        "GameId": 90218,
+        "TeamId": 668,
+        "PlayerId": 90050914,
+        "Name": "Marcus Thuram",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90090821,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233059,
+        "GameId": 90218,
+        "TeamId": 668,
+        "PlayerId": 90030967,
+        "Name": "Lautaro Martínez",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 16,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233060,
+        "GameId": 90218,
+        "TeamId": 668,
+        "PlayerId": 90050914,
+        "Name": "Marcus Thuram",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90045897,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 19,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233062,
+        "GameId": 90218,
+        "TeamId": 668,
+        "PlayerId": 90098858,
+        "Name": "Ange-Yoan Bonny",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90030967,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 22,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90219,
@@ -47,7 +153,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 550,
@@ -56,11 +162,29 @@
     "AwayTeamKey": "BOL",
     "HomeTeamName": "AS Roma",
     "AwayTeamName": "Bologna FC 1909",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 550,
+    "Points": {
+      "550": 3,
+      "665": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232778,
+        "GameId": 90219,
+        "TeamId": 550,
+        "PlayerId": 90100156,
+        "Name": "Wesley",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 57,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90220,
@@ -68,7 +192,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 662,
@@ -77,11 +201,57 @@
     "AwayTeamKey": "CRE",
     "HomeTeamName": "AC Milan",
     "AwayTeamName": "US Cremonese",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 1450,
+    "Points": {
+      "662": 0,
+      "1450": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232766,
+        "GameId": 90220,
+        "TeamId": 1450,
+        "PlayerId": 90081085,
+        "Name": "Federico Baschirotto",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90048602,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232767,
+        "GameId": 90220,
+        "TeamId": 662,
+        "PlayerId": 90072568,
+        "Name": "Strahinja Pavlović",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90043279,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 46,
+        "GameMinuteExtra": 1
+      },
+      {
+        "GoalId": 232780,
+        "GameId": 90220,
+        "TeamId": 1450,
+        "PlayerId": 90051840,
+        "Name": "Federico Bonazzoli",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90031456,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 63,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90221,
@@ -89,7 +259,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-25T00:00:00",
     "DateTime": "2025-08-25T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 675,
@@ -98,11 +268,43 @@
     "AwayTeamKey": "VER",
     "HomeTeamName": "Udinese Calcio",
     "AwayTeamName": "Hellas Verona FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "675": 1,
+      "671": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233048,
+        "GameId": 90221,
+        "TeamId": 675,
+        "PlayerId": 90089709,
+        "Name": "Thomas Kristensen",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90036496,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 93,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233049,
+        "GameId": 90221,
+        "TeamId": 671,
+        "PlayerId": 90026867,
+        "Name": "Suat Serdar",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90103271,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 128,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90222,
@@ -110,7 +312,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
     "DateTime": "2025-08-24T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 664,
@@ -119,11 +321,43 @@
     "AwayTeamKey": "PIS",
     "HomeTeamName": "Atalanta BC",
     "AwayTeamName": "Pisa SC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "664": 1,
+      "1407": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232955,
+        "GameId": 90222,
+        "TeamId": 664,
+        "PlayerId": 90095251,
+        "Name": "Isak Hien",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232962,
+        "GameId": 90222,
+        "TeamId": 664,
+        "PlayerId": 90051878,
+        "Name": "Gianluca Scamacca",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90027489,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90223,
@@ -131,7 +365,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
     "DateTime": "2025-08-24T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 996,
@@ -140,11 +374,43 @@
     "AwayTeamKey": "FIO",
     "HomeTeamName": "Cagliari Calcio",
     "AwayTeamName": "ACF Fiorentina",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "996": 1,
+      "663": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232941,
+        "GameId": 90223,
+        "TeamId": 663,
+        "PlayerId": 90041367,
+        "Name": "Rolando Mandragora",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90046601,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232947,
+        "GameId": 90223,
+        "TeamId": 996,
+        "PlayerId": 90031329,
+        "Name": "Sebastiano Luperto",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90071787,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90224,
@@ -152,7 +418,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 670,
@@ -161,10 +427,13 @@
     "AwayTeamKey": "LEC",
     "HomeTeamName": "Genoa CFC",
     "AwayTeamName": "US Lecce",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
-    "Points": {},
+    "Points": {
+      "670": 1,
+      "1451": 1
+    },
     "Goals": []
   },
   {
@@ -173,7 +442,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 677,
@@ -182,11 +451,43 @@
     "AwayTeamKey": "NAP",
     "HomeTeamName": "US Sassuolo Calcio",
     "AwayTeamName": "SSC Napoli",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 672,
+    "Points": {
+      "677": 0,
+      "672": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232710,
+        "GameId": 90225,
+        "TeamId": 672,
+        "PlayerId": 90048248,
+        "Name": "Scott McTominay",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90031481,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232738,
+        "GameId": 90225,
+        "TeamId": 672,
+        "PlayerId": 90026514,
+        "Name": "Kevin De Bruyne",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 92,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90226,
@@ -194,7 +495,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-24T00:00:00",
     "DateTime": "2025-08-24T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 1509,
@@ -203,11 +504,43 @@
     "AwayTeamKey": "LAZ",
     "HomeTeamName": "Como 1907",
     "AwayTeamName": "SS Lazio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 1509,
+    "Points": {
+      "1509": 3,
+      "611": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232933,
+        "GameId": 90226,
+        "TeamId": 1509,
+        "PlayerId": 90064908,
+        "Name": "Anastasios Douvikas",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90107673,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232943,
+        "GameId": 90226,
+        "TeamId": 1509,
+        "PlayerId": 90107673,
+        "Name": "Nicolás Paz",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 70,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90227,
@@ -215,7 +548,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 672,
@@ -224,11 +557,29 @@
     "AwayTeamKey": "CAG",
     "HomeTeamName": "SSC Napoli",
     "AwayTeamName": "Cagliari Calcio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 672,
+    "Points": {
+      "672": 3,
+      "996": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233617,
+        "GameId": 90227,
+        "TeamId": 672,
+        "PlayerId": 90035938,
+        "Name": "André-Frank Zambo Anguissa",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90046954,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 151,
+        "GameMinuteExtra": 14
+      }
+    ]
   },
   {
     "GameId": 90228,
@@ -278,7 +629,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1434,
@@ -287,11 +638,43 @@
     "AwayTeamKey": "ATA",
     "HomeTeamName": "Parma Calcio 1913",
     "AwayTeamName": "Atalanta BC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "1434": 1,
+      "664": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233575,
+        "GameId": 90230,
+        "TeamId": 664,
+        "PlayerId": 90027489,
+        "Name": "Mario Pašalić",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90049844,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 72,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233578,
+        "GameId": 90230,
+        "TeamId": 1434,
+        "PlayerId": 90031032,
+        "Name": "Patrick Cutrone",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 78,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90231,
@@ -320,7 +703,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 665,
@@ -329,11 +712,29 @@
     "AwayTeamKey": "COM",
     "HomeTeamName": "Bologna FC 1909",
     "AwayTeamName": "Como 1907",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 665,
+    "Points": {
+      "665": 3,
+      "1509": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233569,
+        "GameId": 90232,
+        "TeamId": 665,
+        "PlayerId": 90046855,
+        "Name": "Riccardo Orsolini",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90097678,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 58,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90233,
@@ -362,7 +763,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1407,
@@ -371,11 +772,29 @@
     "AwayTeamKey": "ROM",
     "HomeTeamName": "Pisa SC",
     "AwayTeamName": "AS Roma",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 550,
+    "Points": {
+      "1407": 0,
+      "550": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233604,
+        "GameId": 90234,
+        "TeamId": 550,
+        "PlayerId": 90098772,
+        "Name": "Matìas Soulé",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90088088,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 43,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90235,
@@ -383,7 +802,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-29T00:00:00",
     "DateTime": "2025-08-29T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1450,
@@ -392,11 +811,85 @@
     "AwayTeamKey": "SAS",
     "HomeTeamName": "US Cremonese",
     "AwayTeamName": "US Sassuolo Calcio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 1450,
+    "Points": {
+      "1450": 3,
+      "677": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233308,
+        "GameId": 90235,
+        "TeamId": 1450,
+        "PlayerId": 90086764,
+        "Name": "Filippo Terracciano",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90062909,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233309,
+        "GameId": 90235,
+        "TeamId": 1450,
+        "PlayerId": 90031441,
+        "Name": "Franco Vázquez",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90029890,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 58,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233314,
+        "GameId": 90235,
+        "TeamId": 677,
+        "PlayerId": 90046112,
+        "Name": "Andrea Pinamonti",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90099331,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 94,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233315,
+        "GameId": 90235,
+        "TeamId": 677,
+        "PlayerId": 90031477,
+        "Name": "Domenico Berardi",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 109,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233322,
+        "GameId": 90235,
+        "TeamId": 1450,
+        "PlayerId": 90045088,
+        "Name": "Manuel De Luca",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 135,
+        "GameMinuteExtra": 7
+      }
+    ]
   },
   {
     "GameId": 90236,
@@ -404,7 +897,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-29T00:00:00",
     "DateTime": "2025-08-29T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1451,
@@ -413,11 +906,43 @@
     "AwayTeamKey": "MIL",
     "HomeTeamName": "US Lecce",
     "AwayTeamName": "AC Milan",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 662,
+    "Points": {
+      "1451": 0,
+      "662": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233348,
+        "GameId": 90236,
+        "TeamId": 662,
+        "PlayerId": 90026342,
+        "Name": "Ruben Loftus-Cheek",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90029226,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 56,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233353,
+        "GameId": 90236,
+        "TeamId": 662,
+        "PlayerId": 90026984,
+        "Name": "Christian Pulisic",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 73,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90237,

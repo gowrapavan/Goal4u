@@ -5,7 +5,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-08T00:00:00",
     "DateTime": "2025-08-08T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 1988,
@@ -14,11 +14,43 @@
     "AwayTeamKey": "IPS",
     "HomeTeamName": "Birmingham City FC",
     "AwayTeamName": "Ipswich Town FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "1988": 1,
+      "2133": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 231020,
+        "GameId": 91838,
+        "TeamId": 1988,
+        "PlayerId": 90084997,
+        "Name": "Jay Stansfield",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231021,
+        "GameId": 91838,
+        "TeamId": 2133,
+        "PlayerId": 90076178,
+        "Name": "George Hirst",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 51,
+        "GameMinuteExtra": 2
+      }
+    ]
   },
   {
     "GameId": 91839,
@@ -26,7 +58,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 2026,
@@ -35,11 +67,29 @@
     "AwayTeamKey": "WAT",
     "HomeTeamName": "Charlton Athletic FC",
     "AwayTeamName": "Watford FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2026,
+    "Points": {
+      "2026": 3,
+      "525": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231069,
+        "GameId": 91839,
+        "TeamId": 2026,
+        "PlayerId": 90079465,
+        "Name": "Harvey Knibbs",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 71,
+        "GameMinuteExtra": 3
+      }
+    ]
   },
   {
     "GameId": 91840,
@@ -47,7 +97,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 520,
@@ -56,11 +106,57 @@
     "AwayTeamKey": "WRE",
     "HomeTeamName": "Southampton FC",
     "AwayTeamName": "Wrexham AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 520,
+    "Points": {
+      "520": 3,
+      "2327": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231044,
+        "GameId": 91840,
+        "TeamId": 2327,
+        "PlayerId": 90050181,
+        "Name": "Josh Windass",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231064,
+        "GameId": 91840,
+        "TeamId": 520,
+        "PlayerId": 90078229,
+        "Name": "Ryan Manning",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 93,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231068,
+        "GameId": 91840,
+        "TeamId": 520,
+        "PlayerId": 90045230,
+        "Name": "Jack Stephens",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90109494,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 93,
+        "GameMinuteExtra": 6
+      }
+    ]
   },
   {
     "GameId": 91841,
@@ -68,7 +164,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 2051,
@@ -77,10 +173,13 @@
     "AwayTeamKey": "HUL",
     "HomeTeamName": "Coventry City FC",
     "AwayTeamName": "Hull City AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
-    "Points": {},
+    "Points": {
+      "2051": 1,
+      "972": 1
+    },
     "Goals": []
   },
   {
@@ -89,7 +188,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 2219,
@@ -98,11 +197,43 @@
     "AwayTeamKey": "PNE",
     "HomeTeamName": "Queens Park Rangers FC",
     "AwayTeamName": "Preston North End FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2219": 1,
+      "2217": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 231103,
+        "GameId": 91842,
+        "TeamId": 2217,
+        "PlayerId": 90077534,
+        "Name": "Ben Whiteman",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 58,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231110,
+        "GameId": 91842,
+        "TeamId": 2217,
+        "PlayerId": 90058317,
+        "Name": "Milutin Osmajić",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90078281,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 68,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91843,
@@ -110,7 +241,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 521,
@@ -119,11 +250,71 @@
     "AwayTeamKey": "DER",
     "HomeTeamName": "Stoke City FC",
     "AwayTeamName": "Derby County FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 1,
+    "Result": 521,
+    "Points": {
+      "521": 3,
+      "2059": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231136,
+        "GameId": 91843,
+        "TeamId": 521,
+        "PlayerId": 90031799,
+        "Name": "Lewis Baker",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083005,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 107,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231159,
+        "GameId": 91843,
+        "TeamId": 521,
+        "PlayerId": 90105809,
+        "Name": "Divin Mubama",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90126522,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 137,
+        "GameMinuteExtra": 12
+      },
+      {
+        "GoalId": 231162,
+        "GameId": 91843,
+        "TeamId": 521,
+        "PlayerId": 90083005,
+        "Name": "Sorba Thomas",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90114603,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 137,
+        "GameMinuteExtra": 14
+      },
+      {
+        "GoalId": 231165,
+        "GameId": 91843,
+        "TeamId": 2059,
+        "PlayerId": 90078300,
+        "Name": "Carlton Morris",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026320,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 92,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91844,
@@ -131,7 +322,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 526,
@@ -140,11 +331,29 @@
     "AwayTeamKey": "BBR",
     "HomeTeamName": "West Bromwich Albion FC",
     "AwayTeamName": "Blackburn Rovers FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 526,
+    "Points": {
+      "526": 3,
+      "1990": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231081,
+        "GameId": 91844,
+        "TeamId": 526,
+        "PlayerId": 90095174,
+        "Name": "Isaac Price",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90062282,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91845,
@@ -152,7 +361,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 519,
@@ -161,11 +370,57 @@
     "AwayTeamKey": "MIL",
     "HomeTeamName": "Norwich City FC",
     "AwayTeamName": "Millwall FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 2179,
+    "Points": {
+      "519": 0,
+      "2179": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231112,
+        "GameId": 91845,
+        "TeamId": 2179,
+        "PlayerId": 90112288,
+        "Name": "Camiel Neghli",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90106909,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 17,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231115,
+        "GameId": 91845,
+        "TeamId": 519,
+        "PlayerId": 90064343,
+        "Name": "Josh Sargent",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 18,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231147,
+        "GameId": 91845,
+        "TeamId": 2179,
+        "PlayerId": 90082063,
+        "Name": "Macaulay Langstaff",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90077340,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91846,
@@ -173,7 +428,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 973,
@@ -182,11 +437,29 @@
     "AwayTeamKey": "SWA",
     "HomeTeamName": "Middlesbrough FC",
     "AwayTeamName": "Swansea City AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 973,
+    "Points": {
+      "973": 3,
+      "523": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231111,
+        "GameId": 91846,
+        "TeamId": 973,
+        "PlayerId": 90040485,
+        "Name": "Dael Fry",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90079470,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 38,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91847,
@@ -194,7 +467,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 2201,
@@ -203,11 +476,29 @@
     "AwayTeamKey": "POR",
     "HomeTeamName": "Oxford United FC",
     "AwayTeamName": "Portsmouth FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 2214,
+    "Points": {
+      "2201": 0,
+      "2214": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231166,
+        "GameId": 91847,
+        "TeamId": 2214,
+        "PlayerId": 90096865,
+        "Name": "Adrian Segecic",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 24,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91848,
@@ -215,7 +506,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-09T00:00:00",
     "DateTime": "2025-08-09T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 1540,
@@ -224,11 +515,85 @@
     "AwayTeamKey": "BRI",
     "HomeTeamName": "Sheffield United FC",
     "AwayTeamName": "Bristol City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 4,
+    "Result": 2009,
+    "Points": {
+      "1540": 0,
+      "2009": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231174,
+        "GameId": 91848,
+        "TeamId": 2009,
+        "PlayerId": 90078538,
+        "Name": "Scott Twine",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 10,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231178,
+        "GameId": 91848,
+        "TeamId": 1540,
+        "PlayerId": 90058177,
+        "Name": "Tyrese Campbell",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90078331,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231181,
+        "GameId": 91848,
+        "TeamId": 2009,
+        "PlayerId": 90050850,
+        "Name": "Ross McCrorie",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90078538,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 37,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231184,
+        "GameId": 91848,
+        "TeamId": 2009,
+        "PlayerId": 90090393,
+        "Name": "Anis Mehmeti",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90057252,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 65,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231186,
+        "GameId": 91848,
+        "TeamId": 2009,
+        "PlayerId": 90078538,
+        "Name": "Scott Twine",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90050850,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 72,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91849,
@@ -236,7 +601,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-10T00:00:00",
     "DateTime": "2025-08-10T15:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 1,
     "VenueType": "Home Away",
     "HomeTeamId": 514,
@@ -245,11 +610,57 @@
     "AwayTeamKey": "SWE",
     "HomeTeamName": "Leicester City FC",
     "AwayTeamName": "Sheffield Wednesday FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 514,
+    "Points": {
+      "514": 3,
+      "2245": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231317,
+        "GameId": 91849,
+        "TeamId": 2245,
+        "PlayerId": 90031339,
+        "Name": "Nathaniel Chalobah",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 38,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231326,
+        "GameId": 91849,
+        "TeamId": 514,
+        "PlayerId": 90027276,
+        "Name": "Jannik Vestergaard",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102424,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 78,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231334,
+        "GameId": 91849,
+        "TeamId": 514,
+        "PlayerId": 90043965,
+        "Name": "Wout Faes",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102424,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 126,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91850,
@@ -257,7 +668,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 1990,
@@ -266,11 +677,57 @@
     "AwayTeamKey": "BIR",
     "HomeTeamName": "Blackburn Rovers FC",
     "AwayTeamName": "Birmingham City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 1988,
+    "Points": {
+      "1990": 0,
+      "1988": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231844,
+        "GameId": 91850,
+        "TeamId": 1990,
+        "PlayerId": 90066002,
+        "Name": "Todd Cantwell",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 13,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231889,
+        "GameId": 91850,
+        "TeamId": 1988,
+        "PlayerId": 90084997,
+        "Name": "Jay Stansfield",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231904,
+        "GameId": 91850,
+        "TeamId": 1988,
+        "PlayerId": 90088551,
+        "Name": "Lyndon Dykes",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026445,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 91851,
@@ -278,7 +735,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 523,
@@ -287,11 +744,29 @@
     "AwayTeamKey": "SHE",
     "HomeTeamName": "Swansea City AFC",
     "AwayTeamName": "Sheffield United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 523,
+    "Points": {
+      "523": 3,
+      "1540": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231875,
+        "GameId": 91851,
+        "TeamId": 523,
+        "PlayerId": 90093041,
+        "Name": "Ronald",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 73,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91852,
@@ -299,7 +774,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2059,
@@ -308,11 +783,127 @@
     "AwayTeamKey": "COV",
     "HomeTeamName": "Derby County FC",
     "AwayTeamName": "Coventry City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 5,
+    "Result": 2051,
+    "Points": {
+      "2059": 0,
+      "2051": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231766,
+        "GameId": 91852,
+        "TeamId": 2051,
+        "PlayerId": 90086724,
+        "Name": "Bobby Thomas",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 3,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231769,
+        "GameId": 91852,
+        "TeamId": 2059,
+        "PlayerId": 90066213,
+        "Name": "Callum Elder",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 6,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231775,
+        "GameId": 91852,
+        "TeamId": 2051,
+        "PlayerId": 90048431,
+        "Name": "Haji Wright",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 17,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231782,
+        "GameId": 91852,
+        "TeamId": 2059,
+        "PlayerId": 90069276,
+        "Name": "Ebou Adams",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 35,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231787,
+        "GameId": 91852,
+        "TeamId": 2051,
+        "PlayerId": 90080130,
+        "Name": "Brandon Thomas-Asante",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 50,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231789,
+        "GameId": 91852,
+        "TeamId": 2051,
+        "PlayerId": 90082963,
+        "Name": "Ephron Mason-Clark",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075797,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 52,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231791,
+        "GameId": 91852,
+        "TeamId": 2051,
+        "PlayerId": 90048329,
+        "Name": "Victor Torp",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075797,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231796,
+        "GameId": 91852,
+        "TeamId": 2059,
+        "PlayerId": 90078300,
+        "Name": "Carlton Morris",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 91853,
@@ -320,7 +911,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2245,
@@ -329,11 +920,57 @@
     "AwayTeamKey": "STO",
     "HomeTeamName": "Sheffield Wednesday FC",
     "AwayTeamName": "Stoke City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 521,
+    "Points": {
+      "2245": 0,
+      "521": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231802,
+        "GameId": 91853,
+        "TeamId": 521,
+        "PlayerId": 90089110,
+        "Name": "Million Manhoef",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90114704,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 1,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231842,
+        "GameId": 91853,
+        "TeamId": 521,
+        "PlayerId": 90105809,
+        "Name": "Divin Mubama",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083005,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 37,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231874,
+        "GameId": 91853,
+        "TeamId": 521,
+        "PlayerId": 90089110,
+        "Name": "Million Manhoef",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083005,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 56,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91854,
@@ -341,7 +978,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2217,
@@ -350,11 +987,57 @@
     "AwayTeamKey": "LEI",
     "HomeTeamName": "Preston North End FC",
     "AwayTeamName": "Leicester City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 2217,
+    "Points": {
+      "2217": 3,
+      "514": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231806,
+        "GameId": 91854,
+        "TeamId": 2217,
+        "PlayerId": 90092232,
+        "Name": "Alfie Devine",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112635,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231868,
+        "GameId": 91854,
+        "TeamId": 514,
+        "PlayerId": 90129829,
+        "Name": "Jeremy Monga",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90043965,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 102,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231887,
+        "GameId": 91854,
+        "TeamId": 2217,
+        "PlayerId": 90058317,
+        "Name": "Milutin Osmajić",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90092725,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 129,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91855,
@@ -362,7 +1045,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2009,
@@ -371,10 +1054,13 @@
     "AwayTeamKey": "CHA",
     "HomeTeamName": "Bristol City FC",
     "AwayTeamName": "Charlton Athletic FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
-    "Points": {},
+    "Points": {
+      "2009": 1,
+      "2026": 1
+    },
     "Goals": []
   },
   {
@@ -383,7 +1069,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2214,
@@ -392,11 +1078,57 @@
     "AwayTeamKey": "NOR",
     "HomeTeamName": "Portsmouth FC",
     "AwayTeamName": "Norwich City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 519,
+    "Points": {
+      "2214": 0,
+      "519": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231767,
+        "GameId": 91856,
+        "TeamId": 519,
+        "PlayerId": 90077285,
+        "Name": "Harry Darling",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90085444,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 13,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231770,
+        "GameId": 91856,
+        "TeamId": 519,
+        "PlayerId": 90064343,
+        "Name": "Josh Sargent",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102994,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231797,
+        "GameId": 91856,
+        "TeamId": 2214,
+        "PlayerId": 90096865,
+        "Name": "Adrian Segecic",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90096424,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 122,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91857,
@@ -404,7 +1136,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-17T00:00:00",
     "DateTime": "2025-08-17T11:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2133,
@@ -413,11 +1145,43 @@
     "AwayTeamKey": "SOT",
     "HomeTeamName": "Ipswich Town FC",
     "AwayTeamName": "Southampton FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2133": 1,
+      "520": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232053,
+        "GameId": 91857,
+        "TeamId": 520,
+        "PlayerId": 90082572,
+        "Name": "Taylor Harwood-Bellis",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 7,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232058,
+        "GameId": 91857,
+        "TeamId": 520,
+        "PlayerId": 90124039,
+        "Name": "Jay Robinson",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026261,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 39,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91858,
@@ -425,7 +1189,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 525,
@@ -434,11 +1198,57 @@
     "AwayTeamKey": "QPR",
     "HomeTeamName": "Watford FC",
     "AwayTeamName": "Queens Park Rangers FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 525,
+    "Points": {
+      "525": 3,
+      "2219": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 231839,
+        "GameId": 91858,
+        "TeamId": 2219,
+        "PlayerId": 90126358,
+        "Name": "Kieran Morgan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 2
+      },
+      {
+        "GoalId": 231906,
+        "GameId": 91858,
+        "TeamId": 525,
+        "PlayerId": 90113317,
+        "Name": "Luca Kjerrumgaard",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90099850,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 12,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231907,
+        "GameId": 91858,
+        "TeamId": 525,
+        "PlayerId": 90113317,
+        "Name": "Luca Kjerrumgaard",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90071035,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91859,
@@ -446,7 +1256,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2179,
@@ -455,11 +1265,57 @@
     "AwayTeamKey": "MID",
     "HomeTeamName": "Millwall FC",
     "AwayTeamName": "Middlesbrough FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 973,
+    "Points": {
+      "2179": 0,
+      "973": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231843,
+        "GameId": 91859,
+        "TeamId": 973,
+        "PlayerId": 90084299,
+        "Name": "Hayden Hackney",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90079470,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 36,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231901,
+        "GameId": 91859,
+        "TeamId": 973,
+        "PlayerId": 90065943,
+        "Name": "Delano Burgzorg",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90087396,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 65,
+        "GameMinuteExtra": 4
+      },
+      {
+        "GoalId": 231908,
+        "GameId": 91859,
+        "TeamId": 973,
+        "PlayerId": 90072102,
+        "Name": "Alfie Jones",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 63,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91860,
@@ -467,7 +1323,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-17T00:00:00",
     "DateTime": "2025-08-17T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 972,
@@ -476,11 +1332,85 @@
     "AwayTeamKey": "OXF",
     "HomeTeamName": "Hull City AFC",
     "AwayTeamName": "Oxford United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 972,
+    "Points": {
+      "972": 3,
+      "2201": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232081,
+        "GameId": 91860,
+        "TeamId": 972,
+        "PlayerId": 90078648,
+        "Name": "Joe Gelhardt",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044731,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232083,
+        "GameId": 91860,
+        "TeamId": 2201,
+        "PlayerId": 90125251,
+        "Name": "Will Lankshear",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90079813,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232088,
+        "GameId": 91860,
+        "TeamId": 972,
+        "PlayerId": 90051209,
+        "Name": "Matty Crooks",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044731,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 22,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232089,
+        "GameId": 91860,
+        "TeamId": 2201,
+        "PlayerId": 90026459,
+        "Name": "Cameron Brannagan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232104,
+        "GameId": 91860,
+        "TeamId": 972,
+        "PlayerId": 90044731,
+        "Name": "Oliver McBurnie",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90068737,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 99,
+        "GameMinuteExtra": 4
+      }
+    ]
   },
   {
     "GameId": 91861,
@@ -488,7 +1418,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-16T00:00:00",
     "DateTime": "2025-08-16T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 2327,
@@ -497,11 +1427,85 @@
     "AwayTeamKey": "WBA",
     "HomeTeamName": "Wrexham AFC",
     "AwayTeamName": "West Bromwich Albion FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 3,
+    "Result": 526,
+    "Points": {
+      "2327": 0,
+      "526": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 231773,
+        "GameId": 91861,
+        "TeamId": 526,
+        "PlayerId": 90095174,
+        "Name": "Isaac Price",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 1,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231781,
+        "GameId": 91861,
+        "TeamId": 2327,
+        "PlayerId": 90056773,
+        "Name": "Lewis O'Brien",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026805,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231786,
+        "GameId": 91861,
+        "TeamId": 526,
+        "PlayerId": 90077899,
+        "Name": "Jed Wallace",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90048278,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 19,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231790,
+        "GameId": 91861,
+        "TeamId": 526,
+        "PlayerId": 90095174,
+        "Name": "Isaac Price",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90048278,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 231795,
+        "GameId": 91861,
+        "TeamId": 2327,
+        "PlayerId": 90077302,
+        "Name": "Sam Smith",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90082603,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91862,
@@ -509,7 +1513,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 523,
@@ -518,11 +1522,43 @@
     "AwayTeamKey": "WAT",
     "HomeTeamName": "Swansea City AFC",
     "AwayTeamName": "Watford FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "523": 1,
+      "525": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232560,
+        "GameId": 91862,
+        "TeamId": 525,
+        "PlayerId": 90099850,
+        "Name": "Nestory Irankunda",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 47,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232579,
+        "GameId": 91862,
+        "TeamId": 523,
+        "PlayerId": 90110114,
+        "Name": "Žan Vipotnik",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90080901,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 110,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91863,
@@ -530,7 +1566,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 526,
@@ -539,11 +1575,43 @@
     "AwayTeamKey": "POR",
     "HomeTeamName": "West Bromwich Albion FC",
     "AwayTeamName": "Portsmouth FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "526": 1,
+      "2214": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232618,
+        "GameId": 91863,
+        "TeamId": 526,
+        "PlayerId": 90048278,
+        "Name": "Michael Johnston",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90095174,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 38,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232653,
+        "GameId": 91863,
+        "TeamId": 2214,
+        "PlayerId": 90076989,
+        "Name": "Colby Bishop",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90066289,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 82,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91864,
@@ -551,7 +1619,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 519,
@@ -560,11 +1628,57 @@
     "AwayTeamKey": "MID",
     "HomeTeamName": "Norwich City FC",
     "AwayTeamName": "Middlesbrough FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 973,
+    "Points": {
+      "519": 0,
+      "973": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232634,
+        "GameId": 91864,
+        "TeamId": 973,
+        "PlayerId": 90087396,
+        "Name": "Finn Azaz",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90084299,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 29,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232637,
+        "GameId": 91864,
+        "TeamId": 973,
+        "PlayerId": 90092606,
+        "Name": "Tommy Conway",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90085387,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 30,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232683,
+        "GameId": 91864,
+        "TeamId": 519,
+        "PlayerId": 90064343,
+        "Name": "Josh Sargent",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90032595,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 57,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91865,
@@ -572,7 +1686,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 1988,
@@ -581,11 +1695,29 @@
     "AwayTeamKey": "OXF",
     "HomeTeamName": "Birmingham City FC",
     "AwayTeamName": "Oxford United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 1988,
+    "Points": {
+      "1988": 3,
+      "2201": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232632,
+        "GameId": 91865,
+        "TeamId": 1988,
+        "PlayerId": 90068620,
+        "Name": "Paik Seungho",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90084303,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 16,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91866,
@@ -593,7 +1725,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 1540,
@@ -602,11 +1734,29 @@
     "AwayTeamKey": "MIL",
     "HomeTeamName": "Sheffield United FC",
     "AwayTeamName": "Millwall FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 2179,
+    "Points": {
+      "1540": 0,
+      "2179": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232627,
+        "GameId": 91866,
+        "TeamId": 2179,
+        "PlayerId": 90082608,
+        "Name": "Luke Cundle",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90108382,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91867,
@@ -614,7 +1764,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-22T00:00:00",
     "DateTime": "2025-08-22T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2059,
@@ -623,11 +1773,43 @@
     "AwayTeamKey": "BRI",
     "HomeTeamName": "Derby County FC",
     "AwayTeamName": "Bristol City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2059": 1,
+      "2009": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232520,
+        "GameId": 91867,
+        "TeamId": 2009,
+        "PlayerId": 90078538,
+        "Name": "Scott Twine",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90034948,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 24,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232533,
+        "GameId": 91867,
+        "TeamId": 2059,
+        "PlayerId": 90078300,
+        "Name": "Carlton Morris",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 60,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91868,
@@ -635,7 +1817,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2217,
@@ -644,11 +1826,29 @@
     "AwayTeamKey": "IPS",
     "HomeTeamName": "Preston North End FC",
     "AwayTeamName": "Ipswich Town FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2217,
+    "Points": {
+      "2217": 3,
+      "2133": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232603,
+        "GameId": 91868,
+        "TeamId": 2217,
+        "PlayerId": 90058317,
+        "Name": "Milutin Osmajić",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 16,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91869,
@@ -656,7 +1856,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2026,
@@ -665,11 +1865,29 @@
     "AwayTeamKey": "LEI",
     "HomeTeamName": "Charlton Athletic FC",
     "AwayTeamName": "Leicester City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 514,
+    "Points": {
+      "2026": 0,
+      "514": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232573,
+        "GameId": 91869,
+        "TeamId": 514,
+        "PlayerId": 90096728,
+        "Name": "Abdul Fatawu Issahaku",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90052229,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 66,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91870,
@@ -677,7 +1895,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 520,
@@ -686,11 +1904,57 @@
     "AwayTeamKey": "STO",
     "HomeTeamName": "Southampton FC",
     "AwayTeamName": "Stoke City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 521,
+    "Points": {
+      "520": 0,
+      "521": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232656,
+        "GameId": 91870,
+        "TeamId": 521,
+        "PlayerId": 90031799,
+        "Name": "Lewis Baker",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 17,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232684,
+        "GameId": 91870,
+        "TeamId": 521,
+        "PlayerId": 90083005,
+        "Name": "Sorba Thomas",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90088842,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 24,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232685,
+        "GameId": 91870,
+        "TeamId": 520,
+        "PlayerId": 90082572,
+        "Name": "Taylor Harwood-Bellis",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90104980,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 25,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91871,
@@ -698,7 +1962,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2051,
@@ -707,11 +1971,127 @@
     "AwayTeamKey": "QPR",
     "HomeTeamName": "Coventry City FC",
     "AwayTeamName": "Queens Park Rangers FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 7,
+    "AwayTeamScore": 1,
+    "Result": 2051,
+    "Points": {
+      "2051": 3,
+      "2219": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 232601,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90048431,
+        "Name": "Haji Wright",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075797,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 12,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232615,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90080130,
+        "Name": "Brandon Thomas-Asante",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90077012,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 24,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232623,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90077012,
+        "Name": "Jack Rudoni",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90051275,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 36,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232626,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90048431,
+        "Name": "Haji Wright",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90080130,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 38,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232633,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90077012,
+        "Name": "Jack Rudoni",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90080130,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232642,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90048329,
+        "Name": "Victor Torp",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90082963,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 49,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232664,
+        "GameId": 91871,
+        "TeamId": 2051,
+        "PlayerId": 90048329,
+        "Name": "Victor Torp",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083409,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 69,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232698,
+        "GameId": 91871,
+        "TeamId": 2219,
+        "PlayerId": 90117532,
+        "Name": "Richard Kone",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90110763,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 94,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 91872,
@@ -719,7 +2099,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 972,
@@ -728,11 +2108,57 @@
     "AwayTeamKey": "BBR",
     "HomeTeamName": "Hull City AFC",
     "AwayTeamName": "Blackburn Rovers FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 1990,
+    "Points": {
+      "972": 0,
+      "1990": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 232557,
+        "GameId": 91872,
+        "TeamId": 1990,
+        "PlayerId": 90055530,
+        "Name": "Ryan Hedges",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90071854,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232570,
+        "GameId": 91872,
+        "TeamId": 1990,
+        "PlayerId": 90125591,
+        "Name": "Yūki Ōhashi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90055530,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 30,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232571,
+        "GameId": 91872,
+        "TeamId": 1990,
+        "PlayerId": 90066002,
+        "Name": "Todd Cantwell",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 31,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91873,
@@ -740,7 +2166,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-23T00:00:00",
     "DateTime": "2025-08-23T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2327,
@@ -749,11 +2175,71 @@
     "AwayTeamKey": "SWE",
     "HomeTeamName": "Wrexham AFC",
     "AwayTeamName": "Sheffield Wednesday FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2327": 1,
+      "2245": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 232611,
+        "GameId": 91873,
+        "TeamId": 2327,
+        "PlayerId": 90075146,
+        "Name": "Kieffer Moore",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232619,
+        "GameId": 91873,
+        "TeamId": 2327,
+        "PlayerId": 90075146,
+        "Name": "Kieffer Moore",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232667,
+        "GameId": 91873,
+        "TeamId": 2245,
+        "PlayerId": 90072979,
+        "Name": "Barry Bannan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 47,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 232686,
+        "GameId": 91873,
+        "TeamId": 2245,
+        "PlayerId": 90106853,
+        "Name": "Bailey-Tye Cadamarteri",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105954,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 60,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91874,
@@ -761,7 +2247,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 1990,
@@ -770,11 +2256,43 @@
     "AwayTeamKey": "NOR",
     "HomeTeamName": "Blackburn Rovers FC",
     "AwayTeamName": "Norwich City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 519,
+    "Points": {
+      "1990": 0,
+      "519": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233453,
+        "GameId": 91874,
+        "TeamId": 519,
+        "PlayerId": 90064343,
+        "Name": "Josh Sargent",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 65,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233513,
+        "GameId": 91874,
+        "TeamId": 519,
+        "PlayerId": 90064343,
+        "Name": "Josh Sargent",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026423,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 131,
+        "GameMinuteExtra": 2
+      }
+    ]
   },
   {
     "GameId": 91875,
@@ -782,7 +2300,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2219,
@@ -791,11 +2309,71 @@
     "AwayTeamKey": "CHA",
     "HomeTeamName": "Queens Park Rangers FC",
     "AwayTeamName": "Charlton Athletic FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 1,
+    "Result": 2219,
+    "Points": {
+      "2219": 3,
+      "2026": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233377,
+        "GameId": 91875,
+        "TeamId": 2219,
+        "PlayerId": 90035627,
+        "Name": "Paul Smyth",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90099304,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 10,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233404,
+        "GameId": 91875,
+        "TeamId": 2219,
+        "PlayerId": 90117532,
+        "Name": "Richard Kone",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90077694,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 100,
+        "GameMinuteExtra": 9
+      },
+      {
+        "GoalId": 233406,
+        "GameId": 91875,
+        "TeamId": 2026,
+        "PlayerId": 90091286,
+        "Name": "Robert Apter",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102214,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 60,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233407,
+        "GameId": 91875,
+        "TeamId": 2219,
+        "PlayerId": 90104960,
+        "Name": "Kōki Saitō",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90110987,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 93,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91876,
@@ -803,7 +2381,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 521,
@@ -812,11 +2390,29 @@
     "AwayTeamKey": "WBA",
     "HomeTeamName": "Stoke City FC",
     "AwayTeamName": "West Bromwich Albion FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 526,
+    "Points": {
+      "521": 0,
+      "526": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233380,
+        "GameId": 91876,
+        "TeamId": 526,
+        "PlayerId": 90084969,
+        "Name": "Nathaniel Phillips",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91877,
@@ -824,7 +2420,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2245,
@@ -833,11 +2429,43 @@
     "AwayTeamKey": "SWA",
     "HomeTeamName": "Sheffield Wednesday FC",
     "AwayTeamName": "Swansea City AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 523,
+    "Points": {
+      "2245": 0,
+      "523": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233463,
+        "GameId": 91877,
+        "TeamId": 523,
+        "PlayerId": 90110114,
+        "Name": "Žan Vipotnik",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90122293,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 70,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233505,
+        "GameId": 91877,
+        "TeamId": 523,
+        "PlayerId": 90093041,
+        "Name": "Ronald",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90110114,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 114,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91878,
@@ -845,7 +2473,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T11:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 973,
@@ -854,11 +2482,29 @@
     "AwayTeamKey": "SHE",
     "HomeTeamName": "Middlesbrough FC",
     "AwayTeamName": "Sheffield United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 973,
+    "Points": {
+      "973": 3,
+      "1540": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233401,
+        "GameId": 91878,
+        "TeamId": 973,
+        "PlayerId": 90092606,
+        "Name": "Tommy Conway",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026625,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91879,
@@ -866,7 +2512,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2009,
@@ -875,11 +2521,99 @@
     "AwayTeamKey": "HUL",
     "HomeTeamName": "Bristol City FC",
     "AwayTeamName": "Hull City AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 4,
+    "AwayTeamScore": 2,
+    "Result": 2009,
+    "Points": {
+      "2009": 3,
+      "972": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233412,
+        "GameId": 91879,
+        "TeamId": 972,
+        "PlayerId": 90078648,
+        "Name": "Joe Gelhardt",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90027894,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 1,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233426,
+        "GameId": 91879,
+        "TeamId": 2009,
+        "PlayerId": 90057252,
+        "Name": "Emil Riis Jakobsen",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90050850,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 12,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233439,
+        "GameId": 91879,
+        "TeamId": 2009,
+        "PlayerId": 90090393,
+        "Name": "Anis Mehmeti",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90050850,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 21,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233449,
+        "GameId": 91879,
+        "TeamId": 2009,
+        "PlayerId": 90057252,
+        "Name": "Emil Riis Jakobsen",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233504,
+        "GameId": 91879,
+        "TeamId": 2009,
+        "PlayerId": 90077508,
+        "Name": "Max Bird",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90090393,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 51,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233519,
+        "GameId": 91879,
+        "TeamId": 972,
+        "PlayerId": 90089008,
+        "Name": "Kyle Joseph",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 59,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 91880,
@@ -887,7 +2621,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-29T00:00:00",
     "DateTime": "2025-08-29T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 514,
@@ -896,11 +2630,43 @@
     "AwayTeamKey": "BIR",
     "HomeTeamName": "Leicester City FC",
     "AwayTeamName": "Birmingham City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 514,
+    "Points": {
+      "514": 3,
+      "1988": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233329,
+        "GameId": 91880,
+        "TeamId": 514,
+        "PlayerId": 90096728,
+        "Name": "Abdul Fatawu Issahaku",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90135643,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233355,
+        "GameId": 91880,
+        "TeamId": 514,
+        "PlayerId": 90038542,
+        "Name": "Ricardo Pereira",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90129829,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 103,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91881,
@@ -908,7 +2674,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2214,
@@ -917,11 +2683,29 @@
     "AwayTeamKey": "PNE",
     "HomeTeamName": "Portsmouth FC",
     "AwayTeamName": "Preston North End FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 2214,
+    "Points": {
+      "2214": 3,
+      "2217": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233451,
+        "GameId": 91881,
+        "TeamId": 2214,
+        "PlayerId": 90077714,
+        "Name": "Andre Dozzell",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90078244,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 69,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91882,
@@ -929,7 +2713,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2133,
@@ -938,11 +2722,71 @@
     "AwayTeamKey": "DER",
     "HomeTeamName": "Ipswich Town FC",
     "AwayTeamName": "Derby County FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2133": 1,
+      "2059": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233440,
+        "GameId": 91882,
+        "TeamId": 2133,
+        "PlayerId": 90079024,
+        "Name": "Jacob Greaves",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 42,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233491,
+        "GameId": 91882,
+        "TeamId": 2059,
+        "PlayerId": 90048197,
+        "Name": "Rhian Brewster",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 89,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233526,
+        "GameId": 91882,
+        "TeamId": 2133,
+        "PlayerId": 90075828,
+        "Name": "Jack Clarke",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 115,
+        "GameMinuteExtra": 20
+      },
+      {
+        "GoalId": 233538,
+        "GameId": 91882,
+        "TeamId": 2059,
+        "PlayerId": 90078300,
+        "Name": "Carlton Morris",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 64,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91883,
@@ -950,7 +2794,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 525,
@@ -959,11 +2803,71 @@
     "AwayTeamKey": "SOT",
     "HomeTeamName": "Watford FC",
     "AwayTeamName": "Southampton FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "525": 1,
+      "520": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233421,
+        "GameId": 91883,
+        "TeamId": 520,
+        "PlayerId": 90079794,
+        "Name": "Cameron Archer",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90076718,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 14,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233486,
+        "GameId": 91883,
+        "TeamId": 525,
+        "PlayerId": 90082704,
+        "Name": "Kwadwo Baah",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112407,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 90,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233499,
+        "GameId": 91883,
+        "TeamId": 520,
+        "PlayerId": 90078229,
+        "Name": "Ryan Manning",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 109,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233506,
+        "GameId": 91883,
+        "TeamId": 525,
+        "PlayerId": 90099850,
+        "Name": "Nestory Irankunda",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 113,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91884,
@@ -971,7 +2875,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2201,
@@ -980,11 +2884,71 @@
     "AwayTeamKey": "COV",
     "HomeTeamName": "Oxford United FC",
     "AwayTeamName": "Coventry City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "2201": 1,
+      "2051": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233420,
+        "GameId": 91884,
+        "TeamId": 2051,
+        "PlayerId": 90048431,
+        "Name": "Haji Wright",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 4,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233429,
+        "GameId": 91884,
+        "TeamId": 2201,
+        "PlayerId": 90125251,
+        "Name": "Will Lankshear",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 11,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233450,
+        "GameId": 91884,
+        "TeamId": 2051,
+        "PlayerId": 90048329,
+        "Name": "Victor Torp",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 22,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233494,
+        "GameId": 91884,
+        "TeamId": 2201,
+        "PlayerId": 90026459,
+        "Name": "Cameron Brannagan",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 45,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91885,
@@ -992,7 +2956,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-30T00:00:00",
     "DateTime": "2025-08-30T14:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 4,
     "VenueType": "Home Away",
     "HomeTeamId": 2179,
@@ -1001,11 +2965,43 @@
     "AwayTeamKey": "WRE",
     "HomeTeamName": "Millwall FC",
     "AwayTeamName": "Wrexham AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 2327,
+    "Points": {
+      "2179": 0,
+      "2327": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233474,
+        "GameId": 91885,
+        "TeamId": 2327,
+        "PlayerId": 90075146,
+        "Name": "Kieffer Moore",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083377,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233531,
+        "GameId": 91885,
+        "TeamId": 2327,
+        "PlayerId": 90056773,
+        "Name": "Lewis O'Brien",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026805,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 42,
+        "GameMinuteExtra": 4
+      }
+    ]
   },
   {
     "GameId": 91886,

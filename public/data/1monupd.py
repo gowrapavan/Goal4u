@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 API_KEY = "8218229833c24ae3b74cdbbcda076b9d"
 #9578f3077e264f6f8ef67fb61998f6d8
 
-COMPETITIONS = ["MLS"]
-YEAR = "2025"
+COMPETITIONS = ["CWC","DEB","ELC","EPL","ESP","FRL1","ITSA","MLS","UCL","UEL"]
+YEAR = "2026"
 SAVE_DIR = f"./2026"
 
 os.makedirs(SAVE_DIR, exist_ok=True)
