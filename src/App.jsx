@@ -78,7 +78,7 @@ function AppWrapper() {
           <Route path="/videos" element={<YVideo />} />
           <Route path="/videos/:videoId" element={<Video />} />
           <Route path="/shorts/:videoId?" element={<Shorts />} />
-          <Route path="/MultipleTV" element={<MultipleTV />} />
+          <Route path="/AllTv" element={<MultipleTV />} />
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
           <Route path="/livetv" element={<LiveTV />} />

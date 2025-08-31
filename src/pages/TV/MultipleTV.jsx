@@ -1,124 +1,250 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const servers = [
-  { label: "HD1 Eng", url: "https://sportzonline.si/channels/hd/hd1.php" },
-  { label: "HD2 Eng", url: "https://sportzonline.si/channels/hd/hd2.php" },
-  { label: "HD3 Ger", url: "https://sportzonline.si/channels/hd/hd3.php" },
-  { label: "HD4 Fr", url: "https://sportzonline.si/channels/hd/hd4.php" },
-  // ⚠️ Stream that redirects to wgstream — open in new tab instead of iframe
-  { label: "HD5 Eng", url: "https://cordneutral.net/embed/6jr6f01p2", external: true },
-  { label: "HD6 Spn", url: "https://sportzonline.si/channels/hd/hd6.php" },
-  { label: "HD7 Itl", url: "https://sportzonline.si/channels/hd/hd7.php" },
-  { label: "HD8 Arb", url: "https://sportzonline.si/channels/hd/hd8.php" },
-  { label: "HD9 Eng", url: "https://sportzonline.si/channels/hd/hd9.php" },
-  { label: "HD10 Dut", url: "https://sportzonline.si/channels/hd/hd10.php" },
-  { label: "HD Eng", url: "https://sportzonline.si/channels/hd/hd11.php" },
-  { label: "BR1 Brazil", url: "https://sportzonline.si/channels/bra/br1.php" },
-  { label: "SPORT TV 1", url: "https://sportsonline.si/channels/pt/sporttv1.php" },
-  { label: "Benfica TV", url: "https://sportsonline.si/channels/pt/btv.php" },
-  { label: "iServer 1", url: "https://letscast.pro/badir2.php?stream=HDGQZ2", external: true },
-  { label: "Vivo 1", url: "https://vivosoccer.xyz/vivoall/1.php", external: true },
+// --- JSON Sources ---
+const jsonFiles = [
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/doublexx.json",
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json",
 ];
 
-const TVFrame = ({ label, url, external }) => {
-  const [key, setKey] = React.useState(Date.now());
-
-  const handleOpen = () => {
-    window.open(url, "_blank");
-  };
-
-  const refresh = () => setKey(Date.now());
-
+const StreamCard = ({ stream, onWatch }) => {
   return (
-    <div className="tv-card">
-      <div className="tv-header">
-        <span className="tv-label">{label}</span>
-        {external ? (
-          <button onClick={handleOpen} className="watch-btn">▶️ Watch</button>
-        ) : (
-          <button onClick={refresh} className="refresh-btn">🔄</button>
+    <div className="stream-card">
+      <div className="card-header">
+        {stream.Logo && (
+          <img src={stream.Logo} alt="logo" className="slogo" />
+        )}
+        {(stream.home_team && stream.away_team) && (
+          <span className="card-title">
+            {stream.home_team} <span className="vs">vs</span> {stream.away_team}
+          </span>
         )}
       </div>
 
-      {external ? (
-        <div className="preview-box">
-          <p>🔐 Stream protected</p>
-          <p>Click "Watch" to open in new tab</p>
+      {stream.time && (
+        <div className="match-info">
+          <p className="time">⏰ {stream.time}</p>
         </div>
-      ) : (
-        <iframe
-          key={key}
-          src={url}
-          allowFullScreen
-          title={label}
-          allow="autoplay"
-          sandbox="allow-scripts allow-same-origin"
-          className="tv-iframe"
-        ></iframe>
       )}
+
+      <button onClick={() => onWatch(stream)} className="watch-btn">
+        ▶ Watch Now
+      </button>
     </div>
   );
 };
 
-const MultipleTV = () => (
-  <div className="multi-tv-wrapper">
-    {servers.map((server) => (
-      <TVFrame key={server.label} {...server} />
-    ))}
+const MultipleTV = () => {
+  const [jsonStreams, setJsonStreams] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(8);
+  const [activeStream, setActiveStream] = useState(null);
 
-    <style jsx>{`
-      .multi-tv-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 16px;
-        padding: 16px;
-        background: #0f0f0f;
+  useEffect(() => {
+    const fetchStreams = async () => {
+      try {
+        const results = await Promise.all(
+          jsonFiles.map((url) =>
+            fetch(url).then((res) => res.json()).catch(() => [])
+          )
+        );
+        const merged = results.flat();
+        setJsonStreams(merged);
+      } catch (e) {
+        console.error("Error fetching JSON streams", e);
       }
-      .tv-card {
-        background: #1a1a1a;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 0 8px #00ff77;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid #222;
-        justify-content: space-between;
-      }
-      .tv-header {
-        padding: 10px;
-        background: #222;
-        display: flex;
-        justify-content: space-between;
-        color: #33ffc9;
-        font-weight: bold;
-      }
-      .refresh-btn,
-      .watch-btn {
-        background: none;
-        border: 1px solid #33ffc9;
-        cursor: pointer;
-        padding: 5px 10px;
-        font-size: 0.9rem;
-        color: #33ffc9;
-        border-radius: 6px;
-      }
-      .refresh-btn:hover,
-      .watch-btn:hover {
-        background: #33ffc920;
-      }
-      .tv-iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border: none;
-      }
-      .preview-box {
-        text-align: center;
-        padding: 20px;
-        color: #aaa;
-        font-size: 14px;
-      }
-    `}</style>
-  </div>
-);
+    };
+    fetchStreams();
+  }, []);
+
+  return (
+    <div className="multi-tv-wrapper">
+      {jsonStreams.slice(0, visibleCount).map((stream, idx) => (
+        <StreamCard key={idx} stream={stream} onWatch={setActiveStream} />
+      ))}
+
+      {visibleCount < jsonStreams.length && (
+        <button
+          onClick={() => setVisibleCount((prev) => prev + 6)}
+          className="load-more-btn"
+        >
+          ⬇ Load More
+        </button>
+      )}
+
+      {activeStream && (
+        <div className="overlay" onClick={() => setActiveStream(null)}>
+          <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
+            <h2 className="overlay-title">
+              {activeStream.home_team} vs {activeStream.away_team}
+            </h2>
+            <iframe
+              src={activeStream.url1 || activeStream.url}
+              allowFullScreen
+              title={activeStream.home_team + " vs " + activeStream.away_team}
+              allow="autoplay"
+              sandbox="allow-scripts allow-same-origin"
+              className="overlay-iframe"
+            ></iframe>
+            <button onClick={() => setActiveStream(null)} className="close-btn">
+              ✖ Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        .multi-tv-wrapper {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 24px;
+          padding: 20px;
+          background: radial-gradient(circle at top, #0a0a0a, #000);
+          min-height: 100vh;
+        }
+        .stream-card {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 16px;
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          border: 1px solid rgba(255, 0, 150, 0.4);
+          backdrop-filter: blur(10px);
+          transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .stream-card:hover {
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 0 20px rgba(255, 0, 150, 0.6);
+        }
+        .slogo {
+          width: 50px !important;
+          height: 50px !important;
+          border-radius: 8px;
+          object-fit: contain;
+          flex-shrink: 0;
+        }
+        .card-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+        .card-title {
+          font-size: 1rem;
+          font-weight: bold;
+          color: #ff0099;
+        }
+        .vs {
+          color: #ff6600;
+          margin: 0 3px;
+        }
+        .watch-btn {
+          margin-top: auto;
+          background: linear-gradient(90deg, #ff0099, #ff6600);
+          border: none;
+          padding: 10px;
+          border-radius: 10px;
+          cursor: pointer;
+          color: white;
+          font-weight: bold;
+          font-size: 0.95rem;
+        }
+        .watch-btn:hover {
+          opacity: 0.9;
+        }
+        .load-more-btn {
+          grid-column: 1 / -1;
+          justify-self: center;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid #ff0099;
+          padding: 12px 24px;
+          color: #ff0099;
+          border-radius: 10px;
+          cursor: pointer;
+          margin-top: 20px;
+          font-weight: bold;
+        }
+        .match-info {
+          font-size: 14px;
+          text-align: center;
+          color: #ddd;
+          margin: 8px 0;
+        }
+        .time {
+          color: #ffde59;
+          font-weight: 600;
+        }
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.85);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 999;
+          backdrop-filter: blur(8px);
+          padding: 10px;
+        }
+        .overlay-content {
+          background: rgba(20, 20, 20, 0.95);
+          padding: 20px;
+          border-radius: 14px;
+          box-shadow: 0 0 25px rgba(255, 0, 150, 0.6);
+          max-width: 95%;
+          width: 850px;
+          text-align: center;
+        }
+        .overlay-title {
+          color: #ff0099;
+          margin-bottom: 12px;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+        .overlay-iframe {
+          width: 100%;
+          aspect-ratio: 16/9;
+          border: none;
+          background: black;
+          border-radius: 12px;
+        }
+        .close-btn {
+          margin-top: 14px;
+          background: #ff0099;
+          color: white;
+          border: none;
+          padding: 10px 16px;
+          border-radius: 10px;
+          cursor: pointer;
+          font-weight: bold;
+        }
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+          .multi-tv-wrapper {
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 15px;
+          }
+          .logo {
+            width: 40px !important;
+            height: 40px !important;
+          }
+        }
+        @media (max-width: 500px) {
+          .multi-tv-wrapper {
+            grid-template-columns: 1fr;
+          }
+          .overlay-content {
+            width: 100%;
+            border-radius: 10px;
+            padding: 15px;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 export default MultipleTV;
