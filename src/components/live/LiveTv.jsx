@@ -34,13 +34,14 @@ function loadCodeMap(provider) {
 const PROVIDERS = [
   { label: "Sportzonline", keyword: "sportzonline" }, // ✅ fixed spelling
   { label: "Doublexx", keyword: "doublexx" },
+  { label: "Koora10", keyword: "koora10" }, // ➕ added
 ];
-
 
 // --- JSON Sources ---
 const jsonFiles = [
   "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
   "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/doublexx.json",
+  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json", // ➕ added
 ];
 
 
