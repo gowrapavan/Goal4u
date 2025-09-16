@@ -1326,7 +1326,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T18:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 510,
@@ -1335,11 +1335,57 @@
     "AwayTeamKey": "CRY",
     "HomeTeamName": "Aston Villa FC",
     "AwayTeamName": "Crystal Palace FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 512,
+    "Points": {
+      "510": 0,
+      "512": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233816,
+        "GameId": 91016,
+        "TeamId": 512,
+        "PlayerId": 90045238,
+        "Name": "Jean-Philippe Mateta",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 13,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233839,
+        "GameId": 91016,
+        "TeamId": 512,
+        "PlayerId": 90074093,
+        "Name": "Marc Guéhi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 43,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233840,
+        "GameId": 91016,
+        "TeamId": 512,
+        "PlayerId": 90044471,
+        "Name": "Ismaïla Sarr",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90088595,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 49,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91017,
@@ -1347,7 +1393,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T15:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 515,
@@ -1356,11 +1402,29 @@
     "AwayTeamKey": "ARS",
     "HomeTeamName": "Liverpool FC",
     "AwayTeamName": "Arsenal FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 515,
+    "Points": {
+      "515": 3,
+      "509": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233802,
+        "GameId": 91017,
+        "TeamId": 515,
+        "PlayerId": 90064591,
+        "Name": "Dominik Szoboszlai",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 61,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91018,
@@ -1622,8 +1686,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T13:00:00",
-    "Status": "InProgress",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2195,
     "AwayTeamId": 527,
@@ -1631,11 +1695,57 @@
     "AwayTeamKey": "WHU",
     "HomeTeamName": "Nottingham Forest FC",
     "AwayTeamName": "West Ham United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 527,
+    "Points": {
+      "2195": 0,
+      "527": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233742,
+        "GameId": 91022,
+        "TeamId": 527,
+        "PlayerId": 90044476,
+        "Name": "Jarrod Bowen",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90079902,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 26,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233743,
+        "GameId": 91022,
+        "TeamId": 527,
+        "PlayerId": 90039317,
+        "Name": "Lucas Paquetá",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233744,
+        "GameId": 91022,
+        "TeamId": 527,
+        "PlayerId": 90026241,
+        "Name": "Callum Wilson",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90109918,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91023,
@@ -1667,8 +1777,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T13:00:00",
-    "Status": "InProgress",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 1116,
     "AwayTeamId": 516,
@@ -1676,11 +1786,57 @@
     "AwayTeamKey": "MNC",
     "HomeTeamName": "Brighton & Hove Albion FC",
     "AwayTeamName": "Manchester City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 1116,
+    "Points": {
+      "1116": 3,
+      "516": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233721,
+        "GameId": 91024,
+        "TeamId": 516,
+        "PlayerId": 90064801,
+        "Name": "Erling Haaland",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90086376,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 33,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233740,
+        "GameId": 91024,
+        "TeamId": 1116,
+        "PlayerId": 90026469,
+        "Name": "James Milner",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 66,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233745,
+        "GameId": 91024,
+        "TeamId": 1116,
+        "PlayerId": 90108047,
+        "Name": "Brajan Gruda",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90099674,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 87,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 91025,

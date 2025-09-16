@@ -1,12 +1,9 @@
-// components/live/LiveMatch.jsx
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchBoxScoreById } from '../../services/boxscore';
-import LiveScoreSection from './livescoresection';
-import LiveMatchContent from './LiveMatchContent'; // ✅ import
+import LiveContent from './LiveContent';  // ✅ merged component
 import LoadingSpinner from '../common/LoadingSpinner';
 import ErrorMessage from '../common/ErrorMessage';
-
 
 const LiveMatch = () => {
   const [searchParams] = useSearchParams();
@@ -17,7 +14,6 @@ const LiveMatch = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('summary');
-
 
   useEffect(() => {
     if (!matchId || !competition) {
@@ -41,24 +37,21 @@ const LiveMatch = () => {
   }, [matchId, competition]);
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage message={error} onRetry={() => window.location.reload()} />;
+  if (error)
+    return (
+      <ErrorMessage
+        message={error}
+        onRetry={() => window.location.reload()}
+      />
+    );
 
   return (
-    <>
-      <LiveScoreSection
-        setActiveTab={setActiveTab}
-        matchData={matchData}
-        competition={competition}
-      />
-
-      <LiveMatchContent
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        matchData={matchData} // ✅ pass this for dynamic stats
-        competition={competition}
-      />
-      
-    </>
+    <LiveContent
+      activeTab={activeTab}
+      setActiveTab={setActiveTab}
+      matchData={matchData}
+      competition={competition}
+    />
   );
 };
 

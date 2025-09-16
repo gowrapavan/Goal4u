@@ -677,7 +677,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T17:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 529,
@@ -686,11 +686,85 @@
     "AwayTeamKey": "SCF",
     "HomeTeamName": "1. FC Köln",
     "AwayTeamName": "SC Freiburg",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 4,
+    "AwayTeamScore": 1,
+    "Result": 529,
+    "Points": {
+      "529": 3,
+      "965": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233814,
+        "GameId": 93505,
+        "TeamId": 529,
+        "PlayerId": 90087595,
+        "Name": "Jakub Kamiński",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075871,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 35,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233820,
+        "GameId": 93505,
+        "TeamId": 529,
+        "PlayerId": 90075871,
+        "Name": "Marius Bülter",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90084519,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 47,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233826,
+        "GameId": 93505,
+        "TeamId": 529,
+        "PlayerId": 90084519,
+        "Name": "Jan Thielmann",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90075871,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233834,
+        "GameId": 93505,
+        "TeamId": 529,
+        "PlayerId": 90134461,
+        "Name": "Said El Mala",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 80,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233835,
+        "GameId": 93505,
+        "TeamId": 965,
+        "PlayerId": 90027273,
+        "Name": "Maximilian Eggestein",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90040190,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 83,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93506,
@@ -698,7 +772,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T15:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 532,
@@ -707,11 +781,57 @@
     "AwayTeamKey": "UNB",
     "HomeTeamName": "BV Borussia 09 Dortmund",
     "AwayTeamName": "1. FC Union Berlin",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 0,
+    "Result": 532,
+    "Points": {
+      "532": 3,
+      "1541": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233773,
+        "GameId": 93506,
+        "TeamId": 532,
+        "PlayerId": 90043847,
+        "Name": "Serhou Guirassy",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90086426,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 69,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233797,
+        "GameId": 93506,
+        "TeamId": 532,
+        "PlayerId": 90043847,
+        "Name": "Serhou Guirassy",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90083725,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 91,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233804,
+        "GameId": 93506,
+        "TeamId": 532,
+        "PlayerId": 90071212,
+        "Name": "Felix Nmecha",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 127,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93507,
@@ -920,8 +1040,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T13:30:00",
-    "Status": "Break",
-    "Week": null,
+    "Status": "Final",
+    "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 545,
     "AwayTeamId": 528,
@@ -929,11 +1049,43 @@
     "AwayTeamKey": "MAI",
     "HomeTeamName": "VfL Wolfsburg",
     "AwayTeamName": "1. FSV Mainz 05",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "545": 1,
+      "528": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233726,
+        "GameId": 93510,
+        "TeamId": 545,
+        "PlayerId": 90105501,
+        "Name": "Aaron Zehnter",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90043182,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233753,
+        "GameId": 93510,
+        "TeamId": 528,
+        "PlayerId": 90027309,
+        "Name": "Nadiem Amiri",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 143,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93511,

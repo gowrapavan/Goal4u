@@ -64,18 +64,20 @@ const Header = () => {
         }
       `}</style>
 
-      <header
-        className="header-3"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          zIndex: 999,
-          backgroundColor: '#fff',
-          boxShadow: '0 10px 10px rgba(12, 255, 20, 0.1)',
-        }}
-      >
+         <header
+      className="header-3"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        zIndex: 999,
+        backgroundColor:
+          location.pathname === "/livematch" ? "#111" : "#fff", // ✅ dark on livematch
+        color: location.pathname === "/livematch" ? "#fff" : "#000",
+        boxShadow: '0 10px 10px rgba(12, 255, 20, 0.1)',
+      }}
+    >
         <div className="headerbox">
           <div className="container">
             <div className="row align-items-center justify-content-between">

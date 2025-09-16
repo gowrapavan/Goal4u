@@ -587,7 +587,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 668,
@@ -596,11 +596,57 @@
     "AwayTeamKey": "UDI",
     "HomeTeamName": "FC Internazionale Milano",
     "AwayTeamName": "Udinese Calcio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 675,
+    "Points": {
+      "668": 0,
+      "675": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233830,
+        "GameId": 90228,
+        "TeamId": 668,
+        "PlayerId": 90041037,
+        "Name": "Denzel Dumfries",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90050914,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 13,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233833,
+        "GameId": 90228,
+        "TeamId": 675,
+        "PlayerId": 90026325,
+        "Name": "Keinan Davis",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 22,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233837,
+        "GameId": 90228,
+        "TeamId": 675,
+        "PlayerId": 90110585,
+        "Name": "Arthur Atta",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90026325,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 30,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90229,
@@ -608,7 +654,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 611,
@@ -617,11 +663,71 @@
     "AwayTeamKey": "VER",
     "HomeTeamName": "SS Lazio",
     "AwayTeamName": "Hellas Verona FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 4,
+    "AwayTeamScore": 0,
+    "Result": 611,
+    "Points": {
+      "611": 3,
+      "671": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233823,
+        "GameId": 90229,
+        "TeamId": 611,
+        "PlayerId": 90045765,
+        "Name": "Mattéo Guendouzi",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90067910,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 7,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233827,
+        "GameId": 90229,
+        "TeamId": 611,
+        "PlayerId": 90048996,
+        "Name": "Mattia Zaccagni",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90067910,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233838,
+        "GameId": 90229,
+        "TeamId": 611,
+        "PlayerId": 90067910,
+        "Name": "Valentín Castellanos",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90072285,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 61,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233849,
+        "GameId": 90229,
+        "TeamId": 611,
+        "PlayerId": 90070423,
+        "Name": "Boulaye Dia",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105837,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 121,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90230,
@@ -682,7 +788,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 673,
@@ -691,10 +797,13 @@
     "AwayTeamKey": "FIO",
     "HomeTeamName": "Torino FC",
     "AwayTeamName": "ACF Fiorentina",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
-    "Points": {},
+    "Points": {
+      "673": 1,
+      "663": 1
+    },
     "Goals": []
   },
   {
@@ -742,7 +851,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T16:30:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 2,
     "VenueType": "Home Away",
     "HomeTeamId": 670,
@@ -751,11 +860,29 @@
     "AwayTeamKey": "JUV",
     "HomeTeamName": "Genoa CFC",
     "AwayTeamName": "Juventus FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 588,
+    "Points": {
+      "670": 0,
+      "588": 3
+    },
+    "Goals": [
+      {
+        "GoalId": 233813,
+        "GameId": 90233,
+        "TeamId": 588,
+        "PlayerId": 90028333,
+        "Name": "Dušan Vlahović",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90027333,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 124,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 90234,

@@ -1,57 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import LiveNews from "./LiveNews";
 import LiveMatchList from "./LiveMatchList";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// --- Short code mapping setup ---
-const CODE_MAP_KEYS = {
-  elixx: "livetv_code_map_elixx",
-  sportzonline: "livetv_code_map_sportzonline",
-  vivosoccer: "livetv_code_map_vivosoccer",
-};
-const PARAM_KEYS = {
-  elixx: "elx",
+// --- Provider short codes ---
+const PROVIDER_CODES = {
   sportzonline: "sptz",
-  vivosoccer: "viv",
+  Goal4u: "dxx",
+  koora10: "ko",
+  shahidkoora: "shk",
 };
-function generateShortCode() {
-  // 12-char alphanumeric
-  return Math.random().toString(36).substring(2, 14);
-}
-function saveCodeMap(provider, map) {
-  localStorage.setItem(CODE_MAP_KEYS[provider], JSON.stringify(map));
-}
-function loadCodeMap(provider) {
-  try {
-    return JSON.parse(localStorage.getItem(CODE_MAP_KEYS[provider])) || {};
-  } catch {
-    return {};
-  }
-}
+const CODE_TO_PROVIDER = Object.fromEntries(
+  Object.entries(PROVIDER_CODES).map(([k, v]) => [v, k])
+);
 
 // --- Providers ---
 const PROVIDERS = [
-  { label: "Sportzonline", keyword: "sportzonline" }, // ✅ fixed spelling
-  { label: "Doublexx", keyword: "doublexx" },
+  { label: "Sportzonline", keyword: "sportzonline" },
+  { label: "Goal4u", keyword: "Goal4u" },
   { label: "Koora10", keyword: "koora10" },
-  { label: "Shahid-Koora", keyword: "shahidkoora" }, // ➕ added
+  { label: "Shahid-Koora", keyword: "shahidkoora" },
 ];
 
 // --- JSON Sources ---
-const jsonFiles = [
-  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
-  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/doublexx.json",
-  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json",
-  "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json", // ➕ added
-];
-
-
-const encode = (str) => {
-  // Simple base64 encoding, replace for more secure if needed
-  return btoa(unescape(encodeURIComponent(str)));
+const JSON_MAP = {
+  sportzonline: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
+  Goal4u: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/Goal4u.json",
+  koora10: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json",
+  shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
 };
 
+// --- Helpers ---
+const encode = (str) => btoa(unescape(encodeURIComponent(str)));
 const decode = (str) => {
   try {
     return decodeURIComponent(escape(atob(str)));
@@ -61,122 +42,72 @@ const decode = (str) => {
 };
 
 const LiveTV = () => {
-  const [channels, setChannels] = useState([]);
+  const [channelsByProvider, setChannelsByProvider] = useState({});
   const [iframeURL, setIframeURL] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showAdAlert, setShowAdAlert] = useState(false);
-  const [selectedStream, setSelectedStream] = useState("doublexx");
+  const [selectedStream, setSelectedStream] = useState("Goal4u");
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  // --- On mount, check for provider-specific param and set stream if present ---
-useEffect(() => {
-  const params = new URLSearchParams(location.search);
+  // --- Fetch provider JSON dynamically ---
+  const fetchProviderJSON = async (provider, streamCode) => {
+    const url = JSON_MAP[provider];
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      const annotated = data.map((c) => ({ ...c, provider }));
+      setChannelsByProvider((prev) => ({ ...prev, [provider]: annotated }));
 
-  const determineInitialStream = (channelList) => {
-    const code = params.get("stream");
-    if (code) {
-      const decodedLabel = decode(code);
-      const matched = channelList.find(
-        (c) => c.label.toLowerCase() === decodedLabel.toLowerCase()
-      );
-      if (matched) {
-        setIframeURL(matched.url);
-        const matchedProvider = PROVIDERS.find((p) =>
-          matched.url.toLowerCase().includes(p.keyword)
-        );
-        if (matchedProvider) setSelectedStream(matchedProvider.keyword);
-        return true;
+      if (annotated.length > 0) {
+        if (streamCode) {
+          const decodedLabel = decode(streamCode);
+          const matched = annotated.find(
+            (c) => c.label.toLowerCase() === decodedLabel.toLowerCase()
+          );
+          if (matched) {
+            setIframeURL(matched.url);
+            return;
+          }
+        }
+        setIframeURL(annotated[0].url);
       }
+    } catch (err) {
+      setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
+      setIframeURL("");
     }
-    return false;
   };
 
-  let isMounted = true;
-  Promise.all(
-    jsonFiles.map((file) =>
-      fetch(file)
-        .then((res) => res.json())
-        .catch(() => [])
-    )
-  ).then((results) => {
-    if (!isMounted) return;
-    const all = results.flat().filter(Boolean);
-    setChannels(all);
-
-    const matched = determineInitialStream(all);
-
-    if (
-      !matched &&
-      location.pathname === "/livetv" &&
-      Array.from(params.keys()).length === 0
-    ) {
-      const defaultProvider = "doublexx";
-      setSelectedStream(defaultProvider);
-      const defaultChannel = all.find((c) =>
-        c.url.toLowerCase().includes(defaultProvider)
-      );
-      if (defaultChannel) {
-        setIframeURL(defaultChannel.url);
-      }
-    }
-  });
-
-  // ✅ cleanup correctly here
-  return () => {
-    isMounted = false;
-  };
-}, [location.search, location.pathname]);
-
-
-  // Fetch all channels from JSON files
+  // --- On mount / URL change ---
   useEffect(() => {
-    let isMounted = true;
-    Promise.all(
-      jsonFiles.map((file) =>
-        fetch(file)
-          .then((res) => res.json())
-          .catch(() => [])
-      )
-    ).then((results) => {
-      if (!isMounted) return;
-      const all = results.flat().filter(Boolean);
-      setChannels(all);
+    const params = new URLSearchParams(location.search);
+    const providerCode = params.get("provider");
+    const streamCode = params.get("stream");
 
-      // Only set default if no code param in URL and path is exactly /livetv (no params at all)
-      const params = new URLSearchParams(location.search);
-      let hasCode = false;
-     hasCode = params.has("stream");
+    const initialProvider = CODE_TO_PROVIDER[providerCode] || "Goal4u";
+    setSelectedStream(initialProvider);
 
-      if (
-        !hasCode &&
-        location.pathname === "/livetv" &&
-        Array.from(params.keys()).length === 0
-      ) {
-        // Set default channel if available and matches default provider (DoubleXX)
-        const defaultProvider = "doublexx";
-        const defaultChannel = all.find((c) =>
-          c.url.toLowerCase().includes(defaultProvider)
-        );
-        if (defaultChannel) setIframeURL(defaultChannel.url);
-        else if (all.length > 0) setIframeURL(all[0].url);
-      }
-    });
-    return () => {
-      isMounted = false;
-    };
-    // eslint-disable-next-line
+    fetchProviderJSON(initialProvider, streamCode);
   }, [location.search, location.pathname]);
 
+  // --- When selectedStream changes via dropdown ---
+  useEffect(() => {
+    fetchProviderJSON(selectedStream);
+  }, [selectedStream]);
+
+  // --- Resize listener ---
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // --- Fullscreen ad alert ---
   useEffect(() => {
     const checkFullscreen = () => {
-      const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+      const isFullscreen =
+        document.fullscreenElement || document.webkitFullscreenElement;
       if (!isFullscreen && iframeURL) {
         setShowAdAlert(true);
         setTimeout(() => setShowAdAlert(false), 10000);
@@ -189,110 +120,86 @@ useEffect(() => {
     checkFullscreen();
     return () => {
       document.removeEventListener("fullscreenchange", checkFullscreen);
-      document.removeEventListener("webkitfullscreenchange", checkFullscreen);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        checkFullscreen
+      );
     };
   }, [iframeURL]);
 
-  // --- When user changes stream/channel, update the URL with a short code ---
+  // --- Update URL when iframe changes ---
   useEffect(() => {
-    if (!iframeURL) return;
-    // Find provider for current stream
-    const provider = PROVIDERS.find((p) =>
-      iframeURL.toLowerCase().includes(p.keyword)
-    )?.keyword;
-    if (!provider) return;
-
-    const matchedChannel = channels.find(c => c.url === iframeURL);
+    if (!iframeURL || !selectedStream) return;
+    const currentChannels = channelsByProvider[selectedStream] || [];
+    const matchedChannel = currentChannels.find((c) => c.url === iframeURL);
     if (!matchedChannel) return;
 
-    // Encode the channel label
+    const providerCode = PROVIDER_CODES[selectedStream];
     const encodedLabel = encode(matchedChannel.label);
 
-    // Determine correct param key
-    navigate(`${location.pathname}?stream=${encodedLabel}`, { replace: true });
+    navigate(
+      `${location.pathname}?provider=${providerCode}&stream=${encodedLabel}`,
+      { replace: true }
+    );
+  }, [iframeURL, selectedStream, channelsByProvider, navigate, location.pathname]);
 
-
-
-    // eslint-disable-next-line
-  }, [iframeURL]);
-
-  const handleIframeClick = (url) => {
-    setIframeURL(url);
-  };
-
-  // Filter channels by selected provider
-  const filteredChannels = channels.filter((c) =>
-    c.url.toLowerCase().includes(selectedStream)
-  );
-
-  // If the current iframeURL is not in the filtered list, auto-select the first filtered channel
-  useEffect(() => {
-    if (
-      filteredChannels.length > 0 &&
-      !filteredChannels.some((c) => c.url === iframeURL)
-    ) {
-      setIframeURL(filteredChannels[0].url);
-    }
-    // eslint-disable-next-line
-  }, [selectedStream, channels]);
+  const handleIframeClick = (url) => setIframeURL(url);
+  const filteredChannels = channelsByProvider[selectedStream] || [];
 
   const renderChannelCard = (server) => {
     const isActive = iframeURL === server.url;
     return (
-      <React.Fragment key={server.label}>
-        <Helmet>
-          <title>Live Football Streaming | Goal4U</title>
-          <meta
-            name="description"
-            content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
-          />
-          <meta property="og:title" content="Live Football Streaming | Goal4U" />
-          <meta
-            property="og:description"
-            content="Stream live football matches from HD, Brazil, Portugal, and more. All live, all in one place."
-          />
-          <meta property="og:type" content="video.other" />
-          <meta property="og:url" content="https://goal4u.live/livetv" />
-          <meta property="og:image" content="https://goal4u.live/assets/og-thumbnail.jpg" />
-          <link rel="canonical" href="https://goal4u.live/livetv" />
-        </Helmet>
-        <div
-          onClick={() => handleIframeClick(server.url)}
-          style={{
-            width: "80px",
-            height: "100px",
-            borderRadius: "10px",
-            border: isActive ? "2px solid #33ffc9" : "1px solid #ccc",
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            background: "#fff",
-            padding: "6px",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-            fontSize: "12px",
-            flexShrink: 0,
-          }}
-        >
-          <img
-            src={server.Logo && server.Logo.trim() !== "" ? server.Logo : "/assets/img/6.png"}
-            alt={server.label}
-            style={{
-              width: "40px",
-              height: "40px",
-              objectFit: "contain",
-              marginBottom: "6px",
-            }}
-          />
-          <span>{server.label}</span>
-        </div>
-      </React.Fragment>
+      <div
+        key={server.url}
+        onClick={() => handleIframeClick(server.url)}
+        style={{
+          width: "80px",
+          height: "100px",
+          borderRadius: "10px",
+          border: isActive ? "2px solid #33ffc9" : "1px solid #ccc",
+          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#fff",
+          padding: "6px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+          fontSize: "12px",
+          flexShrink: 0,
+        }}
+      >
+        <img
+          src={server.Logo && server.Logo.trim() !== "" ? server.Logo : "/assets/img/6.png"}
+          alt={server.label}
+          style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "6px" }}
+        />
+        <span>{server.label}</span>
+      </div>
     );
   };
 
   return (
     <>
+      <Helmet>
+      <title>Live Football Streaming | Goal4U</title>
+      <meta
+        name="description"
+        content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
+      />
+      <meta property="og:title" content="Live Football Streaming | Goal4U" />
+      <meta
+        property="og:description"
+        content="Stream live football matches from HD, Brazil, Portugal, and more. All live, all in one place."
+      />
+      <meta property="og:type" content="video.other" />
+      <meta property="og:url" content="https://goal4u.live/livetv" />
+      <meta
+        property="og:image"
+        content="https://goal4u.live/assets/og-thumbnail.jpg"
+      />
+      <link rel="canonical" href="https://goal4u.live/livetv" />
+    </Helmet>
       <style>{`
         ::-webkit-scrollbar {
           width: 6px;
@@ -459,7 +366,8 @@ useEffect(() => {
                     allowFullScreen
                     scrolling="no"
                     sandbox="allow-scripts allow-same-origin"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy="no-referrer-when-downgrade" // default & safer
+
                     style={{
                       width: '100%',
                       height: '100%',

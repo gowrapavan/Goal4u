@@ -1057,7 +1057,7 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T18:45:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 597,
@@ -1066,11 +1066,29 @@
     "AwayTeamKey": "OLM",
     "HomeTeamName": "Olympique Lyonnais",
     "AwayTeamName": "Olympique de Marseille",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 597,
+    "Points": {
+      "597": 3,
+      "822": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233852,
+        "GameId": 93820,
+        "TeamId": 822,
+        "PlayerId": 90068591,
+        "Name": "Leonardo Balerdi",
+        "Type": "OwnGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 84,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93821,
@@ -1366,8 +1384,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T13:00:00",
-    "Status": "InProgress",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 893,
     "AwayTeamId": 905,
@@ -1375,11 +1393,43 @@
     "AwayTeamKey": "REN",
     "HomeTeamName": "Angers SCO",
     "AwayTeamName": "Stade Rennais FC 1901",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
-    "Points": {},
-    "Goals": []
+    "Points": {
+      "893": 1,
+      "905": 1
+    },
+    "Goals": [
+      {
+        "GoalId": 233716,
+        "GameId": 93823,
+        "TeamId": 905,
+        "PlayerId": 90121235,
+        "Name": "Esteban Lepaul",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90093358,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 37,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233734,
+        "GameId": 93823,
+        "TeamId": 893,
+        "PlayerId": 90132640,
+        "Name": "Prosper Peter",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90102798,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 89,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93824,
@@ -1426,8 +1476,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T15:15:00",
-    "Status": "Scheduled",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 549,
     "AwayTeamId": 1119,
@@ -1435,11 +1485,85 @@
     "AwayTeamKey": "STR",
     "HomeTeamName": "AS Monaco FC",
     "AwayTeamName": "RC Strasbourg Alsace",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 549,
+    "Points": {
+      "549": 3,
+      "1119": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233752,
+        "GameId": 93825,
+        "TeamId": 549,
+        "PlayerId": 90099223,
+        "Name": "Maghnes Akliouche",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 1,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233779,
+        "GameId": 93825,
+        "TeamId": 549,
+        "PlayerId": 90082571,
+        "Name": "Folarin Balogun",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105395,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 15,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233798,
+        "GameId": 93825,
+        "TeamId": 1119,
+        "PlayerId": 90089718,
+        "Name": "Dilane Bakwa",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90111111,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233801,
+        "GameId": 93825,
+        "TeamId": 1119,
+        "PlayerId": 90106594,
+        "Name": "Joaquín Panichelli",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 24,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233805,
+        "GameId": 93825,
+        "TeamId": 549,
+        "PlayerId": 90028019,
+        "Name": "Takumi Minamino",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90099223,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 28,
+        "GameMinuteExtra": 1
+      }
+    ]
   },
   {
     "GameId": 93826,
@@ -1528,8 +1652,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T15:15:00",
-    "Status": "Scheduled",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2669,
     "AwayTeamId": 901,
@@ -1537,11 +1661,71 @@
     "AwayTeamKey": "OGC",
     "HomeTeamName": "Le Havre AC",
     "AwayTeamName": "OGC Nice",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 1,
+    "Result": 2669,
+    "Points": {
+      "2669": 3,
+      "901": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233785,
+        "GameId": 93827,
+        "TeamId": 901,
+        "PlayerId": 90135121,
+        "Name": "Kojo Peprah Oppong",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90073293,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 20,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233791,
+        "GameId": 93827,
+        "TeamId": 2669,
+        "PlayerId": 90112274,
+        "Name": "Rassoul Ndiaye",
+        "Type": "Goal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 23,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233803,
+        "GameId": 93827,
+        "TeamId": 2669,
+        "PlayerId": 90112275,
+        "Name": "Issa Soumaré",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90105331,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 34,
+        "GameMinuteExtra": 1
+      },
+      {
+        "GoalId": 233818,
+        "GameId": 93827,
+        "TeamId": 2669,
+        "PlayerId": 90088743,
+        "Name": "Fodé Doucouré",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90112275,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 2,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93828,
@@ -1549,8 +1733,8 @@
     "RoundName": "Regular Season",
     "Date": "2025-08-31T00:00:00",
     "DateTime": "2025-08-31T15:15:00",
-    "Status": "Scheduled",
-    "Week": null,
+    "Status": "Final",
+    "Week": 3,
     "VenueType": "Home Away",
     "HomeTeamId": 2808,
     "AwayTeamId": 940,
@@ -1558,11 +1742,85 @@
     "AwayTeamKey": "MET",
     "HomeTeamName": "Paris FC",
     "AwayTeamName": "FC Metz",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
-    "Points": {},
-    "Goals": []
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 2808,
+    "Points": {
+      "2808": 3,
+      "940": 0
+    },
+    "Goals": [
+      {
+        "GoalId": 233759,
+        "GameId": 93828,
+        "TeamId": 940,
+        "PlayerId": 90113796,
+        "Name": "Sadibou Sané",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90044472,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 27,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233765,
+        "GameId": 93828,
+        "TeamId": 2808,
+        "PlayerId": 90097005,
+        "Name": "Ilan Kebbal",
+        "Type": "PenaltyGoal",
+        "AssistedByPlayerId1": null,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 55,
+        "GameMinuteExtra": 5
+      },
+      {
+        "GoalId": 233784,
+        "GameId": 93828,
+        "TeamId": 2808,
+        "PlayerId": 90097005,
+        "Name": "Ilan Kebbal",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90028692,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 64,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233786,
+        "GameId": 93828,
+        "TeamId": 940,
+        "PlayerId": 90083655,
+        "Name": "Boubacar Traoré",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90064228,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 66,
+        "GameMinuteExtra": 0
+      },
+      {
+        "GoalId": 233793,
+        "GameId": 93828,
+        "TeamId": 2808,
+        "PlayerId": 90028692,
+        "Name": "Moses Simon",
+        "Type": "Goal",
+        "AssistedByPlayerId1": 90035922,
+        "AssistedByPlayerName1": "Scrambled",
+        "AssistedByPlayerId2": null,
+        "AssistedByPlayerName2": "Scrambled",
+        "GameMinute": 82,
+        "GameMinuteExtra": 0
+      }
+    ]
   },
   {
     "GameId": 93829,
