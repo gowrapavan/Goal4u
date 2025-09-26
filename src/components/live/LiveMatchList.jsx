@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../common/LoadingSpinner';
+import ModernSpinner from '../common/ModernSpinner';
 import ErrorMessage from '../common/ErrorMessage';
 import { LiveMatch } from '../../services/live-match';
-import { getTeamLogoByKey } from '../../services/teamlogo';
-import ModernSpinner from '../common/ModernSpinner';
-import ElixxMatchList from './proxy/ElixxMatchList';
-import ProxedMatches from './proxy/ProxedMatches';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
@@ -22,7 +18,6 @@ const COMPETITION_NAMES = {
 const LiveMatchList = () => {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
-  const [teamLogos, setTeamLogos] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState('today');
@@ -44,6 +39,7 @@ const LiveMatchList = () => {
   const effectiveDate = selectedDate === 'custom' ? customDate : dateMap[selectedDate];
 
   const formatMatchDate = (dateStr) => {
+    if (!dateStr) return '-';
     return new Date(dateStr).toLocaleString('en-GB', {
       timeZone: 'Asia/Kolkata',
       day: 'numeric',
@@ -53,34 +49,12 @@ const LiveMatchList = () => {
     });
   };
 
-  const loadTeamLogos = async (matches) => {
-    const logos = {};
-    for (const match of matches) {
-      const homeKey = match.HomeTeamKey;
-      const awayKey = match.AwayTeamKey;
-
-      if (!logos[homeKey]) {
-        logos[homeKey] =
-          (await getTeamLogoByKey(match.Competition, homeKey)) ||
-          `https://ui-avatars.com/api/?name=${encodeURIComponent(homeKey)}&background=6c757d&color=fff&size=30`;
-      }
-
-      if (!logos[awayKey]) {
-        logos[awayKey] =
-          (await getTeamLogoByKey(match.Competition, awayKey)) ||
-          `https://ui-avatars.com/api/?name=${encodeURIComponent(awayKey)}&background=6c757d&color=fff&size=30`;
-      }
-    }
-    setTeamLogos(logos);
-  };
-
   const fetchMatches = async () => {
     try {
       setLoading(true);
       setError(null);
       const data = await LiveMatch.fetchMatchesByDate(effectiveDate);
       setMatches(data);
-      await loadTeamLogos(data);
     } catch (err) {
       setError('Failed to load matches.');
     } finally {
@@ -89,9 +63,7 @@ const LiveMatchList = () => {
   };
 
   useEffect(() => {
-    if (effectiveDate) {
-      fetchMatches();
-    }
+    if (effectiveDate) fetchMatches();
   }, [effectiveDate]);
 
   const renderStatusTag = (status) => {
@@ -106,15 +78,15 @@ const LiveMatchList = () => {
     return <div className={statusClass}>{statusText}</div>;
   };
 
-  const filteredMatches = matches.sort((a, b) => {
+  const sortedMatches = matches.sort((a, b) => {
     if (a.Status === 'InProgress' && b.Status !== 'InProgress') return -1;
     if (a.Status !== 'InProgress' && b.Status === 'InProgress') return 1;
     return new Date(a.DateTime) - new Date(b.DateTime);
   });
 
   return (
-    
-   <div className="live-match-list container" style={{ marginTop: '0.1rem' }}>
+    <div className="live-match-list container" style={{ marginTop: '0.1rem' }}>
+      {/* Date Selector */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3 style={{ color: '#212529' }}>Live & Recent Matches</h3>
         <input
@@ -132,7 +104,9 @@ const LiveMatchList = () => {
         {['yesterday', 'today', 'tomorrow'].map((label) => (
           <button
             key={label}
-            className={`btn btn-sm ${selectedDate === label ? 'btn-primary' : 'btn-outline-secondary'} px-3 py-1 border rounded`}
+            className={`btn btn-sm ${
+              selectedDate === label ? 'btn-primary' : 'btn-outline-secondary'
+            } px-3 py-1 border rounded`}
             onClick={() => {
               setSelectedDate(label);
               setCustomDate('');
@@ -142,23 +116,27 @@ const LiveMatchList = () => {
           </button>
         ))}
       </div>
-        {/* Elixx.cc Matches */}
-          <ProxedMatches />
 
+
+      {/* Match List */}
       {loading ? (
         <ModernSpinner />
       ) : error ? (
         <ErrorMessage message={error} onRetry={fetchMatches} />
-      ) : filteredMatches.length > 0 ? (
+      ) : sortedMatches.length > 0 ? (
         <ul className="match-list list-unstyled">
-          {filteredMatches.map((match) => (
+          {sortedMatches.map((match) => (
             <li
               key={match.GameId}
               className="mb-3 p-2 border rounded text-center"
               style={{ cursor: 'pointer' }}
-              onClick={() => navigate(`/livematch?matchId=${match.GameId}&competition=${match.Competition}`)} // ✅ just added this
+              onClick={() =>
+                navigate(
+                  `/livematch?matchId=${match.GameId}&competition=${match.Competition}`
+                )
+              }
             >
-              {/* Header Row */}
+              {/* Header */}
               <div className="match-header d-flex justify-content-between align-items-center mb-2">
                 <span className="text-muted small fw-medium text-start">
                   {COMPETITION_NAMES[match.Competition] || match.Competition}
@@ -174,15 +152,33 @@ const LiveMatchList = () => {
               {/* Logos and Score */}
               <div className="goals-result d-flex align-items-center justify-content-between">
                 <span className="d-flex align-items-center text-dark">
-                  <img src={teamLogos[match.HomeTeamKey]} alt={match.HomeTeamKey} />
+                  <img
+                    src={
+                      match.HomeTeamLogo ||
+                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                        match.HomeTeamKey
+                      )}&background=6c757d&color=fff&size=30`
+                    }
+                    alt={match.HomeTeamKey}
+                  />
                   {match.HomeTeamKey}
                 </span>
                 <span className="goals">
-                  <b>{match.HomeTeamScore ?? '-'}</b> - <b>{match.AwayTeamScore ?? '-'}</b>
+                  <b>{match.HomeTeamScore ?? '-'}</b> -{' '}
+                  <b>{match.AwayTeamScore ?? '-'}</b>
                 </span>
                 <span className="d-flex align-items-center text-dark justify-content-end">
                   {match.AwayTeamKey}
-                  <img src={teamLogos[match.AwayTeamKey]} alt={match.AwayTeamKey} className="ms-1" />
+                  <img
+                    src={
+                      match.AwayTeamLogo ||
+                      `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                        match.AwayTeamKey
+                      )}&background=6c757d&color=fff&size=30`
+                    }
+                    alt={match.AwayTeamKey}
+                    className="ms-1"
+                  />
                 </span>
               </div>
 
@@ -192,17 +188,19 @@ const LiveMatchList = () => {
           ))}
         </ul>
       ) : (
-          <div className="no-matches-placeholder">
-            <div className="animation-container">
-              <div className="ball"></div>
-            </div>
-            <h5 style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
-              No matches found for the selected date ⚽
-            </h5>
-            <p style={{ color: "#777", fontSize: "0.9rem" }}>
-              Please check back later or choose another date.
-            </p>
-          </div>      )}
+        <div className="no-matches-placeholder">
+          <div className="animation-container">
+            <div className="ball"></div>
+          </div>
+          <h5 style={{ fontWeight: 600, marginBottom: '0.5rem' }}>
+            No matches found for the selected date ⚽
+          </h5>
+          <p style={{ color: '#777', fontSize: '0.9rem' }}>
+            Please check back later or choose another date.
+          </p>
+        </div>
+      )}
+
 
       <style jsx>{
        /* 👇 your styles unchanged */ 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match Details</title>
+<style>
+  body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+  h2, h3 { margin-top: 20px; }
+  table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+  th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+  th { background-color: #4CAF50; color: white; }
+</style>
+</head>
+<body>
+<h2 id="matchTitle">Loading...</h2>
+<p id="matchInfo"></p>
+
+<h3>Score</h3>
+<p id="score"></p>
+
+<h3>Lineups</h3>
+<div id="lineups"></div>
+
+<h3>Stats</h3>
+<div id="stats"></div>
+
+<script>
+async function fetchMatch() {
+  const params = new URLSearchParams(window.location.search);
+  const matchId = params.get("id");
+  const res = await fetch(`/api/match/${matchId}`);
+const data = await res.json();
+
+  document.getElementById("matchTitle").textContent = `${data.match.homeTeam.name} vs ${data.match.awayTeam.name}`;
+  document.getElementById("matchInfo").textContent = `Matchday: ${data.match.matchday}, Status: ${data.match.status}, Date: ${new Date(data.match.utcDate).toLocaleString()}`;
+  
+  document.getElementById("score").textContent = data.match.score.fullTime.home !== null
+    ? `${data.match.score.fullTime.home} - ${data.match.score.fullTime.away}`
+    : "-";
+
+  // Lineups
+  const lineupsDiv = document.getElementById("lineups");
+  if(data.match.homeTeam.lineup || data.match.awayTeam.lineup){
+    lineupsDiv.innerHTML = `<p>Lineups not provided by API</p>`;
+  } else {
+    lineupsDiv.innerHTML = `<p>Lineups not available</p>`;
+  }
+
+  // Stats
+  const statsDiv = document.getElementById("stats");
+  if(data.match.matchStats){
+    statsDiv.innerHTML = JSON.stringify(data.match.matchStats, null, 2);
+  } else {
+    statsDiv.innerHTML = "<p>Stats not available</p>";
+  }
+}
+
+fetchMatch();
+</script>
+</body>
+</html>

@@ -12,18 +12,19 @@ export const COMPETITIONS: Competition[] = [
   { code: 'UCL', name: 'UEFA Champions League', country: 'Europe' },
 ];
 
-const LOCAL_BASE_URL = '/data/2026';
+const GITHUB_BASE_URL =
+  'https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches';
 
 function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
   return {
     GameId: apiMatch.GameId,
-    HomeTeamName: apiMatch.HomeTeamName,
-    AwayTeamName: apiMatch.AwayTeamName,
-    HomeTeamScore: apiMatch.HomeTeamScore,
-    AwayTeamScore: apiMatch.AwayTeamScore,
+    HomeTeamName: apiMatch.HomeTeamName ?? apiMatch.HomeTeam,
+    AwayTeamName: apiMatch.AwayTeamName ?? apiMatch.AwayTeam,
+    HomeTeamScore: apiMatch.HomeTeamScore ?? null,
+    AwayTeamScore: apiMatch.AwayTeamScore ?? null,
     DateTime: apiMatch.DateTime ?? apiMatch.Date,
-    Status: apiMatch.Status,
-    IsClosed: apiMatch.IsClosed,
+    Status: apiMatch.Status ?? 'Scheduled',
+    IsClosed: apiMatch.IsClosed ?? false,
     Competition: competition,
     AwayTeamCountryCode: apiMatch.AwayTeamCountryCode,
     HomeTeamCountryCode: apiMatch.HomeTeamCountryCode,
@@ -33,10 +34,12 @@ function transformApiMatch(apiMatch: ApiMatch, competition: string): Match {
     HomeTeamKey: apiMatch.HomeTeamKey,
     AwayTeamKey: apiMatch.AwayTeamKey,
     Updated: apiMatch.Updated,
+    HomeTeamLogo: apiMatch.HomeTeamLogo ?? null,
+    AwayTeamLogo: apiMatch.AwayTeamLogo ?? null,
   };
 }
 
-// Local date formatter (no UTC conversion)
+// Format date as local YYYY-MM-DD
 function formatDateLocal(date: Date): string {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -46,23 +49,26 @@ function formatDateLocal(date: Date): string {
 
 export class LiveMatch {
   /**
-   * Fetch matches for a given date from local JSON
+   * Fetch all matches for a given date (ignores timezones)
    */
   static async fetchMatchesByDate(date: string): Promise<Match[]> {
     const results: Match[] = [];
 
     for (const comp of COMPETITIONS) {
       try {
-        const url = `${LOCAL_BASE_URL}/${comp.code}.json`;
+        const url = `${GITHUB_BASE_URL}/${comp.code}.json`;
         const response = await axios.get<ApiMatch[]>(url);
 
         const transformed = response.data
-          .filter((m) => formatDateLocal(new Date(m.DateTime ?? m.Date)) === date)
+          .filter((m) => {
+            const matchDate = new Date(m.DateTime ?? m.Date);
+            return formatDateLocal(matchDate) === date;
+          })
           .map((m) => transformApiMatch(m, comp.code));
 
         results.push(...transformed);
       } catch (err: any) {
-        console.error(`❌ Failed to load local JSON for ${comp.code}:`, err.message || err);
+        console.error(`❌ Failed to load ${comp.code}:`, err.message || err);
       }
     }
 
@@ -72,24 +78,25 @@ export class LiveMatch {
   }
 
   /**
-   * Fetch recent matches for the past `days`
+   * Fetch matches for the past `pastDays` and next `futureDays` days
    */
-  static async fetchRecentMatches(days: number = 7): Promise<Match[]> {
+  static async fetchRecentMatches(pastDays = 7, futureDays = 7): Promise<Match[]> {
     const today = new Date();
-    const dates = Array.from({ length: days }, (_, i) => {
+    const dates: string[] = [];
+
+    for (let i = -pastDays; i <= futureDays; i++) {
       const d = new Date(today);
-      d.setDate(today.getDate() - i);
-      return formatDateLocal(d);
-    });
+      d.setDate(today.getDate() + i);
+      dates.push(formatDateLocal(d));
+    }
 
     let allMatches: Match[] = [];
-
     for (const date of dates) {
       const matches = await this.fetchMatchesByDate(date);
       allMatches.push(...matches);
     }
 
-    // Remove duplicates by GameId
+    // Remove duplicates
     const seen = new Set<number>();
     const uniqueMatches = allMatches.filter((m) => {
       if (seen.has(m.GameId)) return false;
@@ -98,32 +105,21 @@ export class LiveMatch {
     });
 
     return uniqueMatches.sort(
-      (a, b) => new Date(b.DateTime ?? '').getTime() - new Date(a.DateTime ?? '').getTime()
+      (a, b) => new Date(a.DateTime ?? '').getTime() - new Date(b.DateTime ?? '').getTime()
     );
   }
 
   /**
    * Fetch only today's live or scheduled matches
-   * Uses local date to avoid time zone bleed
    */
   static async fetchLiveMatches(): Promise<Match[]> {
     const todayStr = formatDateLocal(new Date());
     const matches = await this.fetchMatchesByDate(todayStr);
-
     return matches
-      .filter((match) => {
-        const matchLocalDate = formatDateLocal(new Date(match.DateTime ?? ''));
-        return (
-          matchLocalDate === todayStr &&
-          (match.Status === 'InProgress' || match.Status === 'Scheduled')
-        );
-      })
-      .sort(
-        (a, b) => new Date(a.DateTime ?? '').getTime() - new Date(b.DateTime ?? '').getTime()
-      );
+      .filter((m) => m.Status === 'InProgress' || m.Status === 'Scheduled')
+      .sort((a, b) => new Date(a.DateTime ?? '').getTime() - new Date(b.DateTime ?? '').getTime());
   }
 }
-
 
 
 

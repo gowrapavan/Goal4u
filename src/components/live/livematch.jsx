@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchBoxScoreById } from '../../services/boxscore';
-import LiveContent from './LiveContent';  // ✅ merged component
-import LoadingSpinner from '../common/LoadingSpinner';
+import LiveContent from './LiveContent';
+import ModernSpinner from '../common/ModernSpinner';
 import ErrorMessage from '../common/ErrorMessage';
+import { LiveMatch as LiveMatchService } from '../../services/live-match';
 
 const LiveMatch = () => {
   const [searchParams] = useSearchParams();
-  const matchId = searchParams.get('matchId');
+  const matchId = Number(searchParams.get('matchId'));
   const competition = searchParams.get('competition');
 
   const [matchData, setMatchData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('summary');
 
   useEffect(() => {
     if (!matchId || !competition) {
@@ -22,37 +21,39 @@ const LiveMatch = () => {
       return;
     }
 
-    const fetchData = async () => {
+    const fetchMatch = async () => {
       try {
-        const data = await fetchBoxScoreById(competition, Number(matchId));
-        setMatchData(data);
+        setLoading(true);
+        setError(null);
+
+        // Fetch recent matches (past 7 days + next 7 days)
+        const matches = await LiveMatchService.fetchRecentMatches(14);
+
+        // Find the selected match by GameId and Competition
+        const selectedMatch = matches.find(
+          (m) => Number(m.GameId) === matchId && m.Competition === competition
+        );
+
+        if (!selectedMatch) {
+          setError('Match not found for the selected date.');
+        } else {
+          setMatchData(selectedMatch);
+        }
       } catch (err) {
-        setError('Could not load match details.');
+        setError(err.message || 'Could not load match details.');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchMatch();
   }, [matchId, competition]);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <ModernSpinner />;
   if (error)
-    return (
-      <ErrorMessage
-        message={error}
-        onRetry={() => window.location.reload()}
-      />
-    );
+    return <ErrorMessage message={error} onRetry={() => window.location.reload()} />;
 
-  return (
-    <LiveContent
-      activeTab={activeTab}
-      setActiveTab={setActiveTab}
-      matchData={matchData}
-      competition={competition}
-    />
-  );
+  return <LiveContent matchData={matchData} />;
 };
 
 export default LiveMatch;

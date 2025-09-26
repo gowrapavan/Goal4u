@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FixtureService } from '../services/fixture';
-import { getTeamLogoByKey } from '../services/teamlogo';
 import ModernSpinner from './common/ModernSpinner';
 import ErrorMessage from './common/ErrorMessage';
 import ReactGA from 'react-ga4';
@@ -10,6 +9,7 @@ import { Helmet } from 'react-helmet-async';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
+  ESP: 'LALIGA',
   DEB: 'Bundesliga',
   ITSA: 'Serie A',
   FRL1: 'Ligue 1',
@@ -39,7 +39,6 @@ const Fixture = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [matches, setMatches] = useState([]);
-  const [teamLogos, setTeamLogos] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
@@ -74,7 +73,6 @@ const Fixture = () => {
         }
 
         setMatches(filtered);
-        await loadTeamLogos(filtered);
         setError(null);
       } catch (err) {
         setError('Failed to load fixtures.');
@@ -233,17 +231,32 @@ return (
                           </div>
 
                           <div className="goals-result d-flex align-items-center justify-content-between">
-                            <span className="d-flex align-items-center text-dark">
-                              <img src={teamLogos[match.HomeTeamKey]} alt={match.HomeTeamKey} />
-                              {match.HomeTeamKey}
-                            </span>
+                          <span className="d-flex align-items-center text-dark">
+                            <img
+                              src={
+                                match.HomeTeamLogo ||
+                                `https://ui-avatars.com/api/?name=${encodeURIComponent(match.HomeTeamKey)}&background=6c757d&color=fff&size=30`
+                              }
+                              alt={match.HomeTeam}
+                            />
+                            {match.HomeTeam}
+                          </span>
+
                             <span className="goals">
                               <b>{match.HomeTeamScore ?? '-'}</b> - <b>{match.AwayTeamScore ?? '-'}</b>
                             </span>
                             <span className="d-flex align-items-center text-dark justify-content-end">
-                              {match.AwayTeamKey}
-                              <img src={teamLogos[match.AwayTeamKey]} alt={match.AwayTeamKey} className="ms-1" />
-                            </span>
+                              {match.AwayTeam}
+                              <img
+                                src={
+                                  match.AwayTeamLogo ||
+                                  `https://ui-avatars.com/api/?name=${encodeURIComponent(match.AwayTeamKey)}&background=6c757d&color=fff&size=30`
+                                }
+                                alt={match.AwayTeam}
+                                className="ms-1"
+                              />
+</span>
+
                           </div>
 
                           <div className="text-center mt-2">{renderStatusTag(match.Status)}</div>

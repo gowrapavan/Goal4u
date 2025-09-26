@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from 'axios'; 
 
 export const PREFERRED_COMPETITIONS = [
-  'EPL', 'DEB', 'ITSA', 'FRL1', 'NLC', 'PTC', 'MLS', 'SPL', 'SKC',
+  'EPL', 'DEB', 'ITSA', 'FRL1', 'NLC', 'PTC', 'MLS', 'SPL', 'SKC','ESP',
   'CWC', 'UCL',
 ];
 
@@ -27,23 +27,25 @@ const PREFERRED_CLUBS = [
   'Young Boys', 'Anderlecht', 'Club Brugge', 'Sparta Prague', 'NK Olimpija Ljubljana', 'FC Kairat'
 ];
 
-const LOCAL_BASE_URL = '/data/2026';
+// Base URL pointing to raw GitHub JSON files
+const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches';
 
 const fetchMatches = async (): Promise<any[]> => {
   let allMatches: any[] = [];
 
   for (const comp of PREFERRED_COMPETITIONS) {
     try {
-      const url = `${LOCAL_BASE_URL}/${comp.toUpperCase()}.json`;
+      const url = `${GITHUB_BASE_URL}/${comp.toUpperCase()}.json`;
       const response = await axios.get(url);
       const data = response.data;
 
       const filtered = data.filter((match: any) => {
-        const matchTime = new Date(match.DateTime ?? match.Date ?? '');
+        const home = match.HomeTeamName ?? match.HomeTeam;
+        const away = match.AwayTeamName ?? match.AwayTeam;
 
         const isPreferredTeam =
-          PREFERRED_CLUBS.includes(match.HomeTeamName) ||
-          PREFERRED_CLUBS.includes(match.AwayTeamName);
+          PREFERRED_CLUBS.includes(home) ||
+          PREFERRED_CLUBS.includes(away);
 
         const isInternational = INTERNATIONAL_COMPS.includes(comp.toUpperCase());
 
@@ -52,22 +54,35 @@ const fetchMatches = async (): Promise<any[]> => {
 
       allMatches.push(
         ...filtered.map((match: any) => ({
-          ...match,
-          Competition: comp
+          Competition: comp,
+          GameId: match.GameId,
+          Date: match.Date ?? null,
+          DateTime: match.DateTime ?? match.Date ?? null,
+          Status: match.Status ?? 'Scheduled',
+          Round: match.RoundName ?? match.Round ?? null,
+          HomeTeam: match.HomeTeamName ?? match.HomeTeam,
+          AwayTeam: match.AwayTeamName ?? match.AwayTeam,
+          HomeTeamLogo: match.HomeTeamLogo ?? null,
+          AwayTeamLogo: match.AwayTeamLogo ?? null,
+          HomeTeamScore: match.HomeTeamScore ?? null,
+          AwayTeamScore: match.AwayTeamScore ?? null,
+          Result: match.Result ?? null,
+          Points: match.Points ?? {},
+          Goals: match.Goals ?? []
         }))
       );
     } catch (err: any) {
-      console.error(`❌ Failed to load local JSON for ${comp}:`, err.message || err);
+      console.error(`❌ Failed to load GitHub JSON for ${comp}:`, err.message || err);
     }
   }
 
-  // Sort by datetime ascending (earliest to latest)
+  // Sort matches by DateTime (earliest → latest)
   allMatches.sort(
     (a, b) =>
       new Date(a.DateTime ?? a.Date).getTime() - new Date(b.DateTime ?? b.Date).getTime()
   );
 
-  return allMatches; // Return full list (filter/slice in component)
+  return allMatches;
 };
 
 export const FixtureService = {

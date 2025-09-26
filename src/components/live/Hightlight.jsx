@@ -32,7 +32,7 @@ const Youtube = ({ query }) => {
   return (
     <div className="row no-line-height">
       <div className="col-md-12">
-        <h3 className="clear-title">Match Videos</h3>
+<h3 className="clear-title" style={{ color: '#fff' }}>Match Videos</h3>
       </div>
       {videos.length === 0 && (
         <div className="col-12 text-muted">
