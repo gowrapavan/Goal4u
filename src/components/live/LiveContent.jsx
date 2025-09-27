@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Youtube from './Hightlight';
 import MatchNews from './MatchNews';
 import ErrorMessage from '../common/ErrorMessage';
-import Stats from './Stats';
+import Stats from './stats';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
