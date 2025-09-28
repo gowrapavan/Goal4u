@@ -1465,7 +1465,7 @@
   },
   {
     "GameId": 540773,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-20",
     "DateTime": "2025-09-20T14:00:00Z",
@@ -1729,7 +1729,7 @@
   },
   {
     "GameId": 540784,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1753,7 +1753,7 @@
   },
   {
     "GameId": 540785,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T11:30:00Z",
@@ -1777,7 +1777,7 @@
   },
   {
     "GameId": 540786,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1801,7 +1801,7 @@
   },
   {
     "GameId": 540787,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1825,7 +1825,7 @@
   },
   {
     "GameId": 540788,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1849,7 +1849,7 @@
   },
   {
     "GameId": 540789,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1873,7 +1873,7 @@
   },
   {
     "GameId": 540790,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1897,7 +1897,7 @@
   },
   {
     "GameId": 540791,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1921,7 +1921,7 @@
   },
   {
     "GameId": 540792,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T11:30:00Z",
@@ -1945,7 +1945,7 @@
   },
   {
     "GameId": 540793,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T14:00:00Z",
@@ -1969,11 +1969,11 @@
   },
   {
     "GameId": 540794,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-26",
     "DateTime": "2025-09-26T19:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 74,
@@ -1982,18 +1982,18 @@
     "AwayTeamKey": "Leicester City",
     "HomeTeamName": "West Bromwich Albion FC",
     "AwayTeamName": "Leicester City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
     "Points": {
-      "74": 0,
-      "338": 0
+      "74": 1,
+      "338": 1
     },
     "Goals": []
   },
   {
     "GameId": 540795,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-27",
     "DateTime": "2025-09-27T11:30:00Z",
@@ -2017,7 +2017,7 @@
   },
   {
     "GameId": 540796,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2041,7 +2041,7 @@
   },
   {
     "GameId": 540797,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2065,7 +2065,7 @@
   },
   {
     "GameId": 540798,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2089,7 +2089,7 @@
   },
   {
     "GameId": 540799,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T19:00:00Z",
@@ -2113,7 +2113,7 @@
   },
   {
     "GameId": 540800,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2137,7 +2137,7 @@
   },
   {
     "GameId": 540801,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2161,7 +2161,7 @@
   },
   {
     "GameId": 540802,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2185,7 +2185,7 @@
   },
   {
     "GameId": 540803,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-09-30",
     "DateTime": "2025-09-30T18:45:00Z",
@@ -2209,7 +2209,7 @@
   },
   {
     "GameId": 540804,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-01",
     "DateTime": "2025-10-01T18:45:00Z",
@@ -2233,7 +2233,7 @@
   },
   {
     "GameId": 540805,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-01",
     "DateTime": "2025-10-01T18:45:00Z",
@@ -2257,7 +2257,7 @@
   },
   {
     "GameId": 540806,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-01",
     "DateTime": "2025-10-01T18:45:00Z",
@@ -2281,7 +2281,7 @@
   },
   {
     "GameId": 540807,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-01",
     "DateTime": "2025-10-01T19:00:00Z",
@@ -2305,7 +2305,7 @@
   },
   {
     "GameId": 540808,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T11:30:00Z",
@@ -2329,7 +2329,7 @@
   },
   {
     "GameId": 540809,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2353,7 +2353,7 @@
   },
   {
     "GameId": 540810,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2377,7 +2377,7 @@
   },
   {
     "GameId": 540811,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T11:30:00Z",
@@ -2401,7 +2401,7 @@
   },
   {
     "GameId": 540812,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-05",
     "DateTime": "2025-10-05T11:00:00Z",
@@ -2425,7 +2425,7 @@
   },
   {
     "GameId": 540813,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2449,7 +2449,7 @@
   },
   {
     "GameId": 540814,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2473,7 +2473,7 @@
   },
   {
     "GameId": 540815,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2497,7 +2497,7 @@
   },
   {
     "GameId": 540816,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T11:30:00Z",
@@ -2521,7 +2521,7 @@
   },
   {
     "GameId": 540817,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2545,7 +2545,7 @@
   },
   {
     "GameId": 540818,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-04",
     "DateTime": "2025-10-04T14:00:00Z",
@@ -2569,7 +2569,7 @@
   },
   {
     "GameId": 540819,
-    "RoundId": 6,
+    "RoundId": 7,
     "RoundName": "Championship",
     "Date": "2025-10-03",
     "DateTime": "2025-10-03T19:00:00Z",

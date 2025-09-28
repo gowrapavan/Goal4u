@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getty Images Demo</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  #imageGrid { display: flex; flex-wrap: wrap; gap: 10px; }
+  #imageGrid img { width: 200px; height: auto; border: 1px solid #ccc; }
+</style>
+</head>
+<body>
+
+<h1>Manchester United Images</h1>
+<div id="imageGrid"></div>
+
+<!-- Embed your JSON here -->
+<script id="imageData" type="application/json">
+ [
+      "https://media.gettyimages.com/id/2237703348/photo/madrid-spain-julian-alvarez-of-atl%C3%A9tico-de-madrid-looks-on-before-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=CvFvR2Q4K5qEqZ8qc__IlQQp5RNkVSJHZVrdWrQksa8=",
+      "https://media.gettyimages.com/id/2236899034/photo/julian-alvarez-of-atletico-de-madrid-and-koke-resurreccion-of-atletico-de-madrid-gestures.jpg?s=612x612&w=0&k=20&c=jzDnmyjPASkKweZV-XuN5pF-TltJ5o0Nv0NyHGC9N2c=",
+      "https://media.gettyimages.com/id/2236898905/photo/diego-pablo-simeone-head-coach-of-atletico-de-madrid-gestures-during-the-laliga-ea-sports.jpg?s=612x612&w=0&k=20&c=KPRh5ziCBvUjASFrQKVwzH-NlFD72MNEwx1SF9chmKs=",
+      "https://media.gettyimages.com/id/2236898977/photo/diego-pablo-simeone-head-coach-of-atletico-de-madrid-gestures-during-the-laliga-ea-sports.jpg?s=612x612&w=0&k=20&c=rGqN_utgZQ13hXrcy7LArzMvIEP7l7YuW18IW1iVEGQ=",
+      "https://media.gettyimages.com/id/2236898853/photo/julian-alvarez-of-atletico-de-madrid-celebrates-after-scoring-his-teams-third-goal-during-the.jpg?s=612x612&w=0&k=20&c=9IIvCOSjycNpNHikBo9sU-HE6QqbTkXMxx0dtiZTkMM=",
+      "https://media.gettyimages.com/id/2236899082/photo/julian-alvarez-of-atletico-de-madrid-celebrates-after-scoring-his-teams-third-goal-during-the.jpg?s=612x612&w=0&k=20&c=C0Po-zOLAEugGVYplVXYmbHLKdLusSIwdS6BEME8F-M=",
+      "https://media.gettyimages.com/id/2236898681/photo/julian-alvarez-of-atletico-de-madrid-celebrates-after-scoring-his-teams-third-goal-during-the.jpg?s=612x612&w=0&k=20&c=CN2oiOJH9qpDggMaQ2jJt4R7gGe_IlvuIGtK_UqF2Cw=",
+      "https://media.gettyimages.com/id/2236898707/photo/giacomo-raspadori-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=FrqMr4rgRwFf9zo2U4sV46lAY0CECAh3iTS9VOg_qvA=",
+      "https://media.gettyimages.com/id/2236899119/photo/giacomo-raspadori-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=uXYbMiJ0OTPubredChN8AETPK_XK5SBxqSVgs4axcFc=",
+      "https://media.gettyimages.com/id/2236898933/photo/nico-gonzalez-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=-ti2h-Kvl5anfQyDPlPWZyWSny5MHTEMDp91nbJvYnU=",
+      "https://media.gettyimages.com/id/2236898847/photo/nico-gonzalez-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=Xw14tpsutTZcaz7ATOTcZ9DhrGqpwuf-_TJAQQkWsXg=",
+      "https://media.gettyimages.com/id/2236898747/photo/pablo-barrios-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=_PBCI332VT-mdlU0dscsYte5CPD24K20OyHIYLuN5VY=",
+      "https://media.gettyimages.com/id/2236898959/photo/matteo-ruggeri-of-atletico-de-madrid-controls-the-ball-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=qiayIEw-eL2y2b1VtNXnbufcu5LbuPAOIh91mTJM7Iw=",
+      "https://media.gettyimages.com/id/2236898859/photo/giacomo-raspadori-of-atletico-de-madrid-looks-on-during-the-laliga-ea-sports-match-between.jpg?s=612x612&w=0&k=20&c=_5DUPkKONgmLRVYd6jJXibOG1PR1BZEsg5n9QNefelQ=",
+      "https://media.gettyimages.com/id/2236899002/photo/david-hancko-of-atletico-de-madrid-and-pathe-ciss-of-rayo-vallecano-battle-for-the-ball.jpg?s=612x612&w=0&k=20&c=vnCollgfCizr7D5qp1f2lyGLSFHaRUxUgYzPbQFr5gA=",
+      "https://media.gettyimages.com/id/2237367777/photo/madrid-spain-diego-pablo-cholo-simeone-head-coach-of-atletico-de-madrid-and-antoine-griezmann.jpg?s=612x612&w=0&k=20&c=ebN4JUo0vx0gmUR0CL17h2WHCm5shtph_pnFUD7Ye_4=",
+      "https://media.gettyimages.com/id/2237367514/photo/madrid-spain-kylian-mbappe-centre-forward-of-real-madrid-and-france-and-rodrygo-goes-right.jpg?s=612x612&w=0&k=20&c=rBB7ht12hv12zWRjbt-mNE8NGm9fY9Tg0uF3QEBb-jI=",
+      "https://media.gettyimages.com/id/2237724827/photo/madrid-spain-kylian-mbappe-of-real-madrid-shows-his-disappointment-during-the-laliga-ea.jpg?s=612x612&w=0&k=20&c=W6gtIAcjrltIcNRjo7M7omzvIWxv0XuR-6TEmqBJD-A=",
+      "https://media.gettyimages.com/id/2237724692/photo/madrid-spain-jude-bellingham-of-real-madrid-reacts-after-atletico-de-madrid-scored-their.jpg?s=612x612&w=0&k=20&c=FWE82cYiiXlqr90NLxI3_y5XV0WRpXqAjjcR1xT1fYY=",
+      "https://media.gettyimages.com/id/2237724543/photo/madrid-spain-jude-bellingham-of-real-madrid-looks-on-during-the-laliga-ea-sports-match.jpg?s=612x612&w=0&k=20&c=4WXXC4ZtQ9rU6A358dbJNPB64wYYldN6jjf5PqwFPPo=",
+      "https://media.gettyimages.com/id/2237718976/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=BWbU81XyU8BFeewNg_tMjmlyELR86V5CgAniVmIHhFs=",
+      "https://media.gettyimages.com/id/2237717997/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=Yn2RUeJsHEOZng0FAi61l8qdy-8vozbhyLfhAoXap8s=",
+      "https://media.gettyimages.com/id/2237717982/photo/madrid-spain-kylian-mbappe-of-real-madrid-cf-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=QZyQEX01UhcZZ8A8GKghyMxhLe1kPAOEXz7idL3FoJE=",
+      "https://media.gettyimages.com/id/2237718931/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=guy25dAJCibvWa2BrnX4gpeEXZ0CfwlkIESc0WMjhbo=",
+      "https://media.gettyimages.com/id/2237718056/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=ev2a5HXSz2yd2pEnNSnZDVlcNm-ug5ntJgvN6KPLZ_o=",
+      "https://media.gettyimages.com/id/2237719048/photo/madrid-spain-javier-alberola-rojas-referee-of-the-match-gestures-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=fC2gho0Y9rb3wmQOX8UvG94lFEm9sZGaBNV5LgqFHHo=",
+      "https://media.gettyimages.com/id/2237719014/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=16AAlE5J8T8Ri9A9aAJsfx0vSpTKr5BZtOC3UsT0oyE=",
+      "https://media.gettyimages.com/id/2237718040/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=x4Odsd5x9FZ2ec32zEdt5430VMz0E67RcaUHiFoC6CA=",
+      "https://media.gettyimages.com/id/2237719034/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=kAjQ-yOokwt7g7PLrDT9HnBsN7P0Ve6o0BFHbDrcrLA=",
+      "https://media.gettyimages.com/id/2237718952/photo/madrid-spain-julian-alvarez-of-atletico-de-madrid-celebrates-a-goal-during-the-spanish-league.jpg?s=612x612&w=0&k=20&c=5tdsB3da3HV_Y1-PtGx1XhEiNE_j2Xjxsv61fBcl1QI="
+    ]
+</script>
+
+<script>
+  // Read JSON from the <script> tag
+  const dataEl = document.getElementById('imageData');
+  const urls = JSON.parse(dataEl.textContent);
+
+  const grid = document.getElementById('imageGrid');
+  urls.forEach(url => {
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = "Manchester United Image";
+    grid.appendChild(img);
+  });
+</script>
+
+</body>
+</html>

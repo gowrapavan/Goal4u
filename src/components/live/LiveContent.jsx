@@ -4,6 +4,7 @@ import Youtube from './Hightlight';
 import MatchNews from './MatchNews';
 import ErrorMessage from '../common/ErrorMessage';
 import Stats from './stats';
+import Images from './Images';
 
 const COMPETITION_NAMES = {
   EPL: 'Premier League',
@@ -90,6 +91,8 @@ const LiveContent = ({ matchData: propMatchData, competition: propCompetition })
 
       {/* Stats */}
       <Stats matchId={matchData.GameId ? Number(matchData.GameId) : null} competition={matchData.Competition} />
+      <Images matchId={matchData.GameId} competition={matchData.Competition} />
+
 
       {/* Summary */}
       <section className="lc-summary-section">
