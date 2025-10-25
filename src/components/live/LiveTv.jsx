@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const PROVIDER_CODES = {
   sportzonline: "sptz",
   Goal4u: "dxx",
+    hesgoal: "hes",
+
   koora10: "ko",
   shahidkoora: "shk",
 };
@@ -19,6 +21,8 @@ const CODE_TO_PROVIDER = Object.fromEntries(
 const PROVIDERS = [
   { label: "Sportzonline", keyword: "sportzonline" },
   { label: "Goal4u", keyword: "Goal4u" },
+    { label: "hesgoal", keyword: "hesgoal" },
+
   { label: "Koora10", keyword: "koora10" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
 ];
@@ -29,6 +33,8 @@ const JSON_MAP = {
   Goal4u: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/Goal4u.json",
   koora10: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json",
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
+  hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json"
+
 };
 
 // --- Helpers ---
