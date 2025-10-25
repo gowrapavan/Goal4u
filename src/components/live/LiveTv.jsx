@@ -10,7 +10,7 @@ const PROVIDER_CODES = {
   Goal4u: "dxx",
     hesgoal: "hes",
 
-  koora10: "ko",
+  livekoora: "vip",
   shahidkoora: "shk",
 };
 const CODE_TO_PROVIDER = Object.fromEntries(
@@ -23,7 +23,7 @@ const PROVIDERS = [
   { label: "Goal4u", keyword: "Goal4u" },
     { label: "hesgoal", keyword: "hesgoal" },
 
-  { label: "Koora10", keyword: "koora10" },
+  { label: "livekoora", keyword: "livekoora" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
 ];
 
@@ -31,7 +31,7 @@ const PROVIDERS = [
 const JSON_MAP = {
   sportzonline: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/sportsonline.json",
   Goal4u: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/Goal4u.json",
-  koora10: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/koora10.json",
+  livekoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/livekoora.json",
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
   hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json"
 
