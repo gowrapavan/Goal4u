@@ -1897,11 +1897,11 @@
   },
   {
     "GameId": 537864,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-20",
     "DateTime": "2025-10-20T19:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 563,
@@ -1910,22 +1910,22 @@
     "AwayTeamKey": "Brentford",
     "HomeTeamName": "West Ham United FC",
     "AwayTeamName": "Brentford FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 2,
+    "Result": 402,
     "Points": {
       "563": 0,
-      "402": 0
+      "402": 3
     },
     "Goals": []
   },
   {
     "GameId": 537865,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 1044,
@@ -1934,22 +1934,22 @@
     "AwayTeamKey": "Nottingham",
     "HomeTeamName": "AFC Bournemouth",
     "AwayTeamName": "Nottingham Forest FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 1044,
     "Points": {
-      "1044": 0,
+      "1044": 3,
       "351": 0
     },
     "Goals": []
   },
   {
     "GameId": 537866,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 58,
@@ -1958,22 +1958,22 @@
     "AwayTeamKey": "Man City",
     "HomeTeamName": "Aston Villa FC",
     "AwayTeamName": "Manchester City FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 58,
     "Points": {
-      "58": 0,
+      "58": 3,
       "65": 0
     },
     "Goals": []
   },
   {
     "GameId": 537867,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 57,
@@ -1982,22 +1982,22 @@
     "AwayTeamKey": "Crystal Palace",
     "HomeTeamName": "Arsenal FC",
     "AwayTeamName": "Crystal Palace FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 57,
     "Points": {
-      "57": 0,
+      "57": 3,
       "354": 0
     },
     "Goals": []
   },
   {
     "GameId": 537868,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T19:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 402,
@@ -2006,22 +2006,22 @@
     "AwayTeamKey": "Liverpool",
     "HomeTeamName": "Brentford FC",
     "AwayTeamName": "Liverpool FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 402,
     "Points": {
-      "402": 0,
+      "402": 3,
       "64": 0
     },
     "Goals": []
   },
   {
     "GameId": 537869,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 61,
@@ -2030,22 +2030,22 @@
     "AwayTeamKey": "Sunderland",
     "HomeTeamName": "Chelsea FC",
     "AwayTeamName": "Sunderland AFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 71,
     "Points": {
       "61": 0,
-      "71": 0
+      "71": 3
     },
     "Goals": []
   },
   {
     "GameId": 537870,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T16:30:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 62,
@@ -2054,22 +2054,22 @@
     "AwayTeamKey": "Tottenham",
     "HomeTeamName": "Everton FC",
     "AwayTeamName": "Tottenham Hotspur FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 73,
     "Points": {
       "62": 0,
-      "73": 0
+      "73": 3
     },
     "Goals": []
   },
   {
     "GameId": 537871,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-24",
     "DateTime": "2025-10-24T19:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 341,
@@ -2078,22 +2078,22 @@
     "AwayTeamKey": "West Ham",
     "HomeTeamName": "Leeds United FC",
     "AwayTeamName": "West Ham United FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 341,
     "Points": {
-      "341": 0,
+      "341": 3,
       "563": 0
     },
     "Goals": []
   },
   {
     "GameId": 537872,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T16:30:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 66,
@@ -2102,22 +2102,22 @@
     "AwayTeamKey": "Brighton Hove",
     "HomeTeamName": "Manchester United FC",
     "AwayTeamName": "Brighton & Hove Albion FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 4,
+    "AwayTeamScore": 2,
+    "Result": 66,
     "Points": {
-      "66": 0,
+      "66": 3,
       "397": 0
     },
     "Goals": []
   },
   {
     "GameId": 537873,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 67,
@@ -2126,22 +2126,22 @@
     "AwayTeamKey": "Fulham",
     "HomeTeamName": "Newcastle United FC",
     "AwayTeamName": "Fulham FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 67,
     "Points": {
-      "67": 0,
+      "67": 3,
       "63": 0
     },
     "Goals": []
   },
   {
     "GameId": 537874,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 76,
@@ -2150,18 +2150,18 @@
     "AwayTeamKey": "Burnley",
     "HomeTeamName": "Wolverhampton Wanderers FC",
     "AwayTeamName": "Burnley FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 3,
+    "Result": 328,
     "Points": {
       "76": 0,
-      "328": 0
+      "328": 3
     },
     "Goals": []
   },
   {
     "GameId": 537875,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-03",
     "DateTime": "2025-11-03T20:00:00Z",
@@ -2185,7 +2185,7 @@
   },
   {
     "GameId": 537876,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T15:00:00Z",
@@ -2209,7 +2209,7 @@
   },
   {
     "GameId": 537877,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T15:00:00Z",
@@ -2233,7 +2233,7 @@
   },
   {
     "GameId": 537878,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T15:00:00Z",
@@ -2257,7 +2257,7 @@
   },
   {
     "GameId": 537879,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T15:00:00Z",
@@ -2281,7 +2281,7 @@
   },
   {
     "GameId": 537880,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T20:00:00Z",
@@ -2305,7 +2305,7 @@
   },
   {
     "GameId": 537881,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T16:30:00Z",
@@ -2329,7 +2329,7 @@
   },
   {
     "GameId": 537882,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T15:00:00Z",
@@ -2353,7 +2353,7 @@
   },
   {
     "GameId": 537883,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T17:30:00Z",
@@ -2377,7 +2377,7 @@
   },
   {
     "GameId": 537884,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T14:00:00Z",
@@ -2401,7 +2401,7 @@
   },
   {
     "GameId": 537885,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T17:30:00Z",
@@ -2425,7 +2425,7 @@
   },
   {
     "GameId": 537886,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2449,7 +2449,7 @@
   },
   {
     "GameId": 537887,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2473,7 +2473,7 @@
   },
   {
     "GameId": 537888,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2497,7 +2497,7 @@
   },
   {
     "GameId": 537889,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T20:00:00Z",
@@ -2521,7 +2521,7 @@
   },
   {
     "GameId": 537890,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T15:00:00Z",
@@ -2545,7 +2545,7 @@
   },
   {
     "GameId": 537891,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T16:30:00Z",
@@ -2569,7 +2569,7 @@
   },
   {
     "GameId": 537892,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2593,7 +2593,7 @@
   },
   {
     "GameId": 537893,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T12:30:00Z",
@@ -2617,7 +2617,7 @@
   },
   {
     "GameId": 537894,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Premier League",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T15:00:00Z",

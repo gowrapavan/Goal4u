@@ -1729,11 +1729,11 @@
   },
   {
     "GameId": 542478,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T16:15:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 519,
@@ -1742,22 +1742,22 @@
     "AwayTeamKey": "Le Havre",
     "HomeTeamName": "AJ Auxerre",
     "AwayTeamName": "Le Havre AC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 533,
     "Points": {
       "519": 0,
-      "533": 0
+      "533": 3
     },
     "Goals": []
   },
   {
     "GameId": 542479,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T17:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 548,
@@ -1766,22 +1766,22 @@
     "AwayTeamKey": "Toulouse",
     "HomeTeamName": "AS Monaco FC",
     "AwayTeamName": "Toulouse FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 548,
     "Points": {
-      "548": 0,
+      "548": 3,
       "511": 0
     },
     "Goals": []
   },
   {
     "GameId": 542480,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-24",
     "DateTime": "2025-10-24T18:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 1045,
@@ -1790,22 +1790,22 @@
     "AwayTeamKey": "Nantes",
     "HomeTeamName": "Paris FC",
     "AwayTeamName": "FC Nantes",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 543,
     "Points": {
       "1045": 0,
-      "543": 0
+      "543": 3
     },
     "Goals": []
   },
   {
     "GameId": 542481,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T19:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 523,
@@ -1814,22 +1814,22 @@
     "AwayTeamKey": "Strasbourg",
     "HomeTeamName": "Olympique Lyonnais",
     "AwayTeamName": "RC Strasbourg Alsace",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 523,
     "Points": {
-      "523": 0,
+      "523": 3,
       "576": 0
     },
     "Goals": []
   },
   {
     "GameId": 542482,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 521,
@@ -1838,22 +1838,22 @@
     "AwayTeamKey": "FC Metz",
     "HomeTeamName": "Lille OSC",
     "AwayTeamName": "FC Metz",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 6,
+    "AwayTeamScore": 1,
+    "Result": 521,
     "Points": {
-      "521": 0,
+      "521": 3,
       "545": 0
     },
     "Goals": []
   },
   {
     "GameId": 542483,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T19:05:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 546,
@@ -1862,22 +1862,22 @@
     "AwayTeamKey": "Marseille",
     "HomeTeamName": "Racing Club de Lens",
     "AwayTeamName": "Olympique de Marseille",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 546,
     "Points": {
-      "546": 0,
+      "546": 3,
       "516": 0
     },
     "Goals": []
   },
   {
     "GameId": 542484,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T16:15:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 532,
@@ -1886,22 +1886,22 @@
     "AwayTeamKey": "Lorient",
     "HomeTeamName": "Angers SCO",
     "AwayTeamName": "FC Lorient",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 0,
+    "Result": 532,
     "Points": {
-      "532": 0,
+      "532": 3,
       "525": 0
     },
     "Goals": []
   },
   {
     "GameId": 542485,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T15:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 512,
@@ -1910,22 +1910,22 @@
     "AwayTeamKey": "PSG",
     "HomeTeamName": "Stade Brestois 29",
     "AwayTeamName": "Paris Saint-Germain FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 3,
+    "Result": 524,
     "Points": {
       "512": 0,
-      "524": 0
+      "524": 3
     },
     "Goals": []
   },
   {
     "GameId": 542486,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T16:15:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 529,
@@ -1934,18 +1934,18 @@
     "AwayTeamKey": "Nice",
     "HomeTeamName": "Stade Rennais FC 1901",
     "AwayTeamName": "OGC Nice",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 2,
+    "Result": 522,
     "Points": {
       "529": 0,
-      "522": 0
+      "522": 3
     },
     "Goals": []
   },
   {
     "GameId": 542487,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T18:00:00Z",
@@ -1969,7 +1969,7 @@
   },
   {
     "GameId": 542488,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T18:00:00Z",
@@ -1993,7 +1993,7 @@
   },
   {
     "GameId": 542489,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T18:00:00Z",
@@ -2017,7 +2017,7 @@
   },
   {
     "GameId": 542490,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T20:05:00Z",
@@ -2041,7 +2041,7 @@
   },
   {
     "GameId": 542491,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T20:05:00Z",
@@ -2065,7 +2065,7 @@
   },
   {
     "GameId": 542492,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T20:05:00Z",
@@ -2089,7 +2089,7 @@
   },
   {
     "GameId": 542493,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T18:00:00Z",
@@ -2113,7 +2113,7 @@
   },
   {
     "GameId": 542494,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T20:05:00Z",
@@ -2137,7 +2137,7 @@
   },
   {
     "GameId": 542495,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T20:05:00Z",
@@ -2161,7 +2161,7 @@
   },
   {
     "GameId": 542496,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T20:05:00Z",
@@ -2185,7 +2185,7 @@
   },
   {
     "GameId": 542497,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T18:00:00Z",
@@ -2209,7 +2209,7 @@
   },
   {
     "GameId": 542498,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T16:15:00Z",
@@ -2233,7 +2233,7 @@
   },
   {
     "GameId": 542499,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T16:15:00Z",
@@ -2257,7 +2257,7 @@
   },
   {
     "GameId": 542500,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T16:15:00Z",
@@ -2281,7 +2281,7 @@
   },
   {
     "GameId": 542501,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T16:00:00Z",
@@ -2305,7 +2305,7 @@
   },
   {
     "GameId": 542502,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T16:15:00Z",
@@ -2329,7 +2329,7 @@
   },
   {
     "GameId": 542503,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T19:45:00Z",
@@ -2353,7 +2353,7 @@
   },
   {
     "GameId": 542504,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T14:00:00Z",
@@ -2377,7 +2377,7 @@
   },
   {
     "GameId": 542505,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T18:00:00Z",
@@ -2401,7 +2401,7 @@
   },
   {
     "GameId": 542506,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T20:05:00Z",
@@ -2425,7 +2425,7 @@
   },
   {
     "GameId": 542507,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2449,7 +2449,7 @@
   },
   {
     "GameId": 542508,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T16:15:00Z",
@@ -2473,7 +2473,7 @@
   },
   {
     "GameId": 542509,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-07",
     "DateTime": "2025-11-07T19:45:00Z",
@@ -2497,7 +2497,7 @@
   },
   {
     "GameId": 542510,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T19:45:00Z",
@@ -2521,7 +2521,7 @@
   },
   {
     "GameId": 542511,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T16:00:00Z",
@@ -2545,7 +2545,7 @@
   },
   {
     "GameId": 542512,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T16:15:00Z",
@@ -2569,7 +2569,7 @@
   },
   {
     "GameId": 542513,
-    "RoundId": 6,
+    "RoundId": 9,
     "RoundName": "Ligue 1",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T16:15:00Z",

@@ -1633,11 +1633,11 @@
   },
   {
     "GameId": 536883,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-20",
     "DateTime": "2025-10-20T18:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 457,
@@ -1646,12 +1646,12 @@
     "AwayTeamKey": "Udinese",
     "HomeTeamName": "US Cremonese",
     "AwayTeamName": "Udinese Calcio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
     "Points": {
-      "457": 0,
-      "115": 0
+      "457": 1,
+      "115": 1
     },
     "Goals": []
   },
@@ -1681,11 +1681,11 @@
   },
   {
     "GameId": 536885,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T17:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 99,
@@ -1694,22 +1694,22 @@
     "AwayTeamKey": "Bologna",
     "HomeTeamName": "ACF Fiorentina",
     "AwayTeamName": "Bologna FC 1909",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
     "Points": {
-      "99": 0,
-      "103": 0
+      "99": 1,
+      "103": 1
     },
     "Goals": []
   },
   {
     "GameId": 536886,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-24",
     "DateTime": "2025-10-24T18:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 98,
@@ -1718,22 +1718,22 @@
     "AwayTeamKey": "AC Pisa",
     "HomeTeamName": "AC Milan",
     "AwayTeamName": "AC Pisa 1909",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
     "Points": {
-      "98": 0,
-      "487": 0
+      "98": 1,
+      "487": 1
     },
     "Goals": []
   },
   {
     "GameId": 536887,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T11:30:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 586,
@@ -1742,22 +1742,22 @@
     "AwayTeamKey": "Genoa",
     "HomeTeamName": "Torino FC",
     "AwayTeamName": "Genoa CFC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 1,
+    "Result": 586,
     "Points": {
-      "586": 0,
+      "586": 3,
       "107": 0
     },
     "Goals": []
   },
   {
     "GameId": 536888,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 450,
@@ -1766,22 +1766,22 @@
     "AwayTeamKey": "Cagliari",
     "HomeTeamName": "Hellas Verona FC",
     "AwayTeamName": "Cagliari Calcio",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 2,
+    "AwayTeamScore": 2,
     "Result": null,
     "Points": {
-      "450": 0,
-      "104": 0
+      "450": 1,
+      "104": 1
     },
     "Goals": []
   },
   {
     "GameId": 536889,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T19:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 110,
@@ -1790,22 +1790,22 @@
     "AwayTeamKey": "Juventus",
     "HomeTeamName": "SS Lazio",
     "AwayTeamName": "Juventus FC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 0,
+    "Result": 110,
     "Points": {
-      "110": 0,
+      "110": 3,
       "109": 0
     },
     "Goals": []
   },
   {
     "GameId": 536890,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T13:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 112,
@@ -1814,22 +1814,22 @@
     "AwayTeamKey": "Como 1907",
     "HomeTeamName": "Parma Calcio 1913",
     "AwayTeamName": "Como 1907",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 0,
     "Result": null,
     "Points": {
-      "112": 0,
-      "7397": 0
+      "112": 1,
+      "7397": 1
     },
     "Goals": []
   },
   {
     "GameId": 536891,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-26",
     "DateTime": "2025-10-26T14:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 471,
@@ -1838,22 +1838,22 @@
     "AwayTeamKey": "Roma",
     "HomeTeamName": "US Sassuolo Calcio",
     "AwayTeamName": "AS Roma",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 0,
+    "AwayTeamScore": 1,
+    "Result": 100,
     "Points": {
       "471": 0,
-      "100": 0
+      "100": 3
     },
     "Goals": []
   },
   {
     "GameId": 536892,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T16:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 113,
@@ -1862,22 +1862,22 @@
     "AwayTeamKey": "Inter",
     "HomeTeamName": "SSC Napoli",
     "AwayTeamName": "FC Internazionale Milano",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 1,
+    "Result": 113,
     "Points": {
-      "113": 0,
+      "113": 3,
       "108": 0
     },
     "Goals": []
   },
   {
     "GameId": 536893,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T13:00:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 115,
@@ -1886,22 +1886,22 @@
     "AwayTeamKey": "Lecce",
     "HomeTeamName": "Udinese Calcio",
     "AwayTeamName": "US Lecce",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
-    "Result": null,
+    "HomeTeamScore": 3,
+    "AwayTeamScore": 2,
+    "Result": 115,
     "Points": {
-      "115": 0,
+      "115": 3,
       "5890": 0
     },
     "Goals": []
   },
   {
     "GameId": 536894,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-25",
     "DateTime": "2025-10-25T18:45:00Z",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Week": null,
     "VenueType": "Home Away",
     "HomeTeamId": 457,
@@ -1910,18 +1910,18 @@
     "AwayTeamKey": "Atalanta",
     "HomeTeamName": "US Cremonese",
     "AwayTeamName": "Atalanta BC",
-    "HomeTeamScore": null,
-    "AwayTeamScore": null,
+    "HomeTeamScore": 1,
+    "AwayTeamScore": 1,
     "Result": null,
     "Points": {
-      "457": 0,
-      "102": 0
+      "457": 1,
+      "102": 1
     },
     "Goals": []
   },
   {
     "GameId": 536895,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T17:30:00Z",
@@ -1945,7 +1945,7 @@
   },
   {
     "GameId": 536896,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-28",
     "DateTime": "2025-10-28T19:45:00Z",
@@ -1969,7 +1969,7 @@
   },
   {
     "GameId": 536897,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-30",
     "DateTime": "2025-10-30T17:30:00Z",
@@ -1993,7 +1993,7 @@
   },
   {
     "GameId": 536898,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T19:45:00Z",
@@ -2017,7 +2017,7 @@
   },
   {
     "GameId": 536899,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T17:30:00Z",
@@ -2041,7 +2041,7 @@
   },
   {
     "GameId": 536900,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T19:45:00Z",
@@ -2065,7 +2065,7 @@
   },
   {
     "GameId": 536901,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T19:45:00Z",
@@ -2089,7 +2089,7 @@
   },
   {
     "GameId": 536902,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-29",
     "DateTime": "2025-10-29T17:30:00Z",
@@ -2113,7 +2113,7 @@
   },
   {
     "GameId": 536903,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-30",
     "DateTime": "2025-10-30T19:45:00Z",
@@ -2137,7 +2137,7 @@
   },
   {
     "GameId": 536904,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-10-28",
     "DateTime": "2025-10-28T17:30:00Z",
@@ -2161,7 +2161,7 @@
   },
   {
     "GameId": 536905,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T14:00:00Z",
@@ -2185,7 +2185,7 @@
   },
   {
     "GameId": 536906,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T19:45:00Z",
@@ -2209,7 +2209,7 @@
   },
   {
     "GameId": 536907,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T14:00:00Z",
@@ -2233,7 +2233,7 @@
   },
   {
     "GameId": 536908,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T11:30:00Z",
@@ -2257,7 +2257,7 @@
   },
   {
     "GameId": 536909,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-03",
     "DateTime": "2025-11-03T19:45:00Z",
@@ -2281,7 +2281,7 @@
   },
   {
     "GameId": 536910,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-02",
     "DateTime": "2025-11-02T17:00:00Z",
@@ -2305,7 +2305,7 @@
   },
   {
     "GameId": 536911,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-03",
     "DateTime": "2025-11-03T17:30:00Z",
@@ -2329,7 +2329,7 @@
   },
   {
     "GameId": 536912,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T17:00:00Z",
@@ -2353,7 +2353,7 @@
   },
   {
     "GameId": 536913,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T14:00:00Z",
@@ -2377,7 +2377,7 @@
   },
   {
     "GameId": 536914,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-01",
     "DateTime": "2025-11-01T19:45:00Z",
@@ -2401,7 +2401,7 @@
   },
   {
     "GameId": 536915,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T17:00:00Z",
@@ -2425,7 +2425,7 @@
   },
   {
     "GameId": 536916,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T11:30:00Z",
@@ -2449,7 +2449,7 @@
   },
   {
     "GameId": 536917,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2473,7 +2473,7 @@
   },
   {
     "GameId": 536918,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T14:00:00Z",
@@ -2497,7 +2497,7 @@
   },
   {
     "GameId": 536919,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T14:00:00Z",
@@ -2521,7 +2521,7 @@
   },
   {
     "GameId": 536920,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-09",
     "DateTime": "2025-11-09T19:45:00Z",
@@ -2545,7 +2545,7 @@
   },
   {
     "GameId": 536921,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T17:00:00Z",
@@ -2569,7 +2569,7 @@
   },
   {
     "GameId": 536922,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T19:45:00Z",
@@ -2593,7 +2593,7 @@
   },
   {
     "GameId": 536923,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-07",
     "DateTime": "2025-11-07T19:45:00Z",
@@ -2617,7 +2617,7 @@
   },
   {
     "GameId": 536924,
-    "RoundId": 4,
+    "RoundId": 8,
     "RoundName": "Serie A",
     "Date": "2025-11-08",
     "DateTime": "2025-11-08T14:00:00Z",
