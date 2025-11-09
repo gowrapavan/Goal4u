@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Loading from './common/LoadingSpinner';
-import ErrorMessage from './common/ErrorMessage';
-import { MatchService, getScoreFromBoxScore, formatMatchTime } from '../services/matchService';
-import { getTeamLogoByKey } from '../services/teamlogo';
+import React, { useEffect, useState } from "react";
+import Loading from "./common/LoadingSpinner";
+import ErrorMessage from "./common/ErrorMessage";
+import { formatMatchTime } from "../services/matchService";
+import { getTeamLogoByKey } from "../services/teamlogo";
+
+const LEAGUE_URLS = {
+  EPL: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches/EPL.json",
+  ESP: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches/ESP.json",
+  ITA: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches/ITA.json",
+  GER: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches/GER.json",
+  FRA: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/matches/FRA.json",
+};
+
+// 🧩 Utility: trim team names to max 4 letters (uppercase, safe fallback)
+const trimTeam = (name = "") =>
+  name.length > 4 ? name.slice(0, 4).toUpperCase() : name.toUpperCase();
 
 const RecentMatches = () => {
   const [recentMatches, setRecentMatches] = useState([]);
   const [teamLogos, setTeamLogos] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [dynamicScores, setDynamicScores] = useState({}); // Map GameId -> { home: score, away: score }
-
-
-
-
 
   const loadTeamLogos = async (matches) => {
     const logos = {};
@@ -24,16 +31,17 @@ const RecentMatches = () => {
       if (!logos[homeKey]) {
         logos[homeKey] =
           (await getTeamLogoByKey(match.Competition, homeKey)) ||
+          match.HomeTeamLogo ||
           `https://ui-avatars.com/api/?name=${encodeURIComponent(homeKey)}&background=007bff&color=fff&size=30`;
       }
 
       if (!logos[awayKey]) {
         logos[awayKey] =
           (await getTeamLogoByKey(match.Competition, awayKey)) ||
+          match.AwayTeamLogo ||
           `https://ui-avatars.com/api/?name=${encodeURIComponent(awayKey)}&background=dc3545&color=fff&size=30`;
       }
     }
-
     setTeamLogos(logos);
   };
 
@@ -41,35 +49,33 @@ const RecentMatches = () => {
     try {
       setLoading(true);
       setError(null);
-      const matches = await MatchService.fetchRecentMatches(5);
+      const allMatches = [];
 
-      // Filter matches only in the past
-      const pastMatches = matches.filter(
-        (match) => new Date(match.DateTime).getTime() < Date.now()
-      );
-
-      // Only keep top 4
-      const sliced = pastMatches.slice(0, 4);
-
-      // Get fallback scores for matches with null score
-      const scoreResults = {};
-      for (const match of sliced) {
-        if (match.HomeTeamScore == null || match.AwayTeamScore == null) {
-          try {
-            const { homeScore, awayScore } = await getScoreFromBoxScore(match);
-            scoreResults[match.GameId] = { homeScore, awayScore };
-          } catch {
-            // Do nothing, fallback will be vs display
-          }
+      for (const [league, url] of Object.entries(LEAGUE_URLS)) {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`Failed ${league}`);
+          const data = await res.json();
+          data.forEach((m) => (m.Competition = league));
+          allMatches.push(...data);
+        } catch (err) {
+          console.warn(`⚠️ Skipped ${league}: ${err.message}`);
         }
       }
 
+      const pastMatches = allMatches.filter(
+        (m) => new Date(m.DateTime).getTime() < Date.now()
+      );
+      pastMatches.sort(
+        (a, b) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime()
+      );
+
+      const sliced = pastMatches.slice(0, 4);
       setRecentMatches(sliced);
-      setDynamicScores(scoreResults);
       await loadTeamLogos(sliced);
     } catch (err) {
       console.error(err);
-      setError('Failed to load recent matches.');
+      setError("Failed to load recent matches.");
     } finally {
       setLoading(false);
     }
@@ -97,54 +103,48 @@ const RecentMatches = () => {
           ) : (
             <ul>
               {recentMatches && recentMatches.length > 0 ? (
-                recentMatches.map((match, index) => {
-                  const score = dynamicScores[match.GameId];
-                  const homeScore =
-                    match.HomeTeamScore != null
-                      ? match.HomeTeamScore
-                      : score?.homeScore ?? null;
-                  const awayScore =
-                    match.AwayTeamScore != null
-                      ? match.AwayTeamScore
-                      : score?.awayScore ?? null;
-
-                  return (
-                    <li key={match.GameId || index}>
-                   <span className="head">
-                      {match.Competition} - {match.HomeTeamKey} vs {match.AwayTeamKey}
-                    <span className="date">{formatMatchTime(match.DateTime)}</span>
+                recentMatches.map((match, index) => (
+                  <li key={match.GameId || index}>
+                    <span className="head">
+                      {match.Competition} -{" "}
+                      {trimTeam(match.HomeTeamKey)} vs {trimTeam(match.AwayTeamKey)}
+                      <span className="date">
+                        {formatMatchTime(match.DateTime)}
+                      </span>
                     </span>
 
-                      <div className="goals-result">
-                        <a href="single-team.html">
-                          <img
-                            src={teamLogos[match.HomeTeamKey]}
-                            alt={match.HomeTeamKey}
-                          />
-                          {match.HomeTeamKey}
-                        </a>
-                        <span className="goals">
-                          {homeScore != null && awayScore != null ? (
-                            <>
-                              <b>{homeScore}</b> - <b>{awayScore}</b>
-                            </>
-                          ) : (
-                            <>
-                              <b>{match.HomeTeamKey}</b> - <b>{match.AwayTeamKey}</b>
-                            </>
-                          )}
-                        </span>
-                        <a href="single-team.html">
-                          <img
-                            src={teamLogos[match.AwayTeamKey]}
-                            alt={match.AwayTeamKey}
-                          />
-                          {match.AwayTeamKey}
-                        </a>
-                      </div>
-                    </li>
-                  );
-                })
+                    <div className="goals-result">
+                      <a href="single-team.html">
+                        <img
+                          src={teamLogos[match.HomeTeamKey]}
+                          alt={match.HomeTeamKey}
+                        />
+                        {trimTeam(match.HomeTeamKey)}
+                      </a>
+                      <span className="goals">
+                        {match.HomeTeamScore != null &&
+                        match.AwayTeamScore != null ? (
+                          <>
+                            <b>{match.HomeTeamScore}</b> -{" "}
+                            <b>{match.AwayTeamScore}</b>
+                          </>
+                        ) : (
+                          <>
+                            <b>{trimTeam(match.HomeTeamKey)}</b> -{" "}
+                            <b>{trimTeam(match.AwayTeamKey)}</b>
+                          </>
+                        )}
+                      </span>
+                      <a href="single-team.html">
+                        <img
+                          src={teamLogos[match.AwayTeamKey]}
+                          alt={match.AwayTeamKey}
+                        />
+                        {trimTeam(match.AwayTeamKey)}
+                      </a>
+                    </div>
+                  </li>
+                ))
               ) : (
                 <li>
                   <div className="text-center text-muted p-3">
@@ -162,6 +162,7 @@ const RecentMatches = () => {
           )}
         </div>
       </div>
+
       <style jsx>{`
         .goals-result img {
           width: 30px;

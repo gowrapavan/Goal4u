@@ -8,8 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const PROVIDER_CODES = {
   sportzonline: "sptz",
   Goal4u: "dxx",
-    hesgoal: "hes",
-
+  hesgoal: "hes",
+  yallashooote:"yallashooote",
   livekora: "vip",
   shahidkoora: "shk",
 };
@@ -21,8 +21,8 @@ const CODE_TO_PROVIDER = Object.fromEntries(
 const PROVIDERS = [
   { label: "Sportzonline", keyword: "sportzonline" },
   { label: "Goal4u", keyword: "Goal4u" },
-    { label: "hesgoal", keyword: "hesgoal" },
-
+  { label: "hesgoal", keyword: "hesgoal" },
+  { label: "yallashooote", keyword: "yallashooote" },
   { label: "livekora", keyword: "livekora" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
 ];
@@ -33,8 +33,8 @@ const JSON_MAP = {
   Goal4u: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/Goal4u.json",
   livekora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/livekora.json",
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
-  hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json"
-
+  hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json",
+  yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json"
 };
 
 // --- Helpers ---

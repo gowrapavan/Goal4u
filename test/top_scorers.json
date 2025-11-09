@@ -1,0 +1,684 @@
+{
+    "last_updated": "2025-11-08T11:54:54.978424Z",
+    "leagues": {
+        "PL": {
+            "competition": "Premier League",
+            "code": "PL",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Erling Haaland",
+                    "team_name": "Manchester City FC",
+                    "team_crest": "https://crests.football-data.org/65.png",
+                    "goals": 13,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Norway"
+                },
+                {
+                    "player_name": "Antoine Semenyo",
+                    "team_name": "AFC Bournemouth",
+                    "team_crest": "https://crests.football-data.org/bournemouth.png",
+                    "goals": 6,
+                    "assists": 3,
+                    "penalties": 1,
+                    "nationality": "Ghana"
+                },
+                {
+                    "player_name": "Thiago Rodrigues",
+                    "team_name": "Brentford FC",
+                    "team_crest": "https://crests.football-data.org/402.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": 2,
+                    "nationality": "Brazil"
+                },
+                {
+                    "player_name": "Jean-Philippe Mateta",
+                    "team_name": "Crystal Palace FC",
+                    "team_crest": "https://crests.football-data.org/354.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": 2,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Danny Welbeck",
+                    "team_name": "Brighton & Hove Albion FC",
+                    "team_crest": "https://crests.football-data.org/397.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Mohamed Salah",
+                    "team_name": "Liverpool FC",
+                    "team_crest": "https://crests.football-data.org/64.png",
+                    "goals": 4,
+                    "assists": 2,
+                    "penalties": 1,
+                    "nationality": "Egypt"
+                },
+                {
+                    "player_name": "Wilson Isidor",
+                    "team_name": "Sunderland AFC",
+                    "team_crest": "https://crests.football-data.org/71.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Jaidon Anthony",
+                    "team_name": "Burnley FC",
+                    "team_crest": "https://crests.football-data.org/328.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Viktor Gyökeres",
+                    "team_name": "Arsenal FC",
+                    "team_crest": "https://crests.football-data.org/57.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": 1,
+                    "nationality": "Sweden"
+                },
+                {
+                    "player_name": "Iliman Ndiaye",
+                    "team_name": "Everton FC",
+                    "team_crest": "https://crests.football-data.org/62.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": 1,
+                    "nationality": "Senegal"
+                }
+            ]
+        },
+        "PD": {
+            "competition": "Primera Division",
+            "code": "PD",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Kylian Mbappé",
+                    "team_name": "Real Madrid CF",
+                    "team_crest": "https://crests.football-data.org/86.png",
+                    "goals": 13,
+                    "assists": 2,
+                    "penalties": 3,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Julián Álvarez",
+                    "team_name": "Club Atlético de Madrid",
+                    "team_crest": "https://crests.football-data.org/78.png",
+                    "goals": 7,
+                    "assists": 2,
+                    "penalties": 2,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Karl Etta Eyong",
+                    "team_name": "Levante UD",
+                    "team_crest": "https://crests.football-data.org/88.png",
+                    "goals": 6,
+                    "assists": 4,
+                    "penalties": null,
+                    "nationality": "Cameroon"
+                },
+                {
+                    "player_name": "Ferrán Torres",
+                    "team_name": "FC Barcelona",
+                    "team_crest": "https://crests.football-data.org/81.png",
+                    "goals": 5,
+                    "assists": 2,
+                    "penalties": null,
+                    "nationality": "Spain"
+                },
+                {
+                    "player_name": "Vinicius Junior",
+                    "team_name": "Real Madrid CF",
+                    "team_crest": "https://crests.football-data.org/86.png",
+                    "goals": 5,
+                    "assists": 4,
+                    "penalties": 1,
+                    "nationality": "Brazil"
+                },
+                {
+                    "player_name": "Vedat Muriqi",
+                    "team_name": "RCD Mallorca",
+                    "team_crest": "https://crests.football-data.org/89.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": 1,
+                    "nationality": "Kosovo"
+                },
+                {
+                    "player_name": "Mikel Oyarzabal",
+                    "team_name": "Real Sociedad de Fútbol",
+                    "team_crest": "https://crests.football-data.org/92.png",
+                    "goals": 5,
+                    "assists": 2,
+                    "penalties": 3,
+                    "nationality": "Spain"
+                },
+                {
+                    "player_name": "Jorge de Frutos",
+                    "team_name": "Rayo Vallecano de Madrid",
+                    "team_crest": "https://crests.football-data.org/87.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Spain"
+                },
+                {
+                    "player_name": "Pere Milla",
+                    "team_name": "RCD Espanyol de Barcelona",
+                    "team_crest": "https://crests.football-data.org/80.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Spain"
+                },
+                {
+                    "player_name": "Rafael Mir",
+                    "team_name": "Elche CF",
+                    "team_crest": "https://crests.football-data.org/285.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Spain"
+                }
+            ]
+        },
+        "SA": {
+            "competition": "Serie A",
+            "code": "SA",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Riccardo Orsolini",
+                    "team_name": "Bologna FC 1909",
+                    "team_crest": "https://crests.football-data.org/103.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": 2,
+                    "nationality": "Italy"
+                },
+                {
+                    "player_name": "Hakan Çalhanoğlu",
+                    "team_name": "FC Internazionale Milano",
+                    "team_crest": "https://crests.football-data.org/108.png",
+                    "goals": 5,
+                    "assists": 1,
+                    "penalties": 2,
+                    "nationality": "Turkey"
+                },
+                {
+                    "player_name": "Kevin De Bruyne",
+                    "team_name": "SSC Napoli",
+                    "team_crest": "https://crests.football-data.org/113.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": 3,
+                    "nationality": "Belgium"
+                },
+                {
+                    "player_name": "Federico Bonazzoli",
+                    "team_name": "US Cremonese",
+                    "team_crest": "https://crests.football-data.org/457.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Italy"
+                },
+                {
+                    "player_name": "Nico Paz",
+                    "team_name": "Como 1907",
+                    "team_crest": "https://crests.football-data.org/7397.png",
+                    "goals": 4,
+                    "assists": 4,
+                    "penalties": null,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Christian Pulisic",
+                    "team_name": "AC Milan",
+                    "team_crest": "https://crests.football-data.org/98.png",
+                    "goals": 4,
+                    "assists": 2,
+                    "penalties": null,
+                    "nationality": "USA"
+                },
+                {
+                    "player_name": "André Zambo Anguissa",
+                    "team_name": "SSC Napoli",
+                    "team_crest": "https://crests.football-data.org/113.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Cameroon"
+                },
+                {
+                    "player_name": "Giovanni Simeone",
+                    "team_name": "Torino FC",
+                    "team_crest": "https://crests.football-data.org/586.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Santiago Castro",
+                    "team_name": "Bologna FC 1909",
+                    "team_crest": "https://crests.football-data.org/103.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Dušan Vlahović",
+                    "team_name": "Juventus FC",
+                    "team_crest": "https://crests.football-data.org/109.png",
+                    "goals": 3,
+                    "assists": null,
+                    "penalties": 1,
+                    "nationality": "Serbia"
+                }
+            ]
+        },
+        "BL1": {
+            "competition": "Bundesliga",
+            "code": "BL1",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Harry Kane",
+                    "team_name": "FC Bayern München",
+                    "team_crest": "https://crests.football-data.org/5.png",
+                    "goals": 12,
+                    "assists": 2,
+                    "penalties": 4,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Jonathan Burkardt",
+                    "team_name": "Eintracht Frankfurt",
+                    "team_crest": "https://crests.football-data.org/19.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": 1,
+                    "nationality": "Germany"
+                },
+                {
+                    "player_name": "Luis Díaz",
+                    "team_name": "FC Bayern München",
+                    "team_crest": "https://crests.football-data.org/5.png",
+                    "goals": 5,
+                    "assists": 2,
+                    "penalties": null,
+                    "nationality": "Colombia"
+                },
+                {
+                    "player_name": "Can Uzun",
+                    "team_name": "Eintracht Frankfurt",
+                    "team_crest": "https://crests.football-data.org/19.png",
+                    "goals": 5,
+                    "assists": 3,
+                    "penalties": null,
+                    "nationality": "Turkey"
+                },
+                {
+                    "player_name": "Fisnik Asllani",
+                    "team_name": "TSG 1899 Hoffenheim",
+                    "team_crest": "https://crests.football-data.org/2.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Kosovo"
+                },
+                {
+                    "player_name": "Sehrou Guirassy",
+                    "team_name": "Borussia Dortmund",
+                    "team_crest": "https://crests.football-data.org/4.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Guinea"
+                },
+                {
+                    "player_name": "Christoph Baumgartner",
+                    "team_name": "RB Leipzig",
+                    "team_crest": "https://crests.football-data.org/721.png",
+                    "goals": 5,
+                    "assists": 2,
+                    "penalties": null,
+                    "nationality": "Austria"
+                },
+                {
+                    "player_name": "Haris Tabaković",
+                    "team_name": "Borussia Mönchengladbach",
+                    "team_crest": "https://crests.football-data.org/18.png",
+                    "goals": 5,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Bosnia-Herzegovina"
+                },
+                {
+                    "player_name": "Michael Olise",
+                    "team_name": "FC Bayern München",
+                    "team_crest": "https://crests.football-data.org/5.png",
+                    "goals": 4,
+                    "assists": 3,
+                    "penalties": null,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Ilyas Ansah",
+                    "team_name": "1. FC Union Berlin",
+                    "team_crest": "https://crests.football-data.org/28.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Germany"
+                }
+            ]
+        },
+        "FL1": {
+            "competition": "Ligue 1",
+            "code": "FL1",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Joaquín Panichelli",
+                    "team_name": "RC Strasbourg Alsace",
+                    "team_crest": "https://crests.football-data.org/576.png",
+                    "goals": 9,
+                    "assists": null,
+                    "penalties": 2,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Esteban Lepaul",
+                    "team_name": "Stade Rennais FC 1901",
+                    "team_crest": "https://crests.football-data.org/529.png",
+                    "goals": 8,
+                    "assists": 3,
+                    "penalties": null,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Mason Greenwood",
+                    "team_name": "Olympique de Marseille",
+                    "team_crest": "https://crests.football-data.org/516.png",
+                    "goals": 7,
+                    "assists": 4,
+                    "penalties": 3,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Sofiane Diop",
+                    "team_name": "OGC Nice",
+                    "team_crest": "https://crests.football-data.org/522.png",
+                    "goals": 6,
+                    "assists": 1,
+                    "penalties": 2,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Ilan Kebbal",
+                    "team_name": "Paris FC",
+                    "team_crest": "https://crests.football-data.org/1045.png",
+                    "goals": 5,
+                    "assists": 4,
+                    "penalties": 1,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Ansu Fati",
+                    "team_name": "AS Monaco FC",
+                    "team_crest": "https://crests.football-data.org/548.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": 3,
+                    "nationality": "Spain"
+                },
+                {
+                    "player_name": "Hákon Haraldsson",
+                    "team_name": "Lille OSC",
+                    "team_crest": "https://crests.football-data.org/521.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Iceland"
+                },
+                {
+                    "player_name": "Robinio Vaz",
+                    "team_name": "Olympique de Marseille",
+                    "team_crest": "https://crests.football-data.org/516.png",
+                    "goals": 4,
+                    "assists": 2,
+                    "penalties": null,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Frank Magri",
+                    "team_name": "Toulouse FC",
+                    "team_crest": "https://crests.football-data.org/511.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Hamza Igamane",
+                    "team_name": "Lille OSC",
+                    "team_crest": "https://crests.football-data.org/521.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Morocco"
+                }
+            ]
+        },
+        "DED": {
+            "competition": "Eredivisie",
+            "code": "DED",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Ayase Ueda",
+                    "team_name": "Feyenoord Rotterdam",
+                    "team_crest": "https://crests.football-data.org/675.png",
+                    "goals": 13,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Japan"
+                },
+                {
+                    "player_name": "Ismael Saibari",
+                    "team_name": "PSV",
+                    "team_crest": "https://crests.football-data.org/674.png",
+                    "goals": 8,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Morocco"
+                },
+                {
+                    "player_name": "Sem Steijn",
+                    "team_name": "Feyenoord Rotterdam",
+                    "team_crest": "https://crests.football-data.org/675.png",
+                    "goals": 6,
+                    "assists": 1,
+                    "penalties": 1,
+                    "nationality": "Netherlands"
+                },
+                {
+                    "player_name": "Wout Weghorst",
+                    "team_name": "AFC Ajax",
+                    "team_crest": "https://crests.football-data.org/678.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Netherlands"
+                },
+                {
+                    "player_name": "Troy Parrott",
+                    "team_name": "AZ",
+                    "team_crest": "https://crests.football-data.org/682.png",
+                    "goals": 6,
+                    "assists": 1,
+                    "penalties": 2,
+                    "nationality": "Ireland"
+                },
+                {
+                    "player_name": "Koen Kostons",
+                    "team_name": "PEC Zwolle",
+                    "team_crest": "https://crests.football-data.org/684.png",
+                    "goals": 6,
+                    "assists": 3,
+                    "penalties": null,
+                    "nationality": "Netherlands"
+                },
+                {
+                    "player_name": "Jizz Hornkamp",
+                    "team_name": "Heracles Almelo",
+                    "team_crest": "https://crests.football-data.org/671.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Netherlands"
+                },
+                {
+                    "player_name": "Tobias Lauritsen",
+                    "team_name": "Sparta Rotterdam",
+                    "team_crest": "https://crests.football-data.org/6806.png",
+                    "goals": 6,
+                    "assists": 1,
+                    "penalties": 2,
+                    "nationality": "Norway"
+                },
+                {
+                    "player_name": "Ricky van Wolfswinkel",
+                    "team_name": "FC Twente '65",
+                    "team_crest": "https://crests.football-data.org/666.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": 5,
+                    "nationality": "Netherlands"
+                },
+                {
+                    "player_name": "Guus Til",
+                    "team_name": "PSV",
+                    "team_crest": "https://crests.football-data.org/674.png",
+                    "goals": 5,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Netherlands"
+                }
+            ]
+        },
+        "CL": {
+            "competition": "UEFA Champions League",
+            "code": "CL",
+            "count": 10,
+            "scorers": [
+                {
+                    "player_name": "Victor Osimhen",
+                    "team_name": "Galatasaray SK",
+                    "team_crest": "https://crests.football-data.org/610.png",
+                    "goals": 6,
+                    "assists": null,
+                    "penalties": 3,
+                    "nationality": "Nigeria"
+                },
+                {
+                    "player_name": "Kylian Mbappé",
+                    "team_name": "Real Madrid CF",
+                    "team_crest": "https://crests.football-data.org/86.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": 3,
+                    "nationality": "France"
+                },
+                {
+                    "player_name": "Harry Kane",
+                    "team_name": "FC Bayern München",
+                    "team_crest": "https://crests.football-data.org/5.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": 1,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Erling Haaland",
+                    "team_name": "Manchester City FC",
+                    "team_crest": "https://crests.football-data.org/65.png",
+                    "goals": 5,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Norway"
+                },
+                {
+                    "player_name": "Marcus Rashford",
+                    "team_name": "FC Barcelona",
+                    "team_crest": "https://crests.football-data.org/81.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Anthony Gordon",
+                    "team_name": "Newcastle United FC",
+                    "team_crest": "https://crests.football-data.org/67.png",
+                    "goals": 4,
+                    "assists": 1,
+                    "penalties": 2,
+                    "nationality": "England"
+                },
+                {
+                    "player_name": "Lautaro Martínez",
+                    "team_name": "FC Internazionale Milano",
+                    "team_crest": "https://crests.football-data.org/108.png",
+                    "goals": 4,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Argentina"
+                },
+                {
+                    "player_name": "Martinelli",
+                    "team_name": "Arsenal FC",
+                    "team_crest": "https://crests.football-data.org/57.png",
+                    "goals": 3,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Brazil"
+                },
+                {
+                    "player_name": "Felix Kalu Nmecha",
+                    "team_name": "Borussia Dortmund",
+                    "team_crest": "https://crests.football-data.org/4.png",
+                    "goals": 3,
+                    "assists": null,
+                    "penalties": null,
+                    "nationality": "Germany"
+                },
+                {
+                    "player_name": "Dušan Vlahović",
+                    "team_name": "Juventus FC",
+                    "team_crest": "https://crests.football-data.org/109.png",
+                    "goals": 3,
+                    "assists": 1,
+                    "penalties": null,
+                    "nationality": "Serbia"
+                }
+            ]
+        }
+    }
+}

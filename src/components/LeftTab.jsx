@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import RecentMatches from './RecentMatches'; // Ensure this is also static or mock data
+import TopScorers from "./TopScorers";
+
 
 const LeftTab = () => {
   const [activeTab, setActiveTab] = useState('statistics');
@@ -101,35 +103,8 @@ const LeftTab = () => {
               getTeamLogo={getTeamLogo}
             />
 
-            {/* Top Scorers */}
-            <div className="col-lg-4">
-              <div className="player-ranking">
-                <h5><a href="group-list.html">Top Scorers (2024–25)</a></h5>
-                <div className="info-player">
-                  <ul>
-                    {[
-                      { name: 'Kylian Mbappé', goals: 31, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Picture_with_Mbapp%C3%A9_%28cropped%29.jpg/500px-Picture_with_Mbapp%C3%A9_%28cropped%29.jpg' },
-                      { name: 'Mohamed Salah', goals: 29, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Mohamed_salah_2018.jpg/640px-Mohamed_salah_2018.jpg' },
-                      { name: 'Robert Lewandowski', goals: 27, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Robert_Lewandowski_2018_%28cropped%29.jpg/640px-Robert_Lewandowski_2018_%28cropped%29.jpg' },
-                      { name: 'Harry Kane', goals: 26, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Harry_Kane_2023.jpg/640px-Harry_Kane_2023.jpg' },
-                      { name: 'Victor Osimhen', goals: 26, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/0K8A7975_%2853451429413%29_%28cropped%29.jpg/640px-0K8A7975_%2853451429413%29_%28cropped%29.jpg' },
-                      { name: 'Alexander Isak', goals: 23, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Alexander_Isak_%28cropped%29.jpg/640px-UEFA_EURO_qualifiers_Sweden_vs_Romaina_20190323_Alexander_Isak_%28cropped%29.jpg' },
-                      { name: 'Erling Haaland', goals: 22, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/ManCity20240722-031_%28cropped%29.jpg/640px-ManCity20240722-031_%28cropped%29.jpg' },
-                      { name: 'Ante Budimir', goals: 21, img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Ante-Budimir.png/640px-Ante-Budimir.png' }
-                    ].map((player, index) => (
-                      <li key={player.name}>
-                        <span className="position">{index + 1}</span>
-                        <a href="player.html">
-                          <img src={player.img} alt={player.name} />
-                          {player.name}
-                        </a>
-                        <span className="points">{player.goals}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <TopScorers />
+
 
           </div>
         </div>
