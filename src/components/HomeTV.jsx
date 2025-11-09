@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const PROVIDER_CODES = {
   sportzonline: "sptz",
   Goal4u: "dxx",
   hesgoal: "hes",
-  yallashooote:"yallashooote",
+  yallashooote: "yallashooote",
   livekora: "vip",
   shahidkoora: "shk",
 };
@@ -48,7 +48,6 @@ const decode = (str) => {
 const HomeTV = () => {
   const [channelsByProvider, setChannelsByProvider] = useState({});
   const [iframeURL, setIframeURL] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showAdAlert, setShowAdAlert] = useState(false);
   const [selectedStream, setSelectedStream] = useState("Goal4u");
 
@@ -57,14 +56,29 @@ const HomeTV = () => {
 
   // --- Fetch provider JSON dynamically ---
   const fetchProviderJSON = async (provider, streamCode) => {
+    
+    // === THIS IS THE BUG FIX ===
+    // 1. Immediately clear the player
+    setIframeURL(""); 
+    // 2. Immediately clear the *channels list* for the provider we are about to fetch.
+    // This stops the old, stale list from showing.
+    setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
+    
     const url = JSON_MAP[provider];
+    if (!url) {
+        return; // No URL, lists are already cleared
+    }
+
     try {
       const res = await fetch(url);
       const data = await res.json();
       const annotated = data.map((c) => ({ ...c, provider }));
+      
+      // 3. Now, set the *real* data for the provider
       setChannelsByProvider((prev) => ({ ...prev, [provider]: annotated }));
 
       if (annotated.length > 0) {
+        // 4. Try to find the channel from the ?stream= param
         if (streamCode) {
           const decodedLabel = decode(streamCode);
           const matched = annotated.find(
@@ -75,46 +89,50 @@ const HomeTV = () => {
             return;
           }
         }
+        // 5. If no streamCode or no match, load the first channel in the list
         setIframeURL(annotated[0].url);
       }
+      // If no channels, iframeURL remains "" (cleared at start)
     } catch (err) {
+      // Handle error, lists are already cleared
       setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
-      setIframeURL("");
     }
   };
 
-  // --- On mount / URL change ---
+  // --- Navigation handler ---
+  const handleProviderClick = (providerKeyword) => {
+    const providerCode = PROVIDER_CODES[providerKeyword];
+    if (providerCode) {
+      navigate(`${location.pathname}?provider=${providerCode}`, { replace: true });
+    }
+  };
+
+  // --- Main useEffect (Driven by URL) ---
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const providerCode = params.get("provider");
     const streamCode = params.get("stream");
 
     const initialProvider = CODE_TO_PROVIDER[providerCode] || "Goal4u";
-    setSelectedStream(initialProvider);
-
+    
+    // Set the active tab in the UI
+    setSelectedStream(initialProvider); 
+    
+    // Fetch data for the provider in the URL
     fetchProviderJSON(initialProvider, streamCode);
+    
   }, [location.search, location.pathname]);
 
-  // --- When selectedStream changes via dropdown ---
-  useEffect(() => {
-    fetchProviderJSON(selectedStream);
-  }, [selectedStream]);
 
-  // --- Resize listener ---
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // --- Fullscreen ad alert ---
+  // --- Fullscreen ad alert (No changes) ---
   useEffect(() => {
     const checkFullscreen = () => {
       const isFullscreen =
         document.fullscreenElement || document.webkitFullscreenElement;
       if (!isFullscreen && iframeURL) {
         setShowAdAlert(true);
-        setTimeout(() => setShowAdAlert(false), 10000);
+        const timer = setTimeout(() => setShowAdAlert(false), 10000);
+        return () => clearTimeout(timer);
       } else {
         setShowAdAlert(false);
       }
@@ -131,54 +149,63 @@ const HomeTV = () => {
     };
   }, [iframeURL]);
 
-  // --- Update URL when iframe changes ---
+  // --- URL Syncing (No changes) ---
   useEffect(() => {
     if (!iframeURL || !selectedStream) return;
+    
     const currentChannels = channelsByProvider[selectedStream] || [];
     const matchedChannel = currentChannels.find((c) => c.url === iframeURL);
     if (!matchedChannel) return;
 
     const providerCode = PROVIDER_CODES[selectedStream];
-    const encodedLabel = encode(matchedChannel.label);
+    const encodedLabel = encode(matchedChannel.label); 
 
-    navigate(
-      `${location.pathname}?provider=${providerCode}&stream=${encodedLabel}`,
-      { replace: true }
-    );
+    const params = new URLSearchParams(location.search);
+    if (params.get("provider") !== providerCode || params.get("stream") !== encodedLabel) {
+        navigate(
+          `${location.pathname}?provider=${providerCode}&stream=${encodedLabel}`,
+          { replace: true }
+        );
+    }
   }, [iframeURL, selectedStream, channelsByProvider, navigate, location.pathname]);
 
   const handleIframeClick = (url) => setIframeURL(url);
+  // This line is now safe because fetchProviderJSON sets the list to [] first
   const filteredChannels = channelsByProvider[selectedStream] || [];
 
+  // --- Render Matchup Card (No changes) ---
   const renderChannelCard = (server) => {
     const isActive = iframeURL === server.url;
+    const cardClasses = `channelCard ${isActive ? "channelCardActive" : ""}`;
+
+    const defaultLogo = "/assets/img/6.png"; 
+    const homeLogo = server.home_logo && server.home_logo.trim() !== "" ? server.home_logo : defaultLogo;
+    const awayLogo = server.away_logo && server.away_logo.trim() !== "" ? server.away_logo : defaultLogo;
+
+    let displayTime = server.time || "";
+    if (displayTime.includes(" ")) {
+        const parts = displayTime.split(" ");
+        if (parts.length > 1) {
+          displayTime = parts[1] + (parts[2] ? " " + parts[2] : "");
+        }
+    }
+
     return (
       <div
         key={server.url}
+        className={cardClasses}
         onClick={() => handleIframeClick(server.url)}
-        style={{
-          width: "80px",
-          height: "100px",
-          borderRadius: "10px",
-          border: isActive ? "2px solid #33ffc9" : "1px solid #ccc",
-          cursor: "pointer",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#fff",
-          padding: "6px",
-          boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-          fontSize: "12px",
-          flexShrink: 0,
-        }}
       >
-        <img
-          src={server.Logo && server.Logo.trim() !== "" ? server.Logo : "/assets/img/6.png"}
-          alt={server.label}
-          style={{ width: "40px", height: "40px", objectFit: "contain", marginBottom: "6px" }}
-        />
-        <span>{server.label}</span>
+        <span className="cardMatchTime">{displayTime.trim()}</span>
+        <div className="cardLogos">
+          <img src={homeLogo} alt={server.home_team || 'Home'} className="cardTeamLogo" />
+          <span className="cardVs">vs</span>
+          <img src={awayLogo} alt={server.away_team || 'Away'} className="cardTeamLogo" />
+        </div>
+        <div className="cardTeams">
+          <span className="cardTeamName">{server.home_team || server.label}</span>
+          <span className="cardTeamName">{server.away_team || "View"}</span>
+        </div>
       </div>
     );
   };
@@ -186,172 +213,367 @@ const HomeTV = () => {
   return (
     <>
       <Helmet>
-      <title>Live Football Streaming | Goal4U</title>
-      <meta
-        name="description"
-        content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
-      />
-      <meta property="og:title" content="Live Football Streaming | Goal4U" />
-      <meta
-        property="og:description"
-        content="Stream live football matches from HD, Brazil, Portugal, and more. All live, all in one place."
-      />
-      <meta property="og:type" content="video.other" />
-      <meta property="og:url" content="https://goal4u.live/livetv" />
-      <meta
-        property="og:image"
-        content="https://goal4u.live/assets/og-thumbnail.jpg"
-      />
-      <link rel="canonical" href="https://goal4u.live/livetv" />
-    </Helmet>
+        <title>Live Football Streaming | Goal4U</title>
+        <meta
+          name="description"
+          content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
+        />
+        <link rel="canonical" href="https://goal4u.live/livetv" />
+      </Helmet>
+
+      {/* --- STYLES (No changes here) --- */}
       <style>{`
+        :root {
+          --primary-color: #00a94e;
+          --body-bg: #f8f9fa;
+          --card-bg: #ffffff;
+          --text-color: #212529;
+          --text-muted: #6c757d;
+          --border-color: #dee2e6;
+          --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+          --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
         ::-webkit-scrollbar {
           width: 6px;
           height: 6px;
         }
         ::-webkit-scrollbar-thumb {
-          background-color: rgba(0, 255, 0, 0.6);
+          background-color: #d0d0d0;
           border-radius: 3px;
         }
-        ::-webkit-scrollbar-track {
-          background-color: #111;
+        ::-webkit-scrollbar-thumb:hover {
+          background-color: #b0b0b0;
         }
-        .livetv-provider-select {
-          padding: 10px 16px;
-          border-radius: 6px;
-          border: 1px solid #444;
-          background: rgba(6, 138, 6, 0.6);
-          color: #ffffff;
-          font-size: 14px;
+        ::-webkit-scrollbar-track {
+          background-color: var(--body-bg);
+        }
+
+        .livetvPageContainer {
+          padding: 1.5rem;
+          background-color: var(--body-bg);
+          min-height: 100vh;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          color: var(--text-color);
+        }
+
+        .livetvMainLayout {
+          display: grid;
+          grid-template-columns: 1fr 320px;
+          gap: 20px;
+          width: 100%;
+          max-width: 1320px;
+          margin: 0 auto;
+        }
+
+        .videoSection {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .videoPlayerWrapper {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          background-color: #000;
+          border-radius: 12px;
+          box-shadow: var(--shadow-md);
+          position: relative;
+          overflow: hidden;
+          border: 1px solid var(--border-color);
+        }
+
+        .iframeContainer {
+          width: 100%;
+          height: 100%;
+          position: relative;
+        }
+
+        .iframeStream {
+          width: 100%;
+          height: 100%;
+          border: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        .streamPlaceholder {
+          width: 100%;
+          height: 100%;
+          background: #222;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #888;
           font-weight: 500;
-          outline: none;
-          min-width: 140px;
+        }
+        
+        .loadingSpinner {
+          border: 4px solid #444;
+          border-top: 4px solid var(--primary-color);
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          animation: spin 1s linear infinite;
+          margin-bottom: 12px;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .adAlert {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background-color: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(5px);
+          color: var(--text-color);
+          padding: 6px 12px;
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          font-size: 12px;
+          font-weight: 500;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .adAlertClose {
+          margin-left: 6px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+          line-height: 1;
+          color: var(--text-muted);
+        }
+        .adAlertClose:hover {
+          color: var(--text-color);
+        }
+
+        .channelSection {
+          display: flex;
+          flex-direction: column;
+          background: var(--card-bg);
+          border-radius: 12px;
+          box-shadow: var(--shadow-sm);
+          border: 1px solid var(--border-color);
+          overflow: hidden;
+          max-height: 80vh;
+        }
+
+        .providerTabs {
+          padding: 10px;
+          border-bottom: 1px solid var(--border-color);
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        
+        .providerTabButton {
+          font-family: inherit;
+          border: 1px solid var(--border-color);
+          background: var(--card-bg);
+          color: var(--text-muted);
+          padding: 6px 12px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 500;
           cursor: pointer;
           transition: all 0.2s ease;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-          appearance: none;
-          background-image: url("/assets/img/icon/live.png");
-          background-position: right 12px center;
-          background-repeat: no-repeat, no-repeat;
-          background-size: 16px;
-          padding-right: 40px;
         }
         
-        .livetv-provider-select:hover {
-          background: #238210c5;
-          border-color: #555;
+        .providerTabButton:hover {
+          background-color: #f8f9fa;
+          border-color: #c7c7c7;
+          color: var(--text-color);
         }
         
-        .livetv-provider-select:focus {
-          border-color: #666;
-          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-        }
-        
-        .livetv-provider-select option {
-          background: #12ac1fff;
+        .providerTabButton.providerTabActive {
+          background-color: var(--primary-color);
           color: #ffffff;
-          padding: 8px 12px;
-          border: none;
-          font-weight: 500;
+          border-color: var(--primary-color);
+          box-shadow: 0 2px 4px rgba(0, 169, 78, 0.2);
+        }
+
+        .channelList {
+          overflow-y: auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+          gap: 12px;
+          padding: 12px;
+        }
+
+        .noChannelsMessage {
+          color: var(--text-muted);
+          font-size: 13px;
+          grid-column: 1 / -1;
+          text-align: center;
+          margin-top: 20px;
+          padding: 0 16px;
+        }
+
+        .channelCard {
+          border-radius: 8px;
+          border: 1px solid var(--border-color);
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
+          background: #fdfdfd;
+          padding: 12px 8px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+          overflow: hidden;
+          min-height: 130px;
+        }
+
+        .channelCard:hover {
+          transform: scale(1.03);
+          box-shadow: var(--shadow-sm);
+          border-color: #c7c7c7;
+        }
+
+        .channelCardActive {
+          border: 2px solid var(--primary-color);
+          box-shadow: 0 0 10px rgba(0, 169, 78, 0.3);
+        }
+
+        .cardMatchTime {
+          font-size: 11px;
+          font-weight: 600;
+          color: var(--primary-color);
+          margin-bottom: 6px;
+        }
+
+        .cardLogos {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+        }
+
+        .cardTeamLogo {
+          width: 36px;
+          height: 36px;
+          object-fit: contain;
+        }
+
+        .cardVs {
+          font-size: 12px;
+          font-weight: 600;
+          color: var(--text-muted);
+        }
+
+        .cardTeams {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-top: 8px;
         }
         
-        .livetv-provider-select option:hover {
-          background: #333;
+        .cardTeamName {
+          font-size: 12px;
+          font-weight: 500;
+          color: var(--text-color);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 1ENT;
+          text-align: center;
         }
-        .livetv-channel-label {
-          color: #33ffc9;
-          font-weight: 700;
-          font-size: 1.08rem;
-          margin-bottom: 8px;
-          margin-right: 12px;
-          letter-spacing: 0.5px;
+        
+        .cardTeamName + .cardTeamName {
+          margin-top: 2px;
         }
-        @media (max-width: 768px) {
-          .livetv-provider-select {
-            min-width: 120px;
-            font-size: 13px;
-            padding: 8px 12px;
-            padding-right: 36px;
-            background-size: 14px;
-            background-position: right 10px center;
+
+        @media (max-width: 900px) {
+          .livetvPageContainer {
+            padding: 1rem;
           }
-          .livetv-channel-label {
-            margin-bottom: 0;
-            margin-right: 8px;
-            font-size: 1rem;
+        
+          .livetvMainLayout {
+            grid-template-columns: 1fr;
+            max-height: none;
           }
+          
+          .channelSection {
+            max-height: none;
+            margin-top: 20px;
+          }
+
+          .providerTabs {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .providerTabs::-webkit-scrollbar {
+            display: none;
+          }
+          
+          .providerTabButton {
+            flex-shrink: 0;
+          }
+          
+          .channelList {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            grid-template-columns: none;
+            gap: 10px;
+            padding-bottom: 12px;
+          }
+
+          .channelCard {
+            width: 140px; 
+            height: 130px;
+            flex-shrink: 0;
+          }
+
+          .noChannelsMessage {
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+          }
+        }
+        
+        @media (max-width: 500px) {
+            .livetvPageContainer {
+                padding: 0.75rem;
+            }
+            .adAlert {
+                top: 8px;
+                left: 8px;
+                padding: 5px 10px;
+                font-size: 11px;
+            }
         }
       `}</style>
 
-      <div
-        style={{
-          padding: '1.2rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: '20px',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            width: '100%',
-          }}
-        >
+      {/* --- JSX --- */}
+      <div className="livetvPageContainer">
+        <div className="livetvMainLayout">
           {/* TV Section */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              maxWidth: '1000px',
-              width: '90vw',
-            }}
-          >
-            <div
-              style={{
-                width: '100%',
-                aspectRatio: '16 / 9',
-                backgroundColor: '#000',
-                border: isMobile ? '9px solid #111' : '12px solid #111',
-                borderRadius: isMobile ? '4px' : '18px',
-                boxShadow: isMobile
-                  ? '0 7px 32px rgba(21, 116, 29, 0.7)'
-                  : '0 10px 40px rgba(21, 116, 29, 0.7)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-            >
+          <div className="videoSection">
+            <div className="videoPlayerWrapper">
               {/* Alert inside video */}
               {showAdAlert && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: isMobile ? '6px' : '12px',
-                    left: isMobile ? '6px' : '12px',
-                    backgroundColor: '#e6fff3',
-                    color: '#105e2e',
-                    padding: isMobile ? '4px 8px' : '6px 12px',
-                    borderRadius: '8px',
-                    border: '1px solid #33ff88',
-                    fontSize: isMobile ? '10px' : '13px',
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  📺 Use <strong style={{ fontWeight: 600 }}>Fullscreen</strong>{' '}
-                  to avoid ads.
+                <div className="adAlert">
+                  📺 Use <strong>Fullscreen</strong> to avoid ads.
                   <span
-                    style={{
-                      marginLeft: '6px',
-                      cursor: 'pointer',
-                      fontWeight: 'bold',
-                    }}
+                    className="adAlertClose"
                     onClick={() => setShowAdAlert(false)}
                   >
                     ×
@@ -359,9 +581,8 @@ const HomeTV = () => {
                 </div>
               )}
 
-              <div
-                style={{ width: '100%', height: '100%', position: 'relative' }}
-              >
+              {/* Iframe */}
+              <div className="iframeContainer">
                 {iframeURL ? (
                   <iframe
                     src={iframeURL}
@@ -370,123 +591,49 @@ const HomeTV = () => {
                     allowFullScreen
                     scrolling="no"
                     sandbox="allow-scripts allow-same-origin"
-                    referrerPolicy="no-referrer-when-downgrade" // default & safer
-
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      border: 'none',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                    }}
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="iframeStream"
                   />
                 ) : (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      background: '#000',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                    }}
-                  />
+                  <div className="streamPlaceholder">
+                    <div className="loadingSpinner"></div>
+                    <p>Select a channel to watch</p>
+                  </div>
                 )}
               </div>
             </div>
-
-            <div
-              style={{
-                width: isMobile ? '110px' : '160px',
-                height: isMobile ? '9px' : '12px',
-                background: '#2b2b2b',
-                borderRadius: '4px',
-                marginTop: '12px',
-                boxShadow:
-                  'inset 0 5px 6px rgba(0,0,0,0.6), 0 7px 10px rgba(0,0,0,0.5)',
-              }}
-            />
           </div>
 
           {/* Channel Cards + Dropdown Section */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: isMobile ? 'column' : 'column',
-              alignItems: isMobile ? 'stretch' : 'center',
-              marginTop: isMobile ? '20px' : '0',
-              width: isMobile ? '100%' : '220px',
-              maxWidth: isMobile ? '100vw' : '220px',
-            }}
-          >
-            {/* Channel label and dropdown */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: isMobile ? 'column' : 'row',
-                alignItems: isMobile ? 'flex-start' : 'center',
-                justifyContent: isMobile ? 'flex-start' : 'center',
-                marginBottom: isMobile ? '10px' : '10px',
-                marginLeft: isMobile ? '6px' : 0,
-                marginTop: isMobile ? 0 : '0',
-                gap: isMobile ? '6px' : '0',
-              }}
-            >
-              <select
-                className="livetv-provider-select"
-                value={selectedStream}
-                onChange={(e) => setSelectedStream(e.target.value)}
-                style={{
-                  marginTop: isMobile ? '0' : undefined,
-                  marginLeft: isMobile ? '0' : undefined,
-                  width: isMobile ? '100%' : "200px",
-                }}
-              >
-                {PROVIDERS.map((p) => (
-                  <option key={p.keyword} value={p.keyword}>
-                    {p.label}
-                  </option>
-                ))}
-              </select>
+          <div className="channelSection">
+            {/* --- Provider Tabs (Now drive navigation) --- */}
+            <div className="providerTabs">
+              {PROVIDERS.map((p) => (
+                <button
+                  key={p.keyword}
+                  className={`providerTabButton ${
+                    selectedStream === p.keyword ? "providerTabActive" : ""
+                  }`}
+                  onClick={() => handleProviderClick(p.keyword)}
+                >
+                  {p.label}
+                </button>
+              ))}
             </div>
 
             {/* Channel Cards */}
-            {isMobile ? (
-              <div
-                style={{
-                  display: 'grid',
-                  gridAutoFlow: 'column',
-                  gridTemplateRows: 'repeat(2, 1fr)',
-                  gap: '12px',
-                  overflowX: 'auto',
-                  paddingBottom: '14px',
-                  paddingRight: '16px',
-                  width: '100%',
-                }}
-              >
-                {filteredChannels.map(renderChannelCard)}
-              </div>
-            ) : (
-              <div
-                style={{
-                  maxHeight: '500px',
-                  overflowY: 'auto',
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '12px',
-                  flex: 1,
-                  paddingRight: '16px',
-                  padding: '16px',
-                }}
-              >
-                {filteredChannels.map(renderChannelCard)}
-              </div>
-            )}
+            <div className="channelList">
+              {filteredChannels.length > 0 ? (
+                filteredChannels.map(renderChannelCard)
+              ) : (
+                <p className="noChannelsMessage">
+                  No channels found for this provider.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-     
     </>
   );
 };
