@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react"; // Added useRef
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -54,14 +54,16 @@ const HomeTV = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // --- Refs for measuring elements ---
+  const playerRef = useRef(null);
+  const channelSectionRef = useRef(null);
+
   // --- Fetch provider JSON dynamically ---
   const fetchProviderJSON = async (provider, streamCode) => {
     
-    // === THIS IS THE BUG FIX ===
     // 1. Immediately clear the player
     setIframeURL(""); 
-    // 2. Immediately clear the *channels list* for the provider we are about to fetch.
-    // This stops the old, stale list from showing.
+    // 2. Immediately clear the channels list for the new provider
     setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
     
     const url = JSON_MAP[provider];
@@ -74,7 +76,7 @@ const HomeTV = () => {
       const data = await res.json();
       const annotated = data.map((c) => ({ ...c, provider }));
       
-      // 3. Now, set the *real* data for the provider
+      // 3. Now, set the real data for the provider
       setChannelsByProvider((prev) => ({ ...prev, [provider]: annotated }));
 
       if (annotated.length > 0) {
@@ -89,12 +91,10 @@ const HomeTV = () => {
             return;
           }
         }
-        // 5. If no streamCode or no match, load the first channel in the list
+        // 5. If no streamCode or no match, load the first channel
         setIframeURL(annotated[0].url);
       }
-      // If no channels, iframeURL remains "" (cleared at start)
     } catch (err) {
-      // Handle error, lists are already cleared
       setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
     }
   };
@@ -124,7 +124,41 @@ const HomeTV = () => {
   }, [location.search, location.pathname]);
 
 
-  // --- Fullscreen ad alert (No changes) ---
+  // --- useEffect to match sidebar height to player (with mobile check) ---
+  useEffect(() => {
+    const videoPlayer = playerRef.current;
+    const sidebar = channelSectionRef.current;
+
+    if (!videoPlayer || !sidebar) return;
+
+    // This function measures the player and sets the sidebar's max-height
+    const setSidebarHeight = () => {
+      // CHECK if we are on mobile (breakpoint is 900px)
+      if (window.innerWidth <= 900) {
+        sidebar.style.maxHeight = 'none'; // RESET inline style on mobile
+      } else {
+        // Only run desktop logic if not mobile
+        const playerHeight = videoPlayer.offsetHeight;
+        if (playerHeight > 0) { // Only set if height is calculated
+          sidebar.style.maxHeight = `${playerHeight}px`;
+        }
+      }
+    };
+
+    // Run on mount
+    setSidebarHeight();
+
+    // Re-run on window resize
+    window.addEventListener('resize', setSidebarHeight);
+
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener('resize', setSidebarHeight);
+    };
+  }, []); // Empty array means this runs only once on mount
+
+
+  // --- Fullscreen ad alert ---
   useEffect(() => {
     const checkFullscreen = () => {
       const isFullscreen =
@@ -149,7 +183,7 @@ const HomeTV = () => {
     };
   }, [iframeURL]);
 
-  // --- URL Syncing (No changes) ---
+  // --- URL Syncing ---
   useEffect(() => {
     if (!iframeURL || !selectedStream) return;
     
@@ -170,10 +204,9 @@ const HomeTV = () => {
   }, [iframeURL, selectedStream, channelsByProvider, navigate, location.pathname]);
 
   const handleIframeClick = (url) => setIframeURL(url);
-  // This line is now safe because fetchProviderJSON sets the list to [] first
   const filteredChannels = channelsByProvider[selectedStream] || [];
 
-  // --- Render Matchup Card (No changes) ---
+  // --- Render Matchup Card ---
   const renderChannelCard = (server) => {
     const isActive = iframeURL === server.url;
     const cardClasses = `channelCard ${isActive ? "channelCardActive" : ""}`;
@@ -221,8 +254,9 @@ const HomeTV = () => {
         <link rel="canonical" href="https://goal4u.live/livetv" />
       </Helmet>
 
-      {/* --- STYLES (No changes here) --- */}
+      {/* --- STYLES (Updated) --- */}
       <style>{`
+        /* --- Base & Scrollbar --- */
         :root {
           --primary-color: #00a94e;
           --body-bg: #f8f9fa;
@@ -232,6 +266,7 @@ const HomeTV = () => {
           --border-color: #dee2e6;
           --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
           --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+          --page-padding: 1.5rem; /* Define page padding as a variable */
         }
         
         ::-webkit-scrollbar {
@@ -242,17 +277,14 @@ const HomeTV = () => {
           background-color: #d0d0d0;
           border-radius: 3px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-          background-color: #b0b0b0;
-        }
         ::-webkit-scrollbar-track {
-          background-color: var(--body-bg);
+          background-color: var(--card-bg);
         }
 
+        /* --- Page Layout --- */
         .livetvPageContainer {
-          padding: 1.5rem;
+          padding: var(--page-padding);
           background-color: var(--body-bg);
-          min-height: 100vh;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
           color: var(--text-color);
         }
@@ -264,8 +296,10 @@ const HomeTV = () => {
           width: 100%;
           max-width: 1320px;
           margin: 0 auto;
+          align-items: start;
         }
 
+        /* --- Video Player Section --- */
         .videoSection {
           flex: 1;
           min-width: 0;
@@ -354,10 +388,13 @@ const HomeTV = () => {
           line-height: 1;
           color: var(--text-muted);
         }
-        .adAlertClose:hover {
-          color: var(--text-color);
-        }
 
+        /* --- Wrapper Class --- */
+        .channelSectionWrapper {
+          /* This wrapper isolates the sticky element */
+        }
+        
+        /* --- Channel List Section (Sticky) --- */
         .channelSection {
           display: flex;
           flex-direction: column;
@@ -365,16 +402,20 @@ const HomeTV = () => {
           border-radius: 12px;
           box-shadow: var(--shadow-sm);
           border: 1px solid var(--border-color);
-          overflow: hidden;
-          max-height: 80vh;
+          overflow: hidden; /* <-- Correct for desktop */
+          position: sticky;
+          top: var(--page-padding); 
+          /* max-height is set by JavaScript */
         }
 
+        /* --- Provider Tabs --- */
         .providerTabs {
           padding: 10px;
           border-bottom: 1px solid var(--border-color);
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
+          flex-shrink: 0;
         }
         
         .providerTabButton {
@@ -403,12 +444,15 @@ const HomeTV = () => {
           box-shadow: 0 2px 4px rgba(0, 169, 78, 0.2);
         }
 
+        /* --- Channel List --- */
         .channelList {
           overflow-y: auto;
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
           gap: 12px;
           padding: 12px;
+          flex: 1;
+          min-height: 0;
         }
 
         .noChannelsMessage {
@@ -420,6 +464,7 @@ const HomeTV = () => {
           padding: 0 16px;
         }
 
+        /* --- Channel Card Styles --- */
         .channelCard {
           border-radius: 8px;
           border: 1px solid var(--border-color);
@@ -488,7 +533,7 @@ const HomeTV = () => {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          width: 1ENT;
+          width: 100%;
           text-align: center;
         }
         
@@ -496,24 +541,62 @@ const HomeTV = () => {
           margin-top: 2px;
         }
 
+        /* --- Responsive (Mobile) --- */
         @media (max-width: 900px) {
           .livetvPageContainer {
-            padding: 1rem;
+            padding: 1rem 0; 
+            --page-padding: 1rem; 
           }
         
           .livetvMainLayout {
             grid-template-columns: 1fr;
             max-height: none;
+            align-items: stretch; 
+            gap: 0;
+          }
+
+          /* --- THIS IS THE FIX --- */
+          .videoSection {
+            min-width: 0; /* Prevents grid item from expanding */
+          }
+          /* --- END FIX --- */
+
+          .videoPlayerWrapper {
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+          }
+          
+          .channelSectionWrapper {
+             margin-top: 20px;
+             padding: 0 1rem;
+             /* --- THIS IS THE FIX --- */
+             min-width: 0; /* Prevents grid item from expanding */
           }
           
           .channelSection {
             max-height: none;
-            margin-top: 20px;
+            position: static;
+            border: none;
+            box-shadow: none;
+            overflow: hidden; /* Keep this to contain children */
+          }
+          
+          .channelList {
+            flex: none; 
+            min-height: auto;
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto; /* This will now work */
+            overflow-y: hidden;
+            grid-template-columns: none;
+            gap: 10px;
+            padding-bottom: 12px;
           }
 
           .providerTabs {
             flex-wrap: nowrap;
-            overflow-x: auto;
+            overflow-x: auto; /* This will also work */
             padding-bottom: 10px;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -524,16 +607,6 @@ const HomeTV = () => {
           
           .providerTabButton {
             flex-shrink: 0;
-          }
-          
-          .channelList {
-            display: flex;
-            flex-direction: row;
-            overflow-x: auto;
-            overflow-y: hidden;
-            grid-template-columns: none;
-            gap: 10px;
-            padding-bottom: 12px;
           }
 
           .channelCard {
@@ -551,8 +624,14 @@ const HomeTV = () => {
         
         @media (max-width: 500px) {
             .livetvPageContainer {
-                padding: 0.75rem;
+                padding: 0.75rem 0 0 0;
+                --page-padding: 0.75rem;
             }
+            
+            .channelSectionWrapper {
+              padding: 0 0.75rem;
+            }
+
             .adAlert {
                 top: 8px;
                 left: 8px;
@@ -567,7 +646,8 @@ const HomeTV = () => {
         <div className="livetvMainLayout">
           {/* TV Section */}
           <div className="videoSection">
-            <div className="videoPlayerWrapper">
+            {/* Added ref to the player wrapper */}
+            <div className="videoPlayerWrapper" ref={playerRef}>
               {/* Alert inside video */}
               {showAdAlert && (
                 <div className="adAlert">
@@ -604,34 +684,38 @@ const HomeTV = () => {
             </div>
           </div>
 
-          {/* Channel Cards + Dropdown Section */}
-          <div className="channelSection">
-            {/* --- Provider Tabs (Now drive navigation) --- */}
-            <div className="providerTabs">
-              {PROVIDERS.map((p) => (
-                <button
-                  key={p.keyword}
-                  className={`providerTabButton ${
-                    selectedStream === p.keyword ? "providerTabActive" : ""
-                  }`}
-                  onClick={() => handleProviderClick(p.keyword)}
-                >
-                  {p.label}
-                </button>
-              ))}
-            </div>
+          {/* Wrapper div for sticky isolation */}
+          <div className="channelSectionWrapper">
+            {/* Added ref to the channel section */}
+            <div className="channelSection" ref={channelSectionRef}>
+              {/* --- Provider Tabs (Now drive navigation) --- */}
+              <div className="providerTabs">
+                {PROVIDERS.map((p) => (
+                  <button
+                    key={p.keyword}
+                    className={`providerTabButton ${
+                      selectedStream === p.keyword ? "providerTabActive" : ""
+                    }`}
+                    onClick={() => handleProviderClick(p.keyword)}
+                  >
+                    {p.label}
+                  </button>
+                ))}
+              </div>
 
-            {/* Channel Cards */}
-            <div className="channelList">
-              {filteredChannels.length > 0 ? (
-                filteredChannels.map(renderChannelCard)
-              ) : (
-                <p className="noChannelsMessage">
-                  No channels found for this provider.
-                </p>
-              )}
+              {/* Channel Cards */}
+              <div className="channelList">
+                {filteredChannels.length > 0 ? (
+                  filteredChannels.map(renderChannelCard)
+                ) : (
+                  <p className="noChannelsMessage">
+                    No channels found for this provider.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
+          
         </div>
       </div>
     </>
