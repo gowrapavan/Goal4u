@@ -6,8 +6,8 @@ import Players from './Players';
 import Stadiums from './Stadiums';
 import Diary from './Diary';
 import HomeTV from './HomeTV'; // ✅ Import HomeTV
-
-
+import StatsSection from './StatsSection'; // <-- Import the new component
+import ClubSlider from './ClubSlider'; // <-- 1. IMPORT IT
 const ContentInfo = () => {
   return (
     <section className="content-info">
@@ -29,11 +29,14 @@ const ContentInfo = () => {
           </div>
         </div>
       </div>
+
       {/* ✅ Add Live TV Section */}
       <div data-hometv>
         <HomeTV />
       </div>
      
+            <ClubSlider />
+            <StatsSection />
 
       {/* Content Central */}
       <div className="container padding-top">

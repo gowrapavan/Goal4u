@@ -17,8 +17,8 @@ const HeroSection = () => {
   // ✅ Separate desktop and mobile images
   const hardcodedSlide = {
     title: 'Welcome to GOAL4U',
-    desktopImage: '/assets/img/yt-banner.png',
-    mobileImage: '/assets/img/yt-banner-mb.png',
+    desktopImage: '/assets/img/yt.png',
+    mobileImage: '/assets/img/yt-mb.png',
     url: '/about',
   };
 
