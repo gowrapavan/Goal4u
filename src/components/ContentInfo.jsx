@@ -7,7 +7,9 @@ import Stadiums from './Stadiums';
 import Diary from './Diary';
 import HomeTV from './HomeTV'; // ✅ Import HomeTV
 import StatsSection from './StatsSection'; // <-- Import the new component
-import ClubSlider from './ClubSlider'; // <-- 1. IMPORT IT
+import ClubSlider from './Sliders/ClubSlider'; // <-- 1. IMPORT IT
+import MatchSlider from './Sliders/MatchSlider'; // <-- 1. IMPORT IT
+
 const ContentInfo = () => {
   return (
     <section className="content-info">
@@ -29,6 +31,7 @@ const ContentInfo = () => {
           </div>
         </div>
       </div>
+                                <MatchSlider />
 
       {/* ✅ Add Live TV Section */}
       <div data-hometv>

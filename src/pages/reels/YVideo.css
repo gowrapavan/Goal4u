@@ -1,233 +1,109 @@
-.yt-promo-card {
-  background: linear-gradient(145deg, #1e1e1e, #111);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  text-align: center;
-  animation: fadeInUp 0.6s ease-in-out;
-}
-
-.yt-promo-video {
-  width: 100%;
-  height: 200px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
-
-/* Base styling */
-.yt-promo-logo {
-  display: block;
+/* --- PAGE LAYOUT --- */
+.YVideo-page {
+  max-width: 1400px;
   margin: 0 auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Soft light grey bg for the grid area to make white cards pop */
+  background-color: #f8f9fa; 
+  padding: 20px 20px 80px;
+  min-height: 100vh;
 }
 
-/* Hover effect for fun */
-.yt-promo-logo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+/* --- PROMO CARD (Keep existing dark style as it works well as a banner) --- */
+.yt-promo-card {
+  position: relative;
+  background: #0f0f0f; /* Keep banner dark for contrast */
+  border: 1px solid #333;
+  border-left: 4px solid #73ff0085;
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
-
-/* Desktop size (big logo, full width up to 300px) */
-@media (min-width: 768px) {
-  .yt-promo-logo {
-    width: 280px;
-    height: auto;
-    border-radius: 0; /* Keep rectangle shape */
-  }
-}
-
-/* Mobile size (circle avatar) */
-@media (max-width: 767px) {
-  .yt-promo-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%; /* Circle */
-    object-fit: cover;
-  }
-}
-
 
 .yt-promo-name {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 8px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff; /* Banner text stays white */
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .yt-promo-text {
   font-size: 14px;
-  color: #ccc;
-  margin-bottom: 14px;
+  color: #a0a0a0;
+  margin: 5px 0 0 0;
+  max-width: 600px;
+}
+
+.yt-promo-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #333;
 }
 
 .yt-promo-btn {
-  display: inline-block;
-  background: #ff0000;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 4px;
+  background: #ffffff;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: background 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .yt-promo-btn:hover {
-  background: #cc0000;
+  background: #ff0000;
+  color: #fff;
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* YVideo Page Styles */
-.YVideo-page {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 24px 24px 120px 24px; /* Extra bottom padding for mobile footer */
-  background: #ffffff;
-  min-height: 100vh;
-  margin-top: 110px; /* Account for fixed header */
-}
-
-/* Loading State */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  gap: 16px;
-}
-
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #ff0000;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* YVideo Header */
-.YVideo-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 30px 0;
-  position: relative;
-  overflow: hidden;
-  animation: fadeSlideUp 1s ease forwards;
-}
-
-.YVideo-title {
-  font-size: 28px;
-  font-weight: 900;
-  margin: 0 0 10px 0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: linear-gradient(90deg, #00ff88, #00d4ff, #00ff88);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 4s linear infinite, fadeInScale 1.2s ease forwards;
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-}
-
-.YVideo-subtitle {
-  font-size: 14px;
-  font-weight: 400;
-  color: #cccccc;
-  letter-spacing: 0.5px;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards 0.5s;
-  background: rgba(0, 0, 0, 0.4);
-  padding: 4px 12px;
-  border-radius: 20px;
-  display: inline-block;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-}
-
-/* Animated underline */
-.YVideo-title::after {
-  content: "";
-  display: block;
-  margin: 12px auto 0 auto;
-  height: 3px;
-  width: 80px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #00ff88, #00d4ff);
-  animation: expandWidth 0.8s ease forwards 0.6s;
-  transform-origin: center;
-  opacity: 0;
-}
-
-/* Animations */
-@keyframes gradientMove {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes fadeInScale {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(6px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes expandWidth {
-  0% { width: 0; opacity: 0; }
-  100% { width: 80px; opacity: 1; }
-}
-
-@keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Videos Feed Grid */
+/* --- VIDEO FEED GRID --- */
 .videos-feed {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
 }
 
+/* --- NEW CARD DESIGN (White Card / Dark Text) --- */
 .feed-video-item {
-  cursor: pointer;
+  background-color: #ffffff; /* Solid White Card */
   border-radius: 12px;
-  overflow: hidden;
+  cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Soft shadow to separate from background */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+  border: 1px solid #eee; /* Subtle border */
 }
 
 .feed-video-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
+/* Thumbnail */
 .feed-thumbnail {
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: #f0f0f0;
   overflow: hidden;
+  background: #000;
 }
 
 .feed-thumbnail img {
@@ -241,19 +117,15 @@
   transform: scale(1.05);
 }
 
-/* Thumbnail Overlay */
 .thumbnail-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s;
 }
 
 .feed-video-item:hover .thumbnail-overlay {
@@ -261,28 +133,30 @@
 }
 
 .play-icon {
-  color: white;
-  font-size: 32px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  transform: scale(1);
-  transition: transform 0.2s ease;
-}
-
-.feed-video-item:hover .play-icon {
-  transform: scale(1.1);
-}
-
-/* Feed Info */
-.feed-info {
-  padding: 16px;
-}
-
-.feed-title {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: #000; /* Black play icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
-  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Info Section */
+.feed-info {
+  padding: 16px; /* Breathing room inside the card */
+}
+
+/* ✅ FIXED: Title Color is now Dark */
+.feed-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a; /* Dark Grey/Black text */
+  margin: 0 0 10px 0;
   line-height: 1.4;
-  margin: 0 0 12px 0;
-  color: #0f0f0f;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -300,117 +174,112 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
+  border: 1px solid #eee;
 }
 
 .feed-channel-info {
-  flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .feed-channel {
-  font-size: 14px;
-  font-weight: 500;
-  color: #0f0f0f;
-  margin: 0 0 2px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444; /* Darker grey for channel name */
+  margin: 0;
 }
 
 .feed-date {
   font-size: 12px;
-  color: #606060;
-  margin: 0;
+  color: #888; /* Lighter grey for date */
+  margin: 2px 0 0 0;
 }
 
-/* Load More Section */
+/* --- LOAD MORE BTN --- */
 .load-more-section {
   text-align: center;
   margin-top: 40px;
 }
 
 .load-more-btn {
-  background: #ff0000;
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 24px;
-  font-size: 16px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 12px 30px;
+  border-radius: 100px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  transition: all 0.2s;
 }
 
 .load-more-btn:hover {
-  background: #d50000;
+  background: #f0f0f0;
+  border-color: #ccc;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .YVideo-page {
-    margin-top: 73px; /* Mobile header height */
-  }
-  
-  .videos-feed {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
+/* --- LOADING --- */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: #666;
 }
 
+.loading-spinner {
+  width: 35px;
+  height: 35px;
+  border: 3px solid #ddd;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .YVideo-page {
-    padding: 16px;
-    padding-bottom: 80px; /* Account for mobile footer */
+    padding: 15px;
   }
   
-  .YVideo-title {
-    font-size: 24px;
+  .yt-promo-card {
+    flex-direction: row;
+    padding: 15px;
+    gap: 15px;
   }
   
-  .YVideo-subtitle {
-    font-size: 14px;
+  .yt-promo-logo {
+    width: 45px;
+    height: 45px;
   }
   
-  .videos-feed {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
+  .yt-promo-name {
+    font-size: 18px;
   }
   
-  .feed-info {
-    padding: 12px;
-  }
-  
-  .feed-title {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .YVideo-page {
-    padding: 12px;
-    padding-bottom: 60px;
-  }
-  
-  .videos-feed {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .YVideo-header {
-    margin-bottom: 24px;
-    padding: 20px 0;
-  }
-  
-  .YVideo-header::before {
+  .yt-promo-text {
     display: none;
   }
   
-  .YVideo-title {
-    font-size: 22px;
+  .yt-promo-btn {
+    padding: 8px 12px;
+    font-size: 11px;
   }
-  
-  .play-icon {
-    font-size: 28px;
+
+  /* Force vertical Stack for promo logo/btn on mobile */
+  .promo-actions {
+     display: flex;
+     flex-direction: column-reverse;
+     gap: 10px;
+  }
+
+  .videos-feed {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    gap: 20px;
   }
 }

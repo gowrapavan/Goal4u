@@ -24,10 +24,13 @@ const MainMenu = () => {
         await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jQuery.mmenu/8.5.24/mmenu.min.js");
         await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js");
         await loadScript("https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.10/js/superfish.min.js");
-        await loadScript("/assets/js/theme-main.js"); // your theme script
+     await loadScript("/assets/js/theme-main.js"); 
 
         if (window.$) {
-          $(".mainmenu").sticky({ topSpacing: 0 });
+          // ❌ REMOVE THIS LINE to stop it from sticking
+          // $(".mainmenu").sticky({ topSpacing: 0 }); 
+
+          // ✅ Keep this if you still want the dropdowns to work
           $("ul.sf-menu").superfish();
         }
       } catch (error) {
@@ -38,13 +41,31 @@ const MainMenu = () => {
     loadAllScripts();
   }, []);
 
-  return (
+return (
     <>
+      {/* ✅ ADD THIS STYLE BLOCK TO FORCE OVERRIDE THE JS PLUGIN */}
+      <style>{`
+        .mainmenu {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          width: 100% !important;
+          z-index: 10 !important;
+        }
+
+        /* The plugin creates a wrapper div - this neutralizes it */
+        .sticky-wrapper {
+          height: auto !important;
+          position: relative !important;
+        }
+      `}</style>
+
       {/* Desktop Mainmenu */}
       <nav
         className="mainmenu"
         style={{
           backgroundColor: isDark ? "#111" : "#fff",
+          // The CSS in the style tag above handles the positioning now
         }}
       >
         <div className="container">
@@ -55,6 +76,7 @@ const MainMenu = () => {
               color: isDark ? "#fff" : "#000",
             }}
           >
+           {/* ... rest of your list items ... */}
             <li className="current">
               <a href="index.html" style={{ color: isDark ? "#fff" : "#000" }}>
                 Home

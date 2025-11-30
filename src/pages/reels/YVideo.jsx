@@ -65,7 +65,7 @@ const YVideo = () => {
       <div className="YVideo-page">
         <div className="loading-container">
           <div className="loading-spinner"></div>
-          <p>Loading videos...</p>
+          <p style={{marginTop: '15px', color: '#666'}}>Loading contents...</p>
         </div>
       </div>
     );
@@ -74,21 +74,21 @@ const YVideo = () => {
   return (
     <div className="YVideo-page">
 
-      {/* YouTube Channel Promo Card (No iframe) */}
+      {/* YouTube Channel Promo Card */}
       <div className="yt-promo-card">
-<picture>
-  {/* Desktop logo */}
-  <source
-    media="(min-width: 768px)"
-    srcSet="https://yt3.googleusercontent.com/rpqVuGe3g57-1c84Wy_Y8grDvnJAxE4NCtmf9mewlcdU5n1oflv404BAaS5_5p1FW2cLj7EqpA=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
-  />
-  {/* Mobile logo */}
-  <img
-    src="https://yt3.googleusercontent.com/DzaeBGqaW3UehPRF2lvbqBjXX4BtdEj0zMuAzLHTXxgliUp46j8T7sT7qJN-sMQBwmP91IZRzw=s160-c-k-c0x00ffffff-no-rj"
-    alt="Goal4U TV Channel Logo"
-    className="yt-promo-logo"
-  />
-</picture>
+        <picture>
+          {/* Desktop logo */}
+          <source
+            media="(min-width: 768px)"
+            srcSet="https://yt3.googleusercontent.com/rpqVuGe3g57-1c84Wy_Y8grDvnJAxE4NCtmf9mewlcdU5n1oflv404BAaS5_5p1FW2cLj7EqpA=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" // Ensure this is a valid high-res URL if possible
+          />
+          {/* Mobile logo */}
+          <img
+            src="https://yt3.googleusercontent.com/DzaeBGqaW3UehPRF2lvbqBjXX4BtdEj0zMuAzLHTXxgliUp46j8T7sT7qJN-sMQBwmP91IZRzw=s160-c-k-c0x00ffffff-no-rj"
+            alt="Goal4U TV Channel Logo"
+            className="yt-promo-logo"
+          />
+        </picture>
 
         <h2 className="yt-promo-name">Goal4U TV</h2>
         <p className="yt-promo-text">
@@ -100,7 +100,7 @@ const YVideo = () => {
           rel="noopener noreferrer"
           className="yt-promo-btn"
         >
-          ▶ Subscribe on YouTube
+          <span style={{ fontSize: '1.2em' }}>▶</span> Subscribe on YouTube
         </a>
       </div>
 
@@ -112,14 +112,19 @@ const YVideo = () => {
             className="feed-video-item"
             onClick={() => handleVideoClick(video)}
           >
-            <div className="feed-thumbnail">
-              <img src={video.thumbnail} alt={video.title} loading="lazy" />
-              <div className="thumbnail-overlay">
-                <div className="play-icon">▶</div>
-              </div>
-            </div>
+            {/* Thumbnail */}
+<div className="feed-thumbnail">
+  <img src={video.thumbnail} alt={video.title} loading="lazy" />
+  <div className="thumbnail-overlay">
+    {/* Just a simple div with a character, CSS handles the circle/color */}
+    <div className="play-icon">▶</div>
+  </div>
+</div>
+
+            {/* Info */}
             <div className="feed-info">
               <h3 className="feed-title">{truncate(video.title, 80)}</h3>
+              
               <div className="feed-meta">
                 {video.channelLogo && (
                   <img

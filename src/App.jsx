@@ -6,7 +6,7 @@ import InstaFeeds from "./pages/reels/ReelFeed";
 import Video from "./pages/reels/Video";
 import YVideo from "./pages/reels/YVideo";
 
-
+import MatchSlider from './components/Sliders/MatchSlider';
 import Shorts from "./pages/reels/Shorts";
 
 // Components
@@ -69,8 +69,10 @@ function AppWrapper() {
             path="/"
             element={
               <>
+
                 <HeroSection />
                 <ContentInfo />
+
                 <Newsletter />
               </>
             }

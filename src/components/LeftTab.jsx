@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RecentMatches from './RecentMatches'; // Ensure this is also static or mock data
+import RecentMatches from './RecentMatches'; 
 import TopScorers from "./TopScorers";
 
 // --- Base URL and League Definitions ---
@@ -13,16 +13,17 @@ const LEAGUE_SOURCES = [
 ];
 
 const LeftTab = () => {
-  const [activeTab, setActiveTab] = useState('statistics');
+  // ✅ CHANGE 1: Set default active tab to 'standing'
+  const [activeTab, setActiveTab] = useState('standing');
 
-  // --- State for Table Tab ---
+  // --- State for Standing Tab ---
   const [selectedLeague, setSelectedLeague] = useState('ESP'); // Default to La Liga
   const [tableData, setTableData] = useState([]);
   const [topClub, setTopClub] = useState(null);
   const [loadingTable, setLoadingTable] = useState(true);
   const [errorTable, setErrorTable] = useState(null);
   
-  // --- NEW State for extra details ---
+  // --- State for extra details ---
   const [competitionName, setCompetitionName] = useState('La Liga');
   const [competitionEmblem, setCompetitionEmblem] = useState(''); 
   const [countryFlag, setCountryFlag] = useState('');
@@ -35,12 +36,12 @@ const LeftTab = () => {
     const fetchTableData = async (leagueKey) => {
       setLoadingTable(true);
       setErrorTable(null);
-      setTableData([]); // Clear old data
-      setTopClub(null); // Clear old top club
-      setCompetitionEmblem(''); // Clear old emblem
-      setCountryFlag(''); // Clear old flag
-      setCountryName(''); // Clear old country
-      setCurrentMatchday(null); // Clear old matchday
+      setTableData([]); 
+      setTopClub(null); 
+      setCompetitionEmblem(''); 
+      setCountryFlag(''); 
+      setCountryName(''); 
+      setCurrentMatchday(null); 
 
       const league = LEAGUE_SOURCES.find(l => l.key === leagueKey);
       if (!league) {
@@ -69,7 +70,7 @@ const LeftTab = () => {
           // --- GET TOP 3 ONLY ---
           const top3standings = standings.slice(0, 3);
           setTableData(top3standings);
-          setTopClub(standings[0]); // Top club is still the first in the array
+          setTopClub(standings[0]); 
         } else {
           throw new Error('No table data found in JSON');
         }
@@ -81,7 +82,7 @@ const LeftTab = () => {
     };
     
     fetchTableData(selectedLeague);
-  }, [selectedLeague]); // Re-runs when selectedLeague changes
+  }, [selectedLeague]); 
 
   // --- Original Functions ---
   const recentMatches = [];
@@ -117,38 +118,36 @@ const LeftTab = () => {
   };
 
   return (
-    // --- Wrapper div with a unique ID ---
     <div id="left-tab-scoped"> 
-      {/* --- Prefixed all rules with #left-tab-scoped --- */}
       <style>{`
         /* Fix for scrollbar on TABS */
         #left-tab-scoped .nav-tabs#myTab {
           overflow: visible !important;
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; 
+          -ms-overflow-style: none; 
         }
         
         #left-tab-scoped .nav-tabs#myTab::-webkit-scrollbar {
-          display: none; /* Chrome, Safari, and Opera */
+          display: none; 
         }
 
         /* Fix for scrollbar on CLUB RANKING */
         #left-tab-scoped .club-ranking .info-ranking {
           max-height: none !important;
           overflow-y: visible !important;
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; 
+          -ms-overflow-style: none; 
         }
         
         #left-tab-scoped .club-ranking .info-ranking::-webkit-scrollbar {
-          display: none; /* Chrome, Safari, and Opera */
+          display: none; 
         }
 
-        /* --- Styles for Main Tabs (Statistics, Table, Description) --- */
+        /* --- Styles for Main Tabs --- */
         #left-tab-scoped .nav-tabs#myTab {
             border-bottom: 1px solid #3a3a3a !important; 
             margin-bottom: 20px; 
-            display: flex; /* Added for wrapping */
+            display: flex; 
         }
         #left-tab-scoped .nav-tabs#myTab > li > a {
             color: #ffffff; 
@@ -174,9 +173,6 @@ const LeftTab = () => {
             border-bottom: 3px solid #12dba1 !important; 
         }
 
-        
-        /* --- Styles for NEW TABLE Tab --- */
-
         /* --- Styles for League Selector Buttons --- */
         #left-tab-scoped .ltab-league-selector {
           display: flex;
@@ -199,7 +195,7 @@ const LeftTab = () => {
           color: #fff;
         }
         #left-tab-scoped .ltab-league-btn.active {
-          background: #12dba1; /* Active green */
+          background: #12dba1; 
           color: #fff;
           border-color: #12dba1;
         }
@@ -218,16 +214,14 @@ const LeftTab = () => {
           align-items: center;
         }
 
-        /* Left Column (League Info) */
         #left-tab-scoped .ltab-top-league-info {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 12px; /* Increased gap */
+          gap: 12px; 
         }
-        /* --- FIX: Increased League Logo size --- */
         #left-tab-scoped .ltab-top-league-info .ltab-league-logo {
-          height: 35px; /* Increased logo size */
+          height: 35px; 
           width: auto;
         }
         #left-tab-scoped .ltab-top-league-info h5 {
@@ -236,12 +230,11 @@ const LeftTab = () => {
           margin: 0;
           text-transform: uppercase;
         }
-        /* --- NEW: League details (flag, country, matchday) --- */
         #left-tab-scoped .ltab-league-details {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          gap: 8px 12px; /* Row and column gap */
+          gap: 8px 12px; 
           font-size: 13px;
           color: #888;
         }
@@ -255,18 +248,15 @@ const LeftTab = () => {
           width: auto;
         }
 
-
-        /* Right Column (Club Info) */
         #left-tab-scoped .ltab-top-club-details {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 10px;
         }
-        /* --- FIX: Adjusted logo size --- */
         #left-tab-scoped .ltab-top-club-details img {
-          width: 50px; /* Adjusted size */
-          height: 50px; /* Adjusted size */
+          width: 50px; 
+          height: 50px; 
           object-fit: contain;
         }
         #left-tab-scoped .ltab-top-club-details .club-name {
@@ -280,7 +270,7 @@ const LeftTab = () => {
           color: #aaaaaa; 
         }
 
-        /* --- START: CSS Grid Table Replacement --- */
+        /* --- CSS Grid Table Replacement --- */
         #left-tab-scoped .ltab-grid-wrapper {
           overflow-x: auto; 
           border: 1px solid #3a3a3a; 
@@ -295,7 +285,6 @@ const LeftTab = () => {
           min-width: 600px; 
         }
         
-        /* Header Row Styles */
         #left-tab-scoped .ltab-grid-header {
           display: contents; 
         }
@@ -311,7 +300,6 @@ const LeftTab = () => {
           white-space: nowrap;
         }
         
-        /* Body Row Styles */
         #left-tab-scoped .ltab-grid-row {
           display: contents; 
         }
@@ -320,7 +308,6 @@ const LeftTab = () => {
            background-color: #3a3a3a; 
         }
 
-        /* All Body Cell Styles */
         #left-tab-scoped .ltab-grid-row > div {
           padding: 12px;
           border-bottom: 1px solid #3a3a3a;
@@ -332,12 +319,10 @@ const LeftTab = () => {
           transition: background-color 0.2s ease;
         }
 
-        /* Remove bottom border from last row */
         #left-tab-scoped .ltab-grid-row:last-child > div {
           border-bottom: none;
         }
 
-        /* Team Cell (Club Name) */
         #left-tab-scoped .ltab-grid-row .team-cell {
           color: #ffffff; 
           font-weight: normal; 
@@ -350,11 +335,9 @@ const LeftTab = () => {
           object-fit: contain;
         }
 
-        /* --- FIX: Responsive Team Names --- */
         #left-tab-scoped .team-name-mobile { display: none; }
         #left-tab-scoped .team-name-desktop { display: inline; }
         
-        /* Column-specific alignments */
         #left-tab-scoped .ltab-grid-table .pos {
           text-align: left;
           justify-content: flex-start; 
@@ -378,15 +361,12 @@ const LeftTab = () => {
             color: #ffffff;
         }
         
-        /* --- END: CSS Grid Table Replacement --- */
-        
         #left-tab-scoped .ltab-loading-error-msg {
           color: #9e9e9e;
           padding: 20px;
           text-align: center;
         }
         
-        /* --- Styles for DESCRIPTION Tab --- */
         #left-tab-scoped .ltab-tournament-description {
           background: #2b2b2b;
           padding: 20px;
@@ -404,35 +384,29 @@ const LeftTab = () => {
           font-size: 14px;
         }
 
-        /* --- START: Mobile Responsive Styles --- */
+        /* --- Mobile Responsive Styles --- */
         @media (max-width: 767px) {
-          /* Make main tabs wrap */
           #left-tab-scoped .nav-tabs#myTab {
             flex-wrap: wrap;
           }
 
-          /* Stack top club card */
           #left-tab-scoped .ltab-top-club {
             flex-direction: column;
             gap: 20px;
             align-items: center;
           }
           #left-tab-scoped .ltab-top-league-info {
-            align-items: center; /* Center league info */
+            align-items: center; 
           }
-          /* --- NEW: Center league details on mobile --- */
           #left-tab-scoped .ltab-league-details {
             justify-content: center;
           }
 
-          /* --- FIX: Simplify grid table for mobile (POS, CLUB, MP, W, D, L, PTS) --- */
           #left-tab-scoped .ltab-grid-table {
-            min-width: 100%; /* Allow table to shrink */
-            /* Mobile Columns: POS, CLUB, MP, W, D, L, PTS */
+            min-width: 100%; 
             grid-template-columns: 30px 1fr repeat(3, 30px) 40px 40px;
           }
 
-          /* --- FIX: Hide only GF, GA, GD on mobile --- */
           #left-tab-scoped .ltab-grid-header > .gf,
           #left-tab-scoped .ltab-grid-header > .ga,
           #left-tab-scoped .ltab-grid-header > .gd,
@@ -442,11 +416,9 @@ const LeftTab = () => {
             display: none;
           }
 
-          /* --- FIX: Switch responsive team names --- */
           #left-tab-scoped .team-name-mobile { display: inline; }
           #left-tab-scoped .team-name-desktop { display: none; }
 
-          /* Adjust padding on mobile for tighter columns */
           #left-tab-scoped .ltab-grid-row > div,
           #left-tab-scoped .ltab-grid-header > div {
             padding: 10px 5px;
@@ -457,16 +429,13 @@ const LeftTab = () => {
           #left-tab-scoped .ltab-grid-header .pos {
             padding-left: 10px;
           }
-
         }
-        /* --- END: Mobile Responsive Styles --- */
-
       `}</style>
 
       <div>
-        {/* TABS (Renamed 'groups' to 'table') */}
+        {/* ✅ CHANGE 2: Reordered Tabs [Standing, Statistics, Description] */}
         <ul className="nav nav-tabs" id="myTab">
-          {['statistics', 'table', 'description'].map(tab => (
+          {['standing', 'statistics', 'description'].map(tab => (
             <li key={tab} className={activeTab === tab ? 'active' : ''}>
               <a
                 href={`#${tab}`}
@@ -475,7 +444,8 @@ const LeftTab = () => {
                   setActiveTab(tab);
                 }}
               >
-                {tab.toUpperCase()}
+                {/* Rename logic: if it's 'standing', show 'Standing', else uppercase */}
+                {tab === 'standing' ? 'Standing' : tab.toUpperCase()}
               </a>
             </li>
           ))}
@@ -483,7 +453,103 @@ const LeftTab = () => {
 
         {/* CONTENT TABS */}
         <div className="tab-content">
-          {/* STATISTICS */}
+          
+          {/* ✅ CHANGE 3: Moved Standing (formerly Table) to be the first block */}
+          <div className={`tab-pane ${activeTab === 'standing' ? 'active' : ''}`} id="standing">
+            
+            {/* --- League Selector --- */}
+            <div className="ltab-league-selector">
+              {LEAGUE_SOURCES.map(league => (
+                <button
+                  key={league.key}
+                  className={`ltab-league-btn ${selectedLeague === league.key ? 'active' : ''}`}
+                  onClick={() => setSelectedLeague(league.key)}
+                >
+                  {league.label}
+                </button>
+              ))}
+            </div>
+
+            {loadingTable && <p className="ltab-loading-error-msg">Loading table...</p>}
+            {errorTable && <p className="ltab-loading-error-msg">Error: {errorTable}</p>}
+            
+            {!loadingTable && !errorTable && topClub && (
+              <>
+                {/* --- Top Club Highlight --- */}
+                <div className="ltab-top-club">
+                  {/* Left Column */}
+                  <div className="ltab-top-league-info">
+                    {competitionEmblem && <img src={competitionEmblem} alt={competitionName} className="ltab-league-logo" />}
+                    <h5>Top of the {competitionName}</h5>
+                    <div className="ltab-league-details">
+                      {countryFlag && (
+                        <div className="detail-item">
+                          <img src={countryFlag} alt={countryName} />
+                          <span>{countryName}</span>
+                        </div>
+                      )}
+                      {currentMatchday && (
+                        <div className="detail-item">
+                          <span>Matchday: {currentMatchday}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {/* Right Column */}
+                  <div className="ltab-top-club-details">
+                    <img src={topClub.team.crest} alt={topClub.team.name} />
+                    <h4 className="club-name">{topClub.team.name}</h4>
+                    <span className="club-stats">
+                      <strong>{topClub.points}</strong> PTS | <strong>{topClub.playedGames}</strong> Played
+                    </span>
+                  </div>
+                </div>
+
+                {/* --- CSS Grid Table --- */}
+                <div className="ltab-grid-wrapper">
+                  <div className="ltab-grid-table">
+                    
+                    {/* Grid Header Row */}
+                    <div className="ltab-grid-header">
+                      <div className="pos">POS</div>
+                      <div>CLUB</div>
+                      <div className="mp">MP</div>
+                      <div className="w">W</div>
+                      <div className="d">D</div>
+                      <div className="l">L</div>
+                      <div className="gf">GF</div>
+                      <div className="ga">GA</div>
+                      <div className="gd">GD</div>
+                      <div className="pts">Pts</div>
+                    </div>
+
+                    {/* Grid Body Rows (Mapped) */}
+                    {tableData.map(row => (
+                      <div className="ltab-grid-row" key={row.team.id}>
+                        <div className="pos">{row.position}</div>
+                        <div className="team-cell"> 
+                          <img src={row.team.crest} alt={row.team.shortName} />
+                          <span className="team-name-desktop">{row.team.name}</span>
+                          <span className="team-name-mobile">{row.team.tla}</span>
+                        </div>
+                        <div className="mp">{row.playedGames}</div>
+                        <div className="w">{row.won}</div>
+                        <div className="d">{row.draw}</div>
+                        <div className="l">{row.lost}</div>
+                        <div className="gf">{row.goalsFor}</div>
+                        <div className="ga">{row.goalsAgainst}</div>
+                        <div className="gd">{row.goalDifference}</div>
+                        <div className="pts">{row.points}</div>
+                      </div>
+                    ))}
+
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* ✅ STATISTICS is now second */}
           <div className={`tab-pane ${activeTab === 'statistics' ? 'active' : ''}`} id="statistics">
             <div className="row">
               {/* Club Ranking */}
@@ -516,7 +582,7 @@ const LeftTab = () => {
                 </div>
               </div>
 
-              {/* Recent Matches (Optional Static/Mapped) */}
+              {/* Recent Matches */}
               <RecentMatches
                 recentMatches={recentMatches}
                 loading={loading}
@@ -530,107 +596,7 @@ const LeftTab = () => {
             </div>
           </div>
 
-          {/* --- NEW TABLE TAB --- */}
-          <div className={`tab-pane ${activeTab === 'table' ? 'active' : ''}`} id="table">
-            
-            {/* --- League Selector --- */}
-            <div className="ltab-league-selector">
-              {LEAGUE_SOURCES.map(league => (
-                <button
-                  key={league.key}
-                  className={`ltab-league-btn ${selectedLeague === league.key ? 'active' : ''}`}
-                  onClick={() => setSelectedLeague(league.key)}
-                >
-                  {league.label}
-                </button>
-              ))}
-            </div>
-
-            {loadingTable && <p className="ltab-loading-error-msg">Loading table...</p>}
-            {errorTable && <p className="ltab-loading-error-msg">Error: {errorTable}</p>}
-            
-            {!loadingTable && !errorTable && topClub && (
-              <>
-                {/* --- FIX: Updated Top Club Highlight layout --- */}
-                <div className="ltab-top-club">
-                  {/* Left Column */}
-                  <div className="ltab-top-league-info">
-                    {competitionEmblem && <img src={competitionEmblem} alt={competitionName} className="ltab-league-logo" />}
-                    <h5>Top of the {competitionName}</h5>
-                    {/* --- NEW: Added Details --- */}
-                    <div className="ltab-league-details">
-                      {countryFlag && (
-                        <div className="detail-item">
-                          <img src={countryFlag} alt={countryName} />
-                          <span>{countryName}</span>
-                        </div>
-                      )}
-                      {currentMatchday && (
-                        <div className="detail-item">
-                          <span>Matchday: {currentMatchday}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  {/* Right Column */}
-                  <div className="ltab-top-club-details">
-                    <img src={topClub.team.crest} alt={topClub.team.name} />
-                    <h4 className="club-name">{topClub.team.name}</h4>
-                    <span className="club-stats">
-                      <strong>{topClub.points}</strong> PTS | <strong>{topClub.playedGames}</strong> Played
-                    </span>
-                  </div>
-                </div>
-                {/* --- END: Top Club Highlight --- */}
-
-
-                {/* --- CSS Grid Table --- */}
-                <div className="ltab-grid-wrapper">
-                  <div className="ltab-grid-table">
-                    
-                    {/* Grid Header Row */}
-                    <div className="ltab-grid-header">
-                      <div className="pos">POS</div>
-                      <div>CLUB</div>
-                      <div className="mp">MP</div>
-                      <div className="w">W</div>
-                      <div className="d">D</div>
-                      <div className="l">L</div>
-                      <div className="gf">GF</div>
-                      <div className="ga">GA</div>
-                      <div className="gd">GD</div>
-                      <div className="pts">Pts</div>
-                    </div>
-
-                    {/* Grid Body Rows (Mapped) */}
-                    {tableData.map(row => (
-                      <div className="ltab-grid-row" key={row.team.id}>
-                        <div className="pos">{row.position}</div>
-                        <div className="team-cell"> 
-                          <img src={row.team.crest} alt={row.team.shortName} />
-                          {/* --- FIX: Responsive Team Names --- */}
-                          <span className="team-name-desktop">{row.team.name}</span>
-                          <span className="team-name-mobile">{row.team.tla}</span>
-                        </div>
-                        <div className="mp">{row.playedGames}</div>
-                        <div className="w">{row.won}</div>
-                        <div className="d">{row.draw}</div>
-                        <div className="l">{row.lost}</div>
-                        <div className="gf">{row.goalsFor}</div>
-                        <div className="ga">{row.goalsAgainst}</div>
-                        <div className="gd">{row.goalDifference}</div>
-                        <div className="pts">{row.points}</div>
-                      </div>
-                    ))}
-
-                  </div>
-                </div>
-                {/* --- END: CSS Grid Table --- */}
-              </>
-            )}
-          </div>
-
-          {/* --- DESCRIPTION TAB --- */}
+          {/* DESCRIPTION is last */}
           <div className={`tab-pane ${activeTab === 'description' ? 'active' : ''}`} id="description">
             <div className="ltab-tournament-description">
               <h5>About This Section</h5>
@@ -638,7 +604,7 @@ const LeftTab = () => {
                 This section provides key statistics, league table information, and details about Europe's top football leagues.
               </p>
               <p>
-                The "Statistics" tab shows the all-time club rankings based on the number of UCL titles won. The "Table" tab displays the current Top 3 standings for the selected league.
+                The "Statistics" tab shows the all-time club rankings based on the number of UCL titles won. The "Standing" tab displays the current Top 3 standings for the selected league.
               </p>
             </div>
           </div>

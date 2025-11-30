@@ -17950,12 +17950,12 @@ footer .links-footer ul.columns {
 /* App.css or index.css */
 
 #layout {
-  margin-top: 95px; /* default for desktop */
+  margin-top: 0; /* default for desktop */
 }
 
 @media (max-width: 768px) {
   #layout {
-    margin-top: 70px; /* for mobile header height */
+    margin-top: 0; /* for mobile header height */
   }
 }
 

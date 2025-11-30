@@ -6,7 +6,6 @@ import MobileNav from './MobileNav';
 const Header = () => {
   const isMobile = window.innerWidth <= 768;
 
-  const headerHeight = isMobile ? "73px": "110px";
   const [checked, setChecked] = useState(false);
   const location = useLocation(); // ✅ get current path
 
@@ -63,21 +62,19 @@ const Header = () => {
           transform: rotate(180deg);
         }
       `}</style>
-
-         <header
-      className="header-3"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        zIndex: 999,
-        backgroundColor:
-          location.pathname === "/livematch" ? "#111" : "#fff", // ✅ dark on livematch
-        color: location.pathname === "/livematch" ? "#fff" : "#000",
-        boxShadow: '0 10px 10px rgba(12, 255, 20, 0.1)',
-      }}
-    >
+<header
+        className="header-3"
+        style={{
+          position: 'relative', // ✅ Changed from 'fixed' to 'relative'
+          width: '100%',
+          zIndex: 999,
+          // ✅ Keeps your color logic
+          backgroundColor:
+            location.pathname === "/livematch" ? "#111" : "#fff",
+          color: location.pathname === "/livematch" ? "#fff" : "#000",
+          boxShadow: '0 10px 10px rgba(12, 255, 20, 0.1)',
+        }}
+      >
         <div className="headerbox">
           <div className="container">
             <div className="row align-items-center justify-content-between">
