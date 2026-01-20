@@ -26,7 +26,7 @@ const PROVIDERS = [
   { label: "livekora", keyword: "livekora" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
   { label: "sirtv", keyword: "sirtv" },
-  { label: "soccerhd", keyword: "soccerhd" },
+  { label: "soccerhd", keyword: "soccerhd" }
 ];
 
 // --- JSON Sources ---
