@@ -10,6 +10,7 @@ const PROVIDER_CODES = {
   yallashooote: "yallashooote",
   livekora: "vip",
   shahidkoora: "shk",
+  sirtv: "sirtv"
 };
 const CODE_TO_PROVIDER = Object.fromEntries(
   Object.entries(PROVIDER_CODES).map(([k, v]) => [v, k])
@@ -23,6 +24,7 @@ const PROVIDERS = [
   { label: "yallashooote", keyword: "yallashooote" },
   { label: "livekora", keyword: "livekora" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
+  { label: "sirtv", keyword: "sirtv" },
 ];
 
 // --- JSON Sources ---
@@ -32,7 +34,8 @@ const JSON_MAP = {
   livekora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/livekora.json",
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
   hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json",
-  yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json"
+  yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json",
+  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siirtv.json"
 };
 
 // --- Helpers ---
