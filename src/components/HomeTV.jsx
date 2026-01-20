@@ -37,8 +37,8 @@ const JSON_MAP = {
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
   hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json",
   yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json",
-  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siiir.json",
-  soccerhd: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/soccerhd.json"
+  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siiir.json", //new
+  soccerhd: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/soccerhd.json"//new
 };
 
 // --- Helpers ---
