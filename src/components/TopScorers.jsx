@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import topScorersData from "../../test/top_scorers.json"; // adjust path if needed
 
 const leagueLogos = {
   PL: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/420px-Premier_League_Logo.svg.png",
@@ -13,20 +12,29 @@ const leagueLogos = {
 
 const TopScorers = () => {
   const [scorers, setScorers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (topScorersData?.leagues) {
-      const all = Object.values(topScorersData.leagues)
-        .flatMap((league) =>
-          league.scorers.map((p) => ({
-            ...p,
-            leagueName: league.competition,
-            leagueCode: league.code,
-          }))
-        )
-        .sort((a, b) => b.goals - a.goals);
-      setScorers(all);
-    }
+    fetch(
+      "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/top_scorers.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.leagues) {
+          const all = Object.values(data.leagues)
+            .flatMap((league) =>
+              league.scorers.map((p) => ({
+                ...p,
+                leagueName: league.competition,
+                leagueCode: league.code,
+              }))
+            )
+            .sort((a, b) => b.goals - a.goals);
+          setScorers(all);
+        }
+      })
+      .catch((err) => console.error("Failed to load top scorers:", err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -36,7 +44,7 @@ const TopScorers = () => {
           <a href="group-list.html">Top Scorers (Across All Leagues)</a>
         </h5>
         <div className="info-player">
-          {scorers.length === 0 ? (
+          {loading ? (
             <p>Loading scorers...</p>
           ) : (
             <ul>
