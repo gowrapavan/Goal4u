@@ -9,6 +9,8 @@ import HomeTV from './HomeTV'; // ✅ Import HomeTV
 import StatsSection from './StatsSection'; // <-- Import the new component
 import ClubSlider from './Sliders/ClubSlider'; // <-- 1. IMPORT IT
 import MatchSlider from './Sliders/MatchSlider'; // <-- 1. IMPORT IT
+import HighlightsSection from "./home/HighlightsSection";
+
 
 const ContentInfo = () => {
   return (
@@ -37,6 +39,10 @@ const ContentInfo = () => {
       <div data-hometv>
         <HomeTV />
       </div>
+      <div data-highlights>
+      <HighlightsSection />
+    </div>
+
      
             <ClubSlider />
             <StatsSection />
