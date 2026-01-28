@@ -64,19 +64,20 @@ export default function HighlightsSection() {
     <div className="highlightsSectionWrapper">
       <div className="highlightsInner">
         
-        {/* HEADER */}
-        <div className="sectionHeaderTop">
-          <h1 className="mainHeading">MATCH HIGHLIGHTS</h1>
-          <p className="subHeading">Watch the latest football action and top goals</p>
-        </div>
+       
 
         {/* INFO BAR - UPDATED WITH LOGOS */}
         <div className="activeMatchInfoBar">
           <div className="infoBarTop">
+            <div className="sectionHeaderTop">
+          <h1 className="mainHeading">MATCH HIGHLIGHTS</h1>
+          <p className="subHeading">Watch the latest football action and top goals</p>
+        </div>
+            
             <div className="titleWithLogos">
-                {/* Home Logo */}
+                {/* Home Logo - Updated path: active.home_team.logo */}
                 <img 
-                    src={active.home_logo} 
+                    src={active.home_team?.logo} 
                     alt="Home" 
                     className="headerLogo" 
                     onError={(e) => e.target.style.display='none'}
@@ -85,9 +86,9 @@ export default function HighlightsSection() {
                 {/* Title */}
                 <h2 className="activeMatchTitle">{active.title}</h2>
                 
-                {/* Away Logo */}
+                {/* Away Logo - Updated path: active.away_team.logo */}
                 <img 
-                    src={active.away_logo} 
+                    src={active.away_team?.logo} 
                     alt="Away" 
                     className="headerLogo" 
                     onError={(e) => e.target.style.display='none'}
@@ -110,7 +111,7 @@ export default function HighlightsSection() {
             <div className="videoPlayerWrapper" ref={playerRef}>
               <div className="iframeContainer">
                 <iframe
-                  key={active.id}
+                  key={active.highlight_id} // Updated key
                   src={active.embed_url}
                   title={active.title}
                   sandbox="allow-scripts allow-same-origin allow-presentation"
@@ -130,19 +131,22 @@ export default function HighlightsSection() {
             
             <div className="matchList">
               {matches.map((m) => {
-                const isActiveMatch = active.id === m.id;
+                // Updated identifier: highlight_id
+                const isActiveMatch = active.highlight_id === m.highlight_id;
                 return (
                   <div
-                    key={m.id}
+                    key={m.highlight_id} // Updated key
                     className={`matchRow ${isActiveMatch ? "activeRow" : ""}`}
                     onClick={() => setActive(m)}
                   >
                     <div className="rowLogos">
                       <div className="logoWrap">
-                        <img src={m.home_logo} alt="" onError={(e)=>e.target.style.opacity=0} />
+                        {/* Updated path: m.home_team.logo */}
+                        <img src={m.home_team?.logo} alt="" onError={(e)=>e.target.style.opacity=0} />
                       </div>
                       <div className="logoWrap">
-                        <img src={m.away_logo} alt="" onError={(e)=>e.target.style.opacity=0} />
+                        {/* Updated path: m.away_team.logo */}
+                        <img src={m.away_team?.logo} alt="" onError={(e)=>e.target.style.opacity=0} />
                       </div>
                     </div>
                     
@@ -150,9 +154,10 @@ export default function HighlightsSection() {
                       <strong className="rowTitle">{m.title}</strong>
                       <div className="rowSubInfo">
                         <span className="rowDate">{m.date}</span>
-                        {m.HomeTeamScore !== undefined && (
+                        {/* Updated score paths */}
+                        {m.home_team?.score !== undefined && m.away_team?.score !== undefined && (
                           <span className="rowScore">
-                            {m.HomeTeamScore} - {m.AwayTeamScore}
+                            {m.home_team.score} - {m.away_team.score}
                           </span>
                         )}
                       </div>
@@ -214,7 +219,7 @@ export default function HighlightsSection() {
 
         /* --- INFO BAR --- */
         .activeMatchInfoBar {
-          background: var(--card); /* Unified Background */
+          background: var(--card);
           border: 1px solid var(--border);
           border-radius: 8px;
           padding: 15px 20px;
@@ -301,7 +306,7 @@ export default function HighlightsSection() {
 
         /* --- SIDEBAR --- */
         .selectionSection {
-          background: var(--card); /* Unified Background */
+          background: var(--card);
           border-radius: 12px; 
           border: 1px solid var(--border);
           display: flex; 
@@ -311,7 +316,7 @@ export default function HighlightsSection() {
 
         .selectionHeader { 
           padding: 14px 16px; 
-          background: var(--card); /* Unified Background (Removed gray) */
+          background: var(--card);
           border-bottom: 1px solid var(--border); 
           flex-shrink: 0; 
         }
@@ -327,7 +332,7 @@ export default function HighlightsSection() {
         .matchList { 
             flex: 1; 
             overflow-y: auto; 
-            background: var(--card); /* Unified Background */
+            background: var(--card);
         }
         .matchList::-webkit-scrollbar { width: 6px; }
         .matchList::-webkit-scrollbar-track { background: transparent; }

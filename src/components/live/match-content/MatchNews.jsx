@@ -1,8 +1,8 @@
 import React from 'react';
-import { useNews } from '../../hooks/MatchNews';
-import Loading from '../common/LoadingSpinner';
-import ErrorMessage from '../common/ErrorMessage';
-import EmptyState from '../common/EmptyState';
+import { useNews } from '../../../hooks/MatchNews';
+import Loading from '../../common/LoadingSpinner';
+import ErrorMessage from '../../common/ErrorMessage';
+import EmptyState from '../../common/EmptyState';
 
 const COMPETITIONS = [
   { code: 'EPL', name: 'Premier League', country: 'England' },

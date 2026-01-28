@@ -35,19 +35,16 @@ const Table = ({ competition }) => {
         const calculateForm = (matches, standings) => {
              return standings.map(teamData => {
                 const team = teamData.team;
-                // Find completed matches involving this team
                 const teamMatches = matches
                     .filter(m => (m.HomeTeamId === team.id || m.AwayTeamId === team.id) && m.Status === 'Final')
-                    // Sort by Date Descending (newest first)
                     .sort((a, b) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime())
-                    .slice(0, 5); // Take last 5
+                    .slice(0, 5);
 
-                // Calculate W/D/L for those matches
                 const form = teamMatches.map(m => {
                     if (m.HomeTeamScore === m.AwayTeamScore) return 'D';
                     if (m.HomeTeamId === team.id) return m.HomeTeamScore > m.AwayTeamScore ? 'W' : 'L';
                     return m.AwayTeamScore > m.HomeTeamScore ? 'W' : 'L';
-                }).reverse(); // Display oldest to newest (left to right) or keep as is depending on preference
+                }).reverse();
                 
                 return { ...teamData, form };
             });
@@ -62,25 +59,20 @@ const Table = ({ competition }) => {
                     fetch(`${MATCHES_BASE_URL}${competition.toUpperCase()}.json`)
                 ]);
 
-                if (!standingsRes.ok) throw new Error(`Data unavailable for ${competition}`);
+                if (!standingsRes.ok) throw new Error(`Data unavailable.`);
                 
                 const standingsJson = await standingsRes.json();
                 const matches = matchesRes.ok ? await matchesRes.json() : [];
 
-                // Filter for Total standings
                 const totalStandings = standingsJson.standings.find(s => s.type === 'TOTAL')?.table || [];
                 setAllStandings(totalStandings);
 
                 if (matches.length > 0 && totalStandings.length > 0) {
                     const form = calculateForm(matches, totalStandings);
                     setFormStandings(form);
-                } else {
-                    // If matches fail to load, just duplicate standings without form data
-                    setFormStandings(totalStandings);
                 }
             } catch (err) {
-                console.error(err);
-                setError('Failed to load table data.');
+                setError(err.message);
             } finally {
                 setLoading(false);
             }
@@ -93,7 +85,6 @@ const Table = ({ competition }) => {
 
     if (loading) return <div className="st-msg">Loading Table...</div>;
     if (error) return <div className="st-msg error">{error}</div>;
-    if (!dataToDisplay || dataToDisplay.length === 0) return <div className="st-msg">No standings available.</div>;
 
     return (
         <div className="st-wrapper">
@@ -198,11 +189,7 @@ const Table = ({ competition }) => {
                                 </>
                             ) : (
                                 <td className="st-form-cell">
-                                    {row.form && row.form.length > 0 ? (
-                                        row.form.map((res, i) => <FormIndicator key={i} result={res} />)
-                                    ) : (
-                                        <span style={{color:'#666'}}>-</span>
-                                    )}
+                                    {row.form && row.form.map((res, i) => <FormIndicator key={i} result={res} />)}
                                 </td>
                             )}
                         </tr>
