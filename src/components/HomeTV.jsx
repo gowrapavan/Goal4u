@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"; // Added useRef
+import React, { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -11,7 +11,8 @@ const PROVIDER_CODES = {
   livekora: "vip",
   shahidkoora: "shk",
   sirtv: "sirtv",
-  soccerhd: "socchd"
+  soccerhd: "socchd",
+  ovogoals: "ovogoals"
 };
 const CODE_TO_PROVIDER = Object.fromEntries(
   Object.entries(PROVIDER_CODES).map(([k, v]) => [v, k])
@@ -19,14 +20,15 @@ const CODE_TO_PROVIDER = Object.fromEntries(
 
 // --- Providers ---
 const PROVIDERS = [
-  { label: "Sportzonline", keyword: "sportzonline" },
   { label: "Goal4u", keyword: "Goal4u" },
-  { label: "hesgoal", keyword: "hesgoal" },
-  { label: "yallashooote", keyword: "yallashooote" },
-  { label: "livekora", keyword: "livekora" },
-  { label: "Shahid-Koora", keyword: "shahidkoora" },
-  { label: "sirtv", keyword: "sirtv" },
-  { label: "soccerhd", keyword: "soccerhd" }
+  { label: "Sportzonline", keyword: "sportzonline" },
+  { label: "HesGoal", keyword: "hesgoal" },
+  { label: "Yalla Shoot", keyword: "yallashooote" },
+  { label: "Live Koora", keyword: "livekora" },
+  { label: "Shahid", keyword: "shahidkoora" },
+  { label: "Sir TV", keyword: "sirtv" },
+  { label: "SoccerHD", keyword: "soccerhd" },
+  { label: "OvoGoals", keyword: "ovogoals" }
 ];
 
 // --- JSON Sources ---
@@ -37,8 +39,9 @@ const JSON_MAP = {
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
   hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json",
   yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json",
-  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siiir.json", //new
-  soccerhd: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/soccerhd.json"//new
+  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siiir.json",
+  soccerhd: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/soccerhd.json",
+  ovogoals: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/ovogoal.json"
 };
 
 // --- Helpers ---
@@ -53,28 +56,27 @@ const decode = (str) => {
 
 const HomeTV = () => {
   const [channelsByProvider, setChannelsByProvider] = useState({});
-  const [iframeURL, setIframeURL] = useState("");
+  const [currentChannel, setCurrentChannel] = useState(null); 
   const [showAdAlert, setShowAdAlert] = useState(false);
-  const [selectedStream, setSelectedStream] = useState("Goal4u");
+  const [selectedStreamProvider, setSelectedStreamProvider] = useState("Goal4u");
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
 
-  // --- Refs for measuring elements ---
   const playerRef = useRef(null);
   const channelSectionRef = useRef(null);
 
   // --- Fetch provider JSON dynamically ---
   const fetchProviderJSON = async (provider, streamCode) => {
-    
-    // 1. Immediately clear the player
-    setIframeURL(""); 
-    // 2. Immediately clear the channels list for the new provider
+    setLoading(true);
+    setCurrentChannel(null);
     setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
     
     const url = JSON_MAP[provider];
     if (!url) {
-        return; // No URL, lists are already cleared
+        setLoading(false);
+        return;
     }
 
     try {
@@ -82,38 +84,38 @@ const HomeTV = () => {
       const data = await res.json();
       const annotated = data.map((c) => ({ ...c, provider }));
       
-      // 3. Now, set the real data for the provider
       setChannelsByProvider((prev) => ({ ...prev, [provider]: annotated }));
 
       if (annotated.length > 0) {
-        // 4. Try to find the channel from the ?stream= param
+        let targetChannel = annotated[0]; 
+
         if (streamCode) {
           const decodedLabel = decode(streamCode);
           const matched = annotated.find(
             (c) => c.label.toLowerCase() === decodedLabel.toLowerCase()
           );
           if (matched) {
-            setIframeURL(matched.url);
-            return;
+            targetChannel = matched;
           }
         }
-        // 5. If no streamCode or no match, load the first channel
-        setIframeURL(annotated[0].url);
+        setCurrentChannel(targetChannel);
       }
     } catch (err) {
+      console.error("Error fetching channels:", err);
       setChannelsByProvider((prev) => ({ ...prev, [provider]: [] }));
     }
+    setLoading(false);
   };
 
-  // --- Navigation handler ---
-  const handleProviderClick = (providerKeyword) => {
+  const handleProviderChange = (e) => {
+    const providerKeyword = e.target.value;
     const providerCode = PROVIDER_CODES[providerKeyword];
     if (providerCode) {
       navigate(`${location.pathname}?provider=${providerCode}`, { replace: true });
     }
   };
 
-  // --- Main useEffect (Driven by URL) ---
+  // --- Main useEffect ---
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const providerCode = params.get("provider");
@@ -121,84 +123,76 @@ const HomeTV = () => {
 
     const initialProvider = CODE_TO_PROVIDER[providerCode] || "Goal4u";
     
-    // Set the active tab in the UI
-    setSelectedStream(initialProvider); 
-    
-    // Fetch data for the provider in the URL
+    setSelectedStreamProvider(initialProvider); 
     fetchProviderJSON(initialProvider, streamCode);
     
   }, [location.search, location.pathname]);
 
 
-  // --- useEffect to match sidebar height to player (with mobile check) ---
+  // --- Height Synchronization Logic ---
   useEffect(() => {
     const videoPlayer = playerRef.current;
     const sidebar = channelSectionRef.current;
 
     if (!videoPlayer || !sidebar) return;
 
-    // This function measures the player and sets the sidebar's max-height
     const setSidebarHeight = () => {
-      // CHECK if we are on mobile (breakpoint is 900px)
       if (window.innerWidth <= 900) {
-        sidebar.style.maxHeight = 'none'; // RESET inline style on mobile
+        sidebar.style.height = 'auto';
+        sidebar.style.maxHeight = 'none';
       } else {
-        // Only run desktop logic if not mobile
         const playerHeight = videoPlayer.offsetHeight;
-        if (playerHeight > 0) { // Only set if height is calculated
-          sidebar.style.maxHeight = `${playerHeight}px`;
+        if (playerHeight > 0) { 
+          sidebar.style.height = `${playerHeight}px`;
         }
       }
     };
 
-    // Run on mount
     setSidebarHeight();
-
-    // Re-run on window resize
+    const observer = new ResizeObserver(setSidebarHeight);
+    observer.observe(videoPlayer);
     window.addEventListener('resize', setSidebarHeight);
 
-    // Cleanup listener on unmount
     return () => {
+      observer.disconnect();
       window.removeEventListener('resize', setSidebarHeight);
     };
-  }, []); // Empty array means this runs only once on mount
-
+  }, []); 
 
   // --- Fullscreen ad alert ---
   useEffect(() => {
     const checkFullscreen = () => {
-      const isFullscreen =
-        document.fullscreenElement || document.webkitFullscreenElement;
-      if (!isFullscreen && iframeURL) {
+      const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+      
+      // Show alert if not fullscreen AND we have a valid URL
+      if (!isFullscreen && currentChannel && currentChannel.url) {
         setShowAdAlert(true);
-        const timer = setTimeout(() => setShowAdAlert(false), 10000);
+        const timer = setTimeout(() => setShowAdAlert(false), 10000); // 10 seconds
         return () => clearTimeout(timer);
       } else {
         setShowAdAlert(false);
       }
     };
+    
     document.addEventListener("fullscreenchange", checkFullscreen);
     document.addEventListener("webkitfullscreenchange", checkFullscreen);
+    
+    // Initial check
     checkFullscreen();
+    
     return () => {
-      document.removeEventListener("fullscreenchange", checkFullscreen);
-      document.removeEventListener(
-        "webkitfullscreenchange",
-        checkFullscreen
-      );
+        document.removeEventListener("fullscreenchange", checkFullscreen);
+        document.removeEventListener("webkitfullscreenchange", checkFullscreen);
     };
-  }, [iframeURL]);
+  }, [currentChannel]);
 
   // --- URL Syncing ---
   useEffect(() => {
-    if (!iframeURL || !selectedStream) return;
-    
-    const currentChannels = channelsByProvider[selectedStream] || [];
-    const matchedChannel = currentChannels.find((c) => c.url === iframeURL);
-    if (!matchedChannel) return;
+    if (!currentChannel || !selectedStreamProvider) return;
+    if (currentChannel.provider !== selectedStreamProvider && currentChannel.provider !== undefined) return;
 
-    const providerCode = PROVIDER_CODES[selectedStream];
-    const encodedLabel = encode(matchedChannel.label); 
+    const providerCode = PROVIDER_CODES[selectedStreamProvider];
+    const encodedLabel = encode(currentChannel.label); 
 
     const params = new URLSearchParams(location.search);
     if (params.get("provider") !== providerCode || params.get("stream") !== encodedLabel) {
@@ -207,43 +201,54 @@ const HomeTV = () => {
           { replace: true }
         );
     }
-  }, [iframeURL, selectedStream, channelsByProvider, navigate, location.pathname]);
+  }, [currentChannel, selectedStreamProvider, navigate, location.pathname]);
 
-  const handleIframeClick = (url) => setIframeURL(url);
-  const filteredChannels = channelsByProvider[selectedStream] || [];
+  const handleChannelSelect = (channel) => setCurrentChannel(channel);
+  const filteredChannels = channelsByProvider[selectedStreamProvider] || [];
 
-  // --- Render Matchup Card ---
+  const getPlayerState = () => {
+      if (loading) return "LOADING";
+      if (!currentChannel) return "IDLE";
+      if (!currentChannel.url || currentChannel.url.trim() === "") return "EMPTY";
+      return "ACTIVE";
+  };
+  const playerState = getPlayerState();
+
   const renderChannelCard = (server) => {
-    const isActive = iframeURL === server.url;
-    const cardClasses = `channelCard ${isActive ? "channelCardActive" : ""}`;
-
-    const defaultLogo = "/assets/img/6.png"; 
+    const isActive = currentChannel && currentChannel.label === server.label;
+    
+    const defaultLogo = "https://cdn-icons-png.flaticon.com/512/33/33736.png"; 
     const homeLogo = server.home_logo && server.home_logo.trim() !== "" ? server.home_logo : defaultLogo;
     const awayLogo = server.away_logo && server.away_logo.trim() !== "" ? server.away_logo : defaultLogo;
 
-    let displayTime = server.time || "";
+    let displayTime = server.time || "LIVE";
     if (displayTime.includes(" ")) {
         const parts = displayTime.split(" ");
-        if (parts.length > 1) {
-          displayTime = parts[1] + (parts[2] ? " " + parts[2] : "");
-        }
+        if (parts.length > 1) displayTime = parts[1];
     }
 
     return (
       <div
-        key={server.url}
-        className={cardClasses}
-        onClick={() => handleIframeClick(server.url)}
+        key={server.label + server.url} 
+        className={`matchCard ${isActive ? "active" : ""}`}
+        onClick={() => handleChannelSelect(server)}
       >
-        <span className="cardMatchTime">{displayTime.trim()}</span>
-        <div className="cardLogos">
-          <img src={homeLogo} alt={server.home_team || 'Home'} className="cardTeamLogo" />
-          <span className="cardVs">vs</span>
-          <img src={awayLogo} alt={server.away_team || 'Away'} className="cardTeamLogo" />
+        <div className="matchHeader">
+           <span className={`statusBadge ${isActive ? "live" : ""}`}>
+             {isActive ? "WATCHING" : displayTime}
+           </span>
         </div>
-        <div className="cardTeams">
-          <span className="cardTeamName">{server.home_team || server.label}</span>
-          <span className="cardTeamName">{server.away_team || "View"}</span>
+        
+        <div className="teamsContainer">
+            <div className="teamCol">
+                <img src={homeLogo} alt="" className="teamLogo" onError={(e)=>{e.target.src=defaultLogo}} />
+                <span className="teamName">{server.home_team || server.label}</span>
+            </div>
+            <div className="vsText">vs</div>
+            <div className="teamCol">
+                <img src={awayLogo} alt="" className="teamLogo" onError={(e)=>{e.target.src=defaultLogo}} />
+                <span className="teamName">{server.away_team || "Guest"}</span>
+            </div>
         </div>
       </div>
     );
@@ -252,476 +257,385 @@ const HomeTV = () => {
   return (
     <>
       <Helmet>
-        <title>Live Football Streaming | Goal4U</title>
-        <meta
-          name="description"
-          content="Watch live football matches from around the world including HD channels, sport TV, and more. Stay updated with the latest matches on Goal4U."
-        />
-        <link rel="canonical" href="https://goal4u.live/livetv" />
+        <title>Live Football | Goal4U</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Helmet>
 
-      {/* --- STYLES (Updated) --- */}
+      {/* --- STYLES --- */}
       <style>{`
-        /* --- Base & Scrollbar --- */
         :root {
-          --primary-color: #00a94e;
-          --body-bg: #f8f9fa;
-          --card-bg: #ffffff;
-          --text-color: #212529;
-          --text-muted: #6c757d;
-          --border-color: #dee2e6;
-          --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-          --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
-          --page-padding: 1.5rem; /* Define page padding as a variable */
-        }
-        
-        ::-webkit-scrollbar {
-          width: 6px;
-          height: 6px;
-        }
-        ::-webkit-scrollbar-thumb {
-          background-color: #d0d0d0;
-          border-radius: 3px;
-        }
-        ::-webkit-scrollbar-track {
-          background-color: var(--card-bg);
+          --primary: #10b981;
+          --bg-page: #f1f5f9;
+          --bg-card: #ffffff;
+          --border: #e2e8f0;
+          --text-main: #1e293b;
+          --text-sub: #64748b;
         }
 
-        /* --- Page Layout --- */
-        .livetvPageContainer {
-          padding: var(--page-padding);
-          background-color: var(--body-bg);
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-          color: var(--text-color);
-        }
-
-        .livetvMainLayout {
-          display: grid;
-          grid-template-columns: 1fr 320px;
-          gap: 20px;
-          width: 100%;
-          max-width: 1320px;
-          margin: 0 auto;
-          align-items: start;
-        }
-
-        /* --- Video Player Section --- */
-        .videoSection {
-          flex: 1;
-          min-width: 0;
-        }
-
-        .videoPlayerWrapper {
-          width: 100%;
-          aspect-ratio: 16 / 9;
-          background-color: #000;
-          border-radius: 12px;
-          box-shadow: var(--shadow-md);
-          position: relative;
-          overflow: hidden;
-          border: 1px solid var(--border-color);
-        }
-
-        .iframeContainer {
-          width: 100%;
-          height: 100%;
-          position: relative;
-        }
-
-        .iframeStream {
-          width: 100%;
-          height: 100%;
-          border: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-
-        .streamPlaceholder {
-          width: 100%;
-          height: 100%;
-          background: #222;
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          color: #888;
-          font-weight: 500;
-        }
-        
-        .loadingSpinner {
-          border: 4px solid #444;
-          border-top: 4px solid var(--primary-color);
-          border-radius: 50%;
-          width: 36px;
-          height: 36px;
-          animation: spin 1s linear infinite;
-          margin-bottom: 12px;
-        }
-        
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        .adAlert {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          background-color: rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(5px);
-          color: var(--text-color);
-          padding: 6px 12px;
-          border-radius: 8px;
-          border: 1px solid var(--border-color);
-          font-size: 12px;
-          font-weight: 500;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .adAlertClose {
-          margin-left: 6px;
-          cursor: pointer;
-          font-weight: bold;
-          font-size: 16px;
-          line-height: 1;
-          color: var(--text-muted);
-        }
-
-        /* --- Wrapper Class --- */
-        .channelSectionWrapper {
-          /* This wrapper isolates the sticky element */
-        }
-        
-        /* --- Channel List Section (Sticky) --- */
-        .channelSection {
-          display: flex;
-          flex-direction: column;
-          background: var(--card-bg);
-          border-radius: 12px;
-          box-shadow: var(--shadow-sm);
-          border: 1px solid var(--border-color);
-          overflow: hidden; /* <-- Correct for desktop */
-          position: sticky;
-          top: var(--page-padding); 
-          /* max-height is set by JavaScript */
-        }
-
-        /* --- Provider Tabs --- */
-        .providerTabs {
-          padding: 10px;
-          border-bottom: 1px solid var(--border-color);
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
-          flex-shrink: 0;
-        }
-        
-        .providerTabButton {
-          font-family: inherit;
-          border: 1px solid var(--border-color);
-          background: var(--card-bg);
-          color: var(--text-muted);
-          padding: 6px 12px;
-          border-radius: 6px;
-          font-size: 12px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-        
-        .providerTabButton:hover {
-          background-color: #f8f9fa;
-          border-color: #c7c7c7;
-          color: var(--text-color);
-        }
-        
-        .providerTabButton.providerTabActive {
-          background-color: var(--primary-color);
-          color: #ffffff;
-          border-color: var(--primary-color);
-          box-shadow: 0 2px 4px rgba(0, 169, 78, 0.2);
-        }
-
-        /* --- Channel List --- */
-        .channelList {
-          overflow-y: auto;
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-          gap: 12px;
-          padding: 12px;
-          flex: 1;
-          min-height: 0;
-        }
-
-        .noChannelsMessage {
-          color: var(--text-muted);
-          font-size: 13px;
-          grid-column: 1 / -1;
-          text-align: center;
-          margin-top: 20px;
-          padding: 0 16px;
-        }
-
-        /* --- Channel Card Styles --- */
-        .channelCard {
-          border-radius: 8px;
-          border: 1px solid var(--border-color);
-          cursor: pointer;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          background: #fdfdfd;
-          padding: 12px 8px;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-          overflow: hidden;
-          min-height: 130px;
-        }
-
-        .channelCard:hover {
-          transform: scale(1.03);
-          box-shadow: var(--shadow-sm);
-          border-color: #c7c7c7;
-        }
-
-        .channelCardActive {
-          border: 2px solid var(--primary-color);
-          box-shadow: 0 0 10px rgba(0, 169, 78, 0.3);
-        }
-
-        .cardMatchTime {
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--primary-color);
-          margin-bottom: 6px;
-        }
-
-        .cardLogos {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          width: 100%;
-        }
-
-        .cardTeamLogo {
-          width: 36px;
-          height: 36px;
-          object-fit: contain;
-        }
-
-        .cardVs {
-          font-size: 12px;
-          font-weight: 600;
-          color: var(--text-muted);
-        }
-
-        .cardTeams {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-          margin-top: 8px;
-        }
-        
-        .cardTeamName {
-          font-size: 12px;
-          font-weight: 500;
-          color: var(--text-color);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 100%;
-          text-align: center;
-        }
-        
-        .cardTeamName + .cardTeamName {
-          margin-top: 2px;
-        }
-
-        /* --- Responsive (Mobile) --- */
-        @media (max-width: 900px) {
-          .livetvPageContainer {
-            padding: 1rem 0; 
-            --page-padding: 1rem; 
-          }
-        
-          .livetvMainLayout {
-            grid-template-columns: 1fr;
-            max-height: none;
-            align-items: stretch; 
-            gap: 0;
-          }
-
-          /* --- THIS IS THE FIX --- */
-          .videoSection {
-            min-width: 0; /* Prevents grid item from expanding */
-          }
-          /* --- END FIX --- */
-
-          .videoPlayerWrapper {
-            border-radius: 0;
-            border: none;
-            box-shadow: none;
-          }
-          
-          .channelSectionWrapper {
-             margin-top: 20px;
-             padding: 0 1rem;
-             /* --- THIS IS THE FIX --- */
-             min-width: 0; /* Prevents grid item from expanding */
-          }
-          
-          .channelSection {
-            max-height: none;
-            position: static;
-            border: none;
-            box-shadow: none;
-            overflow: hidden; /* Keep this to contain children */
-          }
-          
-          .channelList {
-            flex: none; 
-            min-height: auto;
-            display: flex;
-            flex-direction: row;
-            overflow-x: auto; /* This will now work */
-            overflow-y: hidden;
-            grid-template-columns: none;
-            gap: 10px;
-            padding-bottom: 12px;
-          }
-
-          .providerTabs {
-            flex-wrap: nowrap;
-            overflow-x: auto; /* This will also work */
-            padding-bottom: 10px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          .providerTabs::-webkit-scrollbar {
-            display: none;
-          }
-          
-          .providerTabButton {
-            flex-shrink: 0;
-          }
-
-          .channelCard {
-            width: 140px; 
-            height: 130px;
-            flex-shrink: 0;
-          }
-
-          .noChannelsMessage {
-            text-align: left;
+        body {
+            background-color: var(--bg-page);
             margin: 0;
-            white-space: nowrap;
-          }
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .tv-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 */
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .iframe-embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .sidebar-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .provider-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            width: 60%;
+            transition: border-color 0.2s;
+        }
+        .provider-select:focus {
+            border-color: var(--primary);
+        }
+
+        .sidebar-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+            background: #fcfcfc;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-content: start;
+        }
+
+        .sidebar-body::-webkit-scrollbar { width: 5px; }
+        .sidebar-body::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }
+
+        .matchCard {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        .matchCard:hover {
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .matchCard.active {
+            border: 1px solid var(--primary);
+            background: #f0fdf4;
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .matchHeader {
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .statusBadge {
+            font-size: 9px;
+            font-weight: 700;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .statusBadge.live {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .teamsContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .teamCol {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .teamLogo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .teamName {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .vsText {
+            font-size: 9px;
+            color: #cbd5e1;
+            font-weight: 700;
+        }
+
+        .placeholder-screen {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            background: #111;
+            text-align: center;
+            padding: 20px;
         }
         
-        @media (max-width: 500px) {
-            .livetvPageContainer {
-                padding: 0.75rem 0 0 0;
-                --page-padding: 0.75rem;
-            }
-            
-            .channelSectionWrapper {
-              padding: 0 0.75rem;
-            }
+        .placeholder-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+        
+        .placeholder-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ccc;
+        }
 
-            .adAlert {
-                top: 8px;
-                left: 8px;
-                padding: 5px 10px;
-                font-size: 11px;
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #334155;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        
+        .loading-text {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            padding: 20px;
+        }
+        
+        .ad-alert {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 20;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .ad-close { cursor: pointer; font-size: 14px; color: #64748b; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 900px) {
+            .tv-container {
+                display: block;
+                padding: 0;
+                max-width: 100%;
+            }
+            .video-wrapper {
+                border-radius: 0;
+                width: 100vw; 
+                box-shadow: none;
+            }
+            .sidebar-container {
+                margin: 0;
+                border-radius: 0;
+                border: none;
+                height: auto !important; 
+                box-shadow: none;
+            }
+            .sidebar-header {
+                padding: 10px 16px;
+                border-top: 1px solid var(--border);
+            }
+            .provider-select {
+                width: 100%;
+            }
+            .header-label {
+                display: none; 
+            }
+            .sidebar-body {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                grid-template-columns: none;
+                gap: 12px;
+                padding: 12px 16px;
+                background: #fff;
+                min-height: 120px;
+                align-items: stretch;
+            }
+            .matchCard {
+                min-width: 140px;
+                width: 140px;
+                flex-shrink: 0;
+                height: auto;
             }
         }
       `}</style>
 
-      {/* --- JSX --- */}
-      <div className="livetvPageContainer">
-        <div className="livetvMainLayout">
-          {/* TV Section */}
-          <div className="videoSection">
-            {/* Added ref to the player wrapper */}
-            <div className="videoPlayerWrapper" ref={playerRef}>
-              {/* Alert inside video */}
-              {showAdAlert && (
-                <div className="adAlert">
-                  📺 Use <strong>Fullscreen</strong> to avoid ads.
-                  <span
-                    className="adAlertClose"
-                    onClick={() => setShowAdAlert(false)}
-                  >
-                    ×
-                  </span>
-                </div>
-              )}
-
-              {/* Iframe */}
-              <div className="iframeContainer">
-                {iframeURL ? (
-                  <iframe
-                    src={iframeURL}
-                    title="Live Stream"
-                    allow="autoplay"
-                    allowFullScreen
-                    scrolling="no"
-                    sandbox="allow-scripts allow-same-origin"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="iframeStream"
-                  />
-                ) : (
-                  <div className="streamPlaceholder">
-                    <div className="loadingSpinner"></div>
-                    <p>Select a channel to watch</p>
-                  </div>
+      {/* --- MARKUP --- */}
+      <div className="tv-container">
+        {/* Left: Video Player */}
+        <div className="video-section">
+            <div className="video-wrapper" ref={playerRef}>
+                {showAdAlert && (
+                    <div className="ad-alert">
+                        <span>Use <b>Fullscreen</b> to skip ads</span>
+                        <span className="ad-close" onClick={() => setShowAdAlert(false)}>✕</span>
+                    </div>
                 )}
-              </div>
+                
+                {/* Conditionals based on playerState */}
+                {playerState === "ACTIVE" && (
+                    <iframe
+                        src={currentChannel.url}
+                        title="Live Stream"
+                        className="iframe-embed"
+                        // --- IMPORTANT: Restored Ad Protection (Sandbox) ---
+                        sandbox="allow-scripts allow-same-origin"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        // ----------------------------------------------------
+                        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                        allowFullScreen
+                        scrolling="no"
+                    />
+                )}
+
+                {playerState === "EMPTY" && (
+                    <div className="placeholder-screen">
+                        <div className="placeholder-icon">⏰</div>
+                        <div className="placeholder-text">Available only at match time</div>
+                    </div>
+                )}
+
+                {playerState === "LOADING" && (
+                    <div className="placeholder-screen">
+                        <div className="spinner"></div>
+                        <div className="placeholder-text">Loading Stream...</div>
+                    </div>
+                )}
+
+                {playerState === "IDLE" && (
+                    <div className="placeholder-screen">
+                        <div className="placeholder-text">Select a match to start watching</div>
+                    </div>
+                )}
             </div>
-          </div>
+        </div>
 
-          {/* Wrapper div for sticky isolation */}
-          <div className="channelSectionWrapper">
-            {/* Added ref to the channel section */}
-            <div className="channelSection" ref={channelSectionRef}>
-              {/* --- Provider Tabs (Now drive navigation) --- */}
-              <div className="providerTabs">
-                {PROVIDERS.map((p) => (
-                  <button
-                    key={p.keyword}
-                    className={`providerTabButton ${
-                      selectedStream === p.keyword ? "providerTabActive" : ""
-                    }`}
-                    onClick={() => handleProviderClick(p.keyword)}
-                  >
-                    {p.label}
-                  </button>
-                ))}
-              </div>
+        {/* Right: Sidebar */}
+        <div className="sidebar-container" ref={channelSectionRef}>
+            
+            {/* 1. Header with Picklist */}
+            <div className="sidebar-header">
+                <span className="header-label">Source:</span>
+                <select 
+                    className="provider-select" 
+                    value={selectedStreamProvider}
+                    onChange={handleProviderChange}
+                >
+                    {PROVIDERS.map((p) => (
+                        <option key={p.keyword} value={p.keyword}>
+                            {p.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-              {/* Channel Cards */}
-              <div className="channelList">
+            {/* 2. Body Grid (Desktop: 2-Col, Mobile: Horizontal) */}
+            <div className="sidebar-body">
                 {filteredChannels.length > 0 ? (
-                  filteredChannels.map(renderChannelCard)
+                    filteredChannels.map(renderChannelCard)
                 ) : (
-                  <p className="noChannelsMessage">
-                    No channels found for this provider.
-                  </p>
+                    <div className="loading-text">
+                        {loading ? "Fetching data..." : "No channels found."}
+                    </div>
                 )}
-              </div>
             </div>
-          </div>
-          
         </div>
       </div>
     </>

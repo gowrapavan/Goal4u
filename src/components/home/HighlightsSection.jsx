@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function HighlightsSection() {
   const [matches, setMatches] = useState([]);
   const [active, setActive] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const playerRef = useRef(null);
+  const sidebarRef = useRef(null); 
 
-  const DATA_URL =
-    "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/Highlights/hoofoot.json";
+  const DATA_URL = "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/Highlights/Highlight.json";
 
   useEffect(() => {
     async function load() {
@@ -21,201 +23,417 @@ export default function HighlightsSection() {
         setLoading(false);
       }
     }
-
     load();
   }, []);
+
+  // --- HEIGHT SYNC LOGIC ---
+  useEffect(() => {
+    const videoEl = playerRef.current;
+    const sidebarEl = sidebarRef.current;
+
+    if (!videoEl || !sidebarEl) return;
+
+    const syncHeight = () => {
+      if (window.innerWidth > 900) {
+        const height = videoEl.offsetHeight;
+        if (height > 0) {
+          sidebarEl.style.height = `${height}px`;
+          sidebarEl.style.maxHeight = `${height}px`;
+        }
+      } else {
+        sidebarEl.style.height = 'auto';
+        sidebarEl.style.maxHeight = 'none';
+      }
+    };
+
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(videoEl);
+    window.addEventListener("resize", syncHeight);
+
+    syncHeight(); // Initial call
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncHeight);
+    };
+  }, [loading, active]);
 
   if (loading || !active) return null;
 
   return (
     <div className="highlightsSectionWrapper">
       <div className="highlightsInner">
+        
+        {/* HEADER */}
+        <div className="sectionHeaderTop">
+          <h1 className="mainHeading">MATCH HIGHLIGHTS</h1>
+          <p className="subHeading">Watch the latest football action and top goals</p>
+        </div>
 
-        {/* Main Highlight Card */}
-        <div className="video-card">
-          <div className="video-frame">
-            <iframe
-              key={active.id}
-              src={active.embed_url}
-              title={active.title}
-              sandbox="allow-scripts allow-same-origin allow-presentation"
-              referrerPolicy="no-referrer"
-              allow="fullscreen; encrypted-media"
-            />
-          </div>
-
-          <div className="video-meta">
-            <div className="meta-left">
-              <h2>{active.title}</h2>
-              <span>{active.match_date.replaceAll("_", "-")}</span>
+        {/* INFO BAR - UPDATED WITH LOGOS */}
+        <div className="activeMatchInfoBar">
+          <div className="infoBarTop">
+            <div className="titleWithLogos">
+                {/* Home Logo */}
+                <img 
+                    src={active.home_logo} 
+                    alt="Home" 
+                    className="headerLogo" 
+                    onError={(e) => e.target.style.display='none'}
+                />
+                
+                {/* Title */}
+                <h2 className="activeMatchTitle">{active.title}</h2>
+                
+                {/* Away Logo */}
+                <img 
+                    src={active.away_logo} 
+                    alt="Away" 
+                    className="headerLogo" 
+                    onError={(e) => e.target.style.display='none'}
+                />
             </div>
+            <span className="activeMatchDate">{active.date}</span>
           </div>
-
-          <div className="video-tabs">
-            <button className="tab active">Highlights</button>
-            <button className="tab">Goal4u</button>
+          
+          <div className="infoBarBottom">
+            <span className="infoBadge league">{active.league || "Featured Match"}</span>
+            <span className="infoBadge highlights">Highlights</span>
           </div>
         </div>
 
-        {/* Match Strip */}
-        <div className="match-strip">
-          {matches.map((m) => (
-            <div
-              key={m.id}
-              className={
-                "match-tile" + (active.id === m.id ? " active" : "")
-              }
-              onClick={() => setActive(m)}
-            >
-              <strong>{m.title}</strong>
-              <span>{m.match_date.replaceAll("_", "-")}</span>
+        {/* MAIN LAYOUT */}
+        <div className="highlightsMainLayout">
+          
+          {/* LEFT: Video Player */}
+          <div className="videoSection">
+            <div className="videoPlayerWrapper" ref={playerRef}>
+              <div className="iframeContainer">
+                <iframe
+                  key={active.id}
+                  src={active.embed_url}
+                  title={active.title}
+                  sandbox="allow-scripts allow-same-origin allow-presentation"
+                  referrerPolicy="no-referrer"
+                  allow="fullscreen; encrypted-media"
+                  className="iframeStream"
+                />
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
 
+          {/* RIGHT: Sidebar List */}
+          <div className="selectionSection" ref={sidebarRef}>
+            <div className="selectionHeader">
+              <h3>Recent Matches</h3>
+            </div>
+            
+            <div className="matchList">
+              {matches.map((m) => {
+                const isActiveMatch = active.id === m.id;
+                return (
+                  <div
+                    key={m.id}
+                    className={`matchRow ${isActiveMatch ? "activeRow" : ""}`}
+                    onClick={() => setActive(m)}
+                  >
+                    <div className="rowLogos">
+                      <div className="logoWrap">
+                        <img src={m.home_logo} alt="" onError={(e)=>e.target.style.opacity=0} />
+                      </div>
+                      <div className="logoWrap">
+                        <img src={m.away_logo} alt="" onError={(e)=>e.target.style.opacity=0} />
+                      </div>
+                    </div>
+                    
+                    <div className="rowInfo">
+                      <strong className="rowTitle">{m.title}</strong>
+                      <div className="rowSubInfo">
+                        <span className="rowDate">{m.date}</span>
+                        {m.HomeTeamScore !== undefined && (
+                          <span className="rowScore">
+                            {m.HomeTeamScore} - {m.AwayTeamScore}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="rowStatus">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="playIcon">
+                          <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                       </svg>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <style>{`
-        /* --- SAME WIDTH AS HOMETV --- */
+        :root {
+          --primary: #00a94e;
+          --bg: #f8f9fa;
+          --card: #ffffff;
+          --border: #e9ecef;
+          --text: #2d3436;
+          --muted: #636e72;
+        }
+
         .highlightsSectionWrapper {
-          padding: 1.5rem;
-          background: #f8f9fa;
+          padding: 2rem 1.5rem;
+          background: var(--bg);
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         .highlightsInner {
-          max-width: 1320px;
+          max-width: 1400px;
           margin: 0 auto;
         }
 
-        /* ---------- MAIN CARD ---------- */
-
-        .video-card {
-          background: #0b0f14;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-          border: 1px solid #1c232b;
+        /* --- HEADER --- */
+        .sectionHeaderTop {
+          margin-bottom: 24px;
+          border-left: 5px solid var(--primary);
+          padding-left: 15px;
+        }
+        .mainHeading {
+          font-size: 1.8rem;
+          font-weight: 800;
+          color: var(--text);
+          margin: 0;
+          letter-spacing: -0.5px;
+        }
+        .subHeading {
+          font-size: 14px;
+          color: var(--muted);
+          margin: 4px 0 0 0;
         }
 
-        .video-frame {
-          width: 100%;
-          aspect-ratio: 16 / 9;
-          background: #000;
-        }
-
-        .video-frame iframe {
-          width: 100%;
-          height: 100%;
-          border: 0;
-          display: block;
-        }
-
-        /* ---------- META ---------- */
-
-        .video-meta {
-          padding: 14px 16px;
-          background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
-          border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .meta-left h2 {
-          margin: 0 0 4px;
-          font-size: 18px;
-          font-weight: 600;
-          color: #ffffff;
-        }
-
-        .meta-left span {
-          font-size: 13px;
-          color: #cfd6dd;
-        }
-
-        /* ---------- TABS ---------- */
-
-        .video-tabs {
-          display: flex;
-          border-top: 1px solid rgba(255,255,255,0.08);
-          background: #0e1319;
-        }
-
-        .video-tabs .tab {
-          padding: 10px 16px;
-          font-size: 13px;
-          background: none;
-          border: none;
-          color: #9aa4ad;
-          cursor: pointer;
-          transition: 0.2s;
-        }
-
-        .video-tabs .tab:hover {
-          color: #ffffff;
-        }
-
-        .video-tabs .tab.active {
-          color: #00e5a8;
-          border-bottom: 2px solid #00e5a8;
-        }
-
-        /* ---------- MATCH STRIP ---------- */
-
-        .match-strip {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-          gap: 14px;
-          margin-top: 16px;
-        }
-
-        .match-tile {
-          background: #ffffff;
+        /* --- INFO BAR --- */
+        .activeMatchInfoBar {
+          background: var(--card); /* Unified Background */
+          border: 1px solid var(--border);
           border-radius: 8px;
-          padding: 12px 14px;
-          cursor: pointer;
-          transition: 0.2s ease;
-          border: 1px solid #e1e6ec;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+          padding: 15px 20px;
+          margin-bottom: 20px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 15px;
         }
 
-        .match-tile strong {
-          display: block;
+        .infoBarTop {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        /* Title with Logos Styles */
+        .titleWithLogos {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .headerLogo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .activeMatchTitle {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: var(--text);
+          margin: 0;
+          line-height: 1.2;
+        }
+
+        .activeMatchDate {
           font-size: 13px;
-          color: #1f2933;
-          margin-bottom: 2px;
-        }
-
-        .match-tile span {
-          font-size: 12px;
-          color: #5f6b76;
-        }
-
-        .match-tile:hover {
-          background: #eef2f7;
-        }
-
-        .match-tile.active {
-          background: #00e5a8;
-          border-color: #00e5a8;
-        }
-
-        .match-tile.active strong,
-        .match-tile.active span {
-          color: #0b0f14;
           font-weight: 600;
+          color: var(--muted);
+          margin-left: 2px;
         }
 
-        /* ---------- MOBILE ---------- */
+        .infoBarBottom {
+          display: flex;
+          gap: 10px;
+        }
+        .infoBadge {
+          font-size: 11px;
+          font-weight: 700;
+          padding: 4px 10px;
+          border-radius: 4px;
+          text-transform: uppercase;
+        }
+        .infoBadge.league { background: #f1f3f5; color: var(--text); border: 1px solid var(--border); }
+        .infoBadge.highlights { background: #e9f7ef; color: var(--primary); border: 1px solid #d4edda; }
 
+        /* --- MAIN LAYOUT --- */
+        .highlightsMainLayout {
+          display: grid;
+          grid-template-columns: 1fr 360px; 
+          gap: 20px;
+          align-items: start;
+        }
+
+        /* --- VIDEO PLAYER --- */
+        .videoSection { 
+            flex: 1; 
+            min-width: 0; 
+        }
+        .videoPlayerWrapper { 
+          width: 100%; 
+          aspect-ratio: 16/9; 
+          background: #000; 
+          border-radius: 12px; 
+          overflow: hidden; 
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+        }
+        .iframeContainer { width: 100%; height: 100%; }
+        .iframeStream { width: 100%; height: 100%; border: none; display: block; }
+
+        /* --- SIDEBAR --- */
+        .selectionSection {
+          background: var(--card); /* Unified Background */
+          border-radius: 12px; 
+          border: 1px solid var(--border);
+          display: flex; 
+          flex-direction: column; 
+          overflow: hidden; 
+        }
+
+        .selectionHeader { 
+          padding: 14px 16px; 
+          background: var(--card); /* Unified Background (Removed gray) */
+          border-bottom: 1px solid var(--border); 
+          flex-shrink: 0; 
+        }
+        .selectionHeader h3 { 
+          margin: 0; 
+          font-size: 12px; 
+          color: var(--muted); 
+          text-transform: uppercase; 
+          letter-spacing: 0.5px; 
+          font-weight: 700; 
+        }
+
+        .matchList { 
+            flex: 1; 
+            overflow-y: auto; 
+            background: var(--card); /* Unified Background */
+        }
+        .matchList::-webkit-scrollbar { width: 6px; }
+        .matchList::-webkit-scrollbar-track { background: transparent; }
+        .matchList::-webkit-scrollbar-thumb { background-color: #dee2e6; border-radius: 20px; }
+
+        /* Match Rows */
+        .matchRow { 
+          display: flex; 
+          align-items: center; 
+          padding: 12px 16px; 
+          border-bottom: 1px solid #f1f3f5; 
+          cursor: pointer; 
+          transition: background 0.1s; 
+          position: relative;
+        }
+        .matchRow:hover { background: #f8f9fa; }
+        
+        .activeRow { 
+          background: #f0fdf4; /* Light green tint for active */
+        }
+        .activeRow::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--primary);
+        }
+
+        .rowLogos { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+            margin-right: 14px; 
+            width: 24px; 
+            align-items: center;
+        }
+        .logoWrap { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; }
+        .logoWrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .rowInfo { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .rowTitle { 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: var(--text); 
+            line-height: 1.3; 
+        }
+        
+        .rowSubInfo { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .rowDate { font-size: 11px; color: var(--muted); }
+        
+        .rowScore { 
+          font-size: 11px; 
+          font-weight: 700; 
+          color: var(--primary); 
+          background: #ecfdf5; 
+          padding: 1px 6px; 
+          border-radius: 4px; 
+          border: 1px solid #a7f3d0; 
+          letter-spacing: 0.5px;
+        }
+
+        .rowStatus { 
+            color: var(--muted); 
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .matchRow:hover .rowStatus, .activeRow .rowStatus { opacity: 1; }
+        .playIcon { width: 16px; height: 16px; fill: var(--primary); }
+
+        /* --- MOBILE --- */
         @media (max-width: 900px) {
-          .highlightsSectionWrapper {
-            padding: 1rem 0.75rem;
+          .highlightsSectionWrapper { padding: 1rem; }
+          .highlightsMainLayout { grid-template-columns: 1fr; gap: 15px; }
+          
+          .selectionSection { 
+              height: auto !important; 
+              max-height: none !important; 
           }
-
-          .meta-left h2 {
-            font-size: 16px;
+          
+          .matchList { 
+              display: flex; 
+              overflow-x: auto; 
+              overflow-y: hidden;
+              padding-bottom: 10px;
           }
+          
+          .matchRow { 
+              min-width: 200px; 
+              border: 1px solid var(--border); 
+              border-radius: 8px; 
+              margin-right: 10px; 
+              flex-direction: row; 
+              height: auto;
+          }
+          .activeRow { border-color: var(--primary); }
+          .activeRow::before { display: none; }
 
-          .match-strip {
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          .titleWithLogos {
+              gap: 8px;
+          }
+          .activeMatchTitle {
+              font-size: 1.1rem;
+          }
+          .headerLogo {
+              width: 24px;
+              height: 24px;
           }
         }
       `}</style>

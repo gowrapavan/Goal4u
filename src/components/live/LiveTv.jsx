@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react"; 
-import LiveNews from "./LiveNews";
-import LiveMatchList from "./LiveMatchList";
+import React, { useState, useEffect, useRef } from "react"; // Added useRef
 import { Helmet } from "react-helmet-async";
 import { useLocation, useNavigate } from "react-router-dom";
+import LiveNews from "./LiveNews";
+import LiveMatchList from "./LiveMatchList";
 
 // --- Provider short codes ---
 const PROVIDER_CODES = {
@@ -12,6 +12,8 @@ const PROVIDER_CODES = {
   yallashooote: "yallashooote",
   livekora: "vip",
   shahidkoora: "shk",
+  sirtv: "sirtv",
+  soccerhd: "socchd"
 };
 const CODE_TO_PROVIDER = Object.fromEntries(
   Object.entries(PROVIDER_CODES).map(([k, v]) => [v, k])
@@ -25,6 +27,8 @@ const PROVIDERS = [
   { label: "yallashooote", keyword: "yallashooote" },
   { label: "livekora", keyword: "livekora" },
   { label: "Shahid-Koora", keyword: "shahidkoora" },
+  { label: "sirtv", keyword: "sirtv" },
+  { label: "soccerhd", keyword: "soccerhd" }
 ];
 
 // --- JSON Sources ---
@@ -34,7 +38,9 @@ const JSON_MAP = {
   livekora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/livekora.json",
   shahidkoora: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/shahidkoora.json",
   hesgoal: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/hesgoal.json",
-  yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json"
+  yallashooote: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/yallashooote.json",
+  sirtv: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/siiir.json", //new
+  soccerhd: "https://raw.githubusercontent.com/gowrapavan/shortsdata/main/json/soccerhd.json"//new
 };
 
 // --- Helpers ---
@@ -47,7 +53,7 @@ const decode = (str) => {
   }
 };
 
-const LiveTV = () => { // Renamed component
+const LiveTV = () => {
   const [channelsByProvider, setChannelsByProvider] = useState({});
   const [iframeURL, setIframeURL] = useState("");
   const [showAdAlert, setShowAdAlert] = useState(false);
@@ -126,7 +132,7 @@ const LiveTV = () => { // Renamed component
   }, [location.search, location.pathname]);
 
 
-  // --- New useEffect to match sidebar height to player ---
+  // --- useEffect to match sidebar height to player (with mobile check) ---
   useEffect(() => {
     const videoPlayer = playerRef.current;
     const sidebar = channelSectionRef.current;
@@ -135,14 +141,15 @@ const LiveTV = () => { // Renamed component
 
     // This function measures the player and sets the sidebar's max-height
     const setSidebarHeight = () => {
-      // Check for mobile view where sidebar is not sticky
+      // CHECK if we are on mobile (breakpoint is 900px)
       if (window.innerWidth <= 900) {
-        sidebar.style.maxHeight = 'none'; // Reset on mobile
-        return;
-      }
-      const playerHeight = videoPlayer.offsetHeight;
-      if (playerHeight > 0) { // Only set if height is calculated
-        sidebar.style.maxHeight = `${playerHeight}px`;
+        sidebar.style.maxHeight = 'none'; // RESET inline style on mobile
+      } else {
+        // Only run desktop logic if not mobile
+        const playerHeight = videoPlayer.offsetHeight;
+        if (playerHeight > 0) { // Only set if height is calculated
+          sidebar.style.maxHeight = `${playerHeight}px`;
+        }
       }
     };
 
@@ -207,7 +214,7 @@ const LiveTV = () => { // Renamed component
   const handleIframeClick = (url) => setIframeURL(url);
   const filteredChannels = channelsByProvider[selectedStream] || [];
 
-  // --- Render Matchup Card (from HomeTv) ---
+  // --- Render Matchup Card ---
   const renderChannelCard = (server) => {
     const isActive = iframeURL === server.url;
     const cardClasses = `channelCard ${isActive ? "channelCardActive" : ""}`;
@@ -255,7 +262,7 @@ const LiveTV = () => { // Renamed component
         <link rel="canonical" href="https://goal4u.live/livetv" />
       </Helmet>
 
-      {/* --- STYLES (from HomeTv) --- */}
+      {/* --- STYLES (Updated) --- */}
       <style>{`
         /* --- Base & Scrollbar --- */
         :root {
@@ -297,8 +304,6 @@ const LiveTV = () => { // Renamed component
           width: 100%;
           max-width: 1320px;
           margin: 0 auto;
-          
-          /* === FIX 1: Align columns to the top === */
           align-items: start;
         }
 
@@ -405,12 +410,9 @@ const LiveTV = () => { // Renamed component
           border-radius: 12px;
           box-shadow: var(--shadow-sm);
           border: 1px solid var(--border-color);
-          overflow: hidden;
-          
-          /* Make the sidebar sticky */
+          overflow: hidden; /* <-- Correct for desktop */
           position: sticky;
           top: var(--page-padding); 
-          
           /* max-height is set by JavaScript */
         }
 
@@ -421,7 +423,7 @@ const LiveTV = () => { // Renamed component
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
-          flex-shrink: 0; /* Prevent tabs from shrinking */
+          flex-shrink: 0;
         }
         
         .providerTabButton {
@@ -452,13 +454,11 @@ const LiveTV = () => { // Renamed component
 
         /* --- Channel List --- */
         .channelList {
-          overflow-y: auto; /* Adds scrollbar ONLY if list is taller than max-height */
+          overflow-y: auto;
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
           gap: 12px;
           padding: 12px;
-          
-          /* These allow the flex layout to work */
           flex: 1;
           min-height: 0;
         }
@@ -552,23 +552,42 @@ const LiveTV = () => { // Renamed component
         /* --- Responsive (Mobile) --- */
         @media (max-width: 900px) {
           .livetvPageContainer {
-            padding: 1rem;
-            --page-padding: 1rem; /* Update variable for mobile */
+            padding: 1rem 0; 
+            --page-padding: 1rem; 
           }
         
           .livetvMainLayout {
-            grid-template-columns: 1fr; /* Stack vertically */
+            grid-template-columns: 1fr;
             max-height: none;
-            align-items: stretch; /* Go back to default on mobile */
+            align-items: stretch; 
+            gap: 0;
+          }
+
+          /* --- THIS IS THE FIX --- */
+          .videoSection {
+            min-width: 0; /* Prevents grid item from expanding */
+          }
+          /* --- END FIX --- */
+
+          .videoPlayerWrapper {
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
           }
           
           .channelSectionWrapper {
              margin-top: 20px;
+             padding: 0 1rem;
+             /* --- THIS IS THE FIX --- */
+             min-width: 0; /* Prevents grid item from expanding */
           }
           
           .channelSection {
-            max-height: none; /* Unset max-height */
-            position: static; /* Unset sticky */
+            max-height: none;
+            position: static;
+            border: none;
+            box-shadow: none;
+            overflow: hidden; /* Keep this to contain children */
           }
           
           .channelList {
@@ -576,7 +595,7 @@ const LiveTV = () => { // Renamed component
             min-height: auto;
             display: flex;
             flex-direction: row;
-            overflow-x: auto;
+            overflow-x: auto; /* This will now work */
             overflow-y: hidden;
             grid-template-columns: none;
             gap: 10px;
@@ -585,7 +604,7 @@ const LiveTV = () => { // Renamed component
 
           .providerTabs {
             flex-wrap: nowrap;
-            overflow-x: auto;
+            overflow-x: auto; /* This will also work */
             padding-bottom: 10px;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -613,9 +632,14 @@ const LiveTV = () => { // Renamed component
         
         @media (max-width: 500px) {
             .livetvPageContainer {
-                padding: 0.75rem;
-                --page-padding: 0.75rem; /* Update variable for mobile */
+                padding: 0.75rem 0 0 0;
+                --page-padding: 0.75rem;
             }
+            
+            .channelSectionWrapper {
+              padding: 0 0.75rem;
+            }
+
             .adAlert {
                 top: 8px;
                 left: 8px;
@@ -624,12 +648,10 @@ const LiveTV = () => { // Renamed component
             }
         }
 
-        /* --- Added Styles for LiveNews/LiveMatchList --- */
-        .livetv-match-list-margin {
+         .livetv-match-list-margin {
           margin-top: 2.5rem;
           margin-bottom: 2.5rem;
         }
-        
       `}</style>
 
       {/* --- JSX --- */}
@@ -706,9 +728,9 @@ const LiveTV = () => { // Renamed component
               </div>
             </div>
           </div>
-        </div> {/* End of livetvMainLayout */}
-
-        {/* --- ADDED SECTIONS from original LiveTv.jsx --- */}
+          
+        </div>
+               {/* --- ADDED SECTIONS from original LiveTv.jsx --- */}
         <div className="livetv-match-list-margin">
           <LiveMatchList />
         </div>
@@ -716,8 +738,8 @@ const LiveTV = () => { // Renamed component
         <div>
           <LiveNews />
         </div>
+      </div>
 
-      </div> {/* End of livetvPageContainer */}
     </>
   );
 };
