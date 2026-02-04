@@ -1,0 +1,136 @@
+{
+  "uniqueTournament": {
+    "name": "UEFA Europa League",
+    "slug": "uefa-europa-league",
+    "secondaryColorHex": "#f37d25",
+    "logo": {
+      "md5": "e8138dc92e72bdc892e290f6d2e49d64",
+      "id": 1854373
+    },
+    "darkLogo": {
+      "md5": "1ebd8eeb999c74a29d323c01c2501350",
+      "id": 1854374
+    },
+    "category": {
+      "name": "Europe",
+      "slug": "europe",
+      "sport": {
+        "name": "Football",
+        "slug": "football",
+        "id": 1
+      },
+      "id": 1465,
+      "country": {},
+      "flag": "europe",
+      "fieldTranslations": {
+        "nameTranslation": {
+          "ar": "\u0623\u0648\u0631\u0648\u0628\u0627",
+          "hi": "\u092f\u0942\u0930\u094b\u092a",
+          "bn": "\u0987\u0989\u09b0\u09cb\u09aa"
+        },
+        "shortNameTranslation": {}
+      }
+    },
+    "userCount": 453170,
+    "titleHolder": {
+      "name": "Tottenham Hotspur",
+      "slug": "tottenham-hotspur",
+      "shortName": "Tottenham ",
+      "gender": "M",
+      "sport": {
+        "name": "Football",
+        "slug": "football",
+        "id": 1
+      },
+      "userCount": 1370476,
+      "nameCode": "TOT",
+      "disabled": false,
+      "national": false,
+      "type": 0,
+      "id": 33,
+      "country": {
+        "alpha2": "EN",
+        "name": "England"
+      },
+      "teamColors": {
+        "primary": "#ffffff",
+        "secondary": "#000066",
+        "text": "#000066"
+      },
+      "fieldTranslations": {
+        "nameTranslation": {
+          "ar": "\u062a\u0648\u062a\u0646\u0647\u0627\u0645 \u0647\u0648\u062a\u0633\u0628\u064a\u0631",
+          "ru": "\u0422\u043e\u0442\u0442\u0435\u043d\u0445\u044d\u043c \u0425\u043e\u0442\u0441\u043f\u0443\u0440",
+          "hi": "\u091f\u094b\u091f\u0947\u0928\u0939\u0948\u092e \u0939\u0949\u091f\u0938\u094d\u092a\u0930 \u090d\u095e\u0938\u0940"
+        },
+        "shortNameTranslation": {
+          "ar": "\u062a\u0648\u062a\u0646\u0647\u0627\u0645",
+          "hi": "\u091f\u0949\u091f\u0928\u0939\u0948\u092e",
+          "bn": "\u099f\u099f\u09c7\u09a8\u09b9\u09cd\u09af\u09be\u09ae"
+        }
+      }
+    },
+    "titleHolderTitles": 3,
+    "mostTitles": 7,
+    "linkedUniqueTournaments": [],
+    "hasRounds": true,
+    "hasGroups": true,
+    "hasPlayoffSeries": false,
+    "upperDivisions": [],
+    "lowerDivisions": [],
+    "hasPerformanceGraphFeature": false,
+    "periodLength": {},
+    "gender": "M",
+    "id": 679,
+    "country": {},
+    "startDateTimestamp": 1752105600,
+    "endDateTimestamp": 1779235200,
+    "mostTitlesTeams": [
+      {
+        "name": "Sevilla",
+        "slug": "sevilla",
+        "shortName": "Sevilla",
+        "gender": "M",
+        "sport": {
+          "name": "Football",
+          "slug": "football",
+          "id": 1
+        },
+        "userCount": 385753,
+        "nameCode": "SEV",
+        "disabled": false,
+        "national": false,
+        "type": 0,
+        "id": 2833,
+        "country": {
+          "alpha2": "ES",
+          "name": "Spain"
+        },
+        "teamColors": {
+          "primary": "#ffffff",
+          "secondary": "#cc1020",
+          "text": "#cc1020"
+        },
+        "fieldTranslations": {
+          "nameTranslation": {
+            "ar": "\u0625\u0634\u0628\u064a\u0644\u064a\u0629",
+            "ru": "C\u0435\u0432\u0438\u043b\u044c\u044f",
+            "hi": "\u0938\u0947\u0935\u093f\u0932\u093e",
+            "bn": "\u09b8\u09c7\u09ad\u09bf\u09b2\u09be"
+          },
+          "shortNameTranslation": {}
+        }
+      }
+    ],
+    "disabledHomeAwayStandings": false,
+    "displayInverseHomeAwayTeams": false,
+    "fieldTranslations": {
+      "nameTranslation": {
+        "ar": "\u0627\u0644\u062f\u0648\u0631\u064a \u0627\u0644\u0623\u0648\u0631\u0648\u0628\u064a",
+        "hi": "\u092f\u0942\u0908\u090f\u092b\u090f \u092f\u0942\u0930\u094b\u092a\u093e \u0932\u0940\u0917",
+        "bn": "\u0989\u09af\u09bc\u09c7\u09ab\u09be \u0987\u0989\u09b0\u09cb\u09aa\u09be \u09b2\u09c0\u0997"
+      },
+      "shortNameTranslation": {}
+    }
+  }
+}

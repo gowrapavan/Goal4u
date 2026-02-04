@@ -5,6 +5,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import InstaFeeds from "./pages/reels/ReelFeed";
 import Video from "./pages/reels/Video";
 import YVideo from "./pages/reels/YVideo";
+import HighlightView from "./pages/HighlightView";
+
 
 import MatchSlider from './components/Sliders/MatchSlider';
 import Shorts from "./pages/reels/Shorts";
@@ -84,6 +86,7 @@ function AppWrapper() {
           <Route path="/players" element={<PlayersByClub />} />
           <Route path="/koora" element={<Koora />} />
           <Route path="/livetv" element={<LiveTV />} />
+          <Route path="/highlight/:id" element={<HighlightView/>}/>
           <Route path="/about" element={<About />} />
           <Route path="/live" element={<Live />} />
           <Route path="/clubs" element={<Team />} />
@@ -106,7 +109,6 @@ function AppWrapper() {
     <MobileFooter />
   )
 )}
-
 
 
 

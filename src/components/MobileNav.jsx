@@ -29,7 +29,6 @@ const MobileNav = ({ isOpen, onClose }) => {
     { label: 'Live', path: '/live' },
     { label: 'Table', path: '/table-point' },
     { label: 'Groups', path: '/groups' },
-    { label: 'Features', path: '/features' },
     { label: 'About', path: '/about' },
   ];
 

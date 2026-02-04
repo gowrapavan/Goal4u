@@ -9,7 +9,7 @@ import HomeTV from './HomeTV'; // ✅ Import HomeTV
 import StatsSection from './StatsSection'; // <-- Import the new component
 import ClubSlider from './Sliders/ClubSlider'; // <-- 1. IMPORT IT
 import MatchSlider from './Sliders/MatchSlider'; // <-- 1. IMPORT IT
-import HighlightsSection from "./home/HighlightsSection";
+import RecentHighlights from "./home/RecentHighlights";
 
 
 const ContentInfo = () => {
@@ -40,7 +40,7 @@ const ContentInfo = () => {
         <HomeTV />
       </div>
       <div data-highlights>
-      <HighlightsSection />
+      <RecentHighlights />
     </div>
 
      

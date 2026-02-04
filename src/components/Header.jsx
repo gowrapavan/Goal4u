@@ -81,16 +81,16 @@ const Header = () => {
               {/* Logo */}
               <div className="col-6 col-lg-3">
                 <div className="logo">
-  <Link to="/" title="Return Home">
-    <img
-      src={location.pathname === "/livematch" 
-            ? "/assets/img/site-logo/bg-noblk.png" 
-            : "/assets/img/site-logo/bg-white.png"}
-      alt="Logo"
-      className="logo_img"
-    />
-  </Link>
-</div>
+                  <Link to="/" title="Return Home">
+                    <img
+                      src={location.pathname === "/livematch" 
+                            ? "/assets/img/site-logo/bg-noblk.png" 
+                            : "/assets/img/site-logo/bg-white.png"}
+                      alt="Logo"
+                      className="logo_img"
+                    />
+                  </Link>
+                </div>
 
               </div>
 
